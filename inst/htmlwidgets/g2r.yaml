@@ -1,0 +1,5 @@
+# dependencies:
+#  - name: g2
+#    version: 1.0.0
+#    src: htmlwidgets
+#    script: g2r.js
