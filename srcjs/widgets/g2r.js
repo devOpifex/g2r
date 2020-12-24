@@ -61,6 +61,10 @@ HTMLWidgets.widget({
           // position
           e.position(v.position);
 
+          // adjust
+          if(v.adjust)
+            e.adjust(v.adjust);
+
           // color
           if(v.color)
             e.color(v.color);

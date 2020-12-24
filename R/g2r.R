@@ -1,6 +1,12 @@
-#' <Add Title>
+#' Initialise
 #'
-#' <Add Description>
+#' Initialise a chart.
+#' 
+#' @param data A data.frame or tibble containing data to chart.
+#' @param ... Aspects of the chart, see [asp()].
+#' @param width,height Dimensions of the chart, accepts 
+#' any valid CSS unit e.g.: `100%`, numerics are treated
+#' as pixels, e.g.: `400` = `400px`.
 #'
 #' @import htmlwidgets
 #'

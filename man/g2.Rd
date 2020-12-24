@@ -2,10 +2,10 @@
 % Please edit documentation in R/g2r.R
 \name{g2}
 \alias{g2}
-\title{<Add Title>}
+\title{Initialise}
 \usage{
 g2(data = NULL, ..., width = NULL, height = NULL, elementId = NULL)
 }
 \description{
-<Add Description>
+Initialise a chart.
 }

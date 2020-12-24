@@ -1,5 +1,8 @@
+#' @importFrom purrr keep
 drop_nulls <- function(x) {
-  x[!vapply(x, is.null, FUN.VALUE = logical(1))]
+  keep(x, function(x){
+    length(x) > 0
+  })
 }
 
 select_columns <- function(data, cols){

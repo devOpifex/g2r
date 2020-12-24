@@ -157,15 +157,10 @@ select_asp <- function(asp, ...){
 
 #' @keywords internal
 select_asp_labels <- function(asp, ...){
-  found <- asp %>% 
+  asp %>% 
     select_asp(...) %>% 
     sapply(asp_as_string) %>% 
     unname()
-
-  if(!length(found))
-    return()
-
-  found
 }
 
 asp_as_string <- function(a){

@@ -145,6 +145,9 @@ fig_primitive <- function(
 
   type <- match.arg(type)
 
+  # adjust
+  adjust <- get_adjust(...)
+
   # chart aspects
   asp <- get_asp(...)
   asp <- combine_asp(g$x$main_asp, asp, inherit_asp = inherit_asp)
@@ -165,7 +168,8 @@ fig_primitive <- function(
     color = color,
     data = data,
     shape = shape,
-    size = size
+    size = size,
+    adjust = adjust
   ) %>% 
     drop_nulls()
 
