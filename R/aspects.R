@@ -144,7 +144,7 @@ rm_asp <- function(...){
 #' 
 #' select_asp(a, "x")
 #' 
-#' @importFrom rlang as_label
+#' @importFrom rlang as_label is_symbolic
 #' 
 #' @keywords internal
 select_asp <- function(asp, ...){
@@ -157,10 +157,22 @@ select_asp <- function(asp, ...){
 
 #' @keywords internal
 select_asp_labels <- function(asp, ...){
-  asp %>% 
+  found <- asp %>% 
     select_asp(...) %>% 
-    sapply(rlang::as_label) %>% 
+    sapply(asp_as_string) %>% 
     unname()
+
+  if(!length(found))
+    return()
+
+  found
+}
+
+asp_as_string <- function(a){
+  if(is_symbolic(a))
+    return(as_label(a))
+
+  return(a)
 }
 
 #' Has Aspects

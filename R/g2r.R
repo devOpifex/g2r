@@ -12,7 +12,9 @@ g2 <- function(data = NULL, ..., width = NULL, height = NULL, elementId = NULL) 
   x = list(
     data = data, # dataset
     main_asp = asp, # main aspects
-    views = list() # views // figures
+    views = list(), # views | figures
+    cols = c(), # keep track of columns for filter
+    scale = list()
   )
 
   attr(x, "TOJSON_ARGS") <- list(dataframe = "rows")
