@@ -1,5 +1,9 @@
 #' Pre Render Hook
 #' 
+#' @param g g2r obeject as returned by [g2()].
+#' 
+#' @return A modified version of `g`.
+#' 
 #' @keywords internal
 renderG2 <- function(g){
   cols <- unique(g$x$cols)

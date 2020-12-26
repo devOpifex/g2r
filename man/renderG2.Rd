@@ -6,6 +6,12 @@
 \usage{
 renderG2(g)
 }
+\arguments{
+\item{g}{g2r obeject as returned by \code{\link[=g2]{g2()}}.}
+}
+\value{
+A modified version of \code{g}.
+}
 \description{
 Pre Render Hook
 }
