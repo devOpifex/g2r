@@ -26,6 +26,18 @@ fig_point <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+  UseMethod("fig_point")
+}
+
+#' @method fig_point g2r
+#' @export 
+fig_point.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
   fig_primitive(
     g, 
     ..., 
@@ -54,6 +66,18 @@ fig_line <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+  UseMethod("fig_line")
+}
+
+#' @method fig_line g2r
+#' @export 
+fig_line.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
   fig_primitive(
     g, 
     ..., 
@@ -76,6 +100,18 @@ fig_line <- function(
 #' 
 #' @export 
 fig_area <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  UseMethod("fig_area")
+}
+
+#' @method fig_area g2r
+#' @export
+fig_area.g2r <- function(
   g, 
   ..., 
   sync = TRUE, 
@@ -114,8 +150,22 @@ fig_area <- function(
 #'  coord_scale(-1, 1) %>% 
 #'  axis_hide()
 #' 
+#' @name figures
+#' 
 #' @export 
 fig_interval <- function(
+  g, 
+  ...,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  UseMethod("fig_interval")
+}
+
+#' @method fig_interval g2r
+#' @export 
+fig_interval.g2r <- function(
   g, 
   ..., 
   sync = TRUE, 
@@ -146,6 +196,18 @@ fig_polygon <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+  UseMethod("fig_polygon")
+}
+
+#' @method fig_polygon g2r
+#' @export 
+fig_polygon.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
   fig_primitive(
     g, 
     ..., 
@@ -170,6 +232,18 @@ fig_edge <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+  UseMethod("fig_edge")
+}
+
+#' @method fig_edge g2r
+#' @export 
+fig_edge.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
   fig_primitive(
     g, 
     ..., 
@@ -188,6 +262,18 @@ fig_edge <- function(
 #' 
 #' @export 
 fig_path <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  UseMethod("fig_path")
+}
+
+#' @method fig_path g2r
+#' @export 
+fig_path.g2r <- function(
   g, 
   ..., 
   sync = TRUE, 
