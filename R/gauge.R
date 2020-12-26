@@ -454,6 +454,10 @@ gauges_types <- function(g, cols, data = NULL){
   types <- sapply(cols, col_to_type, data = data)
 
   for(i in seq_along(types)){
+    if(!is.character(cols[i]))
+      next
+
+    print(cols[i])
     g <- gauge_(g, cols[i], type = types[i])
   }
 

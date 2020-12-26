@@ -329,14 +329,14 @@ fig_primitive <- function(
   shape <- select_asp_labels(asp, "shape")
 
   # store columns
-  cols <- c(position, color, shape)
+  cols <- c(position, color, shape, size)
   g$x$cols <- append(g$x$cols, cols)
 
   # scales
   g <- sync(g, position, sync)
   g <- gauges_types(
     g, 
-    c(position, size, color), 
+    cols, 
     data
   )
   

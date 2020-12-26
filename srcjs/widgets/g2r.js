@@ -3,6 +3,7 @@ import { Chart } from '@antv/g2';
 import { makeFigure } from '../modules/makeFigure.js'; 
 import { makeCoords } from '../modules/makeCoords.js'; 
 import { tuneFigure } from '../modules/tuneFigure.js';
+import { assignData } from '../modules/assignData.js';
 
 HTMLWidgets.widget({
 
@@ -41,27 +42,34 @@ HTMLWidgets.widget({
         }
 
         // loop over figures
-        x.views.forEach(function(v){
-          let view = c.createView();
-
-          let figure = makeFigure(view, v.type);
-          tuneFigure(figure, v);
+        if(x.facet){
 
           // data
-          if(v.data)
-            view.data(v.data);
-          else
-            view.data(x.data);
-          
-        });
+          c.data(x.data);
+
+          // views
+          x.facet.opts.eachView = makeFacetView(x)
+
+          c.facet(x.facet.type, x.facet.opts)
+
+        } else {
+          x.views.forEach(function(v){
+            let view = c.createView();
+  
+            let figure = makeFigure(view, v.type);
+            tuneFigure(figure, v);
+  
+            // data
+            assignData(view, v, x)
+            
+          });
+        }
 
         c.render();
 
       },
 
       resize: function(width, height) {
-
-        // TODO: code to re-render the widget with a new size
 
       },
       getC: function(){
@@ -71,3 +79,14 @@ HTMLWidgets.widget({
     };
   }
 });
+
+function makeFacetView(x){
+  return function(view){
+    x.views.forEach(function(v){
+
+      let figure = makeFigure(view, v.type);
+      tuneFigure(figure, v);
+      
+    });
+  }
+}

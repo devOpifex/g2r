@@ -11,6 +11,7 @@ renderG2 <- function(g){
   g$x$data <- select_columns(g$x$data, cols)
   
   g$x$cols <- NULL
+  g$x$main_asp <- NULL
 
   g
 }

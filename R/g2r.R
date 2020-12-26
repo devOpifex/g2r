@@ -38,6 +38,7 @@ g2 <- function(data = NULL, ..., width = NULL, height = NULL, elementId = NULL) 
     height = height,
     package = 'g2r',
     elementId = elementId,
+    preRenderHook = renderG2,
     sizingPolicy = sizingPolicy(
       defaultWidth = "100%",
       browser.fill = TRUE
