@@ -12,8 +12,10 @@ because functions to select or retrieve aspects
 return lists of length 0 when none are found.
 }
 \examples{
+\dontrun{
 has_asp(asp())
 has_asp(asp(dist))
+}
 
 }
 \keyword{internal}

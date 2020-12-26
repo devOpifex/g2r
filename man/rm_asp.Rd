@@ -14,4 +14,14 @@ Given a arguments, remove aspects. Used
 to remove aspects and only keep options that need
 to make it to the serie.
 }
+\examples{
+\dontrun{
+foo <- function(...){
+ rm_asp(...)
+}
+
+foo(asp(speed), x = 1)
+}
+
+}
 \keyword{internal}

@@ -10,6 +10,7 @@ HTMLWidgets.widget({
   factory: function(el, width, height) {
 
     let c, 
+        coord,
         views = [];
 
     return {
@@ -25,8 +26,25 @@ HTMLWidgets.widget({
         if(x.data)
           c.data(x.data);
 
+        // scale
         if(x.scale)
           c.scale(x.scale);
+
+        // Coordinates
+        if(x.coord)
+          coord = c.coord(x.coord.type, x.coord.opts);
+
+        if(x.coordRotate)
+          coord.rotate(x.coordRotate);
+
+        if(x.coordScale)
+          coord.scale(x.coordScale[0], x.coordScale[1]);
+
+        if(x.coordReflect)
+          coord.reflect(x.coordReflect);
+
+        if(x.coordTranspose)
+          coord.transpose();
 
         // loop over figures
         x.views.forEach(function(v){

@@ -1,19 +1,24 @@
 Package: g2r
-Title: What the Package Does (One Line, Title Case)
+Title: Interactive Grammar of Graphics
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+  c(
+    person(given = "John",
+           family = "Coene",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "jcoenep@gmail.com"),
+    person(family = "Opifex",
+           role = c("cph"),
+           email = "john@opifex.org")
+  )
+Description: Interactive grammar of graphics.
+License: AGPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1.9000
 Imports: 
     htmlwidgets,
-    magrittr
+    magrittr,
+    purrr,
+    rlang

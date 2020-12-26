@@ -47,9 +47,10 @@ adjust <- function(type, margin = NULL, dodge_by = NULL) {
 #' @param x Object to check.
 #' 
 #' @examples 
-#' 
+#' \dontrun{
 #' is_adjust(1)
 #' is_adjust(adj("stack"))
+#' }
 #' 
 #' @return A boolean.
 #' 
@@ -67,12 +68,14 @@ is_adjust <- function(x){
 #' @param ... Any argument.
 #' 
 #' @examples 
+#' \dontrun{
 #' foo <- function(...){
 #'  get_adjust(...)
 #' }
 #' 
 #' foo(1)
 #' foo(adjust("stack"))
+#' }
 #' 
 #' @importFrom purrr keep
 #' 

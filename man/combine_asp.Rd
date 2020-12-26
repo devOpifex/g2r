@@ -18,10 +18,12 @@ Combine aspects, generally used to combine parents with serie-level
 aspects.
 }
 \examples{
+\dontrun{
 combine_asp(
  asp(dist),
  asp(y = speed)
 )
+}
 
 }
 \keyword{internal}

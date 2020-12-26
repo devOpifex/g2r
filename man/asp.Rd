@@ -20,6 +20,7 @@ Define aspects of a visualisation.
 \item \code{x}, \code{y}
 \item \code{size}
 \item \code{color}
+\item \code{shape}
 }
 }
 

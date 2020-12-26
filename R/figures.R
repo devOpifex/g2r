@@ -92,6 +92,16 @@ fig_area <- function(
   )
 }
 
+#' Interval
+#' 
+#' Add an interval figure.
+#' 
+#' @inheritParams fig_point
+#' 
+#' @examples
+#' g2(sleep, asp(ID, extra, color = group)) %>% 
+#'  fig_interval()
+#' 
 #' @export 
 fig_interval <- function(
   g, 
@@ -110,6 +120,12 @@ fig_interval <- function(
   )
 }
 
+#' Polygon
+#' 
+#' Add a polygon figure.
+#' 
+#' @inheritParams fig_point
+#' 
 #' @export 
 fig_polygon <- function(
   g, 
@@ -128,6 +144,12 @@ fig_polygon <- function(
   )
 }
 
+#' Edge
+#' 
+#' Add an edge figure.
+#' 
+#' @inheritParams fig_point
+#' 
 #' @export 
 fig_edge <- function(
   g, 
@@ -146,6 +168,12 @@ fig_edge <- function(
   )
 }
 
+#' Path
+#' 
+#' Add a path figure.
+#' 
+#' @inheritParams fig_point
+#' 
 #' @export 
 fig_path <- function(
   g, 
@@ -164,6 +192,13 @@ fig_path <- function(
   )
 }
 
+#' Path
+#' 
+#' Add a path figure.
+#' 
+#' @inheritParams fig_point
+#' 
+#' @keywords internal
 fig_primitive <- function(
   g, 
   ..., 
@@ -195,8 +230,10 @@ fig_primitive <- function(
   color <- select_asp_labels(asp, "color")
   shape <- select_asp_labels(asp, "shape")
 
+  # sync
   g$x$scale <- sync(g$x$scale, position, sync)
 
+  # store columns
   cols <- c(position, color, shape)
   g$x$cols <- append(g$x$cols, cols)
   
@@ -204,7 +241,7 @@ fig_primitive <- function(
     type = type,
     position = position,
     color = color,
-    data = data,
+    data = select_columns(data, cols),
     shape = shape,
     size = size,
     adjust = adjust

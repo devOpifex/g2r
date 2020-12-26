@@ -15,9 +15,11 @@ select_asp(asp, ...)
 Select specific aspects from a list of aspects
 }
 \examples{
+\dontrun{
 a <- asp(x = speed)
 
 select_asp(a, "x")
+}
 
 }
 \keyword{internal}

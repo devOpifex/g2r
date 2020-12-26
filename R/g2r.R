@@ -7,7 +7,12 @@
 #' @param width,height Dimensions of the chart, accepts 
 #' any valid CSS unit e.g.: `100%`, numerics are treated
 #' as pixels, e.g.: `400` = `400px`.
+#' @param elementId Valid CSS id attribute.
 #'
+#' @examples 
+#' g2(cars) %>% 
+#'  fig_point(asp(speed, dist))
+#' 
 #' @import htmlwidgets
 #'
 #' @export
@@ -19,21 +24,21 @@ g2 <- function(data = NULL, ..., width = NULL, height = NULL, elementId = NULL) 
     data = data, # dataset
     main_asp = asp, # main aspects
     views = list(), # views | figures
-    cols = c(), # keep track of columns for filter
-    scale = list()
+    scale = list(), # chart.scale
+    cols = c() # keep track of columns for filter
   )
 
   attr(x, "TOJSON_ARGS") <- list(dataframe = "rows")
 
   # create widget
-  htmlwidgets::createWidget(
+  createWidget(
     name = 'g2r',
     x,
     width = width,
     height = height,
     package = 'g2r',
     elementId = elementId,
-    sizingPolicy = htmlwidgets::sizingPolicy(
+    sizingPolicy = sizingPolicy(
       defaultWidth = "100%",
       browser.fill = TRUE
     ) 

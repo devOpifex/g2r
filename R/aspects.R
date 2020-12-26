@@ -10,6 +10,7 @@
 #' - `x`, `y`
 #' - `size`
 #' - `color`
+#' - `shape`
 #' 
 #' @importFrom rlang enquos is_quosure is_symbolic quo_is_symbolic quo_get_expr new_quosure quo_label
 #' @importFrom purrr keep
@@ -97,9 +98,10 @@ print.unevaluated <- function(x, ...) {
 #' @param x Object to check.
 #' 
 #' @examples 
-#' 
+#' \dontrun{
 #' is_asp(1)
 #' is_asp(asp(dist))
+#' }
 #' 
 #' @return A boolean.
 #' 
@@ -117,11 +119,13 @@ is_asp <- function(x){
 #' @param ... Three dot passed from parent from which to _retrieve_ aspects.
 #' 
 #' @examples 
+#' \dontrun{
 #' foo <- function(...){
 #'  get_asp(...)
 #' }
 #' 
 #' foo(asp(speed))
+#' }
 #' 
 #' @importFrom purrr keep flatten
 #' 
@@ -140,6 +144,15 @@ get_asp <- function(...){
 #' 
 #' @param ... Three dot passed from parent from which to _remove_ aspects.
 #' 
+#' @examples 
+#' \dontrun{
+#' foo <- function(...){
+#'  rm_asp(...)
+#' }
+#' 
+#' foo(asp(speed), x = 1)
+#' }
+#' 
 #' @importFrom purrr discard
 #' 
 #' @keywords internal
@@ -156,9 +169,11 @@ rm_asp <- function(...){
 #' @param ... Names of aspects to select.
 #' 
 #' @examples 
+#' \dontrun{
 #' a <- asp(x = speed)
 #' 
 #' select_asp(a, "x")
+#' }
 #' 
 #' @importFrom rlang as_label is_symbolic
 #' 
@@ -193,8 +208,10 @@ asp_as_string <- function(a){
 #' return lists of length 0 when none are found.
 #' 
 #' @examples 
+#' \dontrun{
 #' has_asp(asp())
 #' has_asp(asp(dist))
+#' }
 #' 
 #' @keywords internal
 has_asp <- function(asp){
@@ -211,10 +228,12 @@ has_asp <- function(asp){
 #' @param inherit_asp Whether the main aspects should be inherited/combined
 #' 
 #' @examples 
+#' \dontrun{
 #' combine_asp(
 #'  asp(dist),
 #'  asp(y = speed)
 #' )
+#' }
 #' 
 #' @keywords internal
 combine_asp <- function(main_asp, asp, inherit_asp = TRUE){

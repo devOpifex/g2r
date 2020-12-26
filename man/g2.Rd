@@ -14,7 +14,14 @@ g2(data = NULL, ..., width = NULL, height = NULL, elementId = NULL)
 \item{width, height}{Dimensions of the chart, accepts
 any valid CSS unit e.g.: \verb{100\%}, numerics are treated
 as pixels, e.g.: \code{400} = \verb{400px}.}
+
+\item{elementId}{Valid CSS id attribute.}
 }
 \description{
 Initialise a chart.
+}
+\examples{
+g2(cars) \%>\% 
+ fig_point(asp(speed, dist))
+
 }

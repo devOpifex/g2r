@@ -5,13 +5,15 @@ drop_nulls <- function(x) {
   })
 }
 
-select_columns <- function(data, cols){
+select_columns <- function(data = NULL, cols){
+  if(is.null(data))
+    return(NULL)
   data[, names(data) %in% cols]
 }
 
 sync <- function(main, position, sync = TRUE){
   # it's FALSE
-  if(is.logical(x) && !isTRUE(x))
+  if(is.logical(sync) && !isTRUE(sync))
     return()
 
   if(isTRUE(sync)){

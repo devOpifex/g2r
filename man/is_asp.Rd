@@ -17,9 +17,10 @@ Checks whether the object is of class \code{aspects},
 as returned by \code{\link[=asp]{asp()}}.
 }
 \examples{
-
+\dontrun{
 is_asp(1)
 is_asp(asp(dist))
+}
 
 }
 \keyword{internal}

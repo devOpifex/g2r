@@ -17,9 +17,10 @@ Checks whether the object is of class \code{adjust},
 as returned by \code{\link[=adjust]{adjust()}}.
 }
 \examples{
-
+\dontrun{
 is_adjust(1)
 is_adjust(adj("stack"))
+}
 
 }
 \keyword{internal}
