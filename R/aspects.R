@@ -8,6 +8,8 @@
 #' @section Aspects:
 #' 
 #' - `x`, `y`
+#' - `size`
+#' - `color`
 #' 
 #' @importFrom rlang enquos is_quosure is_symbolic quo_is_symbolic quo_get_expr new_quosure quo_label
 #' @importFrom purrr keep
@@ -87,7 +89,21 @@ print.unevaluated <- function(x, ...) {
   new_asp(NextMethod())
 }
 
-# is aesthetic?
+#' Aspect Check
+#' 
+#' Checks whether the object is of class `aspects`,
+#' as returned by [asp()].
+#' 
+#' @param x Object to check.
+#' 
+#' @examples 
+#' 
+#' is_asp(1)
+#' is_asp(asp(dist))
+#' 
+#' @return A boolean.
+#' 
+#' @keywords internal
 is_asp <- function(x){
   if(inherits(x, "aspects"))
     return(TRUE)

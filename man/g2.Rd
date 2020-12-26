@@ -6,6 +6,15 @@
 \usage{
 g2(data = NULL, ..., width = NULL, height = NULL, elementId = NULL)
 }
+\arguments{
+\item{data}{A data.frame or tibble containing data to chart.}
+
+\item{...}{Aspects of the chart, see \code{\link[=asp]{asp()}}.}
+
+\item{width, height}{Dimensions of the chart, accepts
+any valid CSS unit e.g.: \verb{100\%}, numerics are treated
+as pixels, e.g.: \code{400} = \verb{400px}.}
+}
 \description{
 Initialise a chart.
 }

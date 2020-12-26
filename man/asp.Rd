@@ -18,6 +18,8 @@ Define aspects of a visualisation.
 
 \itemize{
 \item \code{x}, \code{y}
+\item \code{size}
+\item \code{color}
 }
 }
 

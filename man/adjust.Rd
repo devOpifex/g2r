@@ -7,7 +7,8 @@
 adjust(type, margin = NULL, dodge_by = NULL)
 }
 \arguments{
-\item{type}{A vector of types of adjustement to apply to the figure, see the "types" section below for valid values.}
+\item{type}{A vector of types of adjustement to apply
+to the figure, see the "types" section below for valid values.}
 
 \item{margin}{Margin, between \code{0} and \code{1}.}
 
@@ -20,10 +21,10 @@ Adjust a figure.
 
 Valid values for the \code{type} argument.
 \itemize{
-\item{\code{stack}}
-\item{\code{dodge}}
-\item{\code{jitter}}
-\item{\code{symmetric}}
+\item \code{stack}
+\item \code{dodge}
+\item \code{jitter}
+\item `symmetric
 }
 }
 

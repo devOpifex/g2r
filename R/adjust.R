@@ -2,18 +2,20 @@
 #' 
 #' Adjust a figure.
 #' 
-#' @param type A vector of types of adjustement to apply to the figure, see the "types" section below for valid values.
-#' @param margin Margin, between \code{0} and \code{1}.
+#' @param type A vector of types of adjustement to apply 
+#' to the figure, see the "types" section below for valid values.
+#' @param margin Margin, between `0` and `1`.
 #' @param dodge_by Bare column name to use as group for dodge.
 #' 
 #' @section Types:
 #' Valid values for the \code{type} argument.
-#' \itemize{
-#'   \item{\code{stack}}
-#'   \item{\code{dodge}}
-#'   \item{\code{jitter}}
-#'   \item{\code{symmetric}}
-#' }
+#' 
+#' - `stack`
+#' - `dodge`
+#' - `jitter`
+#' - `symmetric
+#' 
+#' @importFrom rlang enquo quo_is_null quo_text
 #' 
 #' @export
 adjust <- function(type, margin = NULL, dodge_by = NULL) {
@@ -26,24 +28,55 @@ adjust <- function(type, margin = NULL, dodge_by = NULL) {
   if(!identical(validity, length(type)))
     stop("invalid type specified")
 
-  dodge_enquo <- rlang::enquo(dodge_by)
+  dodge_enquo <- enquo(dodge_by)
 
   options <- list(type = type)
   if(!is.null(margin))
     options$marginRatio <- margin
-  if(!rlang::quo_is_null(dodge_enquo))
-    options$dodgeBy <- rlang::quo_text(dodge_enquo)
+  if(!quo_is_null(dodge_enquo))
+    options$dodgeBy <- quo_text(dodge_enquo)
 
   structure(options, class = c("adjust", class(options)))
 }
 
+#' Adjust Check
+#' 
+#' Checks whether the object is of class `adjust`,
+#' as returned by [adjust()].
+#' 
+#' @param x Object to check.
+#' 
+#' @examples 
+#' 
+#' is_adjust(1)
+#' is_adjust(adj("stack"))
+#' 
+#' @return A boolean.
+#' 
+#' @keywords internal
 is_adjust <- function(x){
-  aes <- FALSE
   if(inherits(x, "adjust"))
-    aes <- TRUE
-  return(aes)
+    return(TRUE)
+  FALSE
 }
 
+#' Get Adjust
+#' 
+#' Get any [adjust()] from the three dot construct.
+#' 
+#' @param ... Any argument.
+#' 
+#' @examples 
+#' foo <- function(...){
+#'  get_adjust(...)
+#' }
+#' 
+#' foo(1)
+#' foo(adjust("stack"))
+#' 
+#' @importFrom purrr keep
+#' 
+#' @keywords internal
 get_adjust <- function(...){
   found <- list(...) %>% 
     keep(is_adjust)

@@ -1,5 +1,23 @@
 #' Point
 #' 
+#' Add a point figure.
+#' 
+#' @param g An object of class `g2r` as returned by [g2()].
+#' @param ... Options to pass to the figure, including [asp()],
+#' and [adjust()].
+#' @param sync Whether to sync the axis data (align).
+#' @param data A dataset (`data.frame` or `tibble`) to use to 
+#' draw the figure.
+#' @param inherit_asp Whether to inherit the aspects paseed to
+#' [g2()] initialisation function.
+#' 
+#' @examples 
+#' g2(cars) %>% 
+#'  fig_point(asp(speed, dist))
+#' 
+#' g2(mtcars, asp(mpg, disp, size = qsec)) %>% 
+#'  fig_point(asp(color = "red", shape = "square"))
+#' 
 #' @export 
 fig_point <- function(
   g, 
@@ -18,6 +36,16 @@ fig_point <- function(
   )
 }
 
+#' Line
+#' 
+#' Add a line figure.
+#' 
+#' @inheritParams fig_point
+#' 
+#' @examples 
+#' g2(CO2, asp(conc, uptake, color = Plant)) %>% 
+#'  fig_line()
+#' 
 #' @export 
 fig_line <- function(
   g, 
@@ -36,6 +64,16 @@ fig_line <- function(
   )
 }
 
+#' Area
+#' 
+#' Add an area figure.
+#' 
+#' @inheritParams fig_point
+#' 
+#' @examples 
+#' g2(Orange, asp(age, circumference, color = Tree)) %>% 
+#'  fig_area(adjust("stack"))
+#' 
 #' @export 
 fig_area <- function(
   g, 
