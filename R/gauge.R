@@ -1,13 +1,19 @@
 #' Gauge
 #' 
-#' Gauge the variables ([aspects()]) used on the plot.
+#' Gauge the variables (`aspects`) used on the plot.
 #' 
 #' @inheritParams fig_point
-#' @param ... Options to gauge variables ([aspects()]).
+#' @param ... Options to gauge variables 
+#' (`aspects` defined by [asp()]).
 #' @param cols Character vector of column names to gauge.
 #' 
 #' @examples
+#' g <- g2(cars, asp(speed, dist)) %>%
+#'  fig_point()
 #' 
+#' g %>% gauge_x(min = 0)
+#' g %>% gauge_y(type = "log", title = "Log")
+#' g %>% gauge_x(tickCount = 10)
 #' 
 #' @name gauge
 #' @export 
@@ -105,6 +111,8 @@ sync <- function(g, position, sync = TRUE){
 #' col_to_type(cars, "speed")
 #' col_to_type(iris, "Species")
 #' }
+#' 
+#' @importFrom utils head
 #'  
 #' @keywords internal
 col_to_type <- function(col, data){

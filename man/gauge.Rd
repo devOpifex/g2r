@@ -22,6 +22,23 @@ gauge_size(g, ...)
 
 gauge_cols(g, cols, ...)
 }
+\arguments{
+\item{g}{An object of class \code{g2r} as returned by \code{\link[=g2]{g2()}}.}
+
+\item{...}{Options to gauge variables
+(\code{aspects} defined by \code{\link[=asp]{asp()}}).}
+
+\item{cols}{Character vector of column names to gauge.}
+}
 \description{
-Gauge
+Gauge the variables (\code{aspects}) used on the plot.
+}
+\examples{
+g <- g2(cars, asp(speed, dist)) \%>\%
+ fig_point()
+
+g \%>\% gauge_x(min = 0)
+g \%>\% gauge_y(type = "log", title = "Log")
+g \%>\% gauge_x(tickCount = 10)
+
 }

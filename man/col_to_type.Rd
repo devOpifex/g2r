@@ -20,6 +20,6 @@ gauge-family of functions.
 col_to_type(cars, "speed")
 col_to_type(iris, "Species")
 }
- 
+
 }
 \keyword{internal}

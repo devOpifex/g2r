@@ -27,6 +27,12 @@
 #' @name coord
 #' @export
 coord_type <- function(g, type = c("rect", "polar", "theta", "helix"), ...){
+  UseMethod("coord_type")
+}
+
+#' @method coord_type g2r
+#' @export
+coord_type.g2r <- function(g, type = c("rect", "polar", "theta", "helix"), ...){
   g$x$coord <- list(
     type = match.arg(type),
     opts = list(...)
@@ -36,7 +42,11 @@ coord_type <- function(g, type = c("rect", "polar", "theta", "helix"), ...){
 
 #' @rdname coord
 #' @export
-coord_rotate <- function(g, angle = 90){
+coord_rotate <- function(g, angle = 90) UseMethod("coord_rotate")
+
+#' @method coord_rotate g2r
+#' @export
+coord_rotate.g2r <- function(g, angle = 90){
   if(!length(g$x$coord))
     g <- coord_type(g)
   g$x$coordRotate <- angle
@@ -45,7 +55,11 @@ coord_rotate <- function(g, angle = 90){
 
 #' @rdname coord
 #' @export
-coord_scale <- function(g, x, y){
+coord_scale <- function(g, x, y) UseMethod("coord_scale")
+
+#' @method coord_scale g2r
+#' @export
+coord_scale.g2r <- function(g, x, y){
   if(missing(x) || missing(y))
     stop("missing `x` or `y`", call. = FALSE)
 
@@ -57,7 +71,11 @@ coord_scale <- function(g, x, y){
 
 #' @rdname coord
 #' @export
-coord_reflect <- function(g, axis = "xy"){
+coord_reflect <- function(g, axis = "xy") UseMethod("coord_reflect")
+
+#' @method coord_reflect g2r
+#' @export
+coord_reflect.g2r <- function(g, axis = "xy"){
   if(!length(g$x$coord))
     g <- coord_type(g)
   g$x$coordReflect <- axis
@@ -66,7 +84,11 @@ coord_reflect <- function(g, axis = "xy"){
 
 #' @rdname coord
 #' @export
-coord_transpose <- function(g){
+coord_transpose <- function(g) UseMethod("coord_transpose")
+
+#' @method coord_transpose g2r
+#' @export
+coord_transpose.g2r <- function(g){
   if(!length(g$x$coord))
     g <- coord_type(g)
   g$x$coordTranspose <- TRUE

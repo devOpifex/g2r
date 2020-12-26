@@ -27,4 +27,16 @@ Add an interval figure.
 g2(sleep, asp(ID, extra, color = group)) \%>\% 
  fig_interval()
 
+df <- data.frame(
+ cat = letters[1:5],
+ value = c(0.15, .3, .65, .75, .9)
+)
+
+g2(df, asp(cat, value, color = cat, shape = "funnel")) \%>\% 
+ fig_interval(adjust("symmetric")) \%>\% 
+ coord_type("rect") \%>\% 
+ coord_transpose() \%>\% 
+ coord_scale(-1, 1) \%>\% 
+ axis_hide()
+
 }
