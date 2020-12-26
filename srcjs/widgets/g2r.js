@@ -46,6 +46,14 @@ HTMLWidgets.widget({
         if(x.coordTranspose)
           coord.transpose();
 
+        if(x.axis){
+          console.log(x.axis);
+          x.axis.forEach(function(ax){
+            console.log(ax);
+            c.axis(ax.column, ax.opts);
+          })
+        }
+
         // loop over figures
         x.views.forEach(function(v){
           let view = c.createView();

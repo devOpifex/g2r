@@ -47,7 +47,7 @@ coord_rotate <- function(g, angle = 90){
 #' @export
 coord_scale <- function(g, x, y){
   if(missing(x) || missing(y))
-    stop("missing x or y", call. = FALSE)
+    stop("missing `x` or `y`", call. = FALSE)
 
   if(!length(g$x$coord))
     g <- coord_type(g)
