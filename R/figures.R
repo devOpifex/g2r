@@ -102,6 +102,18 @@ fig_area <- function(
 #' g2(sleep, asp(ID, extra, color = group)) %>% 
 #'  fig_interval()
 #' 
+#' df <- data.frame(
+#'  cat = letters[1:5],
+#'  value = c(0.15, .3, .65, .75, .9)
+#' )
+#' 
+#' g2(df, asp(cat, value, color = cat, shape = "funnel")) %>% 
+#'  fig_interval(adjust("symmetric")) %>% 
+#'  coord_type("rect") %>% 
+#'  coord_transpose() %>% 
+#'  coord_scale(-1, 1) %>% 
+#'  axis_hide()
+#' 
 #' @export 
 fig_interval <- function(
   g, 
@@ -230,12 +242,17 @@ fig_primitive <- function(
   color <- select_asp_labels(asp, "color")
   shape <- select_asp_labels(asp, "shape")
 
-  # sync
-  g$x$scale <- sync(g$x$scale, position, sync)
-
   # store columns
   cols <- c(position, color, shape)
   g$x$cols <- append(g$x$cols, cols)
+
+  # scales
+  g <- sync(g, position, sync)
+  g <- gauges_types(
+    g, 
+    c(position, size, color), 
+    data
+  )
   
   opts <- list(
     type = type,

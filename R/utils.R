@@ -10,22 +10,3 @@ select_columns <- function(data = NULL, cols){
     return(NULL)
   data[, names(data) %in% cols]
 }
-
-sync <- function(main, position, sync = TRUE){
-  # it's FALSE
-  if(is.logical(sync) && !isTRUE(sync))
-    return()
-
-  if(isTRUE(sync)){
-    syncX <- "mainGroupX"
-    syncY <- "mainGroupY"
-  }
-  
-  # sync x
-  main[[position[1]]][["sync"]] <- syncX
-  main[[position[2]]][["sync"]] <- syncY
-
-  main
-}
-
-
