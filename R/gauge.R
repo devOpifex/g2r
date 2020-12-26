@@ -17,39 +17,59 @@
 #' 
 #' @name gauge
 #' @export 
-gauge_x <- function(g, ...){
+gauge_x <- function(g, ...) UseMethod("gauge_x")
+
+#' @method gauge_x g2r
+#' @export 
+gauge_x.g2r <- function(g, ...){
   cols <- get_aspect_names(g, "position")[1]
   gauge_cols(g, cols, ...)
 }
 
-#' @name gauge
+#' @rdname gauge
 #' @export 
-gauge_y <- function(g, ...){
+gauge_y <- function(g, ...) UseMethod("gauge_y")
+
+#' @method gauge_y g2r
+#' @export 
+gauge_y.g2r <- function(g, ...){
   cols <- get_aspect_names(g, "position")[2]
   gauge_cols(g, cols, ...)
 }
 
-#' @name gauge
+#' @rdname gauge
 #' @export 
-gauge_color <- function(g, ...){
+gauge_color <- function(g, ...) UseMethod("gauge_color")
+
+#' @method gauge_color g2r
+#' @export 
+gauge_color.g2r <- function(g, ...){
   cols <- get_aspect_names(g, "color")
   gauge_cols(g, cols, ...)
 }
 
-#' @name gauge
+#' @rdname gauge
 #' @export 
-gauge_colour <- gauge_color
+gauge_colour <- function(g, ...) UseMethod("gauge_color")
 
-#' @name gauge
+#' @rdname gauge
 #' @export 
-gauge_size <- function(g, ...){
+gauge_size <- function(g, ...) UseMethod("gauge_size")
+
+#' @method gauge_size g2r
+#' @export 
+gauge_size.g2r <- function(g, ...){
   cols <- get_aspect_names(g, "size")
   gauge_cols(g, cols, ...)
 }
 
-#' @name gauge
+#' @rdname gauge
 #' @export 
-gauge_cols <- function(g, cols, ...){
+gauge_cols <- function(g, cols, ...) UseMethod("gauge_cols")
+
+#' @method gauge_cols g2r
+#' @export 
+gauge_cols.g2r <- function(g, cols, ...){
   args <- list(...)
   for(col in cols){
     for(i in seq_along(args)){
