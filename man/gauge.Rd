@@ -2,43 +2,134 @@
 % Please edit documentation in R/gauge.R
 \name{gauge}
 \alias{gauge}
-\alias{gauge_x}
-\alias{gauge_y}
-\alias{gauge_color}
-\alias{gauge_colour}
-\alias{gauge_size}
-\alias{gauge_cols}
+\alias{gauge_x_time}
+\alias{gauge_y_time}
+\alias{gauge_x_linear}
+\alias{gauge_y_linear}
+\alias{gauge_x_cat}
+\alias{gauge_y_cat}
+\alias{gauge_x_time_cat}
+\alias{gauge_y_time_cat}
+\alias{gauge_x_log}
+\alias{gauge_y_log}
+\alias{gauge_x_pow}
+\alias{gauge_y_pow}
+\alias{gauge_x_quantile}
+\alias{gauge_y_quantile}
+\alias{gauge_x_quantize}
+\alias{gauge_y_quantize}
+\alias{gauge_x_identity}
+\alias{gauge_y_identity}
 \title{Gauge}
 \usage{
-gauge_x(g, ...)
+gauge(
+  g,
+  asp,
+  ...,
+  nice = TRUE,
+  range = NULL,
+  min = NULL,
+  max = NULL,
+  min_limit = NULL,
+  max_limit = NULL,
+  alias = NULL,
+  tick_count = NULL,
+  max_tick_count = NULL
+)
 
-gauge_y(g, ...)
+gauge_x_time(g, ..., show_last = FALSE)
 
-gauge_color(g, ...)
+gauge_y_time(g, ..., show_last = FALSE)
 
-gauge_colour(g, ...)
+gauge_x_linear(g, ..., tick_interval = NULL)
 
-gauge_size(g, ...)
+gauge_y_linear(g, ..., tick_interval = NULL)
 
-gauge_cols(g, cols, ...)
+gauge_x_cat(g, ...)
+
+gauge_y_cat(g, ...)
+
+gauge_x_time_cat(g, ...)
+
+gauge_y_time_cat(g, ...)
+
+gauge_x_log(g, ..., base = 10)
+
+gauge_y_log(g, ..., base = 10)
+
+gauge_x_pow(g, ...)
+
+gauge_y_pow(g, ...)
+
+gauge_x_quantile(g, ...)
+
+gauge_y_quantile(g, ...)
+
+gauge_x_quantize(g, ...)
+
+gauge_y_quantize(g, ...)
+
+gauge_x_identity(g, ...)
+
+gauge_y_identity(g, ...)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} as returned by \code{\link[=g2]{g2()}}.}
 
+\item{asp}{Bare column name of aspect to apply the
+gauge to.}
+
 \item{...}{Options to gauge variables
 (\code{aspects} defined by \code{\link[=asp]{asp()}}).}
 
-\item{cols}{Character vector of column names to gauge.}
+\item{nice}{Automatically adjust \code{min}, and \code{max}.}
+
+\item{range}{A vector of length 2 giving the minimum, and
+maximum.}
+
+\item{min, max}{Range of the gauge.}
+
+\item{min_limit, max_limit}{Strict range of the ticks.}
+
+\item{alias}{Alias name of the gauge and variable to
+display.}
+
+\item{tick_count}{Maximum number of ticks.}
+
+\item{max_tick_count}{Maximum number of ticks.}
+
+\item{show_last}{Whether to force show the last tick
+(only for \code{time} gauges).}
+
+\item{tick_interval}{Minimum tick interval, only applies to
+linear type of gauge.}
+
+\item{base}{Base of log.}
 }
 \description{
 Gauge the variables (\code{aspects}) used on the plot.
 }
+\section{Types}{
+
+\itemize{
+\item \code{cat}: Categorical.
+\item \code{timeCat}: Categorical time.
+\item \code{linear}: Linear.
+\item \code{time}: Date, time, etc.
+\item \code{log}: Logarithmic.
+\item \code{pow}: Exponential.
+\item \code{quantize}: Manual quantiles.
+\item \code{quantile}: Auto-generated quantiles.
+\item \code{identity}: Constant.
+}
+}
+
 \examples{
 g <- g2(cars, asp(speed, dist)) \%>\%
  fig_point()
 
-g \%>\% gauge_x(min = 0)
-g \%>\% gauge_y(type = "log", title = "Log")
-g \%>\% gauge_x(tickCount = 10)
+g \%>\% gauge(speed, min = 0)
+g \%>\% gauge_y_log(title = "Log")
+g \%>\% gauge(dist, tickCount = 10)
 
 }
