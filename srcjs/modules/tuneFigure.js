@@ -11,6 +11,9 @@ const tuneFigure = (figure, options) => {
   if(options.adjust)
     figure.adjust(options.adjust);
 
+  if(options.animation)
+    figure.animate(options.animation);
+
   // color
   if(options.color)
     if(check(options, 'color'))
