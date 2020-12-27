@@ -373,17 +373,6 @@ gauge_ <- function(g, cols, ...){
   g
 }
 
-#' Get column names
-#' 
-#' @importFrom purrr map
-#' 
-#' @keywords internal
-get_aspect_names <- function(g, aspect){
-  g$x$views %>% 
-    map(aspect) %>% 
-    unlist()
-}
-
 #' Sync
 #' 
 #' Sets the syncs groups for x and y variables.
