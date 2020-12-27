@@ -201,6 +201,13 @@ select_asp_labels <- function(asp, ...){
     unname()
 }
 
+#' Aspect as String
+#' 
+#' @param a Aspect.
+#' 
+#' @return Aspect as string.
+#' 
+#' @keywords internal
 asp_as_string <- function(a){
   if(is_symbolic(a))
     return(as_label(a))

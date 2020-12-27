@@ -4,6 +4,7 @@ import { makeFigure } from '../modules/makeFigure.js';
 import { makeCoords } from '../modules/makeCoords.js'; 
 import { tuneFigure } from '../modules/tuneFigure.js';
 import { assignData } from '../modules/assignData.js';
+import { annotate } from '../modules/annotate.js';
 
 HTMLWidgets.widget({
 
@@ -66,6 +67,8 @@ HTMLWidgets.widget({
         } else {
           x.views.forEach(function(v){
             let view = c.createView();
+
+            annotate(view, x)
   
             let figure = makeFigure(view, v.type);
             tuneFigure(figure, v);

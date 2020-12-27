@@ -369,7 +369,6 @@ fig_primitive <- function(
   if(is.null(style))
     style <- collapse_asp(style_asp)
   
-
   # store columns
   cols <- c(position, color, shape, size, tooltip)
   g$x$cols <- append(g$x$cols, cols)

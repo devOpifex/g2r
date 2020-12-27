@@ -44,3 +44,30 @@ aspect_action <- function(g, asps, ..., action){
 
   g
 }
+
+# #' @importFrom purrr keep discard
+# #' @importFrom rlang as_label is_quosure
+# info_data_as_list <- function(..., data){
+
+#   if(is.null(data))
+#     return()
+
+#   data <- tibble::tibble(data)
+
+#   asp <- get_asp(...)
+#   asp_keep <- keep(asp, is_quosure)
+#   asp_keep_label <- sapply(asp_keep, as_label)
+#   if(inherits(data, "data.frame")){
+#     data <- data[, asp_keep_label]
+#     names(data) <- names(asp_keep)
+#   }
+
+#   asp <- discard(asp, is_quosure)
+#   if(length(asp)){
+#     x <- as.character(asp)
+#     names(x) <- names(asp)
+#     data <- cbind.data.frame(data, as.data.frame(t(x)))
+#   }
+
+#   apply(data, 1, as.list)
+# }
