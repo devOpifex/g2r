@@ -29,7 +29,9 @@ legend_asps(g, asps, ...)
 \item{g}{An object of class \code{g2r} as returned by \code{\link[=g2]{g2()}}.}
 
 \item{...}{Options to pass to the legend, pass \code{FALSE}
-to hide the axis.}
+to hide the axis. Visit the
+\href{https://g2.antv.vision/en/docs/api/general/legend}{official documentation}
+for the full list of options.}
 
 \item{asps}{Aspect (column names) to change the legend.}
 }

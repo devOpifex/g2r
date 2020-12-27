@@ -4,7 +4,9 @@
 #' 
 #' @inheritParams fig_point
 #' @param ... Options to pass to the axis, pass `FALSE`
-#' to hide the axis.
+#' to hide the axis. Visit the 
+#' [official documentation](https://g2.antv.vision/en/docs/api/general/axis)
+#' for the full list of parameters.
 #' @param asps Aspects (column names) to change the axis.
 #' 
 #' @section Functions:
