@@ -17,7 +17,6 @@ select_columns <- function(data = NULL, cols){
 #' 
 #' - `legend_asps`
 #' - `axis_asps`
-#' - `tooltip_asps`
 #' 
 #' @keywords internal
 aspect_action <- function(g, asps, ..., action){

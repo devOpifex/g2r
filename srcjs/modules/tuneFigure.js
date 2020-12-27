@@ -18,6 +18,10 @@ const tuneFigure = (figure, options) => {
   // size
   if(options.size)
     figure.size(options.size);
+
+  // tooltip
+  if(options.tooltip)
+    figure.tooltip(options.tooltip[0].aspects, options.tooltip[0].callback);
 }
 
 export { tuneFigure };

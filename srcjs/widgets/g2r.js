@@ -45,6 +45,9 @@ HTMLWidgets.widget({
           x.legend.forEach(function(l){
             c.legend(l.column, l.opts);
           })
+        
+        if(x.tooltip)
+          c.tooltip(x.tooltip);
 
         // loop over figures
         if(x.facet){

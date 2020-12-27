@@ -87,6 +87,6 @@ get_adjust <- function(...){
 
 #' @export
 print.adjust <- function(x, ...){
-  cat("adjust: ")
+  cat("Adjust: ")
   cat(paste(x$type, collapse = "|"), "\n")
 }

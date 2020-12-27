@@ -319,6 +319,9 @@ fig_primitive <- function(
   # adjust
   adjust <- get_adjust(...)
 
+  # tooltip
+  tooltip <- get_tooltip(...)
+
   # chart aspects
   asp <- get_asp(...)
   asp <- combine_asp(g$x$main_asp, asp, inherit_asp = inherit_asp)
@@ -347,7 +350,8 @@ fig_primitive <- function(
     data = select_columns(data, cols),
     shape = shape,
     size = size,
-    adjust = adjust
+    adjust = adjust,
+    tooltip = tooltip
   ) %>% 
     drop_nulls()
 
