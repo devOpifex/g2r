@@ -15,18 +15,10 @@ to hide the axis. Visit the
 for the full list of options.}
 }
 \description{
-Customise the tooltip.
+Configure the tooltip applied to the entire chart.
+See \code{\link[=gauge_tooltip]{gauge_tooltip()}} to customise a specific tooltip
+(the tooltip of a specific figure).
 }
-\section{Functions}{
-
-\itemize{
-\item \code{axis_x}: Customise the x axis.
-\item \code{axis_y}: Customise the y axis.
-\item \code{axis_asps}: Customise the axis by aspects (column names).
-\item \code{axis_hide}: Hide all axis.
-}
-}
-
 \examples{
 g2(mtcars, asp(drat, qsec, color = hp)) \%>\% 
  fig_point() \%>\% 

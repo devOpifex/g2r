@@ -4,7 +4,7 @@
 \alias{fig_polygon}
 \title{Polygon}
 \usage{
-fig_polygon(g, ..., sync = TRUE, data = NULL, inherit_asp = TRUE)
+fig_polygon(g, ..., sync = TRUE, data = NULL, inherit_asp = TRUE, style = NULL)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} as returned by \code{\link[=g2]{g2()}}.}
@@ -19,6 +19,10 @@ draw the figure.}
 
 \item{inherit_asp}{Whether to inherit the aspects paseed to
 \code{\link[=g2]{g2()}} initialisation function.}
+
+\item{style}{A list of options to pass to
+\href{https://g2.antv.vision/en/docs/api/general/style}{style} that
+customise the figure.}
 }
 \description{
 Add a polygon figure.

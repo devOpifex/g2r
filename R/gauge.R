@@ -87,6 +87,16 @@ gauge_label.g2r <- function(g, handler){
   gauge2_(g, handler, fn = "label")
 }
 
+#' @rdname gaugeViews
+#' @export 
+gauge_style <- function(g, handler) UseMethod("gauge_style")
+
+#' @method gauge_style g2r
+#' @export 
+gauge_style.g2r <- function(g, handler){
+  gauge2_(g, handler, fn = "style")
+}
+
 #' Gauge2
 #' 
 #' While [gauge_()] applies the `scale` to the

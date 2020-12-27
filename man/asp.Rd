@@ -14,7 +14,7 @@ asp(x, y, ...)
 \description{
 Define aspects of a visualisation.
 }
-\section{Aspects}{
+\section{Figure aspects}{
 
 \itemize{
 \item \code{x}, \code{y}
@@ -23,6 +23,14 @@ Define aspects of a visualisation.
 \item \code{shape}
 \item \code{label}
 \item \code{tooltip}
+\item \code{style}
+}
+}
+
+\section{Info aspects}{
+
+\itemize{
+\item \code{x}, \code{y}
 }
 }
 

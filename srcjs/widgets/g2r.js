@@ -49,6 +49,9 @@ HTMLWidgets.widget({
         if(x.tooltip)
           c.tooltip(x.tooltip);
 
+        if(x.style)
+          c.style(x.style);
+
         // loop over figures
         if(x.facet){
 

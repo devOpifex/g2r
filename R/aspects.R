@@ -5,7 +5,7 @@
 #' @param x,y Defines values to map to cartesian coordinates.
 #' @param ... Any other key value pair of aspect.
 #' 
-#' @section Aspects:
+#' @section Figure aspects:
 #' 
 #' - `x`, `y`
 #' - `size`
@@ -13,6 +13,11 @@
 #' - `shape`
 #' - `label`
 #' - `tooltip`
+#' - `style`
+#' 
+#' @section Info aspects:
+#' 
+#' - `x`, `y`
 #' 
 #' @importFrom rlang enquos is_quosure is_symbolic quo_is_symbolic quo_get_expr new_quosure quo_label
 #' @importFrom purrr keep

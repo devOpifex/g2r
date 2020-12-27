@@ -10,6 +10,9 @@
 #' draw the figure.
 #' @param inherit_asp Whether to inherit the aspects paseed to
 #' [g2()] initialisation function.
+#' @param style A list of options to pass to
+#' [style](https://g2.antv.vision/en/docs/api/general/style) that 
+#' customise the figure.
 #' 
 #' @examples 
 #' g2(cars) %>% 
@@ -24,7 +27,8 @@ fig_point <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   UseMethod("fig_point")
 }
@@ -36,7 +40,8 @@ fig_point.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   fig_primitive(
     g, 
@@ -44,7 +49,8 @@ fig_point.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "point"
+    type = "point",
+    style = style
   )
 }
 
@@ -64,7 +70,8 @@ fig_line <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   UseMethod("fig_line")
 }
@@ -76,7 +83,8 @@ fig_line.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   fig_primitive(
     g, 
@@ -84,7 +92,8 @@ fig_line.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "line"
+    type = "line",
+    style = style
   )
 }
 
@@ -104,7 +113,8 @@ fig_area <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   UseMethod("fig_area")
 }
@@ -116,7 +126,8 @@ fig_area.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   fig_primitive(
     g, 
@@ -124,7 +135,8 @@ fig_area.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "area"
+    type = "area",
+    style = style
   )
 }
 
@@ -158,7 +170,8 @@ fig_interval <- function(
   ...,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   UseMethod("fig_interval")
 }
@@ -170,7 +183,8 @@ fig_interval.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   fig_primitive(
     g, 
@@ -178,7 +192,8 @@ fig_interval.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "interval"
+    type = "interval",
+    style = style
   )
 }
 
@@ -194,7 +209,8 @@ fig_polygon <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   UseMethod("fig_polygon")
 }
@@ -206,7 +222,8 @@ fig_polygon.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   fig_primitive(
     g, 
@@ -214,7 +231,8 @@ fig_polygon.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "polygon"
+    type = "polygon",
+    style = style
   )
 }
 
@@ -230,7 +248,8 @@ fig_edge <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   UseMethod("fig_edge")
 }
@@ -242,7 +261,8 @@ fig_edge.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   fig_primitive(
     g, 
@@ -250,7 +270,8 @@ fig_edge.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "edge"
+    type = "edge",
+    style = style
   )
 }
 
@@ -266,7 +287,8 @@ fig_path <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   UseMethod("fig_path")
 }
@@ -278,7 +300,8 @@ fig_path.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  style = NULL
 ){
   fig_primitive(
     g, 
@@ -286,7 +309,8 @@ fig_path.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "path"
+    type = "path",
+    style = style
   )
 }
 
@@ -311,7 +335,8 @@ fig_primitive <- function(
     "edge", 
     "area", 
     "polygon"
-  )
+  ),
+  style = NULL
 ){
 
   type <- match.arg(type)
@@ -329,6 +354,18 @@ fig_primitive <- function(
   shape <- select_asp_labels(asp, "shape")
   label <- select_asp_labels(asp, "label")
   tooltip <- select_asp_labels(asp, "tooltip")
+  style_asp <- select_asp_labels(asp, "style")
+
+  # overwrite style
+  if(length(style_asp) > 0 && !is.null(style))
+    warning(
+      "Cannot use `style` aspect and `style` argument together, ",
+      "using the former", call. = FALSE
+    )
+
+  if(is.null(style))
+    style <- collapse_asp(style_asp)
+  
 
   # store columns
   cols <- c(position, color, shape, size, tooltip)
@@ -347,7 +384,8 @@ fig_primitive <- function(
     size = collapse_asp(size),
     adjust = collapse_asp(adjust),
     tooltip = collapse_asp(tooltip),
-    label = collapse_asp(label)
+    label = collapse_asp(label),
+    style = style
   ) %>% 
     drop_nulls()
 

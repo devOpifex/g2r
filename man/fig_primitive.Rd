@@ -10,7 +10,8 @@ fig_primitive(
   data = NULL,
   inherit_asp = TRUE,
   sync = TRUE,
-  type = c("point", "interval", "line", "schema", "edge", "area", "polygon")
+  type = c("point", "interval", "line", "schema", "edge", "area", "polygon"),
+  style = NULL
 )
 }
 \arguments{
@@ -26,6 +27,10 @@ draw the figure.}
 \code{\link[=g2]{g2()}} initialisation function.}
 
 \item{sync}{Whether to sync the axis data (align).}
+
+\item{style}{A list of options to pass to
+\href{https://g2.antv.vision/en/docs/api/general/style}{style} that
+customise the figure.}
 }
 \description{
 Add a path figure.

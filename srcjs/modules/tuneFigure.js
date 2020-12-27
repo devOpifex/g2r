@@ -12,9 +12,6 @@ const tuneFigure = (figure, options) => {
     figure.adjust(options.adjust);
 
   // color
-  console.log(options.color);
-  console.log(check(options, 'color'));
-
   if(options.color)
     if(check(options, 'color'))
       figure.color(options.color[0], options.color[1]);
@@ -48,6 +45,13 @@ const tuneFigure = (figure, options) => {
       figure.tooltip(options.tooltip[0], options.tooltip[1]);
     else 
       figure.tooltip(options.tooltip);
+
+  // style
+  if(options.style)
+    if(check(options, 'style'))
+      figure.style(options.style[0], options.style[1]);
+    else 
+      figure.style(options.style);
 }
 
 export { tuneFigure };
