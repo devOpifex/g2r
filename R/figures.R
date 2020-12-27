@@ -319,9 +319,6 @@ fig_primitive <- function(
   # adjust
   adjust <- get_adjust(...)
 
-  # tooltip
-  tooltip <- get_tooltip(...)
-
   # chart aspects
   asp <- get_asp(...)
   asp <- combine_asp(g$x$main_asp, asp, inherit_asp = inherit_asp)
@@ -331,9 +328,10 @@ fig_primitive <- function(
   color <- select_asp_labels(asp, "color")
   shape <- select_asp_labels(asp, "shape")
   label <- select_asp_labels(asp, "label")
+  tooltip <- select_asp_labels(asp, "tooltip")
 
   # store columns
-  cols <- c(position, color, shape, size)
+  cols <- c(position, color, shape, size, tooltip)
   g$x$cols <- append(g$x$cols, cols)
 
   # scales
@@ -342,14 +340,14 @@ fig_primitive <- function(
   
   opts <- list(
     type = type,
-    position = position,
-    color = color,
     data = select_columns(data, cols),
-    shape = shape,
-    size = size,
-    adjust = adjust,
-    tooltip = tooltip,
-    label = label
+    position = collapse_asp(position),
+    color = collapse_asp(color),
+    shape = collapse_asp(shape),
+    size = collapse_asp(size),
+    adjust = collapse_asp(adjust),
+    tooltip = collapse_asp(tooltip),
+    label = collapse_asp(label)
   ) %>% 
     drop_nulls()
 
