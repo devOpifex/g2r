@@ -5,13 +5,13 @@
 #' @inheritParams fig_point
 #' @param ... Options to pass to the axis, passe `FALSE`
 #' to hide the axis.
-#' @param cols Column names to change the axis of.
+#' @param asps Column names to change the axis of.
 #' 
 #' @section Functions:
 #' 
 #' - `axis_x`: Customise the x axis.
 #' - `axis_y`: Customise the y axis.
-#' - `axis_cols`: Customise the axis by column names.
+#' - `axis_asp`: Customise the axis by aspects (column names).
 #' - `axis_hide`: Hide all axis.
 #' 
 #' @examples 
@@ -22,7 +22,7 @@
 #' g %>% axis_x(FALSE)
 #' 
 #' # same as above
-#' g %>% axis_cols("speed", FALSE)
+#' g %>% axis_asps("speed", FALSE)
 #' 
 #' # change position
 #' g %>% axis_x(position = "top")
@@ -35,7 +35,7 @@ axis_x <- function(g, ...) UseMethod("axis_x")
 #' @export 
 axis_x.g2r <- function(g, ...){
   cols <- get_aspect_names(g, "position")[1]
-  axis_cols(g, cols, ...)
+  axis_asps(g, cols, ...)
 }
 
 #' @rdname axis
@@ -46,20 +46,20 @@ axis_y <- function(g, ...) UseMethod("axis_y")
 #' @export 
 axis_y.g2r <- function(g, ...){
   cols <- get_aspect_names(g, "position")[2]
-  axis_cols(g, cols, ...)
+  axis_asps(g, cols, ...)
 }
 
 #' @rdname axis
 #' @export 
-axis_cols <- function(g, cols, ...) UseMethod("axis_cols")
+axis_asps <- function(g, asps, ...) UseMethod("axis_asps")
 
-#' @method axis_cols g2r
+#' @method axis_asps g2r
 #' @export 
-axis_cols.g2r <- function(g, cols, ...){
-  if(missing(cols))
-    stop("Missing `cols`", call. = FALSE)
+axis_asps.g2r <- function(g, asps, ...){
+  if(missing(asps))
+    stop("Missing `asps`", call. = FALSE)
 
-  axis <- lapply(cols, function(c, opts){
+  axis <- lapply(asps, function(c, opts){
 
     if(is.logical(opts[[1]]))
       opts <- opts[[1]]

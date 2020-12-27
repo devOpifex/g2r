@@ -4,7 +4,7 @@
 \alias{axis}
 \alias{axis_x}
 \alias{axis_y}
-\alias{axis_cols}
+\alias{axis_asps}
 \alias{axis_hide}
 \title{Axes}
 \usage{
@@ -12,7 +12,7 @@ axis_x(g, ...)
 
 axis_y(g, ...)
 
-axis_cols(g, cols, ...)
+axis_asps(g, asps, ...)
 
 axis_hide(g)
 }
@@ -22,7 +22,7 @@ axis_hide(g)
 \item{...}{Options to pass to the axis, passe \code{FALSE}
 to hide the axis.}
 
-\item{cols}{Column names to change the axis of.}
+\item{asps}{Column names to change the axis of.}
 }
 \description{
 Customise the axes.
@@ -32,7 +32,7 @@ Customise the axes.
 \itemize{
 \item \code{axis_x}: Customise the x axis.
 \item \code{axis_y}: Customise the y axis.
-\item \code{axis_cols}: Customise the axis by column names.
+\item \code{axis_asp}: Customise the axis by aspects (column names).
 \item \code{axis_hide}: Hide all axis.
 }
 }
@@ -45,7 +45,7 @@ g <- g2(cars, asp(speed, dist)) \%>\%
 g \%>\% axis_x(FALSE)
 
 # same as above
-g \%>\% axis_cols("speed", FALSE)
+g \%>\% axis_asps("speed", FALSE)
 
 # change position
 g \%>\% axis_x(position = "top")
