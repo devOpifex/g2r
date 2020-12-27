@@ -12,6 +12,7 @@
 #' - `color`
 #' - `shape`
 #' - `label`
+#' - `tooltip`
 #' 
 #' @importFrom rlang enquos is_quosure is_symbolic quo_is_symbolic quo_get_expr new_quosure quo_label
 #' @importFrom purrr keep
@@ -180,11 +181,11 @@ rm_asp <- function(...){
 #' 
 #' @keywords internal
 select_asp <- function(asp, ...){
-  # look by name
-  found <- asp[c(...)]
+  # indices
+  indices <- names(asp) %in% c(...)  
 
-  # remove NA (not found)
-  found[!is.na(names(found))]
+  # found
+  asp[indices]
 }
 
 #' @keywords internal
@@ -254,4 +255,41 @@ combine_asp <- function(main_asp, asp, inherit_asp = TRUE){
   }
 
   main_asp
+}
+
+#' Get column names
+#' 
+#' @importFrom purrr map
+#' 
+#' @keywords internal
+get_aspect_names <- function(g, aspect){
+  g$x$views %>% 
+    map(aspect) %>% 
+    map(function(x){
+
+      if(is.null(x))
+        return()
+      
+      # split the collapsed aspects x*y
+      strsplit(x[[1]], split = "\\*")
+    }) %>% 
+    unlist()
+}
+
+#' Collapse Aspects
+#' 
+#' Collapse aspects on a single line. Only `position`
+#' works with a vector/array (`["x", "y"]`), hence enforcement
+#' of `x*y` everywhere.
+#' 
+#' @param asp Aspects, a character vector to collapse
+#' 
+#' @examples
+#' \dontrun{
+#' collapse_asp(c("x", "y"))
+#' } 
+#' 
+#' @keywords internal
+collapse_asp <- function(asp){
+  paste0(asp, collapse = "*")
 }
