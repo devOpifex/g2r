@@ -51,23 +51,5 @@ legend_asps <- function(g, asps, ...) UseMethod("legend_asps")
 #' @method legend_asps g2r
 #' @export 
 legend_asps.g2r <- function(g, asps, ...){
-  if(missing(asps))
-    stop("Missing `asps`", call. = FALSE)
-
-  asps <- unique(asps)
-
-  legend <- lapply(asps, function(c, opts){
-
-    if(is.logical(opts[[1]]))
-      opts <- opts[[1]]
-
-    list(
-      column = c,
-      opts = opts
-    )
-  }, opts = list(...))
-
-  g$x$legend <- append(g$x$legend, legend)
-
-  g
+  aspect_action(g, asps, ..., action = "legend")
 }

@@ -10,3 +10,38 @@ select_columns <- function(data = NULL, cols){
     return(NULL)
   data[, names(data) %in% cols]
 }
+
+#' Pass an action bound to an aspect
+#' 
+#' @section Uses:
+#' 
+#' - `legend_asps`
+#' - `axis_asps`
+#' - `tooltip_asps`
+#' 
+#' @keywords internal
+aspect_action <- function(g, asps, ..., action){
+  if(missing(asps))
+    stop("Missing `asps`", call. = FALSE)
+
+  if(missing(action))
+    stop("Missing `action`", call. = FALSE)
+
+  asps <- unique(asps)
+
+  item <- lapply(asps, function(c, opts){
+
+    # can be chart.action(false)
+    if(is.logical(opts[[1]]))
+      opts <- opts[[1]]
+
+    list(
+      column = c,
+      opts = opts
+    )
+  }, opts = list(...))
+
+  g$x[[action]] <- append(g$x[[action]], item)
+
+  g
+}

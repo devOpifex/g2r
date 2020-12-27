@@ -58,25 +58,7 @@ axis_asps <- function(g, asps, ...) UseMethod("axis_asps")
 #' @method axis_asps g2r
 #' @export 
 axis_asps.g2r <- function(g, asps, ...){
-  if(missing(asps))
-    stop("Missing `asps`", call. = FALSE)
-
-  asps <- unique(asps)
-
-  axis <- lapply(asps, function(c, opts){
-
-    if(is.logical(opts[[1]]))
-      opts <- opts[[1]]
-
-    list(
-      column = c,
-      opts = opts
-    )
-  }, opts = list(...))
-
-  g$x$axis <- append(g$x$axis, axis)
-
-  g
+  aspect_action(g, asps, ..., action = "axis")
 }
 
 #' @rdname axis
