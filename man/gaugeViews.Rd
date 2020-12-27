@@ -6,6 +6,7 @@
 \alias{gauge_size}
 \alias{gauge_shape}
 \alias{gauge_label}
+\alias{gauge_tooltip}
 \title{Gauge Aspects}
 \usage{
 gauge_color(g, handler)
@@ -13,6 +14,10 @@ gauge_color(g, handler)
 gauge_size(g, handler)
 
 gauge_shape(g, handler)
+
+gauge_label(g, handler)
+
+gauge_tooltip(g, handler)
 
 gauge_label(g, handler)
 }

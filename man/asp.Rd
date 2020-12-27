@@ -22,6 +22,7 @@ Define aspects of a visualisation.
 \item \code{color}
 \item \code{shape}
 \item \code{label}
+\item \code{tooltip}
 }
 }
 
