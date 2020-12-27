@@ -3,15 +3,15 @@
 #' Customise the axes.
 #' 
 #' @inheritParams fig_point
-#' @param ... Options to pass to the axis, passe `FALSE`
+#' @param ... Options to pass to the axis, pass `FALSE`
 #' to hide the axis.
-#' @param asps Column names to change the axis of.
+#' @param asps Aspects (column names) to change the axis.
 #' 
 #' @section Functions:
 #' 
 #' - `axis_x`: Customise the x axis.
 #' - `axis_y`: Customise the y axis.
-#' - `axis_asp`: Customise the axis by aspects (column names).
+#' - `axis_asps`: Customise the axis by aspects (column names).
 #' - `axis_hide`: Hide all axis.
 #' 
 #' @examples 
@@ -58,6 +58,8 @@ axis_asps <- function(g, asps, ...) UseMethod("axis_asps")
 axis_asps.g2r <- function(g, asps, ...){
   if(missing(asps))
     stop("Missing `asps`", call. = FALSE)
+
+  asps <- unique(asps)
 
   axis <- lapply(asps, function(c, opts){
 

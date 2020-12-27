@@ -18,3 +18,9 @@ planes(g, asp, ..., type = c("rect", "list", "matrix", "circle", "tree"))
 \description{
 Split the chart into planes according to variables.
 }
+\examples{
+g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) \%>\% 
+ fig_point() \%>\% 
+ planes("Species", type = "tree")
+
+}

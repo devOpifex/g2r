@@ -7,11 +7,33 @@
 #' @param ... Any other option.
 #' @param type Type of planes to use.
 #' 
+#' @examples 
+#' g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
+#'  fig_point() %>% 
+#'  planes("Species", type = "tree")
+#' 
 #' @importFrom rlang enquos as_label
 #' @importFrom purrr map
 #' 
 #' @export 
 planes <- function(
+  g,
+  asp,
+  ...,
+  type = c(
+    "rect",
+    "list",
+    "matrix",
+    "circle",
+    "tree"
+  )
+){
+  UseMethod("planes")
+}
+
+#' @method planes g2r
+#' @export 
+planes.g2r <- function(
   g,
   asp,
   ...,

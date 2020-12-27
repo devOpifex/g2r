@@ -41,6 +41,11 @@ HTMLWidgets.widget({
           })
         }
 
+        if(x.legend)
+          x.legend.forEach(function(l){
+            c.legend(l.column, l.opts);
+          })
+
         // loop over figures
         if(x.facet){
 
