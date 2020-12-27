@@ -296,5 +296,7 @@ get_aspect_names <- function(g, aspect){
 #' 
 #' @keywords internal
 collapse_asp <- function(asp){
+  if(length(asp) == 0)
+    return()
   paste0(asp, collapse = "*")
 }
