@@ -5,11 +5,13 @@
 #' @return A modified version of `g`.
 #' 
 #' @keywords internal
-renderG2 <- function(g){
-  cols <- unique(g$x$cols)
+renderG2 <- function(g){  
   
+  # filter columns
+  cols <- unique(g$x$cols)
   g$x$data <- select_columns(g$x$data, cols)
   
+  # remove unneeded
   g$x$cols <- NULL
   g$x$main_asp <- NULL
 
