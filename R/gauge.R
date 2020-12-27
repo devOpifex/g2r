@@ -67,6 +67,26 @@ gauge_label.g2r <- function(g, handler){
   gauge2_(g, handler, fn = "shape")
 }
 
+#' @rdname gaugeViews
+#' @export 
+gauge_tooltip <- function(g, handler) UseMethod("gauge_tooltip")
+
+#' @method gauge_tooltip g2r
+#' @export 
+gauge_tooltip.g2r <- function(g, handler){
+  gauge2_(g, handler, fn = "tooltip")
+}
+
+#' @rdname gaugeViews
+#' @export 
+gauge_label <- function(g, handler) UseMethod("gauge_label")
+
+#' @method gauge_label g2r
+#' @export 
+gauge_label.g2r <- function(g, handler){
+  gauge2_(g, handler, fn = "label")
+}
+
 #' Gauge2
 #' 
 #' While [gauge_()] applies the `scale` to the
@@ -91,9 +111,12 @@ gauge2_ <- function(g, handler, fn){
     if(is.null(g$x$views[[i]][[fn]]))
       next
 
-    g$x$views[[i]][[fn]] <- list(
-      g$x$views[[i]][[fn]], handler
-    )
+    if(is.logical(handler))
+      g$x$views[[i]][[fn]] <- handler
+    else 
+      g$x$views[[i]][[fn]] <- list(
+        g$x$views[[i]][[fn]], handler
+      )
   }
   g
 }
