@@ -21,6 +21,7 @@ Define aspects of a visualisation.
 \item \code{size}
 \item \code{color}
 \item \code{shape}
+\item \code{label}
 }
 }
 

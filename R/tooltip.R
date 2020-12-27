@@ -48,8 +48,8 @@ tooltip <- function(callback, ...) {
     unname()
 
   options <- list(
-    aspects = paste0(aspects, collapse = "*"),
-    callback = JS(callback)
+    paste0(aspects, collapse = "*"),
+    JS(callback)
   )
 
   structure(options, class = c("tooltip", class(options)))

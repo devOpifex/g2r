@@ -11,6 +11,7 @@
 #' - `size`
 #' - `color`
 #' - `shape`
+#' - `label`
 #' 
 #' @importFrom rlang enquos is_quosure is_symbolic quo_is_symbolic quo_get_expr new_quosure quo_label
 #' @importFrom purrr keep

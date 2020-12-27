@@ -330,6 +330,7 @@ fig_primitive <- function(
   size <- select_asp_labels(asp, "size")
   color <- select_asp_labels(asp, "color")
   shape <- select_asp_labels(asp, "shape")
+  label <- select_asp_labels(asp, "label")
 
   # store columns
   cols <- c(position, color, shape, size)
@@ -337,11 +338,7 @@ fig_primitive <- function(
 
   # scales
   g <- sync(g, position, sync)
-  g <- gauges_types(
-    g, 
-    cols, 
-    data
-  )
+  g <- gauges_types(g, cols, data)
   
   opts <- list(
     type = type,
@@ -351,7 +348,8 @@ fig_primitive <- function(
     shape = shape,
     size = size,
     adjust = adjust,
-    tooltip = tooltip
+    tooltip = tooltip,
+    label = label
   ) %>% 
     drop_nulls()
 
