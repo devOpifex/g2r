@@ -378,25 +378,26 @@ gauge_ <- function(g, cols, ...){
 #' Sets the syncs groups for x and y variables.
 #' 
 #' @inheritParams fig_point
-#' @param position Vector of column names of length 2
-#' indicating x and y columns.
+#' @param asp Aspect to sync.
 #' @param sync Either a logical or the name of a group.
 #' 
 #' @keywords internal
-sync <- function(g, position, sync = TRUE){
+sync <- function(
+  g, 
+  asp, 
+  sync = TRUE, 
+  if_true = NULL
+){
   
   # it's FALSE
   if(is.logical(sync) && !isTRUE(sync))
     return()
 
-  if(isTRUE(sync)){
-    syncX <- "mainGroupX"
-    syncY <- "mainGroupY"
-  }
+  if(!is.null(if_true))
+    sync <- if_true
   
   # sync x
-  g$x$scale[[position[1]]][["sync"]] <- syncX
-  g$x$scale[[position[2]]][["sync"]] <- syncY
+  g$x$scale[[asp]][["sync"]] <- sync
 
   g
 }

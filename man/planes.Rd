@@ -4,7 +4,13 @@
 \alias{planes}
 \title{Planes}
 \usage{
-planes(g, asp, ..., type = c("rect", "list", "matrix", "circle", "tree"))
+planes(
+  g,
+  asp,
+  ...,
+  type = c("rect", "list", "matrix", "circle", "tree"),
+  sync = TRUE
+)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -15,6 +21,9 @@ planes(g, asp, ..., type = c("rect", "list", "matrix", "circle", "tree"))
 \item{...}{Any other option.}
 
 \item{type}{Type of planes to use.}
+
+\item{sync}{Whether to sync the aspects used for the planes
+with others used elsewhere, similar to that of \code{\link[=fig_point]{fig_point()}}.}
 }
 \description{
 Split the chart into planes according to variables.

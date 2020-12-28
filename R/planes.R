@@ -6,6 +6,8 @@
 #' @param asp Aspects that define split.
 #' @param ... Any other option.
 #' @param type Type of planes to use.
+#' @param sync Whether to sync the aspects used for the planes
+#' with others used elsewhere, similar to that of [fig_point()].
 #' 
 #' @examples 
 #' g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
@@ -26,7 +28,8 @@ planes <- function(
     "matrix",
     "circle",
     "tree"
-  )
+  ),
+  sync = TRUE
 ){
   UseMethod("planes")
 }
@@ -43,7 +46,8 @@ planes.g2r <- function(
     "matrix",
     "circle",
     "tree"
-  )
+  ),
+  sync = TRUE
 ){
   if(missing(asp))
     stop("Missing `asp`", call. = FALSE)
@@ -52,6 +56,10 @@ planes.g2r <- function(
     stop("Planes requires data to be passed to `g2`", call. = FALSE)
 
   type <- match.arg(type)
+  
+  for(i in 1:length(asp)){
+    g <- sync(g, asp, sync, if_true = "mainGroupPlanes")
+  }
 
   g$x$facet <- list(
     type = type, 

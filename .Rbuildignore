@@ -7,3 +7,6 @@
 ^webpack\.common\.js$
 ^test\.R$
 ^LICENSE\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

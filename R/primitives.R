@@ -682,7 +682,8 @@ fig_primitive_common <- function(
   g$x$cols <- append(g$x$cols, cols)
 
   # scales
-  g <- sync(g, position, sync)
+  g <- sync(g, position[1], sync, if_true = "mainGroupX")
+  g <- sync(g, position[2], sync, if_true = "mainGroupY")
   g <- gauges_types(g, cols, data)
   
   opts <- list(
