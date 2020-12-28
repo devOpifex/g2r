@@ -7,6 +7,9 @@
 #' @param style A list of options defning the style.
 #' @param data A dataset to use with [asp()].
 #' 
+#' @details `info_vline`, and `info_hline` use the `x`, and `y`
+#' [asp()] for placement.
+#' 
 #' @examples 
 #' df <- head(cars, 5)
 #' 
@@ -21,8 +24,13 @@
 #'    data = df
 #'  )
 #' 
+#' g2(cars, asp(speed, dist)) %>%
+#'  fig_point() %>% 
+#'  info_vline(asp(x = 20)) %>% 
+#'  info_hline(asp(y = 20))
+#' 
 #' @seealso [Official annotation documentation](https://antv-g2.gitee.io/en/docs/api/general/annotation)
-#' for defails pon what to pass to `...`.
+#' for defails pon what to pass to `...`, and [asp()].
 #' 
 #' @name info
 #' @export 
@@ -133,6 +141,84 @@ info_line.g2r <- function(
     type = "line",
     style = style,
     data = data
+  )
+}
+
+#' @rdname info
+#' @export 
+info_vline <- function(
+  g, 
+  ..., 
+  style = NULL,
+  data = NULL
+){
+  UseMethod("info_vline")
+}
+
+#' @method info_vline g2r
+#' @export 
+info_vline.g2r <- function(
+  g, 
+  ..., 
+  style = NULL,
+  data = NULL
+){
+  
+  asp <- get_asp(...)
+
+  if(length(asp)){
+    asp$xend <- "min"
+    asp$y <- rlang::quo_name(asp$x)
+    asp$yend <- "max"
+  }
+
+  info_primitive(
+    g, 
+    ..., 
+    type = "line",
+    style = style,
+    data = data,
+    asp = asp
+  )
+}
+
+#' @rdname info
+#' @export 
+info_hline <- function(
+  g, 
+  ..., 
+  style = NULL,
+  data = NULL
+){
+  UseMethod("info_hline")
+}
+
+#' @method info_hline g2r
+#' @export 
+info_hline.g2r <- function(
+  g, 
+  ..., 
+  style = NULL,
+  data = NULL
+){
+  
+  asp <- get_asp(...)
+
+  if(length(asp)){
+    y <- asp$y
+    asp$x <- "min"
+    asp$xend <- y
+    asp$y <- "max"
+    asp$yend <- rlang::quo_name(y)
+  }
+
+  info_primitive(
+    g, 
+    ..., 
+    type = "line",
+    style = style,
+    data = data,
+    asp = asp
   )
 }
 
@@ -312,6 +398,8 @@ info_html.g2r <- function(
 #' @param type Type of annotation.
 #' @param style Style list to pass to the annotation.
 #' @param data Optional data.frame to use with the [asp()].
+#' @param asp Aspects, if `NULL` then the function retrieves them
+#' from the `...`.
 #' 
 #' @keywords internal
 info_primitive <- function(
@@ -330,31 +418,36 @@ info_primitive <- function(
     "html"
   ),
   style = NULL,
-  data = NULL
+  data = NULL,
+  asp = NULL
 ){
 
   type <- match.arg(type)
-
-  data <- get_data(g, data)
 
   # options without aspects
   opts <- rm_asp(...)
 
   # info aspects
-  asp <- get_asp(...)
+  if(is.null(asp))
+    asp <- get_asp(...)
 
   # process aspects
   opts_asp <- info_aspects_data(asp, data = data)
 
-  info <- list(
+  # common options
+  info_opts <- list(
     style = style
   ) %>% 
     append(opts) %>% 
     drop_nulls()
 
+  # structure with type
+  info <- list(type = type, opts = info_opts)
+
   if(!is.null(opts_asp)){
     info <- lapply(opts_asp, function(opt, info){
-      append(info, opt)
+      info$opts <- append(info$opts, opt)
+      return(info)
     }, info = info)
   } else {
     info <- list(info)

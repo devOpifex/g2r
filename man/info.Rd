@@ -6,6 +6,8 @@
 \alias{info_image}
 \alias{info_arc}
 \alias{info_line}
+\alias{info_vline}
+\alias{info_hline}
 \alias{info_region}
 \alias{info_region_filter}
 \alias{info_marker}
@@ -21,6 +23,10 @@ info_image(g, ..., style = NULL, data = NULL)
 info_arc(g, ..., style = NULL, data = NULL)
 
 info_line(g, ..., style = NULL, data = NULL)
+
+info_vline(g, ..., style = NULL, data = NULL)
+
+info_hline(g, ..., style = NULL, data = NULL)
 
 info_region(g, ..., style = NULL, data = NULL)
 
@@ -46,6 +52,10 @@ info_html(g, ..., style = NULL, data = NULL)
 \description{
 Add a point figure.
 }
+\details{
+\code{info_vline}, and \code{info_hline} use the \code{x}, and \code{y}
+\code{\link[=asp]{asp()}} for placement.
+}
 \examples{
 df <- head(cars, 5)
 
@@ -60,8 +70,13 @@ g2(cars, asp(speed, dist)) \%>\%
    data = df
  )
 
+g2(cars, asp(speed, dist)) \%>\%
+ fig_point() \%>\% 
+ info_vline(asp(x = 20)) \%>\% 
+ info_hline(asp(y = 20))
+
 }
 \seealso{
 \href{https://antv-g2.gitee.io/en/docs/api/general/annotation}{Official annotation documentation}
-for defails pon what to pass to \code{...}.
+for defails pon what to pass to \code{...}, and \code{\link[=asp]{asp()}}.
 }

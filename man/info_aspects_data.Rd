@@ -4,7 +4,7 @@
 \alias{info_aspects_data}
 \title{Select Aspects from Data}
 \usage{
-info_aspects_data(asp, data)
+info_aspects_data(asp, data = NULL)
 }
 \arguments{
 \item{asp}{Aspects as returned by \code{\link[=asp]{asp()}}.}
