@@ -7,6 +7,7 @@ import { assignData } from '../modules/assignData.js';
 import { annotate } from '../modules/annotate.js';
 import { captureEvents } from '../modules/events.js';
 import { interactions } from '../modules/interactions.js';
+import { getProxy } from '../modules/find.js';
 
 HTMLWidgets.widget({
 
@@ -115,4 +116,33 @@ function makeFacetView(x){
       
     });
   }
+}
+
+
+if (HTMLWidgets.shinyMode) {
+
+  // Execute
+  Shiny.addCustomMessageHandler('render',
+    function(id) {
+      let c = getProxy(id);
+      c.render();
+  });
+
+  // Figure
+  Shiny.addCustomMessageHandler('figure',
+    function(x) {
+      console.log(x);
+
+      let c = getProxy(x.id);
+      let view = c.createView();
+
+      annotate(view, x.views[0])
+
+      let figure = makeFigure(view, x.views[0].type);
+      tuneFigure(figure, x.views[0]);
+
+      // data
+      assignData(view, x.views[0], x)
+  });
+
 }

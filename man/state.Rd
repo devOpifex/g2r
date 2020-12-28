@@ -22,6 +22,6 @@ g2(iris, asp(Sepal.Width, Sepal.Length)) \%>\%
  fig_point(
    selected(fill = "red")
  ) \%>\% 
- interaction("element", "selected")
+ interplay("element", "selected")
 
 }

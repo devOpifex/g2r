@@ -26,7 +26,8 @@ legend_size(g, ...)
 legend_asps(g, asps, ...)
 }
 \arguments{
-\item{g}{An object of class \code{g2r} as returned by \code{\link[=g2]{g2()}}.}
+\item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
+\code{\link[=g2_proxy]{g2_proxy()}}.}
 
 \item{...}{Options to pass to the legend, pass \code{FALSE}
 to hide the axis. Visit the

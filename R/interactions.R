@@ -1,6 +1,6 @@
-#' Interactions
+#' Interplay
 #' 
-#' Add interactions to the chart.
+#' Add interplay (interactions) to the chart.
 #' 
 #' @inheritParams fig_point
 #' @param ... String(s) defining interactions.
@@ -15,14 +15,14 @@
 #'  fig_interval(
 #'    selected(fill = "orange")
 #'  ) %>% 
-#'  interaction("element", "selected")
+#'  interplay("element", "selected")
 #' 
 #' @export 
-interaction <- function(g, ...) UseMethod("interaction")
+interplay <- function(g, ...) UseMethod("interplay")
 
-#' @method interaction g2r
+#' @method interplay g2r
 #' @export 
-interaction.g2r <- function(g, ...){
+interplay.g2r <- function(g, ...){
   action <- paste0(c(...), collapse = "-")
   g$x$interactions <- append(g$x$interactions, list(action))
   g

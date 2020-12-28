@@ -2,7 +2,8 @@
 #' 
 #' Add a point figure.
 #' 
-#' @param g An object of class `g2r` as returned by [g2()].
+#' @param g An object of class `g2r` or `g2Proxy` as returned by [g2()] or 
+#' [g2_proxy()].
 #' @param ... Options to pass to the figure, including [asp()],
 #' and [adjust()], [active()], and [selected()].
 #' @param sync Whether to sync the axis data (align) with that
@@ -38,6 +39,27 @@ fig_point <- function(
 #' @method fig_point g2r
 #' @export 
 fig_point.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "point",
+    style = style
+  )
+}
+
+#' @method fig_point g2Proxy
+#' @export 
+fig_point.g2Proxy <- function(
   g, 
   ..., 
   sync = TRUE, 
@@ -99,6 +121,27 @@ fig_line.g2r <- function(
   )
 }
 
+#' @method fig_line g2Proxy
+#' @export 
+fig_line.g2Proxy <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "line",
+    style = style
+  )
+}
+
 #' Area
 #' 
 #' Add an area figure.
@@ -124,6 +167,27 @@ fig_area <- function(
 #' @method fig_area g2r
 #' @export
 fig_area.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "area",
+    style = style
+  )
+}
+
+#' @method fig_area g2Proxy
+#' @export
+fig_area.g2Proxy <- function(
   g, 
   ..., 
   sync = TRUE, 
@@ -199,6 +263,27 @@ fig_interval.g2r <- function(
   )
 }
 
+#' @method fig_interval g2Proxy
+#' @export 
+fig_interval.g2Proxy <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "interval",
+    style = style
+  )
+}
+
 #' Polygon
 #' 
 #' Add a polygon figure.
@@ -220,6 +305,27 @@ fig_polygon <- function(
 #' @method fig_polygon g2r
 #' @export 
 fig_polygon.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "polygon",
+    style = style
+  )
+}
+
+#' @method fig_polygon g2Proxy
+#' @export 
+fig_polygon.g2Proxy <- function(
   g, 
   ..., 
   sync = TRUE, 
@@ -277,6 +383,27 @@ fig_edge.g2r <- function(
   )
 }
 
+#' @method fig_edge g2Proxy
+#' @export 
+fig_edge.g2Proxy <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "edge",
+    style = style
+  )
+}
+
 #' Path
 #' 
 #' Add a path figure.
@@ -298,6 +425,27 @@ fig_path <- function(
 #' @method fig_path g2r
 #' @export 
 fig_path.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "path",
+    style = style
+  )
+}
+
+#' @method fig_path g2Proxy
+#' @export 
+fig_path.g2Proxy <- function(
   g, 
   ..., 
   sync = TRUE, 
@@ -355,6 +503,27 @@ fig_heatmap.g2r <- function(
   )
 }
 
+#' @method fig_heatmap g2Proxy
+#' @export 
+fig_heatmap.g2Proxy <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "heatmap",
+    style = style
+  )
+}
+
 #' Primitive
 #' 
 #' Add a path figure.
@@ -363,6 +532,100 @@ fig_heatmap.g2r <- function(
 #' 
 #' @keywords internal
 fig_primitive <- function(
+  g, 
+  ..., 
+  data = NULL, 
+  inherit_asp = TRUE,
+  sync = TRUE,
+  type = c(
+    "point", 
+    "interval", 
+    "line", 
+    "schema", 
+    "edge", 
+    "area", 
+    "polygon",
+    "heatmap"
+  ),
+  style = NULL
+){
+  UseMethod("fig_primitive")
+}
+
+#' @method fig_primitive g2r
+#' @export
+fig_primitive.g2r <- function(
+  g, 
+  ..., 
+  data = NULL, 
+  inherit_asp = TRUE,
+  sync = TRUE,
+  type = c(
+    "point", 
+    "interval", 
+    "line", 
+    "schema", 
+    "edge", 
+    "area", 
+    "polygon",
+    "heatmap"
+  ),
+  style = NULL
+){
+
+  fig_primitive_common(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = type,
+    style = style
+  )
+
+}
+
+#' @method fig_primitive g2Proxy
+#' @export
+fig_primitive.g2Proxy <- function(
+  g, 
+  ..., 
+  data = NULL, 
+  inherit_asp = TRUE,
+  sync = TRUE,
+  type = c(
+    "point", 
+    "interval", 
+    "line", 
+    "schema", 
+    "edge", 
+    "area", 
+    "polygon",
+    "heatmap"
+  ),
+  style = NULL
+){
+
+  g <- fig_primitive_common(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = type,
+    style = style
+  )
+
+  g$x$views[[1]]$data <- proxy_data(g$x$views[[1]]$data)
+
+  g$session$sendCustomMessage("figure", g$x)
+
+  g$x$views <- NULL
+
+  g
+}
+
+fig_primitive_common <- function(
   g, 
   ..., 
   data = NULL, 

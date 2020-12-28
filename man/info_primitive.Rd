@@ -15,7 +15,8 @@ info_primitive(
 )
 }
 \arguments{
-\item{g}{An object of class \code{g2r} as returned by \code{\link[=g2]{g2()}}.}
+\item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
+\code{\link[=g2_proxy]{g2_proxy()}}.}
 
 \item{...}{Options to pass to the figure, including \code{\link[=asp]{asp()}},
 and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, and \code{\link[=selected]{selected()}}.}

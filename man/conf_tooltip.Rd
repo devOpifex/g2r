@@ -7,7 +7,8 @@
 conf_tooltip(g, ...)
 }
 \arguments{
-\item{g}{An object of class \code{g2r} as returned by \code{\link[=g2]{g2()}}.}
+\item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
+\code{\link[=g2_proxy]{g2_proxy()}}.}
 
 \item{...}{Options to pass to the axis, pass \code{FALSE}
 to hide the axis. Visit the
