@@ -7,6 +7,35 @@
 #' @param data Data.frame containing data to plot.
 #' @param session A valid shiny session.
 #' 
+#' @examples 
+#' library(shiny)
+#' 
+#' dataset <- data.frame(x = 1:100, y = runif(100, 1, 100))
+#' 
+#' ui <- fluidPage(
+#'  g2rOutput("plot"),
+#'  actionButton("add", "Add figure")
+#' )
+#' 
+#' server <- function(input, output, session){
+#' 
+#'  output$plot <- renderG2r({
+#'    g2(dataset, asp(x, y)) %>% 
+#'      fig_point()
+#'  })
+#' 
+#'  observeEvent(input$add, {
+#'    df <- data.frame(x = 1:100, y = runif(100, 1, 100))
+#'    g2_proxy("plot", data = df) %>% 
+#'      fig_point(asp(x, y)) %>% 
+#'      render()
+#'    })
+#' 
+#' }
+#' 
+#' if(interactive())
+#'  shinyApp(ui, server)
+#' 
 #' @export
 g2_proxy <- function(
   id, 
@@ -55,6 +84,14 @@ render.g2Proxy <- function(g){
   invisible(g)
 }
 
+#' Serialise
+#' 
+#' Serialise the data from a data frame to a rowwise
+#' list. This is because proxies do not come with a
+#' serialiser that can be adapted.
+#' 
+#' @param data A dataframe or `NULL`.
+#' 
 #' @importFrom purrr pmap
 proxy_data <- function(data = NULL){
   if(is.null(data))
