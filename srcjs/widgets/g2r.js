@@ -1,5 +1,5 @@
 import 'widgets';
-import { Chart } from '@antv/g2';
+import { Chart, registerTheme } from '@antv/g2';
 import { makeFigure } from '../modules/makeFigure.js'; 
 import { makeCoords } from '../modules/makeCoords.js'; 
 import { tuneFigure } from '../modules/tuneFigure.js';
@@ -22,11 +22,12 @@ HTMLWidgets.widget({
 
       renderValue: function(x) {
 
+        if(x.theme)
+          registerTheme(x.chartOpts.theme, x.theme);
+
         // keep autofit for responsiveness
-        c = new Chart({
-          container: el.id,
-          autoFit: true,
-        });
+        x.chartOpts.container = el.id;
+        c = new Chart(x.chartOpts);
 
         if(x.data)
           c.data(x.data);

@@ -4,7 +4,7 @@
 #' 
 #' @param g An object of class `g2r` as returned by [g2()].
 #' @param ... Options to pass to the figure, including [asp()],
-#' and [adjust()].
+#' and [adjust()], [active()], and [selected()].
 #' @param sync Whether to sync the axis data (align) with that
 #' used in other figures, set to `FALSE` to not sync or set to
 #' a character string to use as name of sync group.
