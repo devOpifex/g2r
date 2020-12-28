@@ -5,7 +5,9 @@
 #' @param g An object of class `g2r` as returned by [g2()].
 #' @param ... Options to pass to the figure, including [asp()],
 #' and [adjust()].
-#' @param sync Whether to sync the axis data (align).
+#' @param sync Whether to sync the axis data (align) with that
+#' used in other figures, set to `FALSE` to not sync or set to
+#' a character string to use as name of sync group.
 #' @param data A dataset (`data.frame` or `tibble`) to use to 
 #' draw the figure.
 #' @param inherit_asp Whether to inherit the aspects paseed to
@@ -314,7 +316,46 @@ fig_path.g2r <- function(
   )
 }
 
-#' Path
+#' Heatmap
+#' 
+#' Add a path figure.
+#' 
+#' @inheritParams fig_point
+#' 
+#' @export 
+fig_heatmap <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  UseMethod("fig_heatmap")
+}
+
+#' @method fig_heatmap g2r
+#' @export 
+fig_heatmap.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "heatmap",
+    style = style
+  )
+}
+
+#' Primitive
 #' 
 #' Add a path figure.
 #' 
@@ -334,7 +375,8 @@ fig_primitive <- function(
     "schema", 
     "edge", 
     "area", 
-    "polygon"
+    "polygon",
+    "heatmap"
   ),
   style = NULL
 ){

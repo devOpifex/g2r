@@ -2,7 +2,7 @@
 % Please edit documentation in R/figures.R
 \name{fig_primitive}
 \alias{fig_primitive}
-\title{Path}
+\title{Primitive}
 \usage{
 fig_primitive(
   g,
@@ -10,7 +10,7 @@ fig_primitive(
   data = NULL,
   inherit_asp = TRUE,
   sync = TRUE,
-  type = c("point", "interval", "line", "schema", "edge", "area", "polygon"),
+  type = c("point", "interval", "line", "schema", "edge", "area", "polygon", "heatmap"),
   style = NULL
 )
 }
@@ -26,7 +26,9 @@ draw the figure.}
 \item{inherit_asp}{Whether to inherit the aspects paseed to
 \code{\link[=g2]{g2()}} initialisation function.}
 
-\item{sync}{Whether to sync the axis data (align).}
+\item{sync}{Whether to sync the axis data (align) with that
+used in other figures, set to \code{FALSE} to not sync or set to
+a character string to use as name of sync group.}
 
 \item{style}{A list of options to pass to
 \href{https://g2.antv.vision/en/docs/api/general/style}{style} that

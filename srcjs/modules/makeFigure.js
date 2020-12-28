@@ -26,6 +26,9 @@ const makeFigure = (view, type) => {
   if(type == "path")
     e = view.path();
 
+  if(type == "heatmap")
+    e = view.heatmap();
+
   return e;
 }
 

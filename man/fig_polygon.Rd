@@ -12,7 +12,9 @@ fig_polygon(g, ..., sync = TRUE, data = NULL, inherit_asp = TRUE, style = NULL)
 \item{...}{Options to pass to the figure, including \code{\link[=asp]{asp()}},
 and \code{\link[=adjust]{adjust()}}.}
 
-\item{sync}{Whether to sync the axis data (align).}
+\item{sync}{Whether to sync the axis data (align) with that
+used in other figures, set to \code{FALSE} to not sync or set to
+a character string to use as name of sync group.}
 
 \item{data}{A dataset (\code{data.frame} or \code{tibble}) to use to
 draw the figure.}
