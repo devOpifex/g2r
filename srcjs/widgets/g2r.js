@@ -79,6 +79,9 @@ HTMLWidgets.widget({
           });
         }
 
+        if(x.slider)
+          c.option('slider', x.slider);
+
         c.render();
 
       },
