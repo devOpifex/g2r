@@ -22,4 +22,5 @@ Imports:
     magrittr,
     purrr,
     rlang,
-    R6
+    R6,
+    tibble

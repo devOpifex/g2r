@@ -5,12 +5,20 @@
 #' @param g An object of class `g2r` as returned by [g2()].
 #' @param ... Options to pass to the informational annotation.
 #' @param style A list of options defning the style.
+#' @param data A dataset to use with [asp()].
 #' 
 #' @examples 
+#' df <- head(cars, 5)
+#' 
 #' g2(cars, asp(speed, dist)) %>%
 #'  fig_point() %>% 
 #'  info_text(
-#'    position = c(5, 4), content = "Look here!"
+#'    position = c(20, 35), content = "Look here!"
+#'  ) %>% 
+#'  info_text(
+#'    asp(speed, dist),
+#'    content = "Using aspects",
+#'    data = df
 #'  )
 #' 
 #' @seealso [Official annotation documentation](https://antv-g2.gitee.io/en/docs/api/general/annotation)
@@ -21,7 +29,8 @@
 info_text <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   UseMethod("info_text")
 }
@@ -31,13 +40,15 @@ info_text <- function(
 info_text.g2r <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "text",
-    style = style
+    style = style,
+    data = data
   )
 }
 
@@ -46,7 +57,8 @@ info_text.g2r <- function(
 info_image <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   UseMethod("info_image")
 }
@@ -56,13 +68,15 @@ info_image <- function(
 info_image.g2r <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "image",
-    style = style
+    style = style,
+    data = data
   )
 }
 
@@ -71,7 +85,8 @@ info_image.g2r <- function(
 info_arc <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   UseMethod("info_arc")
 }
@@ -81,13 +96,15 @@ info_arc <- function(
 info_arc.g2r <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "arc",
-    style = style
+    style = style,
+    data = data
   )
 }
 
@@ -96,7 +113,8 @@ info_arc.g2r <- function(
 info_line <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   UseMethod("info_line")
 }
@@ -106,13 +124,15 @@ info_line <- function(
 info_line.g2r <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "line",
-    style = style
+    style = style,
+    data = data
   )
 }
 
@@ -121,7 +141,8 @@ info_line.g2r <- function(
 info_region <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   UseMethod("info_region")
 }
@@ -131,13 +152,15 @@ info_region <- function(
 info_region.g2r <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "region",
-    style = style
+    style = style,
+    data = data
   )
 }
 
@@ -146,7 +169,8 @@ info_region.g2r <- function(
 info_region_filter <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   UseMethod("info_region_filter")
 }
@@ -156,13 +180,15 @@ info_region_filter <- function(
 info_region_filter.g2r <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "regionFilter",
-    style = style
+    style = style,
+    data = data
   )
 }
 
@@ -171,7 +197,8 @@ info_region_filter.g2r <- function(
 info_marker <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   UseMethod("info_marker")
 }
@@ -181,13 +208,15 @@ info_marker <- function(
 info_marker.g2r <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "dataMarker",
-    style = style
+    style = style,
+    data = data
   )
 }
 
@@ -196,7 +225,8 @@ info_marker.g2r <- function(
 info_data_region <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   UseMethod("info_data_region")
 }
@@ -206,13 +236,15 @@ info_data_region <- function(
 info_data_region.g2r <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "dataRegion",
-    style = style
+    style = style,
+    data = data
   )
 }
 
@@ -221,7 +253,8 @@ info_data_region.g2r <- function(
 info_shape <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   UseMethod("info_shape")
 }
@@ -231,13 +264,15 @@ info_shape <- function(
 info_shape.g2r <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "shape",
-    style = style
+    style = style,
+    data = data
   )
 }
 
@@ -246,7 +281,8 @@ info_shape.g2r <- function(
 info_html <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   UseMethod("info_html")
 }
@@ -256,17 +292,28 @@ info_html <- function(
 info_html.g2r <- function(
   g, 
   ..., 
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "html",
-    style = style
+    style = style,
+    data = data
   )
 }
 
-
+#' Info
+#' 
+#' Primitive to create informational annotations.
+#' 
+#' @inheritParams fig_point
+#' @param type Type of annotation.
+#' @param style Style list to pass to the annotation.
+#' @param data Optional data.frame to use with the [asp()].
+#' 
+#' @keywords internal
 info_primitive <- function(
   g, 
   ..., 
@@ -282,17 +329,38 @@ info_primitive <- function(
     "shape",
     "html"
   ),
-  style = NULL
+  style = NULL,
+  data = NULL
 ){
+
   type <- match.arg(type)
 
+  data <- get_data(g, data)
+
+  # options without aspects
+  opts <- rm_asp(...)
+
+  # info aspects
+  asp <- get_asp(...)
+
+  # process aspects
+  opts_asp <- info_aspects_data(asp, data = data)
+
   info <- list(
-    ...,
     style = style
   ) %>% 
+    append(opts) %>% 
     drop_nulls()
 
-  g$x$annotations <- append(g$x$annotations, list(info))
+  if(!is.null(opts_asp)){
+    info <- lapply(opts_asp, function(opt, info){
+      append(info, opt)
+    }, info = info)
+  } else {
+    info <- list(info)
+  }
+
+  g$x$annotations <- append(g$x$annotations, info)
 
   g
 }

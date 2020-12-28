@@ -21,7 +21,7 @@ g2 <- function(data = NULL, ..., width = NULL, height = NULL, elementId = NULL) 
   asp <- get_asp(...)
 
   x = list(
-    data = data, # dataset
+    data = as_tib(data), # dataset
     main_asp = asp, # main aspects
     views = list(), # views | figures
     scale = list(), # chart.scale

@@ -14,25 +14,25 @@
 \alias{info_html}
 \title{Text}
 \usage{
-info_text(g, ..., style = NULL)
+info_text(g, ..., style = NULL, data = NULL)
 
-info_image(g, ..., style = NULL)
+info_image(g, ..., style = NULL, data = NULL)
 
-info_arc(g, ..., style = NULL)
+info_arc(g, ..., style = NULL, data = NULL)
 
-info_line(g, ..., style = NULL)
+info_line(g, ..., style = NULL, data = NULL)
 
-info_region(g, ..., style = NULL)
+info_region(g, ..., style = NULL, data = NULL)
 
-info_region_filter(g, ..., style = NULL)
+info_region_filter(g, ..., style = NULL, data = NULL)
 
-info_marker(g, ..., style = NULL)
+info_marker(g, ..., style = NULL, data = NULL)
 
-info_data_region(g, ..., style = NULL)
+info_data_region(g, ..., style = NULL, data = NULL)
 
-info_shape(g, ..., style = NULL)
+info_shape(g, ..., style = NULL, data = NULL)
 
-info_html(g, ..., style = NULL)
+info_html(g, ..., style = NULL, data = NULL)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} as returned by \code{\link[=g2]{g2()}}.}
@@ -40,15 +40,24 @@ info_html(g, ..., style = NULL)
 \item{...}{Options to pass to the informational annotation.}
 
 \item{style}{A list of options defning the style.}
+
+\item{data}{A dataset to use with \code{\link[=asp]{asp()}}.}
 }
 \description{
 Add a point figure.
 }
 \examples{
+df <- head(cars, 5)
+
 g2(cars, asp(speed, dist)) \%>\%
  fig_point() \%>\% 
  info_text(
-   position = c(5, 4), content = "Look here!"
+   position = c(20, 35), content = "Look here!"
+ ) \%>\% 
+ info_text(
+   asp(speed, dist),
+   content = "Using aspects",
+   data = df
  )
 
 }

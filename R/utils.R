@@ -1,10 +1,34 @@
+#' Remove NULLs
+#' 
+#' @param x A `list`.
+#' 
+#' @examples 
+#' \dontrun{
+#' drop_nulls(list(NULL, 1))
+#' }
+#' 
 #' @importFrom purrr keep
+#' @keywords internal
 drop_nulls <- function(x) {
   keep(x, function(x){
     length(x) > 0
   })
 }
 
+#' Select Columns
+#' 
+#' Select specific columns from a data.frame, if
+#' they exist.
+#' 
+#' @param data A data.frame.
+#' @param cols Column names to select.
+#' 
+#' @examples 
+#' \dontrun{
+#' select_columns(cars, c("notExist", "speed"))
+#' }
+#' 
+#' @keywords internal
 select_columns <- function(data = NULL, cols){
   if(is.null(data))
     return(NULL)
@@ -45,29 +69,94 @@ aspect_action <- function(g, asps, ..., action){
   g
 }
 
-# #' @importFrom purrr keep discard
-# #' @importFrom rlang as_label is_quosure
-# info_data_as_list <- function(..., data){
+#' Select Aspects from Data
+#' 
+#' Select aspects from the data for info.
+#' 
+#' @param asp Aspects as returned by [asp()].
+#' @param data Data.frame.
+#' 
+#' @importFrom purrr keep discard
+#' @importFrom rlang as_label is_quosure
+info_aspects_data <- function(asp, data){
 
-#   if(is.null(data))
-#     return()
+  if(is.null(data))
+    return()
 
-#   data <- tibble::tibble(data)
+  if(!length(asp))
+    return()
 
-#   asp <- get_asp(...)
-#   asp_keep <- keep(asp, is_quosure)
-#   asp_keep_label <- sapply(asp_keep, as_label)
-#   if(inherits(data, "data.frame")){
-#     data <- data[, asp_keep_label]
-#     names(data) <- names(asp_keep)
-#   }
+  data <- as_tib(data)
 
-#   asp <- discard(asp, is_quosure)
-#   if(length(asp)){
-#     x <- as.character(asp)
-#     names(x) <- names(asp)
-#     data <- cbind.data.frame(data, as.data.frame(t(x)))
-#   }
+  # only keep columns, remove constants
+  asp_keep <- keep(asp, is_quosure)
+  asp_keep_label <- sapply(asp_keep, as_label)
+  if(inherits(data, "data.frame")){
+    data <- data[, asp_keep_label]
+    names(data) <- names(asp_keep)
+  }
 
-#   apply(data, 1, as.list)
-# }
+  asp <- discard(asp, is_quosure)
+  if(length(asp)){
+    x <- as.character(asp)
+    names(x) <- names(asp)
+    data <- cbind.data.frame(data, as.data.frame(t(x)))
+  }
+
+  rehsape_data(data)
+}
+
+
+#' Reshape Data
+#' 
+#' Reshape data to what g2.js expects.
+#' 
+#' @param data A data.frame.
+#' 
+#' @importFrom purrr pmap map
+#' 
+#' @keywords internal
+rehsape_data <- function(data){
+  data %>% 
+    pmap(list) %>% 
+    map(function(x){
+      pos <- x[names(x) %in% c("x", "y")] %>% unname %>% unlist
+      if(length(pos) == 2) x$position <- list(pos[[1]], pos[[2]])
+      st <- x[names(x) %in% c("x", "xend")] %>% unname %>% unlist
+      if(length(st) == 2) x$start <- list(st[[1]], st[[2]])
+      nd <- x[names(x) %in% c("y", "yend")] %>% unname %>% unlist
+      if(length(nd) == 2) x$end <- list(nd[[1]], nd[[2]])
+      x$x <- NULL
+      x$y <- NULL
+      x$xend <- NULL
+      x$yend <- NULL
+      return(x)
+    })
+}
+
+#' Get Data
+#' 
+#' @inheritParams fig_point
+#' @param data A data.frame or `NULL`.
+#' 
+#' @keywords internal
+get_data <- function(g, data = NULL){
+  if(!is.null(data))
+    return(as_tib(data))
+
+  g$x$data
+}
+
+#' As Tibble
+#' 
+#' Returns a tibble or `NULL`.
+#' 
+#' @param data A data.frame, tibble or `NULL`.
+#' 
+#' @keywords internal
+as_tib <- function(data = NULL){
+  if(is.null(data))
+    return()
+  
+  tibble::as_tibble(data)
+}
