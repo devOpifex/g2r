@@ -77,3 +77,38 @@ renderG2r <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
   htmlwidgets::shinyRenderWidget(expr, g2rOutput, env, quoted = TRUE)
 }
+
+#' Shiny Proxy
+#' 
+#' Proxy to dynamically interact with the chart in shiny.
+#' 
+#' @param id Id of chart to interact with.
+#' @param ... Aspects, see [asp()].
+#' @param data Data.frame containing data to plot.
+#' @param session A valid shiny session.
+#' 
+#' @export
+g2_proxy <- function(
+  id, 
+  ..., 
+  data = NULL, 
+  session = shiny::getDefaultReactiveDomain()
+){
+
+  if(missing(id))
+    stop("Missing `id`", call. = FALSE)
+
+  proxy <- list(
+    id = id, 
+    session = session, 
+    data = data,
+    main_asp = get_asp(...)
+  )
+  
+  structure(proxy, class = c("g2Proxy", class(proxy)))
+}
+
+#' @export 
+print.g2Proxy <- function(x, ...){
+  cat("Proxy for chart `", x$id, "`\n")
+}
