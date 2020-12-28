@@ -11,8 +11,13 @@ const tuneFigure = (figure, options) => {
   if(options.adjust)
     figure.adjust(options.adjust);
 
+  // animations
   if(options.animation)
     figure.animate(options.animation);
+
+  // states
+  if(options.states)
+    figure.state(options.states);
 
   // color
   if(options.color)

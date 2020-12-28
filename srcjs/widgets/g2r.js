@@ -6,6 +6,7 @@ import { tuneFigure } from '../modules/tuneFigure.js';
 import { assignData } from '../modules/assignData.js';
 import { annotate } from '../modules/annotate.js';
 import { captureEvents } from '../modules/events.js';
+import { interactions } from '../modules/interactions.js';
 
 HTMLWidgets.widget({
 
@@ -37,6 +38,12 @@ HTMLWidgets.widget({
         // Coordinates
         makeCoords(c, x);
 
+        // interactions
+        interactions(c, x);
+
+        // events
+        captureEvents(c, x);
+
         if(x.axis){
           x.axis.forEach(function(ax){
             c.axis(ax.column, ax.opts);
@@ -53,8 +60,6 @@ HTMLWidgets.widget({
 
         if(x.style)
           c.style(x.style);
-
-        captureEvents(c, x);
 
         // loop over figures
         if(x.facet){
