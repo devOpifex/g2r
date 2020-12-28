@@ -389,6 +389,9 @@ fig_primitive <- function(
   # animation
   animation <- get_animation(...)
 
+  # state
+  states <- get_state(...)
+
   # chart aspects
   asp <- get_asp(...)
   asp <- combine_asp(g$x$main_asp, asp, inherit_asp = inherit_asp)
@@ -426,11 +429,12 @@ fig_primitive <- function(
     color = collapse_asp(color),
     shape = collapse_asp(shape),
     size = collapse_asp(size),
-    adjust = collapse_asp(adjust),
     tooltip = collapse_asp(tooltip),
     label = collapse_asp(label),
+    adjust = adjust,
     style = style,
-    animation = animation
+    animation = animation,
+    states = states
   ) %>% 
     drop_nulls()
 
