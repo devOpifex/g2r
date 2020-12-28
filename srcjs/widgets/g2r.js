@@ -5,6 +5,7 @@ import { makeCoords } from '../modules/makeCoords.js';
 import { tuneFigure } from '../modules/tuneFigure.js';
 import { assignData } from '../modules/assignData.js';
 import { annotate } from '../modules/annotate.js';
+import { captureEvents } from '../modules/events.js';
 
 HTMLWidgets.widget({
 
@@ -52,6 +53,8 @@ HTMLWidgets.widget({
 
         if(x.style)
           c.style(x.style);
+
+        captureEvents(c, x);
 
         // loop over figures
         if(x.facet){
