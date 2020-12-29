@@ -388,6 +388,9 @@ sync <- function(
   sync = TRUE, 
   if_true = NULL
 ){
+
+  if(is.na(asp))
+    return(g)
   
   # it's FALSE
   if(is.logical(sync) && !isTRUE(sync))
@@ -447,8 +450,7 @@ gauges_types <- function(g, cols, data = NULL){
   for(i in seq_along(types)){
     if(!is.character(cols[i]))
       next
-
-    print(cols[i])
+    
     g <- gauge_(g, cols[i], type = types[i])
   }
 
