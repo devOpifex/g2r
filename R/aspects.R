@@ -308,3 +308,8 @@ collapse_asp <- function(asp){
     return()
   paste0(asp, collapse = "*")
 }
+
+get_combined_asp <- function(g, ..., inherit_asp = FALSE){
+  asp <- get_asp(...)
+  combine_asp(g$x$main_asp, asp, inherit_asp = inherit_asp)
+}

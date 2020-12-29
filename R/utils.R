@@ -184,7 +184,7 @@ as_tib <- function(data = NULL){
 #' @noRd
 #' @keywords internal
 check_alter <- function(){
-  has_it <- base::requireNamespace(pkg, quietly = TRUE)
+  has_it <- base::requireNamespace("alter", quietly = TRUE)
 
   msg <- "This function requires the {alter} package.\n remotes::install_github(\"devOpifex/alter\")"
   if(!has_it)

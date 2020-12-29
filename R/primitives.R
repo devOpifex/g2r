@@ -646,6 +646,8 @@ fig_primitive_common <- function(
 
   type <- match.arg(type)
 
+  data <- get_data(g, data)
+
   # adjust
   adjust <- get_adjust(...)
 
@@ -656,8 +658,7 @@ fig_primitive_common <- function(
   states <- get_state(...)
 
   # chart aspects
-  asp <- get_asp(...)
-  asp <- combine_asp(g$x$main_asp, asp, inherit_asp = inherit_asp)
+  asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
 
   position <- select_asp_labels(asp, "x", "y")
   size <- select_asp_labels(asp, "size")
