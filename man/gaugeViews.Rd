@@ -8,6 +8,7 @@
 \alias{gauge_label}
 \alias{gauge_tooltip}
 \alias{gauge_style}
+\alias{gauge_interplay}
 \title{Gauge Aspects}
 \usage{
 gauge_color(g, handler)
@@ -23,6 +24,8 @@ gauge_tooltip(g, handler)
 gauge_label(g, handler)
 
 gauge_style(g, handler)
+
+gauge_interplay(g, handler)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or

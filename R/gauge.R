@@ -97,6 +97,16 @@ gauge_style.g2r <- function(g, handler){
   gauge2_(g, handler, fn = "style")
 }
 
+#' @rdname gaugeViews
+#' @export 
+gauge_interplay <- function(g, handler) UseMethod("gauge_interplay")
+
+#' @method gauge_interplay g2r
+#' @export 
+gauge_interplay.g2r <- function(g, handler){
+  gauge2_(g, handler, fn = "interaction")
+}
+
 #' Gauge2
 #' 
 #' While [gauge_()] applies the `scale` to the

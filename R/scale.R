@@ -391,7 +391,7 @@ sync <- function(
   
   # it's FALSE
   if(is.logical(sync) && !isTRUE(sync))
-    return()
+    return(g)
 
   if(!is.null(if_true))
     sync <- if_true

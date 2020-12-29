@@ -6,8 +6,9 @@ import { tuneFigure } from '../modules/tuneFigure.js';
 import { assignData } from '../modules/assignData.js';
 import { annotate } from '../modules/annotate.js';
 import { captureEvents } from '../modules/events.js';
-import { interactions } from '../modules/interactions.js';
+import { globalInteractions, interactions, rmInteractions } from '../modules/interactions.js';
 import { getProxy } from '../modules/find.js';
+import { facetFactory } from '../modules/facet.js';
 
 HTMLWidgets.widget({
 
@@ -41,7 +42,8 @@ HTMLWidgets.widget({
         makeCoords(c, x);
 
         // interactions
-        interactions(c, x);
+        rmInteractions(c, x);
+        globalInteractions(c, x);
 
         // events
         captureEvents(c, x);
@@ -70,7 +72,7 @@ HTMLWidgets.widget({
           c.data(x.data);
 
           // views
-          x.facet.opts.eachView = makeFacetView(x)
+          x.facet.opts.eachView = facetFactory(x)
 
           c.facet(x.facet.type, x.facet.opts)
 
@@ -78,7 +80,10 @@ HTMLWidgets.widget({
           x.views.forEach(function(v){
             let view = c.createView();
 
-            annotate(view, x)
+            annotate(view, x);
+
+            // interactions
+            interactions(view, v);
   
             let figure = makeFigure(view, v.type);
             tuneFigure(figure, v);
@@ -106,18 +111,6 @@ HTMLWidgets.widget({
     };
   }
 });
-
-function makeFacetView(x){
-  return function(view){
-    x.views.forEach(function(v){
-
-      let figure = makeFigure(view, v.type);
-      tuneFigure(figure, v);
-      
-    });
-  }
-}
-
 
 if (HTMLWidgets.shinyMode) {
 

@@ -14,6 +14,7 @@
 #' - `label`
 #' - `tooltip`
 #' - `style`
+#' - `interaction`
 #' 
 #' @section Info aspects:
 #' 

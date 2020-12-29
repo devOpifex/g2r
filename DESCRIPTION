@@ -25,4 +25,5 @@ Imports:
   R6,
   tibble
 Suggests:
-  shiny
+  shiny,
+  packer

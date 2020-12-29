@@ -8,7 +8,7 @@ planes(
   g,
   asp,
   ...,
-  type = c("rect", "list", "matrix", "circle", "tree"),
+  type = c("rect", "list", "matrix", "circle", "tree", "mirror"),
   sync = TRUE
 )
 }

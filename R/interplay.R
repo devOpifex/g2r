@@ -1,6 +1,7 @@
 #' Interplay
 #' 
-#' Add interplay (interactions) to the chart.
+#' Configure global interplay (interactions) for the chart.
+#' See [gauge_interplay()] to customise figure-level interplay.
 #' 
 #' @inheritParams fig_point
 #' @param ... String(s) defining interactions.
@@ -15,15 +16,28 @@
 #'  fig_interval(
 #'    selected(fill = "orange")
 #'  ) %>% 
-#'  interplay("element", "selected")
+#'  conf_interplay("element", "selected")
 #' 
+#' @name interplay
 #' @export 
-interplay <- function(g, ...) UseMethod("interplay")
+conf_interplay <- function(g, ...) UseMethod("conf_interplay")
 
-#' @method interplay g2r
+#' @method conf_interplay g2r
 #' @export 
-interplay.g2r <- function(g, ...){
+conf_interplay.g2r <- function(g, ...){
   action <- paste0(c(...), collapse = "-")
   g$x$interactions <- append(g$x$interactions, list(action))
+  g
+}
+
+#' @name interplay
+#' @export 
+remove_interplay <- function(g, ...) UseMethod("remove_interplay")
+
+#' @method remove_interplay g2r
+#' @export 
+remove_interplay.g2r <- function(g, ...){
+  action <- paste0(c(...), collapse = "-")
+  g$x$rmInteractions <- append(g$x$rmInteractions, list(action))
   g
 }

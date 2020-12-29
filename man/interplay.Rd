@@ -2,9 +2,13 @@
 % Please edit documentation in R/interplay.R
 \name{interplay}
 \alias{interplay}
+\alias{conf_interplay}
+\alias{remove_interplay}
 \title{Interplay}
 \usage{
-interplay(g, ...)
+conf_interplay(g, ...)
+
+remove_interplay(g, ...)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -13,7 +17,8 @@ interplay(g, ...)
 \item{...}{String(s) defining interactions.}
 }
 \description{
-Add interplay (interactions) to the chart.
+Configure global interplay (interactions) for the chart.
+See \code{\link[=gauge_interplay]{gauge_interplay()}} to customise figure-level interplay.
 }
 \examples{
 df <- data.frame(
@@ -25,6 +30,6 @@ g2(df, asp(x, y)) \%>\%
  fig_interval(
    selected(fill = "orange")
  ) \%>\% 
- interplay("element", "selected")
+ conf_interplay("element", "selected")
 
 }

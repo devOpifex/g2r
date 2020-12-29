@@ -664,6 +664,7 @@ fig_primitive_common <- function(
   color <- select_asp_labels(asp, "color")
   shape <- select_asp_labels(asp, "shape")
   label <- select_asp_labels(asp, "label")
+  interaction <- select_asp_labels(asp, "interplay")
   tooltip <- select_asp_labels(asp, "tooltip")
   style_asp <- select_asp_labels(asp, "style")
 
@@ -695,6 +696,7 @@ fig_primitive_common <- function(
     size = collapse_asp(size),
     tooltip = collapse_asp(tooltip),
     label = collapse_asp(label),
+    interaction = collapse_asp(interaction),
     adjust = adjust,
     style = style,
     animation = animation,

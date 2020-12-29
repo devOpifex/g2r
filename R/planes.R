@@ -27,7 +27,8 @@ planes <- function(
     "list",
     "matrix",
     "circle",
-    "tree"
+    "tree",
+    "mirror"
   ),
   sync = TRUE
 ){

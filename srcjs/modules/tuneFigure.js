@@ -1,6 +1,4 @@
-const check = (options, name) => {
-  return typeof options[name] == 'object' && options[name].length == 2;
-}
+import { check } from './utils.js'
 
 const tuneFigure = (figure, options) => {
 
