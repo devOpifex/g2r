@@ -7,8 +7,9 @@ import { assignData } from '../modules/assignData.js';
 import { annotate } from '../modules/annotate.js';
 import { captureEvents } from '../modules/events.js';
 import { globalInteractions, interactions, rmInteractions } from '../modules/interactions.js';
-import { getProxy } from '../modules/find.js';
+import { getProxy, getView } from '../modules/shiny.js';
 import { facetFactory } from '../modules/facet.js';
+import { getComponents } from '@antv/g2/lib/interaction/action/util';
 
 HTMLWidgets.widget({
 
@@ -102,10 +103,15 @@ HTMLWidgets.widget({
       },
 
       resize: function(width, height) {
-
+        // no need in g2.js
       },
-      getC: function(){
+
+      getChart: function(){
         return c;
+      },
+
+      getView: function(index){
+        return c.views[index];
       }
 
     };
@@ -114,14 +120,14 @@ HTMLWidgets.widget({
 
 if (HTMLWidgets.shinyMode) {
 
-  // Execute
+  // Render
   Shiny.addCustomMessageHandler('render',
     function(id) {
       let c = getProxy(id);
       c.render();
   });
 
-  // Figure
+  // Add Figure
   Shiny.addCustomMessageHandler('figure',
     function(x) {
       console.log(x);
@@ -136,6 +142,14 @@ if (HTMLWidgets.shinyMode) {
 
       // data
       assignData(view, x.views[0], x)
+  });
+
+  // Remove Figure
+  Shiny.addCustomMessageHandler('remove_figure',
+    function(data) {
+      let c = getProxy(data.id);
+      let v = getView(data.id, data.index);
+      c.removeView(v);
   });
 
 }
