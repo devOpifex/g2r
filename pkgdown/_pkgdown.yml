@@ -1,0 +1,28 @@
+template:
+  params:
+    ganalytics: G-TZMQ98HS6D
+    bootswatch: paper
+
+home:
+  links:
+  - text: G2.js
+    href: https://g2.antv.vision/en
+
+development:
+  mode: auto
+
+navbar:
+  title: "g2r"
+  left:
+    - icon: fa-home
+      href: index.html
+    - icon: fa-balance-scale
+      href: LICENSE.html
+    - icon: fa-newspaper
+      href: news/index.html
+    - text: API
+      href: "reference/"
+    - text: "Guide"
+      menu: 
+        - text: "Get Started"
+          href: articles/get-started.html

@@ -1,0 +1,34 @@
+---
+title: "Get Started"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Get Started}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include=FALSE}
+library(g2r)
+```
+
+# Get Started
+
+g2r is an interface to the [G2.js](https://g2.antv.vision/en) JavaScript visualisation library. G2.js is itself a Grammar of Graphics (GG ~= 2G) though rather different from R's common understanding of such grammar from [ggplot2](https://ggplot2.tidyverse.org/).
+
+g2r's API is halfway between G2.js and ggplot2; some things will be similar to ggplot2 in places.
+
+- `ggplot2::ggplot` -> `g2`
+- `ggplot2::aes` -> `asp`
+- `ggplot2::scale_*` -> `gauge_*`
+- `ggplot2::geom_*` -> `fig_*`
+- `ggplot2::facet_*` -> `planes_*`
+- `ggplot2::theme_*` -> `motif_*`
+
+Given the similarities one can create visualisations

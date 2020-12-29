@@ -1,0 +1,42 @@
+---
+output: 
+  github_document:
+    html_preview: false
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+# g2r
+
+[G2.js](https://g2.antv.vision/en) for R.
+
+## Installation
+
+You can install package from Github
+
+``` r
+# install.packages("remotes")
+remotes::install_github("devOpifex/g2r")
+```
+
+## Example
+
+```r
+library(g2r)
+
+g2(cars, asp(speed, dist)) %>% 
+  fig_point()
+```
+

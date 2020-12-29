@@ -2,7 +2,7 @@ const makeCoords = (c, x) => {
   let coord;
 
   if(x.coord)
-    coord = c.coord(x.coord.type, x.coord.opts);
+    coord = c.coordinate(x.coord.type, x.coord.opts);
 
   if(x.coordRotate)
     coord.rotate(x.coordRotate);
