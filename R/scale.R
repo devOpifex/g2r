@@ -423,6 +423,9 @@ sync <- function(
 #'  
 #' @keywords internal
 col_to_type <- function(col, data){
+  if(!is.character(col))
+    return(NA)
+
   x <- head(data[[col]])
 
   if(inherits(x, "POSIXct") || inherits(x, "POSIXlt"))

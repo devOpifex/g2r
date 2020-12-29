@@ -131,6 +131,9 @@ gauge2_ <- function(g, handler, fn){
     if(is.null(g$x$views[[i]][[fn]]))
       next
 
+    if(is.logical(g$x$views[[i]][[fn]]))
+      next
+
     if(is.logical(handler))
       g$x$views[[i]][[fn]] <- handler
     else 

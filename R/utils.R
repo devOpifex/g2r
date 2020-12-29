@@ -31,7 +31,11 @@ drop_nulls <- function(x) {
 #' @keywords internal
 select_columns <- function(data = NULL, cols){
   if(is.null(data))
-    return(NULL)
+    return()
+  
+  if(!inherits(data, "data.frame"))
+    return(data)
+  
   data[, names(data) %in% cols]
 }
 
@@ -164,6 +168,9 @@ get_data <- function(g, data = NULL){
 as_tib <- function(data = NULL){
   if(is.null(data))
     return()
+
+  if(!inherits(data, "data.frame"))
+    return(data)
   
   tibble::as_tibble(data)
 }
