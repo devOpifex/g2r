@@ -5,7 +5,9 @@ const globalInteractions = (c, options) => {
   if(!options.interactions)
     return ;
 
-  c.interaction(options.interactions)
+  options.interactions.forEach(inter => {
+    c.interaction(inter)
+  })
 }
 
 const interactions = (v, options) => {

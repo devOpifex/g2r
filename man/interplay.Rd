@@ -32,4 +32,8 @@ g2(df, asp(x, y)) \%>\%
  ) \%>\% 
  conf_interplay("element", "selected")
 
+# brush
+g2(cars, asp(speed, dist)) \%>\% 
+ fig_point(asp(interplay = "brush"))
+
 }

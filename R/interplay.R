@@ -18,6 +18,10 @@
 #'  ) %>% 
 #'  conf_interplay("element", "selected")
 #' 
+#' # brush
+#' g2(cars, asp(speed, dist)) %>% 
+#'  fig_point(asp(interplay = "brush"))
+#' 
 #' @name interplay
 #' @export 
 conf_interplay <- function(g, ...) UseMethod("conf_interplay")
