@@ -174,3 +174,19 @@ as_tib <- function(data = NULL){
   
   tibble::as_tibble(data)
 }
+
+#' Checks if Package is Installed
+#'
+#' Checks if a package is installed, stops if not.
+#'
+#' @param pkg Package to check.
+#'
+#' @noRd
+#' @keywords internal
+check_alter <- function(){
+  has_it <- base::requireNamespace(pkg, quietly = TRUE)
+
+  msg <- "This function requires the {alter} package.\n remotes::install_github(\"devOpifex/alter\")"
+  if(!has_it)
+    stop(msg, call. = FALSE)
+}
