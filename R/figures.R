@@ -112,8 +112,6 @@ fig_ribbon.g2r <- function(
   style = NULL
 ){
 
-  check_alter()
-
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
   cols <- select_asp_labels(asp, "ymin", "ymax")
 
@@ -134,6 +132,92 @@ fig_ribbon.g2r <- function(
     inherit_asp = inherit_asp,
     sync = sync,
     type = "area",
+    style = style,
+    asp = asp
+  )
+}
+
+#' Histogram
+#' 
+#' Add a histogram figure to the chart.
+#' 
+#' @inheritParams fig_point
+#' @param bin_width Width of bin.
+#' 
+#' @examples 
+#' df <- data.frame(
+#'  grp = rep(c("A", "B"), each = 200),
+#'    val = c(
+#'      rnorm(200, mean = 57, sd = 5), 
+#'      rnorm(200, mean = 53, sd = 5)
+#'    )
+#' )
+#' 
+#' g2(df, asp(val, color = grp)) %>% 
+#'  fig_histogram(adjust("stack"), bin_width = 1)
+#' 
+#' @export 
+fig_histogram <- function(
+  g, 
+  ..., 
+  bin_width = 5,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  UseMethod("fig_histogram")
+}
+
+#' @method fig_histogram g2r
+#' @export 
+fig_histogram.g2r <- function(
+  g, 
+  ..., 
+  bin_width = 5,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+
+  check_alter()
+
+  asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+  x <- select_asp_labels(asp, "x")
+  color <- select_asp_labels(asp, "color")
+
+  if(!length(color))
+    data <- alter::Alter$new(get_data(g, data))$
+      source()$
+      transform(
+        type = "bin.histogram",
+        field = x,
+        binWidth = bin_width,
+        as = c(x, "count")
+      )
+  else
+    data <- alter::Alter$new(get_data(g, data))$
+      source()$
+      transform(
+        type = "bin.histogram",
+        field = x,
+        binWidth = bin_width,
+        groupBy = as.list(color),
+        as = c(x, "count")
+      )
+    
+  data <- data$getRows()
+
+  asp$y <- "count"
+
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "interval",
     style = style,
     asp = asp
   )
