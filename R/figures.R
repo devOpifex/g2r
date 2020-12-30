@@ -442,3 +442,82 @@ fig_smooth.g2r <- function(
   )
 }
 
+#' Density
+#' 
+#' Add a density figure to the chart.
+#' 
+#' @inheritParams fig_point
+#' 
+#' @examples 
+#' g2(cars, asp(speed, dist)) %>% 
+#'  fig_density()
+#' 
+#' g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
+#'  fig_density()
+#' 
+#' @importFrom purrr map
+#' 
+#' @export 
+fig_density <- function(
+  g, 
+  ...,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  UseMethod("fig_density")
+}
+
+#' @method fig_density g2r
+#' @export 
+fig_density.g2r <- function(
+  g, 
+  ...,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+
+  # aspects
+  asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+  position <- select_asp_labels(asp, "x", "y")
+  color <- select_asp_labels(asp, "color")
+
+  # get data for split
+  data <- get_data(g, data)
+
+  if(length(color))
+    data <- split(data, data[[color]])
+  else
+    data <- list(data)
+
+  df <- map(data, function(df, pos, color){
+
+    density <- stats::density(df[[pos[1]]])
+    tidy <- data.frame(
+      x = density$x,
+      y = density$y
+    )
+    names(tidy) <- pos
+
+    if(length(color))
+      tidy[[color]] <- unique(df[[color]])
+
+    return(tidy)
+  }, pos = position, color = color)
+
+  df <- do.call(rbind, lapply(df, as.data.frame))
+
+  fig_primitive(
+    g, 
+    ..., 
+    data = df, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "area",
+    style = style,
+    asp = asp
+  )
+}
