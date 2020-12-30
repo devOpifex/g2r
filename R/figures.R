@@ -306,3 +306,139 @@ fig_boxplot.g2r <- function(
     asp = asp
   )
 }
+
+#' Smooth
+#' 
+#' Add a smooth(ing) figure to the chart.
+#' 
+#' @inheritParams fig_point
+#' @param method Smoothing method to use.
+#' @param band_width Step size for Silverman's algorithm.
+#' 
+#' @examples 
+#' g2(cars, asp(speed, dist)) %>% 
+#'  fig_point() %>% 
+#'  fig_smooth(method = "gaussian")
+#' 
+#' g2(iris, asp(Sepal.Width, Sepal.Length, color = Species)) %>% 
+#'  fig_point() %>% 
+#'  fig_smooth()
+#' 
+#' @importFrom purrr map
+#' 
+#' @export 
+fig_smooth <- function(
+  g, 
+  ..., 
+  method = c(
+    "linear",
+    "gaussian",
+    "cosine",
+    "epanechnikov",
+    "quartic",
+    "triangular",
+    "tricube",
+    "triweight",
+    "uniform"
+  ),
+  band_width = 1,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  UseMethod("fig_smooth")
+}
+
+#' @method fig_smooth g2r
+#' @export 
+fig_smooth.g2r <- function(
+  g, 
+  ..., 
+  method = c(
+    "linear",
+    "gaussian",
+    "cosine",
+    "epanechnikov",
+    "quartic",
+    "triangular",
+    "tricube",
+    "triweight",
+    "uniform"
+  ),
+  band_width = 1,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+
+  check_alter()
+
+  # method and type for alter
+  method <- match.arg(method)
+  type <- "kernel-smooth.regression"
+  if(method == "linear")
+    type <- "regression"
+
+  # aspects
+  asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+  position <- select_asp_labels(asp, "x", "y")
+  color <- select_asp_labels(asp, "color")
+
+  # get data for split
+  data <- get_data(g, data)
+
+  if(length(color))
+    data <- split(data, data[[color]])
+  else
+    data <- list(data)
+
+  df <- map(
+    data, 
+    function(
+      df, 
+      color,
+      type,
+      method,
+      bandwidth,
+      position
+    ){
+
+      dat <- alter::Alter$new(df)$
+        source()$
+        transform(
+          type = type,
+          method = method,
+          bandwidth = band_width,
+          fields = position,
+          as = position
+        )$
+        getRows()
+
+      if(length(color))
+        dat[[color]] <- unique(df[[color]])
+
+      return(dat)
+  }, 
+    color = color,
+    type = type,
+    method = method,
+    bandwidth = band_width,
+    position = position
+  )
+
+  df <- do.call(rbind, lapply(df, as.data.frame))
+
+  fig_primitive(
+    g, 
+    ..., 
+    data = df, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "line",
+    style = style,
+    asp = asp
+  )
+}
+
