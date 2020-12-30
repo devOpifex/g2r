@@ -26,6 +26,7 @@ Define aspects of a visualisation.
 \item \code{tooltip}
 \item \code{style}
 \item \code{interaction}
+\item \code{color}
 }
 }
 

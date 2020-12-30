@@ -16,6 +16,7 @@
 #' - `tooltip`
 #' - `style`
 #' - `interaction`
+#' - `color`
 #' 
 #' @section Info aspects:
 #' 

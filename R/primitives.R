@@ -404,6 +404,66 @@ fig_edge.g2Proxy <- function(
   )
 }
 
+#' Schema
+#' 
+#' Add a schema figure.
+#' 
+#' @inheritParams fig_point
+#' 
+#' @export 
+fig_schema <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  UseMethod("fig_schema")
+}
+
+#' @method fig_schema g2r
+#' @export 
+fig_schema.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "schema",
+    style = style
+  )
+}
+
+#' @method fig_schema g2Proxy
+#' @export 
+fig_schema.g2Proxy <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "schema",
+    style = style
+  )
+}
+
 #' Path
 #' 
 #' Add a path figure.

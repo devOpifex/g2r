@@ -222,3 +222,87 @@ fig_histogram.g2r <- function(
     asp = asp
   )
 }
+
+#' Boxplot
+#' 
+#' Add a boxplot figure to the chart.
+#' 
+#' @inheritParams fig_point
+#' 
+#' @examples 
+#' # wide to long
+#' # tidyr::pivot_longer(iris, -Species)
+#' df <- reshape(
+#'  iris, 
+#'  varying = names(iris)[1:4], 
+#'  direction = "long", 
+#'  v.names = "value", 
+#'  idvar = "Species", 
+#'  new.row.names = 1:600,
+#'  timevar = "var", 
+#'  times = names(iris)[1:4]
+#' )
+#' 
+#' g2(df, asp(var, value, color = Species)) %>% 
+#'  fig_boxplot(adjust("dodge"))
+#' 
+#' g2(iris, asp(y = Sepal.Length, color = Species)) %>% 
+#'  fig_boxplot(adjust("dodge"))
+#' 
+#' g2(iris, asp(x = Species, y = Sepal.Length, color = Species)) %>% 
+#'  fig_boxplot(adjust("dodge"))
+#' 
+#' @export 
+fig_boxplot <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  UseMethod("fig_boxplot")
+}
+
+#' @method fig_boxplot g2r
+#' @export 
+fig_boxplot.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+
+  check_alter()
+
+  asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+  x <- select_asp_labels(asp, "x")
+  y <- select_asp_labels(asp, "y")
+  color <- select_asp_labels(asp, "color")
+
+  data <- alter::Alter$new(get_data(g, data))$
+    source()$
+    transform(
+      type = 'bin.quantile',
+      field = y,
+      as = 'bin',
+      groupBy = c(x, color)
+    )$
+    getRows()
+
+  asp$y <- "bin"
+  asp$shape <- "box"
+
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "schema",
+    style = style,
+    asp = asp
+  )
+}
