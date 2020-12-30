@@ -6,7 +6,12 @@ import { tuneFigure } from '../modules/tuneFigure.js';
 import { assignData } from '../modules/assignData.js';
 import { annotate } from '../modules/annotate.js';
 import { captureEvents } from '../modules/events.js';
-import { globalInteractions, interactions, rmInteractions } from '../modules/interactions.js';
+import { 
+  globalInteractions, 
+  interactions, 
+  rmInteractions,
+  registerInteractions 
+} from '../modules/interactions.js';
 import { getProxy, getView } from '../modules/shiny.js';
 import { facetFactory } from '../modules/facet.js';
 import { getComponents } from '@antv/g2/lib/interaction/action/util';
@@ -27,6 +32,8 @@ HTMLWidgets.widget({
 
         if(x.theme)
           registerTheme(x.chartOpts.theme, x.theme);
+
+        registerInteractions(x);
 
         // keep autofit for responsiveness
         x.chartOpts.container = el.id;

@@ -4,23 +4,29 @@
 \alias{interplay}
 \alias{conf_interplay}
 \alias{remove_interplay}
+\alias{register_interplay}
 \title{Interplay}
 \usage{
 conf_interplay(g, ...)
 
 remove_interplay(g, ...)
+
+register_interplay(g, name, ...)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
 \code{\link[=g2_proxy]{g2_proxy()}}.}
 
 \item{...}{String(s) defining interactions.}
+
+\item{name}{Name of interaction to register}
 }
 \description{
 Configure global interplay (interactions) for the chart.
 See \code{\link[=gauge_interplay]{gauge_interplay()}} to customise figure-level interplay.
 }
 \examples{
+# global interaction on chart
 df <- data.frame(
  x = letters,
  y = runif(26)
@@ -35,5 +41,33 @@ g2(df, asp(x, y)) \%>\%
 # brush
 g2(cars, asp(speed, dist)) \%>\% 
  fig_point(asp(interplay = "brush"))
+
+# register
+df <- data.frame(
+ x = c(letters, letters),
+ y = runif(52),
+ grp = c(rep("a", 26), rep("b", 26))
+)
+
+g2(df, asp(x, y, color = grp), elementId = "x") \%>\% 
+ fig_interval(
+   asp(interplay = "element-highlight-by-color"),
+   adjust("dodge")
+ ) \%>\%  
+ register_interplay(
+   "element-highlight-by-color",
+     start = list(
+       list(
+         trigger = 'element:mouseenter', 
+         action = 'element-highlight-by-color:highlight'
+       )
+     ),
+     end = list(
+       list(
+         trigger = 'element:mouseleave', 
+         action = 'element-highlight-by-color:reset'
+       )
+     )
+   )
 
 }

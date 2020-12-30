@@ -1,4 +1,5 @@
 import { check } from './utils.js'
+import { registerInteraction } from '@antv/g2';
 
 const globalInteractions = (c, options) => {
 
@@ -21,6 +22,16 @@ const interactions = (v, options) => {
     v.interaction(options.interaction);
 }
 
+const registerInteractions = (options) => {
+  if(!options.registerInteractions)
+    return ;
+
+  options.registerInteractions.forEach((reg) => {
+    registerInteraction(reg.name, reg.opts);
+  })
+    
+}
+
 const rmInteractions = (c, options) => {
   if(!options.rmInteractions)
     return ;
@@ -30,4 +41,4 @@ const rmInteractions = (c, options) => {
   });
 }
 
-export { globalInteractions, interactions, rmInteractions };
+export { globalInteractions, interactions, rmInteractions, registerInteractions };
