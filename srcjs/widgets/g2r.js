@@ -80,9 +80,9 @@ HTMLWidgets.widget({
           c.data(x.data);
 
           // views
-          x.facet.opts.eachView = facetFactory(x)
+          x.facet.opts.eachView = facetFactory(x);
 
-          c.facet(x.facet.type, x.facet.opts)
+          c.facet(x.facet.type, x.facet.opts);
 
         } else {
           x.views.forEach(function(v){

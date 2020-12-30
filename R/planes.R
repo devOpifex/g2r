@@ -46,7 +46,8 @@ planes.g2r <- function(
     "list",
     "matrix",
     "circle",
-    "tree"
+    "tree",
+    "mirror"
   ),
   sync = TRUE
 ){
@@ -61,6 +62,8 @@ planes.g2r <- function(
   for(i in 1:length(asp)){
     g <- sync(g, asp, sync, if_true = "mainGroupPlanes")
   }
+
+  g$x$cols <- c(g$x$cols, asp)
 
   g$x$facet <- list(
     type = type, 
