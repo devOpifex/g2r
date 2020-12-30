@@ -18,6 +18,7 @@ Define aspects of a visualisation.
 
 \itemize{
 \item \code{x}, \code{y}
+\item \code{ymin}, \code{ymax}
 \item \code{size}
 \item \code{color}
 \item \code{shape}
@@ -32,6 +33,9 @@ Define aspects of a visualisation.
 
 \itemize{
 \item \code{x}, \code{y}
+\item \code{start}, \code{end}
+\item \code{content}
+\item \code{top}
 }
 }
 

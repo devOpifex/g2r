@@ -529,6 +529,7 @@ fig_heatmap.g2Proxy <- function(
 #' Add a path figure.
 #' 
 #' @inheritParams fig_point
+#' @param asp Aspects to override those passed to `...`.
 #' 
 #' @keywords internal
 fig_primitive <- function(
@@ -547,7 +548,8 @@ fig_primitive <- function(
     "polygon",
     "heatmap"
   ),
-  style = NULL
+  style = NULL,
+  asp = NULL
 ){
   UseMethod("fig_primitive")
 }
@@ -570,7 +572,8 @@ fig_primitive.g2r <- function(
     "polygon",
     "heatmap"
   ),
-  style = NULL
+  style = NULL,
+  asp = NULL
 ){
 
   fig_primitive_common(
@@ -580,7 +583,8 @@ fig_primitive.g2r <- function(
     inherit_asp = inherit_asp,
     sync = sync,
     type = type,
-    style = style
+    style = style,
+    asp = asp
   )
 
 }
@@ -603,7 +607,8 @@ fig_primitive.g2Proxy <- function(
     "polygon",
     "heatmap"
   ),
-  style = NULL
+  style = NULL,
+  asp = NULL
 ){
 
   g <- fig_primitive_common(
@@ -613,7 +618,8 @@ fig_primitive.g2Proxy <- function(
     inherit_asp = inherit_asp,
     sync = sync,
     type = type,
-    style = style
+    style = style,
+    asp = asp
   )
 
   g$x$views[[1]]$data <- proxy_data(g$x$views[[1]]$data)
@@ -641,7 +647,8 @@ fig_primitive_common <- function(
     "polygon",
     "heatmap"
   ),
-  style = NULL
+  style = NULL,
+  asp = NULL
 ){
 
   type <- match.arg(type)
@@ -658,7 +665,8 @@ fig_primitive_common <- function(
   states <- get_state(...)
 
   # chart aspects
-  asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+  if(is.null(asp))
+    asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
 
   position <- select_asp_labels(asp, "x", "y")
   size <- select_asp_labels(asp, "size")

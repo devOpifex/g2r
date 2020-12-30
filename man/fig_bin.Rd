@@ -25,7 +25,7 @@ and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, and \code{
 
 \item{type}{The shape of bin to create.}
 
-\item{bins}{The dimensions of the bins (width, height).}
+\item{bins}{Number of bins by dimension (width, height).}
 
 \item{size_count}{Whether to size the binds by count.}
 
@@ -48,6 +48,9 @@ Add a bin figure to the chart.
 }
 \examples{
 g2(cars, asp(speed, dist)) \%>\% 
- fig_bin()
+ fig_bin(size_count = FALSE)
+
+g2(cars, asp(speed, dist)) \%>\% 
+ fig_bin(type = "hexagon")
 
 }

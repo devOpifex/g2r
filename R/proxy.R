@@ -97,5 +97,8 @@ proxy_data <- function(data = NULL){
   if(is.null(data))
     return()
 
+  if(!inherits(data, "data.frame"))
+    return(data)
+
   pmap(data, list)
 }

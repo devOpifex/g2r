@@ -8,6 +8,7 @@
 #' @section Figure aspects:
 #' 
 #' - `x`, `y`
+#' - `ymin`, `ymax`
 #' - `size`
 #' - `color`
 #' - `shape`
@@ -19,6 +20,9 @@
 #' @section Info aspects:
 #' 
 #' - `x`, `y`
+#' - `start`, `end`
+#' - `content`
+#' - `top`
 #' 
 #' @importFrom rlang enquos is_quosure is_symbolic quo_is_symbolic quo_get_expr new_quosure quo_label
 #' @importFrom purrr keep
