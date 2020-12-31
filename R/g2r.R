@@ -21,7 +21,8 @@ g2 <- function(data = NULL, ..., width = NULL, height = NULL, elementId = NULL) 
   x = list(
     chartOpts = list(
       autoFit = TRUE,
-      theme = "light"
+      theme = "light",
+      padding = "auto"
     ),
     data = as_tib(data), # dataset
     main_asp = get_asp(...), # main aspects
@@ -43,7 +44,9 @@ g2 <- function(data = NULL, ..., width = NULL, height = NULL, elementId = NULL) 
     preRenderHook = renderG2,
     sizingPolicy = sizingPolicy(
       defaultWidth = "100%",
-      browser.fill = TRUE
+      browser.fill = TRUE,
+      padding = 5,
+      knitr.defaultWidth = "100%"
     ) 
   )
 }
