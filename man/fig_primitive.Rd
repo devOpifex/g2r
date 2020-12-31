@@ -10,7 +10,8 @@ fig_primitive(
   data = NULL,
   inherit_asp = TRUE,
   sync = TRUE,
-  type = c("point", "interval", "line", "schema", "edge", "area", "polygon", "heatmap"),
+  type = c("point", "interval", "line", "schema", "edge", "area", "polygon", "heatmap",
+    "path"),
   style = NULL,
   asp = NULL
 )

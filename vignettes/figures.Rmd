@@ -1,0 +1,191 @@
+---
+title: "Figures"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Figures}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, include=FALSE}
+library(g2r)
+```
+
+g2r comes with a number of figures that can be used to create visualisations. However, these can be used in many different ways than what is presented here in order to produce completely different looking charts.
+
+## Line
+
+```{r}
+df <- data.frame(
+  x = 1:90,
+  y = rnorm(90, mean = rep(c(65,70,75),each=30), sd = 2) 
+)
+
+g2(df, asp(x, y)) %>% 
+  fig_line()
+```
+
+## Point
+
+```{r}
+g2(iris, asp(Sepal.Width, Sepal.Length, color = Species)) %>% 
+  fig_point()
+```
+
+## Area
+
+```{r}
+blockchain <- jsonlite::fromJSON(
+  "https://gw.alipayobjects.com/os/antvdemo/assets/data/blockchain.json"
+)
+
+g2(blockchain, asp(date, blockchain)) %>% 
+  fig_area()
+```
+
+## Path
+
+```{r}
+df <- data.frame(
+  x = runif(50),
+  y = runif(50) 
+)
+
+g2(df, asp(x, y)) %>% 
+  fig_path()
+```
+
+## Interval
+
+```{r}
+df <- data.frame(
+  x = seq.Date(Sys.Date() - 29, Sys.Date(), by = "days"),
+  y = rnorm(30, mean = rep(c(70,60),each=15), sd = 3)
+)
+
+g2(df, asp(x, y)) %>% 
+  fig_interval()
+```
+
+## Polygon
+
+```{r}
+df <- expand.grid(x = letters, y = letters)
+df$value <- rnorm(nrow(df))
+
+g2(df, asp(x, y, color = value)) %>% 
+  fig_polygon() %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+```
+
+## Heatmap
+
+```{r}
+g2(mtcars, asp(mpg, qsec, color = drat)) %>% 
+  fig_heatmap() %>% 
+  gauge_color(c("blue", "cyan", "lime", "yellow", "red"))
+```
+
+## Bin
+
+```{r}
+g2(cars, asp(speed, dist, color = count)) %>% 
+  fig_bin() %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+```
+
+## Ribbon
+
+```{r}
+df <- data.frame(
+ x = 1:90,
+ y = rnorm(90, mean = rep(c(67,70,73),each=30), sd = 2)
+)
+
+df$ymin <- df$y - runif(90, 1, 2)
+df$ymax <- df$y + runif(90, 1, 4)
+
+g2(df, asp(x, ymin = ymin, ymax = ymax)) %>% 
+  fig_line(asp(y = y)) %>% 
+  fig_ribbon()
+```
+
+## Histogram
+
+```{r}
+df <- data.frame(
+ grp = rep(c("A", "B"), each = 200),
+   val = c(
+     rnorm(200, mean = 57, sd = 5), 
+     rnorm(200, mean = 53, sd = 5)
+   )
+)
+
+g2(df, asp(val, color = grp)) %>% 
+ fig_histogram(adjust("stack"), bin_width = 1)
+```
+
+## Density
+
+```{r}
+g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
+  fig_density()
+```
+
+## Boxplot
+
+```{r}
+df <- reshape(
+ iris, 
+ varying = names(iris)[1:4], 
+ direction = "long", 
+ v.names = "value", 
+ idvar = "Species", 
+ new.row.names = 1:600,
+ timevar = "var", 
+ times = names(iris)[1:4]
+)
+
+g2(df, asp(var, value, color = Species)) %>% 
+ fig_boxplot(adjust("dodge"))
+```
+
+## Smooth
+
+```{r}
+g2(cars, asp(speed, dist)) %>% 
+  fig_point() %>% 
+  fig_smooth(asp(shape = "smooth"), method = "polynomial")
+```
+
+## Range
+
+```{r}
+df <- data.frame(
+ x = 1:10,
+ ymin = runif(10, 1, 5),
+ ymax = runif(10, 6, 13)
+)
+
+g2(df, asp(x, ymin = ymin, ymax = ymax)) %>% 
+ fig_range()
+```
+
+## Pie
+
+```{r}
+df <- data.frame(
+ label = letters[1:5],
+ value = runif(5)
+)
+
+g2(df, asp(y = value, color = label)) %>% 
+ fig_pie()
+```

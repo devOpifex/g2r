@@ -26,6 +26,8 @@ navbar:
       menu: 
         - text: "Get Started"
           href: articles/get-started.html
+        - text: "Figures"
+          href: articles/figures.html
 
 reference:
   - title: "Initialisation"

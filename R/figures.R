@@ -604,3 +604,45 @@ fig_range.g2r <- function(
     asp = asp
   )
 }
+
+#' Pie
+#' 
+#' Add a pie figure to the chart.
+#' 
+#' @inheritParams fig_point
+#' 
+#' @examples 
+#' df <- data.frame(
+#'  label = letters[1:5],
+#'  value = runif(5)
+#' )
+#' 
+#' g2(df, asp(y = value, color = label)) %>% 
+#'  fig_pie()
+#' 
+#' @export 
+fig_pie <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  UseMethod("fig_pie")
+}
+
+#' @method fig_pie g2r
+#' @export 
+fig_pie.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  g %>% 
+    fig_interval(..., adjust("stack")) %>% 
+    coord_type("theta")
+}

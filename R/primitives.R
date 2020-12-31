@@ -469,7 +469,16 @@ fig_schema.g2Proxy <- function(
 #' Add a path figure.
 #' 
 #' @inheritParams fig_point
+#'
+#' @examples 
+#' df <- data.frame(
+#'  x = runif(100),
+#'  y = runif(100) 
+#' )
 #' 
+#' g2(df, asp(x, y)) %>% 
+#'  fig_path()
+#'  
 #' @export 
 fig_path <- function(
   g, 
@@ -606,7 +615,8 @@ fig_primitive <- function(
     "edge", 
     "area", 
     "polygon",
-    "heatmap"
+    "heatmap",
+    "path"
   ),
   style = NULL,
   asp = NULL
@@ -630,7 +640,8 @@ fig_primitive.g2r <- function(
     "edge", 
     "area", 
     "polygon",
-    "heatmap"
+    "heatmap",
+    "path"
   ),
   style = NULL,
   asp = NULL
@@ -665,7 +676,8 @@ fig_primitive.g2Proxy <- function(
     "edge", 
     "area", 
     "polygon",
-    "heatmap"
+    "heatmap",
+    "path"
   ),
   style = NULL,
   asp = NULL
@@ -705,7 +717,8 @@ fig_primitive_common <- function(
     "edge", 
     "area", 
     "polygon",
-    "heatmap"
+    "heatmap",
+    "path"
   ),
   style = NULL,
   asp = NULL
