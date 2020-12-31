@@ -354,6 +354,23 @@ gauge_y_identity.g2r <- function(g, ...){
   gauge_(g, cols, ..., type = "identity")
 }
 
+#' @rdname gauge
+#' @export 
+gauge_asp <- function(g, ...){
+  UseMethod("gauge_asp")
+}
+
+#' @method gauge_asp g2r
+#' @export 
+#' @importFrom rlang as_label enquo
+gauge_asp.g2r <- function(g, asp, ...){
+  if(missing(asp))
+    stop("Missing `asp`", call. = FALSE)
+
+  asp <- as_label(enquo(asp))
+  gauge_(g, asp, ...)
+}
+
 #' Upsert Gauge
 #' 
 #' Upsert gauge for given column.

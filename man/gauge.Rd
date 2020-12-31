@@ -20,6 +20,7 @@
 \alias{gauge_y_quantize}
 \alias{gauge_x_identity}
 \alias{gauge_y_identity}
+\alias{gauge_asp}
 \title{Gauge Grid}
 \usage{
 gauge(
@@ -72,6 +73,8 @@ gauge_y_quantize(g, ...)
 gauge_x_identity(g, ...)
 
 gauge_y_identity(g, ...)
+
+gauge_asp(g, ...)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
