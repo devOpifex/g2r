@@ -54,11 +54,11 @@
 #' 
 #' @name interplay
 #' @export 
-conf_interplay <- function(g, ...) UseMethod("conf_interplay")
+interplay <- function(g, ...) UseMethod("interplay")
 
-#' @method conf_interplay g2r
+#' @method interplay g2r
 #' @export 
-conf_interplay.g2r <- function(g, ...){
+interplay.g2r <- function(g, ...){
   action <- paste0(c(...), collapse = "-")
   g$x$interactions <- append(g$x$interactions, list(action))
   g

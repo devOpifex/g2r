@@ -2,12 +2,11 @@
 % Please edit documentation in R/interplay.R
 \name{interplay}
 \alias{interplay}
-\alias{conf_interplay}
 \alias{remove_interplay}
 \alias{register_interplay}
 \title{Interplay}
 \usage{
-conf_interplay(g, ...)
+interplay(g, ...)
 
 remove_interplay(g, ...)
 

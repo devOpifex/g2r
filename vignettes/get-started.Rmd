@@ -53,3 +53,18 @@ g2(cars, asp(speed, dist, shape = "circle")) %>%
   fig_point(asp(color = dist, size = dist)) %>% 
   gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
 ```
+
+Where one uses the `group` aesthetic in ggplot2 one will want to use `color` in g2r; it'll define both the colour and the group.
+
+```{r}
+g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
+  fig_density()
+```
+
+G2r also comes with the equivalent of ggplot2's facets, here they are named `planes`.
+
+```{r}
+g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
+  fig_point(asp(shape = "circle")) %>% 
+  planes("Species", type = "tree")
+```
