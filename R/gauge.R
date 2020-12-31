@@ -5,8 +5,9 @@
 #' @seealso [gauge] to gauge aspects of the grid and axis.
 #' 
 #' @inheritParams fig_point
-#' @param handler Handler to customise the aspect.
-#' Generally a vector or a function (wrapped in `htmlwidgets::JS`).
+#' @param ... Arguments to customise the gauge.
+#' Generally, key value pairs of options, a vector of hex colors,
+#' or a JavaScript function (wrapped in [htmlwidgets::JS()]).
 #' 
 #' @examples 
 #' # base plot
@@ -17,11 +18,10 @@
 #' g %>% gauge_color(c("red", "white", "blue"))
 #' 
 #' # color with callback
-#' cb <- "function(mpg){
-#'  if(mpg > 25){
+#' cb <- "function(speed){
+#'  if(speed > 10){
 #'    return 'blue';
 #'  }
-#' 
 #'  return 'red';
 #' }"
 #' 
@@ -29,82 +29,82 @@
 #' 
 #' @name gaugeViews
 #' @export 
-gauge_color <- function(g, handler) UseMethod("gauge_color")
+gauge_color <- function(g, ...) UseMethod("gauge_color")
 
 #' @method gauge_color g2r
 #' @export 
-gauge_color.g2r <- function(g, handler){
-  gauge2_(g, handler, fn = "color")
+gauge_color.g2r <- function(g, ...){
+  gauge2_(g, ..., fn = "color")
 }
 
 #' @rdname gaugeViews
 #' @export 
-gauge_size <- function(g, handler) UseMethod("gauge_size")
+gauge_size <- function(g, ...) UseMethod("gauge_size")
 
 #' @method gauge_size g2r
 #' @export 
-gauge_size.g2r <- function(g, handler){
-  gauge2_(g, handler, fn = "size")
+gauge_size.g2r <- function(g, ...){
+  gauge2_(g, ..., fn = "size")
 }
 
 #' @rdname gaugeViews
 #' @export 
-gauge_shape <- function(g, handler) UseMethod("gauge_shape")
+gauge_shape <- function(g, ...) UseMethod("gauge_shape")
 
 #' @method gauge_shape g2r
 #' @export 
-gauge_shape.g2r <- function(g, handler){
-  gauge2_(g, handler, fn = "shape")
+gauge_shape.g2r <- function(g, ...){
+  gauge2_(g, ..., fn = "shape")
 }
 
 #' @rdname gaugeViews
 #' @export 
-gauge_label <- function(g, handler) UseMethod("gauge_label")
+gauge_label <- function(g, ...) UseMethod("gauge_label")
 
 #' @method gauge_label g2r
 #' @export 
-gauge_label.g2r <- function(g, handler){
-  gauge2_(g, handler, fn = "shape")
+gauge_label.g2r <- function(g, ...){
+  gauge2_(g, ..., fn = "shape")
 }
 
 #' @rdname gaugeViews
 #' @export 
-gauge_tooltip <- function(g, handler) UseMethod("gauge_tooltip")
+gauge_tooltip <- function(g, ...) UseMethod("gauge_tooltip")
 
 #' @method gauge_tooltip g2r
 #' @export 
-gauge_tooltip.g2r <- function(g, handler){
-  gauge2_(g, handler, fn = "tooltip")
+gauge_tooltip.g2r <- function(g, ...){
+  gauge2_(g, ..., fn = "tooltip")
 }
 
 #' @rdname gaugeViews
 #' @export 
-gauge_label <- function(g, handler) UseMethod("gauge_label")
+gauge_label <- function(g, ...) UseMethod("gauge_label")
 
 #' @method gauge_label g2r
 #' @export 
-gauge_label.g2r <- function(g, handler){
-  gauge2_(g, handler, fn = "label")
+gauge_label.g2r <- function(g, ...){
+  gauge2_(g, ..., fn = "label")
 }
 
 #' @rdname gaugeViews
 #' @export 
-gauge_style <- function(g, handler) UseMethod("gauge_style")
+gauge_style <- function(g, ...) UseMethod("gauge_style")
 
 #' @method gauge_style g2r
 #' @export 
-gauge_style.g2r <- function(g, handler){
-  gauge2_(g, handler, fn = "style")
+gauge_style.g2r <- function(g, ...){
+  gauge2_(g, ..., fn = "style")
 }
 
 #' @rdname gaugeViews
 #' @export 
-gauge_interplay <- function(g, handler) UseMethod("gauge_interplay")
+gauge_interplay <- function(g, ...) UseMethod("gauge_interplay")
 
 #' @method gauge_interplay g2r
 #' @export 
-gauge_interplay.g2r <- function(g, handler){
-  gauge2_(g, handler, fn = "interaction")
+gauge_interplay.g2r <- function(g, ...){
+  gauge2_(g, ..., fn = "interaction")
 }
 
 #' Gauge2
@@ -114,14 +114,17 @@ gauge_interplay.g2r <- function(g, handler){
 #' `view`.
 #' 
 #' @inheritParams fig_point
-#' @param handler Handler to pass as second argument to
-#' the JavaScript function.
+#' @param ... Arguments to customise the gauge.
+#' Generally, key value pairs of options, a vector of hex colors,
+#' or a JavaScript function (wrapped in [htmlwidgets::JS()]).
 #' @param fn Name of the function.
 #' 
 #' @keywords internal
-gauge2_ <- function(g, handler, fn){
-  if(missing(handler))
-    stop("Missing `handler`", call. = FALSE)
+gauge2_ <- function(g, ..., fn){
+  handler <- list(...)
+
+  if(!length(handler))
+    stop("Must pass args to `...`", call. = FALSE)
 
   if(missing(fn))
     stop("Missing `fn`", call. = FALSE)
@@ -133,6 +136,9 @@ gauge2_ <- function(g, handler, fn){
 
     if(is.logical(g$x$views[[i]][[fn]]))
       next
+
+    if(length(handler))
+      handler <- handler[[1]]
 
     if(is.logical(handler))
       g$x$views[[i]][[fn]] <- handler

@@ -11,28 +11,29 @@
 \alias{gauge_interplay}
 \title{Gauge Aspects}
 \usage{
-gauge_color(g, handler)
+gauge_color(g, ...)
 
-gauge_size(g, handler)
+gauge_size(g, ...)
 
-gauge_shape(g, handler)
+gauge_shape(g, ...)
 
-gauge_label(g, handler)
+gauge_label(g, ...)
 
-gauge_tooltip(g, handler)
+gauge_tooltip(g, ...)
 
-gauge_label(g, handler)
+gauge_label(g, ...)
 
-gauge_style(g, handler)
+gauge_style(g, ...)
 
-gauge_interplay(g, handler)
+gauge_interplay(g, ...)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
 \code{\link[=g2_proxy]{g2_proxy()}}.}
 
-\item{handler}{Handler to customise the aspect.
-Generally a vector or a function (wrapped in \code{htmlwidgets::JS}).}
+\item{...}{Arguments to customise the gauge.
+Generally, key value pairs of options, a vector of hex colors,
+or a JavaScript function (wrapped in \code{\link[htmlwidgets:JS]{htmlwidgets::JS()}}).}
 }
 \description{
 Customise aspects of the chart.
@@ -46,11 +47,10 @@ g <- g2(cars, asp(speed, dist)) \%>\%
 g \%>\% gauge_color(c("red", "white", "blue"))
 
 # color with callback
-cb <- "function(mpg){
- if(mpg > 25){
+cb <- "function(speed){
+ if(speed > 10){
    return 'blue';
  }
-
  return 'red';
 }"
 

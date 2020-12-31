@@ -4,14 +4,15 @@
 \alias{gauge2_}
 \title{Gauge2}
 \usage{
-gauge2_(g, handler, fn)
+gauge2_(g, ..., fn)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
 \code{\link[=g2_proxy]{g2_proxy()}}.}
 
-\item{handler}{Handler to pass as second argument to
-the JavaScript function.}
+\item{...}{Arguments to customise the gauge.
+Generally, key value pairs of options, a vector of hex colors,
+or a JavaScript function (wrapped in \code{\link[htmlwidgets:JS]{htmlwidgets::JS()}}).}
 
 \item{fn}{Name of the function.}
 }
