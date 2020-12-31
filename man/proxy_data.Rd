@@ -14,3 +14,4 @@ Serialise the data from a data frame to a rowwise
 list. This is because proxies do not come with a
 serialiser that can be adapted.
 }
+\keyword{internal}

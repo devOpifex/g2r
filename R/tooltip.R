@@ -1,4 +1,4 @@
-#' Configure Tooltip
+#' Tooltip
 #' 
 #' Configure the tooltip applied to the entire chart.
 #' See [gauge_tooltip()] to customise a specific tooltip
@@ -13,18 +13,18 @@
 #' @examples 
 #' g2(mtcars, asp(drat, qsec, color = hp)) %>% 
 #'  fig_point() %>% 
-#'  conf_tooltip(
+#'  tooltip(
 #'    showCrosshairs = TRUE,
 #'    crosshairs = list(type = "xy")
 #' )
 #' 
-#' @name conf_tooltip
+#' @name tooltip
 #' @export 
-conf_tooltip <- function(g, ...) UseMethod("conf_tooltip")
+tooltip <- function(g, ...) UseMethod("tooltip")
 
-#' @method conf_tooltip g2r
+#' @method tooltip g2r
 #' @export 
-conf_tooltip.g2r <- function(g, ...){
+tooltip.g2r <- function(g, ...){
   g$x$tooltip <- list(...)
   g
 }

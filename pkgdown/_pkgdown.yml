@@ -26,3 +26,73 @@ navbar:
       menu: 
         - text: "Get Started"
           href: articles/get-started.html
+
+reference:
+  - title: "Initialisation"
+    desc: "Initialise a chart."
+    contents: 
+      - g2
+  - title: "Figures"
+    desc: "Figures available"
+    contents:
+      - starts_with("fig_")
+  - title: "Aspects"
+    desc: "Define visualisations aspects"
+    contents:
+      - asp
+      - adjust
+  - title: "Coordinates"
+    desc: "Customise the coordinates"
+    contents:
+      - starts_with("coord_")
+  - title: "Shiny"
+    desc: "Shiny-specific functions"
+    contents:
+      - g2rOutput
+      - renderG2r
+      - g2_proxy
+      - capture_event
+      - remove_figure
+      - render
+  - title: "Gauge"
+    desc: "Gauges to rescales aspects"
+    contents:
+      - starts_with("gauge_")
+  - title: "Info"
+    desc: "Annotate charts"
+    contents:
+      - starts_with("info_")
+  - title: "Interplay"
+    desc: "Control interactions"
+    contents:
+      - starts_with("interplay")
+  - title: "Planes"
+    desc: "Split chart into facets"
+    contents:
+      - starts_with("planes")
+  - title: "Axis"
+    desc: "Configure axes"
+    contents:
+      - starts_with("axis_")
+  - title: "Tooltip"
+    desc: "Configure tooltip"
+    contents:
+      - tooltip
+  - title: "Animation"
+    desc: "Customise animations"
+    contents:
+      - animation
+      - new_animation
+  - title: "Options"
+    desc: "Scrollbar and slider"
+    contents:
+      - slider
+      - scrollbar
+  - title: "State"
+    desc: "Customise state"
+    contents:
+      - state
+  - title: "Motif"
+    desc: "Customise the theme"
+    contents:
+      - motif

@@ -4,7 +4,7 @@
 \alias{g2r-shiny}
 \alias{g2rOutput}
 \alias{renderG2r}
-\title{Shiny bindings for g2r}
+\title{Shiny Bindings}
 \usage{
 g2rOutput(outputId, width = "100\%", height = "400px")
 

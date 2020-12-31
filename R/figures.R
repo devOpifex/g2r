@@ -339,7 +339,12 @@ fig_smooth <- function(
     "triangular",
     "tricube",
     "triweight",
-    "uniform"
+    "uniform",
+    "polynomial",
+    "logarithmic",
+    "power",
+    "polynomial",
+    "exponential"
   ),
   band_width = 1,
   sync = TRUE, 
@@ -364,7 +369,12 @@ fig_smooth.g2r <- function(
     "triangular",
     "tricube",
     "triweight",
-    "uniform"
+    "uniform",
+    "polynomial",
+    "logarithmic",
+    "power",
+    "polynomial",
+    "exponential"
   ),
   band_width = 1,
   sync = TRUE, 
@@ -375,10 +385,19 @@ fig_smooth.g2r <- function(
 
   check_alter()
 
+  methods <- c(
+    "linear",
+    "polynomial",
+    "logarithmic",
+    "power",
+    "polynomial",
+    "exponential"
+  )
+
   # method and type for alter
   method <- match.arg(method)
   type <- "kernel-smooth.regression"
-  if(method == "linear")
+  if(method %in% methods)
     type <- "regression"
 
   # aspects
@@ -416,7 +435,7 @@ fig_smooth.g2r <- function(
         )$
         getRows()
 
-      if(length(color))
+      if(length(color) && !color %in% position)
         dat[[color]] <- unique(df[[color]])
 
       return(dat)
@@ -428,7 +447,7 @@ fig_smooth.g2r <- function(
     position = position
   )
 
-  df <- do.call(rbind, lapply(df, as.data.frame))
+  df <- do.call(rbind.data.frame, lapply(df, as.data.frame))
 
   fig_primitive(
     g, 

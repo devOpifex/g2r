@@ -13,3 +13,4 @@
 ^README\.Rmd$
 ^index\.md$
 ^vignettes$
+^makefile$

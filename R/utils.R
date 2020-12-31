@@ -82,6 +82,8 @@ aspect_action <- function(g, asps, ..., action){
 #' 
 #' @importFrom purrr keep discard
 #' @importFrom rlang as_label is_quosure
+#' 
+#' @keywords internal
 info_aspects_data <- function(asp, data = NULL){
 
   if(!length(asp))

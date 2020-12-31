@@ -18,8 +18,6 @@ knitr::opts_chunk$set(
 library(g2r)
 ```
 
-# Get Started
-
 g2r is an interface to the [G2.js](https://g2.antv.vision/en) JavaScript visualisation library. G2.js is itself a Grammar of Graphics (GG ~= 2G) though rather different from R's common understanding of such grammar from [ggplot2](https://ggplot2.tidyverse.org/).
 
 g2r's API is halfway between G2.js and ggplot2; some things will be similar to ggplot2 in places.
@@ -31,4 +29,27 @@ g2r's API is halfway between G2.js and ggplot2; some things will be similar to g
 - `ggplot2::facet_*` -> `planes_*`
 - `ggplot2::theme_*` -> `motif_*`
 
-Given the similarities one can create visualisations
+Like with ggplot2, one creates visualisations by layering figures (geometries) defines by aspects (aesthetics).
+
+```{r}
+g2(cars, asp(speed, dist)) %>% 
+  fig_point() %>% 
+  fig_smooth() 
+```
+
+Similarly to ggplot2, axis of the visualisation can be modified with `gauge_*` (scales in ggplot2).
+
+```{r}
+g2(cars, asp(speed, dist)) %>% 
+  fig_point() %>% 
+  fig_smooth(method = "polynomial") %>% 
+  gauge_y_log()
+```
+
+As in ggplot2, other aspects of the visualisation can be defined. Unlike ggplot2 though, whether these aspects are columns from the data or constants they can only be specified within `asp`.
+
+```{r}
+g2(cars, asp(speed, dist, shape = "circle")) %>% 
+  fig_point(asp(color = dist, size = dist)) %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+```

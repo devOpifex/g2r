@@ -37,7 +37,7 @@ for the full list of options.}
 \item{asps}{Aspect (column names) to change the legend.}
 }
 \description{
-Customise the axes.
+Configure the axes.
 
 Customise the legend.
 }

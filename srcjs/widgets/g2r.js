@@ -105,6 +105,9 @@ HTMLWidgets.widget({
         if(x.slider)
           c.option('slider', x.slider);
 
+        if(x.scrollbar)
+          c.option('scrollbar', x.scrollbar);
+
         c.render();
 
       },

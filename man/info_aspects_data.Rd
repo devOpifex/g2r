@@ -14,3 +14,4 @@ info_aspects_data(asp, data = NULL)
 \description{
 Select aspects from the data for info.
 }
+\keyword{internal}

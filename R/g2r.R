@@ -48,7 +48,7 @@ g2 <- function(data = NULL, ..., width = NULL, height = NULL, elementId = NULL) 
   )
 }
 
-#' Shiny bindings for g2r
+#' Shiny Bindings
 #'
 #' Output and render functions for using g2r within Shiny
 #' applications and interactive Rmd documents.

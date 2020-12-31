@@ -1,6 +1,6 @@
 #' Axes
 #' 
-#' Customise the axes.
+#' Configure the axes.
 #' 
 #' @inheritParams fig_point
 #' @param ... Options to pass to the axis, pass `FALSE`

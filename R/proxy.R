@@ -93,6 +93,7 @@ render.g2Proxy <- function(g){
 #' @param data A dataframe or `NULL`.
 #' 
 #' @importFrom purrr pmap
+#' @keywords internal
 proxy_data <- function(data = NULL){
   if(is.null(data))
     return()
