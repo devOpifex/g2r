@@ -725,3 +725,116 @@ fig_voronoi.g2r <- function(
     asp = asp
   )
 }
+
+#' Waffle
+#' 
+#' Add a waffle figure to the chart.
+#' 
+#' @inheritParams fig_point
+#' @param n Number of squares to use.
+#' @param rows Number of rows.
+#' @param size Size of squares.
+#' @param gap Gap between squares.
+#' @param min_size Minimum size of squares.
+#' 
+#' @examples 
+#' fruits <- data.frame(
+#'  fruit = c("Apples", "Bananas", "Pears", "Oranges"),
+#'  value = c(.45, .15, .35, .05) * 100
+#' )
+#' 
+#' g2(fruits, asp(value, color = fruit)) %>% 
+#'  fig_waffle() %>% 
+#'  motif(padding = 50) %>% 
+#'  axis_hide()
+#' 
+#' @export 
+fig_waffle <- function(
+  g, 
+  ..., 
+  n = 500,
+  rows = 10,
+  size = c(1, 1),
+  gap = .1,
+  min_size = 15,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  UseMethod("fig_waffle")
+}
+
+#' @method fig_waffle g2r
+#' @export 
+fig_waffle.g2r <- function(
+  g, 
+  ..., 
+  n = 500,
+  rows = 10,
+  size = c(1, 1),
+  gap = .1,
+  min_size = 15,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+
+  check_alter()
+
+  data <- get_data(g, data)
+
+  asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+  color <- select_asp_labels(asp, "color")
+  x <- select_asp_labels(asp, "x")
+  fields <- c(color, x)
+
+  if(length(fields) < 2)
+    stop("Must pass `x`, and `color` aspects", call. = FALSE)
+
+  print(fields)
+
+  data <- alter::Alter$new(data)$
+    source()$
+    transform(
+      type = "waffle",
+      maxCount = n,
+      rows = rows,
+      size = size,
+      gapRatio = gap,
+      as = c("waffle_x", "waffle_y"),
+      fields = fields
+    )$
+    getRows()
+
+  asp$x <- "waffle_x"
+  asp$y <- "waffle_y"
+
+  if(!"shape" %in% names(asp))
+    asp$shape <- "square"
+
+  if(!"size" %in% names(asp))
+    asp$size <- "_hStep"
+
+  cb <- sprintf(
+    "function(_hStep) {
+      return Math.min((window.innerHeight - 100) * 0.4 * _hStep, %s);
+    }",
+    min_size
+  )
+
+  g %>% 
+    fig_primitive(
+      ..., 
+      data = data, 
+      inherit_asp = inherit_asp,
+      sync = sync,
+      type = "point",
+      style = style,
+      asp = asp
+    ) %>% 
+    gauge_size(htmlwidgets::JS(cb)) %>% 
+    legend_asps("_hStep", FALSE)
+}
+

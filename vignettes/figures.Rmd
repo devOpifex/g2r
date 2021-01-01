@@ -142,18 +142,9 @@ g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>%
 ## Boxplot
 
 ```{r}
-df <- reshape(
- iris, 
- varying = names(iris)[1:4], 
- direction = "long", 
- v.names = "value", 
- idvar = "Species", 
- new.row.names = 1:600,
- timevar = "var", 
- times = names(iris)[1:4]
-)
+df <- tidyr::pivot_longer(iris, -Species)
 
-g2(df, asp(var, value, color = Species)) %>% 
+g2(df, asp(name, value, color = Species)) %>% 
  fig_boxplot(adjust("dodge"))
 ```
 
@@ -202,4 +193,18 @@ df <- dplyr::tibble(
 g2(df, asp(x, y, color = value)) %>% 
   fig_voronoi() %>% 
   gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+```
+
+## Waffle
+
+```{r}
+fruits <- dplyr::tibble(
+  fruit = c("Apples", "Bananas", "Pears", "Oranges"),
+  value = c(.45, .15, .35, .05) * 100
+)
+
+g2(fruits, asp(value, color = fruit)) %>% 
+  fig_waffle() %>% 
+  motif(padding = c(10, 10, 30, 10)) %>% 
+  axis_hide()
 ```
