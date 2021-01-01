@@ -653,3 +653,75 @@ fig_pie.g2r <- function(
     ) %>% 
     coord_type("theta")
 }
+
+#' Voronoi
+#' 
+#' Add a voronoi figure to the chart.
+#' 
+#' @inheritParams fig_point
+#' 
+#' @examples 
+#' df <- data.frame(
+#'  x = runif(25, 1, 500),
+#'  y = runif(25, 1, 500),
+#'  value = runif(25, 1, 500)
+#' )
+#' 
+#' g2(df, asp(x, y, color = value)) %>% 
+#'  fig_voronoi()
+#' 
+#' @export 
+fig_voronoi <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+  UseMethod("fig_voronoi")
+}
+
+#' @method fig_voronoi g2r
+#' @export 
+fig_voronoi.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  style = NULL
+){
+
+  check_alter()
+
+  asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+  position <- select_asp_labels(asp, "x", "y")
+  color <- select_asp_labels(asp, "color")
+  data <- get_data(g, data)[c(position, color)]
+  size <- c(max(data[[position[1]]]), max(data[[position[2]]]))
+
+  if(ncol(data) < 3)
+    stop("Must pass `x`, `y`, and `color` aspects", call. = FALSE)
+
+  data <- alter::Alter$new(data)$
+    source()$
+    transform(
+      type = "diagram.voronoi",
+      fields = position,
+      size = size,
+      as = position
+    )$
+    getRows()
+
+  fig_primitive(
+    g, 
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "polygon",
+    style = style,
+    asp = asp
+  )
+}

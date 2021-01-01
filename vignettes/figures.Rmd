@@ -189,3 +189,17 @@ df <- data.frame(
 g2(df, asp(y = value, color = name, label = name)) %>% 
  fig_pie()
 ```
+
+## Voronoi
+
+```{r}
+df <- dplyr::tibble(
+  x = runif(50, 1, 500),
+  y = runif(50, 1, 500),
+  value = runif(50, 1, 500)
+)
+
+g2(df, asp(x, y, color = value)) %>% 
+  fig_voronoi() %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+```
