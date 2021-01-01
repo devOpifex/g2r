@@ -18,6 +18,13 @@
 #' @export
 g2 <- function(data = NULL, ..., width = NULL, height = NULL, elementId = NULL) {
 
+  asp <- get_asp(...)
+
+  if(is_asp(data)){
+    asp <- data
+    data <- NULL
+  }
+
   x = list(
     chartOpts = list(
       autoFit = TRUE,
@@ -25,7 +32,7 @@ g2 <- function(data = NULL, ..., width = NULL, height = NULL, elementId = NULL) 
       padding = "auto"
     ),
     data = as_tib(data), # dataset
-    main_asp = get_asp(...), # main aspects
+    main_asp = asp, # main aspects
     views = list(), # views | figures
     scale = list(), # chart.scale
     cols = c() # keep track of columns for filter
