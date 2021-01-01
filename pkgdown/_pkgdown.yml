@@ -1,9 +1,19 @@
 template:
+  opengraph:
+    image:
+      src: man/figures/g2r_social.png
+      alt: "A grammar of graphics for interactive visualisations"
+    twitter:
+      creator: "@jdatap"
+      site: "@devOpifex"
+      card: summary_large_image
   params:
     ganalytics: G-TZMQ98HS6D
     bootswatch: paper
 
 home:
+  title: An R package for interactive visualisations
+  description: A grammar of graphics for interactive visualisations
   links:
   - text: G2.js
     href: https://g2.antv.vision/en
@@ -21,13 +31,15 @@ navbar:
     - icon: fa-newspaper
       href: news/index.html
     - text: API
-      href: "reference/"
+      href: "reference/index.html"
     - text: "Guide"
       menu: 
         - text: "Get Started"
           href: articles/get-started.html
         - text: "Figures"
           href: articles/figures.html
+        - text: "Planes"
+          href: articles/planes.html
 
 reference:
   - title: "Initialisation"

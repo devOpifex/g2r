@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand|Ubuntu+Mono');
 
+h1 {
+  font-size: 50px;
+}
+
+h2 {
+  font-size: 39px;
+}
+
+h3 {
+  font-size: 28px;
+}
+
+.version {
+  font-size: 50%;
+}
+
 body{
   font-family: 'Quicksand', sans-serif;
 }
@@ -23,6 +39,14 @@ h4>a {
 
 li>a {
   color: #F0760F;
+}
+
+.dropdown-menu > .active > a {
+  background-color: #6906FF;
+}
+
+a .caret{
+  color: #6906FF !important;
 }
 
 small>a{

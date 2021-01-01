@@ -96,3 +96,33 @@ g2(df, asp(y = price, color = cut)) %>%
   coord_type("theta", innerRadius = .2) %>% 
   planes("clarity", type = "circle")
 ```
+
+## Mirror
+
+Recreation of [this example](https://g2.antv.vision/en/examples/facet/facet#mirror-transpose)
+
+```{r}
+df <- data.frame(
+  x = rep(1:50, 2),
+  y = c(cars$speed, cars$dist),
+  grp = rep(c("Speed", "Dist"), each = 50)
+)
+
+g2(df, asp(x, y, color = grp)) %>% 
+  fig_interval() %>% 
+  planes(
+    "grp", 
+    padding = c(0, 48, 0, 0),
+    type = "mirror", 
+    transpose = TRUE
+  ) %>% 
+  motif(padding = c(32, 16, 48, 16))
+```
+
+## Tree
+
+```{r}
+g2(iris, asp(Petal.Width, Petal.Length, color = Species)) %>% 
+  fig_point() %>% 
+  planes("Species", type = "tree")
+```
