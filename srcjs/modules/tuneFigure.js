@@ -38,7 +38,7 @@ const tuneFigure = (figure, options) => {
     else 
       figure.size(options.size);
 
-  // size
+  // label
   if(options.label)
     if(check(options, 'label'))
       figure.label(options.label[0], options.label[1]);

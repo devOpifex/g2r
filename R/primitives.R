@@ -761,7 +761,7 @@ fig_primitive_common <- function(
     style <- collapse_asp(style_asp)
   
   # store columns
-  cols <- c(position, color, shape, size, tooltip)
+  cols <- c(position, color, shape, size, tooltip, label)
   g$x$cols <- append(g$x$cols, cols)
 
   # scales
