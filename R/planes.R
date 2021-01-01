@@ -60,7 +60,7 @@ planes.g2r <- function(
   type <- match.arg(type)
   
   for(i in 1:length(asp)){
-    g <- sync(g, asp, sync, if_true = "mainGroupPlanes")
+    g <- sync(g, asp[i], sync, if_true = "mainGroupPlanes")
   }
 
   g$x$cols <- c(g$x$cols, asp)
@@ -72,5 +72,6 @@ planes.g2r <- function(
       ...
     )
   )
+
   g
 }

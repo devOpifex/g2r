@@ -10,7 +10,7 @@
 #'  fig_point(
 #'    selected(fill = "red")
 #'  ) %>% 
-#'  conf_interplay("element", "selected")
+#'  interplay("element", "selected")
 #' 
 #' @name state
 #' @export 

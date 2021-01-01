@@ -643,6 +643,13 @@ fig_pie.g2r <- function(
   style = NULL
 ){
   g %>% 
-    fig_interval(..., adjust("stack")) %>% 
+    fig_interval(
+      ..., 
+      adjust("stack"),
+      sync = sync,
+      data = data,
+      inherit_asp = inherit_asp,
+      style = style 
+    ) %>% 
     coord_type("theta")
 }

@@ -213,10 +213,18 @@ select_asp_labels <- function(asp, ...){
 #' 
 #' @return Aspect as string.
 #' 
+#' @importFrom rlang is_symbolic is_double is_integer
+#' 
 #' @keywords internal
 asp_as_string <- function(a){
   if(is_symbolic(a))
     return(as_label(a))
+
+  if(is_double(a))
+    return(a)
+
+  if(is_integer(a))
+    return(a)
 
   return(a)
 }
@@ -311,9 +319,22 @@ get_aspect_names <- function(g, aspect){
 collapse_asp <- function(asp){
   if(length(asp) == 0)
     return()
+
+  if(length(asp) == 1)
+    return(asp)
+  
   paste0(asp, collapse = "*")
 }
 
+#' Combined Aspects
+#' 
+#' Retrieve the combined main and figure-level aspects.
+#' 
+#' @inheritParams fig_point
+#' @param ... Three dots from parents (containing aspects).
+#' @param inherits_asp Whether the main aspects are inherited.
+#' 
+#' @keywords internal
 get_combined_asp <- function(g, ..., inherit_asp = FALSE){
   asp <- get_asp(...)
   combine_asp(g$x$main_asp, asp, inherit_asp = inherit_asp)
