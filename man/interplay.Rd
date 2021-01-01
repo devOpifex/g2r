@@ -35,7 +35,7 @@ g2(df, asp(x, y)) \%>\%
  fig_interval(
    selected(fill = "orange")
  ) \%>\% 
- conf_interplay("element", "selected")
+ interplay("element", "selected")
 
 # brush
 g2(cars, asp(speed, dist)) \%>\% 

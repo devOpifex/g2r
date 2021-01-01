@@ -182,10 +182,10 @@ g2(df, asp(x, ymin = ymin, ymax = ymax)) %>%
 
 ```{r}
 df <- data.frame(
- label = letters[1:5],
+ name = letters[1:5],
  value = runif(5)
 )
 
-g2(df, asp(y = value, color = label)) %>% 
+g2(df, asp(y = value, color = name, label = name)) %>% 
  fig_pie()
 ```
