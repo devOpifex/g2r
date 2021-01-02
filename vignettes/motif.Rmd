@@ -1,0 +1,37 @@
+---
+title: "Motif"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Motif}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The theme of the chart can be customised with the `motif` function.
+
+Out-of-the-box G2.js comes with two themes (light), and dark.
+
+```{r}
+library(g2r)
+
+data(penguins, package = "palmerpenguins")
+
+g <- g2(penguins, asp(bill_length_mm, bill_depth_mm)) %>% 
+  fig_point(asp(color = island, shape = "circle"))
+
+g
+```
+
+```{r}
+motif(g, name = "dark")
+```
+
+You can also customise the motif.
+
+```{r}
+motif(
+  g, 
+  background = "lightgrey",
+  colors10 = scales::hue_pal()(3)
+)
+```

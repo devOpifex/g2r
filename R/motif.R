@@ -5,7 +5,9 @@
 #' @inheritParams fig_point
 #' @param name Name of the motif to apply to charts.
 #' Out-of-the-box g2 provides `light`, and `dark`.
-#' @param ... Key value pair defining style.
+#' @param ... Key value pair defining style, please see
+#' some the options available on the 
+#' [official documentation](https://g2.antv.vision/en/docs/api/advanced/register-theme).
 #' @param renderer Renderer to use, defaults to `canvas`.
 #' @param padding An integer, or a vector of length 4.
 #' @param visible Whether the chart is visible.

@@ -46,6 +46,8 @@ navbar:
           href: articles/axis.html
         - text: "Planes"
           href: articles/planes.html
+        - text: "Motif"
+          href: articles/motif.html
   right:
     - text: "Contribute"
       href: "articles/contribute.html"
