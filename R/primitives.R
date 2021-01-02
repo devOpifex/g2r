@@ -674,8 +674,6 @@ fig_primitive_common <- function(
 
   type <- match.arg(type)
 
-  data <- get_data(g, data)
-
   # adjust
   adjust <- get_adjust(...)
 

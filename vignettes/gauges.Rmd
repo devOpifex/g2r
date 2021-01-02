@@ -41,7 +41,7 @@ To use a variable as gauge (e.g.: size, or color) and hide the legend pass a boo
 ```{r}
 g2(cars, asp(speed, dist, size = dist)) %>% 
   fig_point() %>% 
-  legend_color(FALSE)
+  legend_size(FALSE)
 ```
 
 One can also gauge the x and y axis.
