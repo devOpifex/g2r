@@ -174,6 +174,11 @@ as_tib <- function(data = NULL){
   if(!inherits(data, "data.frame"))
     return(data)
   
+  for(col in 1:ncol(data)){
+    if(is.factor(data[[col]]))
+      data[[col]] <- as.character(data[[col]])
+  }
+
   tibble::as_tibble(data)
 }
 

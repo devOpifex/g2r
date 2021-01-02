@@ -1,0 +1,26 @@
+---
+title: "Axis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Axis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Customising the axis is done using two families of functions, `gauge_` and `axis_`. It's admittedly sometimes when one should use which, hopefully this part of the API will be made easier soon. In the meantime, one has to contend with it and use the few convenience function that attempt at easing the customisation of axis.
+
+The reason for this is that, in a sense, G2.js distinguishes between 1) the axis themselves and 2) the variables that are plot against them; hence the use of two separate functions (`gauge_` and `axis_`) which also map to two different JavaScript functions.
+
+```{r}
+library(g2r)
+
+data(penguins, package = 'palmerpenguins')
+
+g2(
+  penguins, 
+  asp(bill_length_mm, flipper_length_mm, color = species)
+) %>% 
+  fig_point() %>%
+  fig_smooth() %>%  
+  gauge_y_pow() 
+```

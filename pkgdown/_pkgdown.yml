@@ -47,7 +47,7 @@ navbar:
   right:
     - text: "Contribute"
       href: "articles/contribute.html"
-    - icon: fa-github fa-lg
+    - icon: fab fa-github fa-lg
       href: https://github.com/devOpifex/g2r
 
 reference:
