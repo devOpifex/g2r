@@ -12,7 +12,6 @@ fig_primitive(
   sync = TRUE,
   type = c("point", "interval", "line", "schema", "edge", "area", "polygon", "heatmap",
     "path"),
-  style = NULL,
   asp = NULL
 )
 }
@@ -21,7 +20,9 @@ fig_primitive(
 \code{\link[=g2_proxy]{g2_proxy()}}.}
 
 \item{...}{Options to pass to the figure, including \code{\link[=asp]{asp()}},
-and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, and \code{\link[=selected]{selected()}}.}
+and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, and \code{\link[=selected]{selected()}}, other key value
+pairs of are passed to
+\href{https://g2.antv.vision/en/docs/api/general/style}{style}.}
 
 \item{data}{A dataset (\code{data.frame} or \code{tibble}) to use to
 draw the figure.}
@@ -32,10 +33,6 @@ draw the figure.}
 \item{sync}{Whether to sync the axis data (align) with that
 used in other figures, set to \code{FALSE} to not sync or set to
 a character string to use as name of sync group.}
-
-\item{style}{A list of options to pass to
-\href{https://g2.antv.vision/en/docs/api/general/style}{style} that
-customise the figure.}
 
 \item{asp}{Aspects to override those passed to \code{...}.}
 }

@@ -81,8 +81,9 @@ is_adjust <- function(x){
 #' 
 #' @keywords internal
 get_adjust <- function(...){
-  found <- list(...) %>% 
-    keep(is_adjust)
+  list(...) %>% 
+    keep(is_adjust) %>% 
+    unname()
 }
 
 #' @export

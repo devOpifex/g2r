@@ -15,7 +15,7 @@ You can gauge aspects specific aspects, just like in ggplot2.
 library(g2r)
 
 g2(cars, asp(speed, dist, color = dist)) %>% 
-  fig_point(asp(shape = "circle")) %>% 
+  fig_point() %>% 
   gauge_color(c("#FDE725", "#21908C", "#440154"))
 ```
 
@@ -32,7 +32,7 @@ callback <- htmlwidgets::JS(
 )
 
 g2(cars, asp(speed, dist, color = dist)) %>% 
-  fig_point() %>% 
+  fig_point(asp(shape = "circle")) %>% 
   gauge_color(callback)
 ```
 

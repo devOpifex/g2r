@@ -10,8 +10,8 @@ rm_asp(...)
 \item{...}{Three dot passed from parent from which to \emph{remove} aspects.}
 }
 \description{
-Given a arguments, remove aspects. Used
-to remove aspects and only keep options that need
+Given a arguments, remove \code{\link[=asp]{asp()}}, \link{state}, and \link{Animation}.
+Used to remove aspects and only keep options that need
 to make it to the serie.
 }
 \examples{

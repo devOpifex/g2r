@@ -5,7 +5,9 @@
 #' @param g An object of class `g2r` or `g2Proxy` as returned by [g2()] or 
 #' [g2_proxy()].
 #' @param ... Options to pass to the figure, including [asp()],
-#' and [adjust()], [active()], and [selected()].
+#' and [adjust()], [active()], and [selected()], other key value
+#' pairs of are passed to 
+#' [style](https://g2.antv.vision/en/docs/api/general/style).
 #' @param sync Whether to sync the axis data (align) with that
 #' used in other figures, set to `FALSE` to not sync or set to
 #' a character string to use as name of sync group.
@@ -13,9 +15,6 @@
 #' draw the figure.
 #' @param inherit_asp Whether to inherit the aspects paseed to
 #' [g2()] initialisation function.
-#' @param style A list of options to pass to
-#' [style](https://g2.antv.vision/en/docs/api/general/style) that 
-#' customise the figure.
 #' 
 #' @examples 
 #' g2(cars) %>% 
@@ -30,8 +29,7 @@ fig_point <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_point")
 }
@@ -43,8 +41,7 @@ fig_point.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -52,8 +49,7 @@ fig_point.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "point",
-    style = style
+    type = "point"
   )
 }
 
@@ -64,8 +60,7 @@ fig_point.g2Proxy <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -73,8 +68,7 @@ fig_point.g2Proxy <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "point",
-    style = style
+    type = "point"
   )
 }
 
@@ -94,8 +88,7 @@ fig_line <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_line")
 }
@@ -107,8 +100,7 @@ fig_line.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -116,8 +108,7 @@ fig_line.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "line",
-    style = style
+    type = "line"
   )
 }
 
@@ -128,8 +119,7 @@ fig_line.g2Proxy <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -137,8 +127,7 @@ fig_line.g2Proxy <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "line",
-    style = style
+    type = "line"
   )
 }
 
@@ -158,8 +147,7 @@ fig_area <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_area")
 }
@@ -171,8 +159,7 @@ fig_area.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -180,8 +167,7 @@ fig_area.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "area",
-    style = style
+    type = "area"
   )
 }
 
@@ -192,8 +178,7 @@ fig_area.g2Proxy <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -201,8 +186,7 @@ fig_area.g2Proxy <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "area",
-    style = style
+    type = "area"
   )
 }
 
@@ -236,8 +220,7 @@ fig_interval <- function(
   ...,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_interval")
 }
@@ -249,8 +232,7 @@ fig_interval.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -258,8 +240,7 @@ fig_interval.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "interval",
-    style = style
+    type = "interval"
   )
 }
 
@@ -270,8 +251,7 @@ fig_interval.g2Proxy <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -279,8 +259,7 @@ fig_interval.g2Proxy <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "interval",
-    style = style
+    type = "interval"
   )
 }
 
@@ -296,8 +275,7 @@ fig_polygon <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_polygon")
 }
@@ -309,8 +287,7 @@ fig_polygon.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -318,8 +295,7 @@ fig_polygon.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "polygon",
-    style = style
+    type = "polygon"
   )
 }
 
@@ -330,8 +306,7 @@ fig_polygon.g2Proxy <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -339,8 +314,7 @@ fig_polygon.g2Proxy <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "polygon",
-    style = style
+    type = "polygon"
   )
 }
 
@@ -356,8 +330,7 @@ fig_edge <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_edge")
 }
@@ -369,8 +342,7 @@ fig_edge.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -378,8 +350,7 @@ fig_edge.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "edge",
-    style = style
+    type = "edge"
   )
 }
 
@@ -390,8 +361,7 @@ fig_edge.g2Proxy <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -399,8 +369,7 @@ fig_edge.g2Proxy <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "edge",
-    style = style
+    type = "edge"
   )
 }
 
@@ -416,8 +385,7 @@ fig_schema <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_schema")
 }
@@ -429,8 +397,7 @@ fig_schema.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -438,8 +405,7 @@ fig_schema.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "schema",
-    style = style
+    type = "schema"
   )
 }
 
@@ -450,8 +416,7 @@ fig_schema.g2Proxy <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -459,8 +424,7 @@ fig_schema.g2Proxy <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "schema",
-    style = style
+    type = "schema"
   )
 }
 
@@ -485,8 +449,7 @@ fig_path <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_path")
 }
@@ -498,8 +461,7 @@ fig_path.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -507,8 +469,7 @@ fig_path.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "path",
-    style = style
+    type = "path"
   )
 }
 
@@ -519,8 +480,7 @@ fig_path.g2Proxy <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -528,8 +488,7 @@ fig_path.g2Proxy <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "path",
-    style = style
+    type = "path"
   )
 }
 
@@ -545,8 +504,7 @@ fig_heatmap <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_heatmap")
 }
@@ -558,8 +516,7 @@ fig_heatmap.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -567,8 +524,7 @@ fig_heatmap.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "heatmap",
-    style = style
+    type = "heatmap"
   )
 }
 
@@ -579,8 +535,7 @@ fig_heatmap.g2Proxy <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   fig_primitive(
     g, 
@@ -588,8 +543,7 @@ fig_heatmap.g2Proxy <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "heatmap",
-    style = style
+    type = "heatmap"
   )
 }
 
@@ -618,7 +572,6 @@ fig_primitive <- function(
     "heatmap",
     "path"
   ),
-  style = NULL,
   asp = NULL
 ){
   UseMethod("fig_primitive")
@@ -643,7 +596,6 @@ fig_primitive.g2r <- function(
     "heatmap",
     "path"
   ),
-  style = NULL,
   asp = NULL
 ){
 
@@ -654,7 +606,6 @@ fig_primitive.g2r <- function(
     inherit_asp = inherit_asp,
     sync = sync,
     type = type,
-    style = style,
     asp = asp
   )
 
@@ -679,7 +630,6 @@ fig_primitive.g2Proxy <- function(
     "heatmap",
     "path"
   ),
-  style = NULL,
   asp = NULL
 ){
 
@@ -690,7 +640,6 @@ fig_primitive.g2Proxy <- function(
     inherit_asp = inherit_asp,
     sync = sync,
     type = type,
-    style = style,
     asp = asp
   )
 
@@ -720,7 +669,6 @@ fig_primitive_common <- function(
     "heatmap",
     "path"
   ),
-  style = NULL,
   asp = NULL
 ){
 
@@ -750,15 +698,12 @@ fig_primitive_common <- function(
   tooltip <- select_asp_labels(asp, "tooltip")
   style_asp <- select_asp_labels(asp, "style")
 
-  # overwrite style
-  if(length(style_asp) > 0 && !is.null(style))
-    warning(
-      "Cannot use `style` aspect and `style` argument together, ",
-      "using the former", call. = FALSE
-    )
+  style <- rm_asp(...)
 
-  if(is.null(style))
-    style <- collapse_asp(style_asp)
+  if(is.null(style)){
+    style_asp <- collapse_asp(style_asp)
+    style <- list(style_asp, style)
+  }
   
   # store columns
   cols <- c(position, color, shape, size, tooltip, label)

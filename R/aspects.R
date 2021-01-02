@@ -151,8 +151,8 @@ get_asp <- function(...){
 
 #' Discard Aspects
 #' 
-#' Given a arguments, remove aspects. Used
-#' to remove aspects and only keep options that need
+#' Given a arguments, remove [asp()], [state], and [Animation]. 
+#' Used to remove aspects and only keep options that need
 #' to make it to the serie.
 #' 
 #' @param ... Three dot passed from parent from which to _remove_ aspects.
@@ -171,7 +171,10 @@ get_asp <- function(...){
 #' @keywords internal
 rm_asp <- function(...){
   list(...) %>% 
-    discard(is_asp)
+    discard(is_asp) %>% 
+    discard(is_state) %>%
+    discard(is_adjust) %>%  
+    discard(is_animation)
 }
 
 #' Select Specific Aspects

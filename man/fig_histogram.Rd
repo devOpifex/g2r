@@ -10,8 +10,7 @@ fig_histogram(
   bin_width = 5,
   sync = TRUE,
   data = NULL,
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 )
 }
 \arguments{
@@ -19,7 +18,9 @@ fig_histogram(
 \code{\link[=g2_proxy]{g2_proxy()}}.}
 
 \item{...}{Options to pass to the figure, including \code{\link[=asp]{asp()}},
-and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, and \code{\link[=selected]{selected()}}.}
+and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, and \code{\link[=selected]{selected()}}, other key value
+pairs of are passed to
+\href{https://g2.antv.vision/en/docs/api/general/style}{style}.}
 
 \item{bin_width}{Width of bin.}
 
@@ -32,10 +33,6 @@ draw the figure.}
 
 \item{inherit_asp}{Whether to inherit the aspects paseed to
 \code{\link[=g2]{g2()}} initialisation function.}
-
-\item{style}{A list of options to pass to
-\href{https://g2.antv.vision/en/docs/api/general/style}{style} that
-customise the figure.}
 }
 \description{
 Add a histogram figure to the chart.

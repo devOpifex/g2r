@@ -32,7 +32,7 @@ Recreation of [this example](https://g2.antv.vision/en/examples/facet/facet#colu
 g2(diamonds, asp(carat, price, color = clarity)) %>% 
   fig_point(
     asp(shape = "circle", size = 3),
-    style = list(fillOpacity = 0.3, stroke = 0)
+    fillOpacity = 0.3, stroke = 0
   ) %>% 
   planes("cut", type = "rect") %>% 
   motif(padding = c(32, 8, 48, 48))
@@ -44,7 +44,7 @@ Recreation of [this example](https://g2.antv.vision/en/examples/facet/facet#rect
 g2(diamonds, asp(carat, price, color = cut)) %>% 
   fig_point(
     asp(shape = "circle", size = 3),
-    style = list(fillOpacity = 0.3, stroke = 0)
+    fillOpacity = 0.3, stroke = 0
   ) %>% 
   planes(c("cut", "clarity"), type = "rect") %>% 
   motif(padding = c(32, 8, 48, 48))
@@ -58,7 +58,7 @@ Recreation of [this example](https://g2.antv.vision/en/examples/facet/facet#list
 g2(diamonds, asp(carat, price, color = cut)) %>% 
   fig_point(
     asp(shape = "circle", size = 3),
-    style = list(fillOpacity = 0.3, stroke = 0)
+    fillOpacity = 0.3, stroke = 0
   ) %>% 
   planes(
     "cut", 
@@ -91,7 +91,7 @@ df <- df %>%
 g2(df, asp(y = price, color = cut)) %>% 
   fig_interval(
     adjust("stack"),
-    style = list(stroke = "#fff", lineWidth = 2)
+    stroke = "#fff", lineWidth = 2
   ) %>% 
   coord_type("theta", innerRadius = .2) %>% 
   planes("clarity", type = "circle")

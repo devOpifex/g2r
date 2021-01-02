@@ -4,14 +4,16 @@
 \alias{fig_path}
 \title{Path}
 \usage{
-fig_path(g, ..., sync = TRUE, data = NULL, inherit_asp = TRUE, style = NULL)
+fig_path(g, ..., sync = TRUE, data = NULL, inherit_asp = TRUE)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
 \code{\link[=g2_proxy]{g2_proxy()}}.}
 
 \item{...}{Options to pass to the figure, including \code{\link[=asp]{asp()}},
-and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, and \code{\link[=selected]{selected()}}.}
+and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, and \code{\link[=selected]{selected()}}, other key value
+pairs of are passed to
+\href{https://g2.antv.vision/en/docs/api/general/style}{style}.}
 
 \item{sync}{Whether to sync the axis data (align) with that
 used in other figures, set to \code{FALSE} to not sync or set to
@@ -22,10 +24,6 @@ draw the figure.}
 
 \item{inherit_asp}{Whether to inherit the aspects paseed to
 \code{\link[=g2]{g2()}} initialisation function.}
-
-\item{style}{A list of options to pass to
-\href{https://g2.antv.vision/en/docs/api/general/style}{style} that
-customise the figure.}
 }
 \description{
 Add a path figure.

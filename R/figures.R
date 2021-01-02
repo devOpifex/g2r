@@ -23,8 +23,7 @@ fig_bin <- function(
   size_count = TRUE,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_bin")
 }
@@ -39,8 +38,7 @@ fig_bin.g2r <- function(
   size_count = TRUE,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
 
   check_alter()
@@ -68,8 +66,7 @@ fig_bin.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "polygon",
-    style = style
+    type = "polygon"
   )
 }
 
@@ -95,8 +92,7 @@ fig_ribbon <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_ribbon")
 }
@@ -108,8 +104,7 @@ fig_ribbon.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
 
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
@@ -132,7 +127,6 @@ fig_ribbon.g2r <- function(
     inherit_asp = inherit_asp,
     sync = sync,
     type = "area",
-    style = style,
     asp = asp
   )
 }
@@ -163,8 +157,7 @@ fig_histogram <- function(
   bin_width = 5,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_histogram")
 }
@@ -177,8 +170,7 @@ fig_histogram.g2r <- function(
   bin_width = 5,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
 
   check_alter()
@@ -218,7 +210,6 @@ fig_histogram.g2r <- function(
     inherit_asp = inherit_asp,
     sync = sync,
     type = "interval",
-    style = style,
     asp = asp
   )
 }
@@ -258,8 +249,7 @@ fig_boxplot <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_boxplot")
 }
@@ -271,8 +261,7 @@ fig_boxplot.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
 
   check_alter()
@@ -302,7 +291,6 @@ fig_boxplot.g2r <- function(
     inherit_asp = inherit_asp,
     sync = sync,
     type = "schema",
-    style = style,
     asp = asp
   )
 }
@@ -349,8 +337,7 @@ fig_smooth <- function(
   band_width = 1,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_smooth")
 }
@@ -379,8 +366,7 @@ fig_smooth.g2r <- function(
   band_width = 1,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
 
   check_alter()
@@ -456,7 +442,6 @@ fig_smooth.g2r <- function(
     inherit_asp = inherit_asp,
     sync = sync,
     type = "line",
-    style = style,
     asp = asp
   )
 }
@@ -482,8 +467,7 @@ fig_density <- function(
   ...,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_density")
 }
@@ -495,8 +479,7 @@ fig_density.g2r <- function(
   ...,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
 
   # aspects
@@ -536,7 +519,6 @@ fig_density.g2r <- function(
     inherit_asp = inherit_asp,
     sync = sync,
     type = "area",
-    style = style,
     asp = asp
   )
 }
@@ -563,8 +545,7 @@ fig_range <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_range")
 }
@@ -576,8 +557,7 @@ fig_range.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
 
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
@@ -600,7 +580,6 @@ fig_range.g2r <- function(
     inherit_asp = inherit_asp,
     sync = sync,
     type = "interval",
-    style = style,
     asp = asp
   )
 }
@@ -626,8 +605,7 @@ fig_pie <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_pie")
 }
@@ -639,8 +617,7 @@ fig_pie.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   g %>% 
     fig_interval(
@@ -648,8 +625,7 @@ fig_pie.g2r <- function(
       adjust("stack"),
       sync = sync,
       data = data,
-      inherit_asp = inherit_asp,
-      style = style 
+      inherit_asp = inherit_asp
     ) %>% 
     coord_type("theta")
 }
@@ -676,8 +652,7 @@ fig_voronoi <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_voronoi")
 }
@@ -689,8 +664,7 @@ fig_voronoi.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
 
   check_alter()
@@ -721,7 +695,6 @@ fig_voronoi.g2r <- function(
     inherit_asp = inherit_asp,
     sync = sync,
     type = "polygon",
-    style = style,
     asp = asp
   )
 }
@@ -759,8 +732,7 @@ fig_waffle <- function(
   min_size = 15,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
   UseMethod("fig_waffle")
 }
@@ -777,8 +749,7 @@ fig_waffle.g2r <- function(
   min_size = 15,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE,
-  style = NULL
+  inherit_asp = TRUE
 ){
 
   check_alter()
@@ -792,8 +763,6 @@ fig_waffle.g2r <- function(
 
   if(length(fields) < 2)
     stop("Must pass `x`, and `color` aspects", call. = FALSE)
-
-  print(fields)
 
   data <- alter::Alter$new(data)$
     source()$
@@ -831,7 +800,6 @@ fig_waffle.g2r <- function(
       inherit_asp = inherit_asp,
       sync = sync,
       type = "point",
-      style = style,
       asp = asp
     ) %>% 
     gauge_size(htmlwidgets::JS(cb)) %>% 
