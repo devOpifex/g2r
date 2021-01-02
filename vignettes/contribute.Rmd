@@ -1,0 +1,57 @@
+---
+title: "Contribute"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Contribute}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+g2r is an [htmlwidgets](http://htmlwidgets.org/) build with [packer](https://packer.john-coene.com/) so it can make use of the `@antv/g2` NPM package and webpack to modularise the code.
+
+First, make sure you have packer installed: `installed.packages("packer")`.
+
+Then, clone the project.
+
+```bash
+git clone https://github.com/devOpifex/g2r.git
+cd g2r
+```
+
+As mentioned, [packer](https://packer.john-coene.com/) is used to manage webpack and NPM with R: run the function below install the dependencies.
+
+```r
+packer::npm_install()
+```
+
+All the JavaScript code is placed in the `srcjs` directory. The core htmlwidget file is placed in the `srcjs/widget` directory, it makes use of various modules in the `srcjs/modules` directory.
+
+Make changes or additions to those file then bundle them with packer.
+
+```r
+packer::bundle_prod()
+```
+
+Make sure you bundle for prod, you can run the dev bundle as you try things out (it puts the sourcemap inline for debugging) but make sure you only push the prod bundle as part of the PR.
+
+in any event, `R CMD Check` will raise a warning with the dev bundle as the file is too large. 
+
+The easiest way is to use the `make`.
+
+```bash
+make build
+```
+
+## Figures & Alter
+
+G2.js figures are all handled in the `primitives.R` file; if adding a figure please place it in with other such custom figures in `figures.R`.
+
+Many figures internally use the [alter](https://github.com/devOpifex/alter) package which interfaces the `@antv/data-set` package.
+
+## Tests
+
+Make sure you include tests before submitting your PR.
+
+## Man & Docs
+
+Make sure document your functions with roxygen2 with examples, etc. Optionally, add something to the pkgdown site.

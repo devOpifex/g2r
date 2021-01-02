@@ -45,6 +45,8 @@ navbar:
         - text: "Planes"
           href: articles/planes.html
   right:
+    - text: "Contribute"
+      href: "articles/contribute.html"
     - icon: fa-github fa-lg
       href: https://github.com/devOpifex/g2r
 
@@ -117,3 +119,7 @@ reference:
     desc: "Customise the theme"
     contents:
       - motif
+
+authors:
+  John Coene:
+    href: http://john-coene.com
