@@ -140,7 +140,7 @@ df <- data.frame(
 )
 
 g2(df, asp(val, color = grp)) %>% 
- fig_histogram(adjust("stack"), bin_width = 1)
+ fig_histogram(bin_width = 1, fillOpacity = .5)
 ```
 
 ## Density

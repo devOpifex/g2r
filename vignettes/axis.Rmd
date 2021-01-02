@@ -46,7 +46,7 @@ df <- data.frame(
   value = c(1, .8, .4, .1)
 )
 
-g2(df, asp(name, value, color = percent)) %>% 
+g2(df, asp(name, value, color = name)) %>% 
   fig_interval(
     asp(shape = "pyramid"),
     adjust("symmetric")
