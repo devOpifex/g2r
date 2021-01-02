@@ -40,6 +40,8 @@ navbar:
           href: articles/figures.html
         - text: "Planes"
           href: articles/planes.html
+        - text: "Gauges"
+          href: articles/gauges.html
 
 reference:
   - title: "Initialisation"
