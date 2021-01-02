@@ -4,7 +4,6 @@
 #' 
 #' @param g An object of class `g2r` as returned by [g2()].
 #' @param ... Options to pass to the informational annotation.
-#' @param style A list of options defning the style.
 #' @param data A dataset to use with [asp()].
 #' 
 #' @details `info_vline`, and `info_hline` use the `x`, and `y`
@@ -37,7 +36,6 @@
 info_text <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   UseMethod("info_text")
@@ -48,14 +46,12 @@ info_text <- function(
 info_text.g2r <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "text",
-    style = style,
     data = data
   )
 }
@@ -65,7 +61,6 @@ info_text.g2r <- function(
 info_image <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   UseMethod("info_image")
@@ -76,14 +71,12 @@ info_image <- function(
 info_image.g2r <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "image",
-    style = style,
     data = data
   )
 }
@@ -93,7 +86,6 @@ info_image.g2r <- function(
 info_arc <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   UseMethod("info_arc")
@@ -104,14 +96,12 @@ info_arc <- function(
 info_arc.g2r <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "arc",
-    style = style,
     data = data
   )
 }
@@ -121,7 +111,6 @@ info_arc.g2r <- function(
 info_line <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   UseMethod("info_line")
@@ -132,14 +121,12 @@ info_line <- function(
 info_line.g2r <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "line",
-    style = style,
     data = data
   )
 }
@@ -149,7 +136,6 @@ info_line.g2r <- function(
 info_vline <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   UseMethod("info_vline")
@@ -160,7 +146,6 @@ info_vline <- function(
 info_vline.g2r <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   
@@ -176,7 +161,6 @@ info_vline.g2r <- function(
     g, 
     ..., 
     type = "line",
-    style = style,
     data = data,
     asp = asp
   )
@@ -187,7 +171,6 @@ info_vline.g2r <- function(
 info_hline <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   UseMethod("info_hline")
@@ -198,7 +181,6 @@ info_hline <- function(
 info_hline.g2r <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   
@@ -216,7 +198,6 @@ info_hline.g2r <- function(
     g, 
     ..., 
     type = "line",
-    style = style,
     data = data,
     asp = asp
   )
@@ -227,7 +208,6 @@ info_hline.g2r <- function(
 info_region <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   UseMethod("info_region")
@@ -238,14 +218,12 @@ info_region <- function(
 info_region.g2r <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "region",
-    style = style,
     data = data
   )
 }
@@ -255,7 +233,6 @@ info_region.g2r <- function(
 info_region_filter <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   UseMethod("info_region_filter")
@@ -266,14 +243,12 @@ info_region_filter <- function(
 info_region_filter.g2r <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "regionFilter",
-    style = style,
     data = data
   )
 }
@@ -283,7 +258,6 @@ info_region_filter.g2r <- function(
 info_marker <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   UseMethod("info_marker")
@@ -294,14 +268,12 @@ info_marker <- function(
 info_marker.g2r <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "dataMarker",
-    style = style,
     data = data
   )
 }
@@ -311,7 +283,6 @@ info_marker.g2r <- function(
 info_data_region <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   UseMethod("info_data_region")
@@ -322,14 +293,12 @@ info_data_region <- function(
 info_data_region.g2r <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "dataRegion",
-    style = style,
     data = data
   )
 }
@@ -339,7 +308,6 @@ info_data_region.g2r <- function(
 info_shape <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   UseMethod("info_shape")
@@ -350,14 +318,12 @@ info_shape <- function(
 info_shape.g2r <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "shape",
-    style = style,
     data = data
   )
 }
@@ -367,7 +333,6 @@ info_shape.g2r <- function(
 info_html <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   UseMethod("info_html")
@@ -378,14 +343,12 @@ info_html <- function(
 info_html.g2r <- function(
   g, 
   ..., 
-  style = NULL,
   data = NULL
 ){
   info_primitive(
     g, 
     ..., 
     type = "html",
-    style = style,
     data = data
   )
 }
@@ -396,7 +359,6 @@ info_html.g2r <- function(
 #' 
 #' @inheritParams fig_point
 #' @param type Type of annotation.
-#' @param style Style list to pass to the annotation.
 #' @param data Optional data.frame to use with the [asp()].
 #' @param asp Aspects, if `NULL` then the function retrieves them
 #' from the `...`.
@@ -417,15 +379,11 @@ info_primitive <- function(
     "shape",
     "html"
   ),
-  style = NULL,
   data = NULL,
   asp = NULL
 ){
 
   type <- match.arg(type)
-
-  # options without aspects
-  opts <- rm_asp(...)
 
   # info aspects
   if(is.null(asp))
@@ -436,9 +394,8 @@ info_primitive <- function(
 
   # common options
   info_opts <- list(
-    style = style
+    style = rm_asp(...)
   ) %>% 
-    append(opts) %>% 
     drop_nulls()
 
   # structure with type
