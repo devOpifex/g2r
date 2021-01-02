@@ -1,0 +1,74 @@
+---
+title: "Aspects"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Aspects}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Aspects (`asp()`) are analogous to `ggplot2::aes` but may work in somewhat different ways in places.
+
+```{r}
+library(g2r)
+
+g2(trees, asp(Girth, Volume, size = Height)) %>% 
+  fig_point(asp(shape = "circle", label = Height))
+```
+
+Aspects define the visualisation, these aspects can be further manipulated with the `gauge_*` functions.
+
+```{r}
+cb <- "(data, mappingData, index) => {
+  return data.Height + 'ft'
+}"
+
+g2(trees, asp(Girth, Volume, size = Height)) %>% 
+  fig_point(asp(shape = "circle", label = Height)) %>% 
+  gauge_label(
+    content = htmlwidgets::JS(cb), 
+    style = list(fill = "darkgray")
+  )
+```
+
+_Callback functions have to be wrapped with `htmlwidgets::JS`_
+
+There are some differences with ggplot2 though, e.g.: the use of JavaScript functions as shown above. Another such difference is that one use the same aspect multiple times (not all aspects).
+
+<details>
+```{r}
+df <- data.frame(
+  x = c(letters, letters),
+  y = runif(52),
+  grp = rep(c("A", "B"), each = 2)
+)
+```
+</details>
+
+The `gauge` is only used when a corresponding aspect has been defined, to configure a global feature of the chart there are other functions, e.g.: `tooltip`.
+
+```{r}
+g2(df, asp(x, y, color = grp)) %>% 
+  fig_interval() %>% 
+  tooltip(
+    shared = TRUE,
+    showMarkers = FALSE
+  )
+```
+
+Some aspects (few) are defined outside of the `asp` function, e.g.: to `adjust` bars on a chart or points on a scatter plot.
+
+```{r}
+g2(df, asp(x, y, color = grp)) %>% 
+  fig_interval(adjust("dodge")) %>% 
+  tooltip(
+    shared = TRUE,
+    showMarkers = FALSE
+  )
+```
+
+```{r}
+g2(cars, asp(speed, dist)) %>% 
+  fig_point(asp(shape = "circle")) %>% 
+  fig_point(adjust("jitter"))
+```

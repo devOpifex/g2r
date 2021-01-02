@@ -22,6 +22,8 @@ g2r comes with a number of figures that can be used to create visualisations. Ho
 
 ## Line
 
+The line can be controlled with `shape`: `smooth`, `dot`, or `line` (default).
+
 ```{r}
 df <- data.frame(
   x = 1:90,
@@ -30,6 +32,15 @@ df <- data.frame(
 
 g2(df, asp(x, y)) %>% 
   fig_line()
+```
+
+## Step
+
+A step chart is a line chart with a `shape`, one of: `vh`, `hv`, `hvh`, or `vhv`.
+
+```{r}
+g2(df, asp(x, y)) %>% 
+  fig_line(asp(shape = "hv"))
 ```
 
 ## Point

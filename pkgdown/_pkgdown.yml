@@ -38,10 +38,15 @@ navbar:
           href: articles/get-started.html
         - text: "Figures"
           href: articles/figures.html
-        - text: "Planes"
-          href: articles/planes.html
+        - text: "Aspects"
+          href: articles/aspects.html
         - text: "Gauges"
           href: articles/gauges.html
+        - text: "Planes"
+          href: articles/planes.html
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/devOpifex/g2r
 
 reference:
   - title: "Initialisation"
