@@ -24,3 +24,49 @@ g2(
   fig_smooth() %>%  
   gauge_y_pow() 
 ```
+
+Axis titles can be set with the convenience functions `axis_title_*`.
+
+```{r}
+g2(
+  penguins, 
+  asp(bill_length_mm, flipper_length_mm, color = species)
+) %>% 
+  fig_point() %>%
+  fig_smooth() %>%  
+  axis_title_x("Flipper Length (mm)") %>% 
+  axis_title_y("Bill Length (mm)")
+```
+
+To hide axis one can pass a boolean to the `axis_*` functions or, to hide both `axis_hide`.
+
+```{r}
+df <- data.frame(
+  name = c("Banana", "Apple", "Coconut", "Orange"),
+  value = c(1, .8, .4, .1)
+)
+
+g2(df, asp(name, value, color = percent)) %>% 
+  fig_interval(
+    asp(shape = "pyramid"),
+    adjust("symmetric")
+  ) %>% 
+  coord_transpose() %>% 
+  coord_scale(1, -1) %>% 
+  axis_hide()
+```
+
+To customise anything else one has to use the `axis_*` functions. The documentation on the available arguments is on the [official website](https://g2.antv.vision/en/docs/api/general/axis).
+
+```{r}
+g2(
+  penguins, 
+  asp(bill_length_mm, flipper_length_mm, color = sex)
+) %>% 
+  fig_density() %>%   
+  axis_y( 
+    grid = list(
+      alternateColor = c("#ededed", "white")
+    )
+  )
+```

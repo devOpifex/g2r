@@ -73,55 +73,55 @@ axis_hide.g2r <- function(g){
     axis_y(FALSE)
 }
 
-#' Axis Label
+#' Axis Title
 #' 
-#' Add axis labels.
+#' Add axis titles.
 #' 
 #' @inheritParams fig_point
-#' @param label Label to use on the axis.
+#' @param title Title to use on the axis.
 #' @param ... Options to customise the title.
-#' @param offset Offset between label and axis,
-#' if `0` the label is not visible.
+#' @param offset Offset between title and axis,
+#' if `0` the title is not visible.
 #' 
-#' @name axis_label
+#' @name axis_title
 #' @export 
-axis_label_x <- function(g, label, ..., offset = 30){
-  UseMethod("axis_label_x")
+axis_title_x <- function(g, title, ..., fontSize = 10, offset = 30){
+  UseMethod("axis_title_x")
 }
 
-#' @method axis_label_x g2r
-#' @rdname axis_label
+#' @method axis_title_x g2r
+#' @rdname axis_title
 #' @export 
-axis_label_x.g2r <- function(g, label, ..., offset = 30) {
-  axis_label_(g, label, ..., offset = offset, axis = "x")
+axis_title_x.g2r <- function(g, title, ..., fontSize = 10, offset = 30) {
+  axis_title_(g, title, ..., fontSize = fontSize, offset = offset, axis = "x")
 }
 
-#' @rdname axis_label
+#' @rdname axis_title
 #' @export 
-axis_label_y <- function(g, label, ..., offset = 30){
-  UseMethod("axis_label_y")
+axis_title_y <- function(g, title, ..., fontSize = 10, offset = 30){
+  UseMethod("axis_title_y")
 }
 
-#' @method axis_label_y g2r
-#' @rdname axis_label
+#' @method axis_title_y g2r
+#' @rdname axis_title
 #' @export 
-axis_label_y.g2r <- function(g, label, ..., offset = 30) {
-  axis_label_(g, label, ..., offset = offset, axis = "y")
+axis_title_y.g2r <- function(g, title, ..., fontSize = 10, offset = 30) {
+  axis_title_(g, title, ..., fontSize = fontSize, offset = offset, axis = "y")
 }
 
 #' Axis Label
 #' 
 #' @inheritParams fig_point
-#' @param label Label to use.
+#' @param title Title to use.
 #' @param ... Options passed to the `title` argument
-#' @param offset Label offset, otherwise (if `0`), 
+#' @param offset Title offset, otherwise (if `0`), 
 #' not visible.
-#' @param axis Axis to put the label on.
+#' @param axis Axis to put the title on.
 #' 
 #' @keywords internal
-axis_label_ <- function(g, label, ..., offset = 30, axis = c("x", "y")){
-  if(missing(label))
-    stop("Missing `label`", call. = FALSE)
+axis_title_ <- function(g, title, ..., fontSize = 10, offset = 30, axis = c("x", "y")){
+  if(missing(title))
+    stop("Missing `title`", call. = FALSE)
   
   axis <- match.arg(axis)
 
@@ -131,11 +131,14 @@ axis_label_ <- function(g, label, ..., offset = 30, axis = c("x", "y")){
   col <- get_aspect_names(g, "position")[pos]
 
   g %>% 
-    gauge_(col, alias = label) %>% 
+    gauge_(col, alias = title) %>% 
     fn(
       title = list(
         offset = offset,
-        style = list(...)
+        style = list(
+          fontSize = fontSize,
+          ...
+        )
       )
     )
 }

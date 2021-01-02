@@ -42,6 +42,8 @@ navbar:
           href: articles/aspects.html
         - text: "Gauges"
           href: articles/gauges.html
+        - text: "Axis"
+          href: articles/axis.html
         - text: "Planes"
           href: articles/planes.html
   right:
