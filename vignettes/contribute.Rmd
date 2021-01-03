@@ -7,6 +7,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+## Setup
+
 g2r is an [htmlwidgets](http://htmlwidgets.org/) build with [packer](https://packer.john-coene.com/) so it can make use of the `@antv/g2` NPM package and webpack to modularise the code.
 
 First, make sure you have packer installed: `installed.packages("packer")`.
