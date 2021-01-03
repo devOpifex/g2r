@@ -197,3 +197,42 @@ check_alter <- function(){
   if(!has_it)
     stop(msg, call. = FALSE)
 }
+
+#' Create widget
+#' 
+#' Create widget.
+#' 
+#' @param x List of options.
+#' @param width,height Dimensions of chart.
+#' @param elementId Id of element to create.
+#' 
+#' @keywords internal
+as_widget <- function(
+  x, 
+  width = NULL, 
+  height = NULL, 
+  elementId = NULL
+){
+  
+  attr(x, "TOJSON_ARGS") <- list(dataframe = "rows")
+
+  createWidget(
+    name = 'g2r',
+    x,
+    width = width,
+    height = height,
+    package = 'g2r',
+    elementId = elementId,
+    preRenderHook = renderG2,
+    sizingPolicy = sizingPolicy(
+      defaultWidth = "100%",
+      browser.fill = TRUE,
+      padding = 5,
+      knitr.defaultWidth = "100%"
+    ) 
+  )
+}
+
+igraph_to_list <- function(data){
+  return(data)
+}

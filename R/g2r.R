@@ -16,7 +16,24 @@
 #' @import htmlwidgets
 #'
 #' @export
-g2 <- function(data = NULL, ..., width = NULL, height = NULL, elementId = NULL) {
+g2 <- function(
+  data = NULL, 
+  ..., 
+  width = NULL, 
+  height = NULL, 
+  elementId = NULL
+) {
+  UseMethod("g2")
+}
+
+#' @export
+g2.default <- function(
+  data = NULL, 
+  ..., 
+  width = NULL, 
+  height = NULL, 
+  elementId = NULL
+) {
 
   asp <- get_asp(...)
 
@@ -38,24 +55,35 @@ g2 <- function(data = NULL, ..., width = NULL, height = NULL, elementId = NULL) 
     cols = c() # keep track of columns for filter
   )
 
-  attr(x, "TOJSON_ARGS") <- list(dataframe = "rows")
+  as_widget(x, width, height, elementId)
+}
 
-  # create widget
-  createWidget(
-    name = 'g2r',
-    x,
-    width = width,
-    height = height,
-    package = 'g2r',
-    elementId = elementId,
-    preRenderHook = renderG2,
-    sizingPolicy = sizingPolicy(
-      defaultWidth = "100%",
-      browser.fill = TRUE,
-      padding = 5,
-      knitr.defaultWidth = "100%"
-    ) 
+#' @export
+#' @method g2 igraph
+g2.igraph <- function(
+  data = NULL, 
+  ..., 
+  width = NULL, 
+  height = NULL, 
+  elementId = NULL
+) {
+
+  asp <- get_asp(...)
+
+  x = list(
+    chartOpts = list(
+      autoFit = TRUE,
+      theme = "light",
+      padding = "auto"
+    ),
+    data = igraph_to_list(data), # dataset
+    main_asp = asp, # main aspects
+    views = list(), # views | figures
+    scale = list(), # chart.scale
+    cols = c() # keep track of columns for filter
   )
+
+  as_widget(x, width, height, elementId)
 }
 
 #' Shiny Bindings
