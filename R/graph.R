@@ -116,3 +116,64 @@ layout_igraph.g2r <- function(
 
   g
 }
+
+#' Layout Arc
+#' 
+#' Layout as arc using the alter package.
+#' 
+#' @inheritParams fig_point
+#' @param thickness Node height, between `0` and `1`.
+#' @param marginRatio Space ratio, between `0` and `1`.
+#' 
+#' @examples 
+#' ig <- igraph::erdos.renyi.game(100, 1/100)
+#' 
+#' g2(ig, asp(x, y)) %>% 
+#'  layout_arc() %>% 
+#'  fig_edge(asp(color = source, shape = "arc"), opacity = .3) %>% 
+#'  fig_point(asp(color = id, shape = "circle", size = value)) %>% 
+#'  coord_type("polar") %>% 
+#'  coord_reflect("y") %>% 
+#'  axis_hide()
+#' 
+#' g2(ig, asp(x, y)) %>% 
+#'  layout_arc() %>% 
+#'  fig_edge(asp(color = source, shape = "arc"), opacity = .3) %>% 
+#'  fig_point(asp(color = id, shape = "circle", size = value))
+#' 
+#' @export 
+layout_arc <- function(
+  g,
+  ...,
+  thickness = .05,
+  marginRatio = .1
+){
+  check_alter()
+  UseMethod("layout_arc")
+}
+
+#' @method layout_arc g2r
+#' @export 
+layout_arc.g2r <- function(
+  g,
+  ...,
+  thickness = .05,
+  marginRatio = .1
+) {
+
+  alt <- alter::Alter$new(g$x$data)$
+    source(
+      type = "graph"
+    )$
+    transform(
+      type = "diagram.arc",
+      y = 0,
+      thickness = thickness,
+      marginRatio = marginRatio
+    )
+
+  g$x$data$edges <- alt$get("edges", clean = FALSE)
+  g$x$data$nodes <- alt$get("nodes")
+
+  g
+}
