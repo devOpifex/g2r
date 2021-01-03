@@ -1,0 +1,23 @@
+---
+title: "Info"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Info}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+The `info_*` family of functions to annotate visualisations.
+
+```{r}
+library(g2r)
+
+data(penguins, package = 'palmerpenguins')
+
+g2(penguins, asp(body_mass_g, flipper_length_mm)) %>% 
+  fig_point(asp(color = sex)) %>% 
+  info_marker(
+    asp(180, 3950), 
+    text = list(content = "Hello")
+  )
+```
