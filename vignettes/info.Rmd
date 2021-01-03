@@ -7,17 +7,125 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-The `info_*` family of functions to annotate visualisations.
+The `info_*` family of functions allows annotating visualisations.
+
+## Marker
+
+One can use data to place informational annotations.
 
 ```{r}
 library(g2r)
 
 data(penguins, package = 'palmerpenguins')
 
+samp <- penguins[sample(nrow(penguins), 10), ]
+samp$cnt <- letters[1:10]
+
 g2(penguins, asp(body_mass_g, flipper_length_mm)) %>% 
   fig_point(asp(color = sex)) %>% 
   info_marker(
-    asp(180, 3950), 
-    text = list(content = "Hello")
+    asp(body_mass_g, flipper_length_mm, content = cnt), 
+    top = TRUE,
+    data = samp
+  )
+```
+
+## Horizontal & Vertical Lines
+
+There are convenience functions to draw vertical and horizontal lines.
+
+```{r}
+g2(cars, asp(speed, dist)) %>% 
+  fig_point() %>% 
+  info_hline(asp(y = 43, content = "Mean Distance")) %>% 
+  info_vline(asp(x = 15, content = "Mean Speed"))
+```
+
+Otherwise lines can be specified by defining the start (`x`, `y`) and end (`xend`, `yend`) of the line.
+
+```{r}
+g2(cars, asp(speed, dist)) %>% 
+  fig_point() %>% 
+  info_line(
+    asp(
+      x = 4, y = 2, 
+      xend = 25, yend = 120,
+      content = "A diagonal line"
+    )
+  )
+```
+
+## Types
+
+There are a number of informational annotations:
+
+- `text`
+- `image`
+- `arc`
+- `line`
+- `region`
+- `region_filter`
+- `data_marker`
+- `data_region`
+- `shape`
+- `html`
+
+## Region filter
+
+The area and line charts are actually white (`asp(color = "white")`), the color is actually applied with the "region filter."
+
+```{r}
+df <- data.frame(
+  x = 1:100,
+  y = runif(100, -5, 5)
+)
+
+g2(df, asp(x, y, color = "white", shape = "smooth")) %>% 
+  fig_area() %>% 
+  fig_line() %>% 
+  info_region_filter(
+    asp(
+      x = "min", y = 0, 
+      xend = "max", yend = "min"
+    ), 
+    top = TRUE,
+    color = "red"
+  ) %>% 
+  info_region_filter(
+    asp(
+      x = "min", y = "max", 
+      xend = "max", yend = 0
+    ), 
+    top = TRUE,
+    color = "green"
+  ) %>% 
+  gauge_y_linear(min = -7, max = 7)
+```
+
+## Text
+
+Positional aspects (`x`, `y`, `xend`, `yend`) accept column names, string, integers and the following key terms: `min`, `max`, `median`, `start`, `end`.
+
+```{r}
+g2(cars, asp(speed, dist)) %>% 
+  fig_point() %>% 
+  info_text(
+    asp(x = "median", y = "median"),
+    content = "Median"
+  )
+```
+
+## Region
+
+Highlight a region.
+
+```{r}
+g2(cars, asp(speed, dist)) %>% 
+  fig_point() %>% 
+  info_region(
+    asp(
+      x = 10, y = "max",
+      xend = 20, yend = "min"
+    )
   )
 ```

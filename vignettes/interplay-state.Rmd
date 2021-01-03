@@ -1,0 +1,73 @@
+---
+title: "Interplay & State"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Interplay & State}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+One can control the state of the chart depending on the interactions (referred to as interplay in g2r).
+
+## State
+
+Use the functions `selected` and `active` on a figure to customise aesthetics based on the state of the visualisation or elements it comprises.
+
+```{r}
+df <- data.frame(
+ x = letters,
+ y = runif(26)
+)
+```
+
+For instance, on the graph below the bars are highlighted orange on click.
+
+```{r}
+library(g2r)
+
+g2(df, asp(x, y)) %>%
+ fig_interval(
+   selected(fill = "orange")
+ ) %>% 
+ interplay("element", "selected")
+```
+
+## Interplay
+
+Some interactions work at the level of the chart while others will work at the level of the figure, e.g.: `brush` (click and drag to select and area and zoom in).
+
+```{r}
+g2(cars, asp(speed, dist)) %>% 
+ fig_point(asp(interplay = "brush"))
+```
+
+G2.js comes with basic interplays out-of-the-box most of the time one will want to register an interplay and bind it to a figure.
+
+```{r}
+df <- data.frame(
+ x = c(letters, letters),
+ y = runif(52),
+ grp = c(rep("a", 26), rep("b", 26))
+)
+
+g2(df, asp(x, y, color = grp), elementId = "x") %>% 
+ fig_interval(
+   asp(interplay = "element-highlight-by-color"),
+   adjust("dodge")
+ ) %>%  
+ register_interplay(
+   "element-highlight-by-color",
+     start = list(
+       list(
+         trigger = 'element:mouseenter', 
+         action = 'element-highlight-by-color:highlight'
+       )
+     ),
+     end = list(
+       list(
+         trigger = 'element:mouseleave', 
+         action = 'element-highlight-by-color:reset'
+       )
+     )
+   )
+```

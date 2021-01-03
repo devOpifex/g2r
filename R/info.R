@@ -167,8 +167,8 @@ info_vline.g2r <- function(
   asp <- get_asp(...)
 
   if(length(asp)){
-    asp$xend <- "min"
-    asp$y <- rlang::quo_name(asp$x)
+    asp$xend <- asp$x
+    asp$y <- "min"
     asp$yend <- "max"
   }
 
@@ -205,11 +205,9 @@ info_hline.g2r <- function(
   asp <- get_asp(...)
 
   if(length(asp)){
-    y <- asp$y
     asp$x <- "min"
-    asp$xend <- y
-    asp$y <- "max"
-    asp$yend <- rlang::quo_name(y)
+    asp$xend <- "max"
+    asp$yend <- asp$y
   }
 
   info_primitive(
@@ -446,6 +444,11 @@ info_primitive <- function(
 
   if(!is.null(opts_asp)){
     info <- lapply(opts_asp, function(opt, info){
+
+      # content: "string" to text: {content: "string"}
+      info$opts$text$content <- opt$content
+      opt$content <- NULL
+
       info$opts <- append(info$opts, opt)
       return(info)
     }, info = info)

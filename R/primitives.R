@@ -718,7 +718,7 @@ fig_primitive_common <- function(
   # scales
   g <- sync(g, position[1], sync, if_true = "mainGroupX")
   g <- sync(g, position[2], sync, if_true = "mainGroupY")
-  g <- sync(g, color, sync, if_true = "mainColor")
+  # g <- sync(g, color, sync, if_true = "mainColor")
   g <- gauges_types(g, cols, data)
   
   opts <- list(

@@ -1,0 +1,20 @@
+---
+title: "Animations"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Animations}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Animations can be created using the `Animation` object or the `new_animation` class. This object can be passed to `fig_` functions.
+
+```{r}
+anim <- Animation$
+  new()$
+  appear(duration = 2500, delay = 1000)
+
+iris %>% 
+  g2(asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
+  fig_point(asp(shape = "circle"), anim)
+```

@@ -70,5 +70,20 @@ g2(df, asp(x, y, color = grp)) %>%
 ```{r}
 g2(cars, asp(speed, dist)) %>% 
   fig_point(asp(shape = "circle")) %>% 
+  fig_point(adjust("jitter")) %>% 
+  fig_point(adjust("jitter")) %>% 
   fig_point(adjust("jitter"))
+```
+
+Aspects also define the shape of points, lines, and areas.
+
+```{r}
+df <- data.frame(
+  x = 1:100,
+  y = rnorm(100, mean = rep(c(10, 14), each = 50))
+)
+
+g2(df, asp(x, y)) %>% 
+  fig_smooth(asp(shape = "smooth"), method = "gaussian") %>% 
+  fig_point(asp(shape = "square"))
 ```

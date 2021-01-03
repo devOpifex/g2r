@@ -106,7 +106,7 @@ info_aspects_data <- function(asp, data = NULL){
   add_data <- data.frame()
   asp <- discard(asp, is_quosure)
   if(length(asp)){
-    add_data <- as.character(asp)
+    add_data <- sapply(asp, asp_as_string)
     names(add_data) <- names(asp)
     add_data <- as.data.frame(t(add_data))
   }
@@ -133,16 +133,19 @@ rehsape_data <- function(data){
   data %>% 
     pmap(list) %>% 
     map(function(x){
-      pos <- x[names(x) %in% c("x", "y")] %>% unname %>% unlist
-      if(length(pos) == 2) x$position <- list(pos[[1]], pos[[2]])
-      st <- x[names(x) %in% c("x", "xend")] %>% unname %>% unlist
-      if(length(st) == 2) x$start <- list(st[[1]], st[[2]])
-      nd <- x[names(x) %in% c("y", "yend")] %>% unname %>% unlist
-      if(length(nd) == 2) x$end <- list(nd[[1]], nd[[2]])
+      pos <- x[names(x) %in% c("x", "y")]
+      if(length(pos) == 2) x$position <- list(pos[["x"]], pos[["y"]])
+
+      if(length(pos) == 2) x$start <- list(pos[["x"]], pos[["y"]])
+
+      nd <- x[names(x) %in% c("xend", "yend")]
+      if(length(nd) == 2) x$end <- list(nd[["xend"]], nd[["yend"]])
+
       x$x <- NULL
       x$y <- NULL
       x$xend <- NULL
       x$yend <- NULL
+
       return(x)
     })
 }
