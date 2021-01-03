@@ -17,7 +17,7 @@ igraph_to_list <- function(data){
   names(edges)[1:2] <- c("source", "target")
 
   if(ncol(nodes) == 0)
-    nodes <- data.frame(id = seq(nrow(edges)))
+    nodes <- data.frame(id = as.vector(igraph::V(data)))
 
   names(nodes)[1] <- "id"
 
@@ -62,7 +62,9 @@ layout_igraph <- function(
   UseMethod("layout_igraph")
 }
 
-layout_igraph <- function(
+#' @method layout_igraph g2r
+#' @export 
+layout_igraph.g2r <- function(
   g, 
   ..., 
   method = igraph::layout_nicely
