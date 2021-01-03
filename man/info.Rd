@@ -16,34 +16,36 @@
 \alias{info_html}
 \title{Text}
 \usage{
-info_text(g, ..., data = NULL)
+info_text(g, ..., style = NULL, data = NULL)
 
-info_image(g, ..., data = NULL)
+info_image(g, ..., style = NULL, data = NULL)
 
-info_arc(g, ..., data = NULL)
+info_arc(g, ..., style = NULL, data = NULL)
 
-info_line(g, ..., data = NULL)
+info_line(g, ..., style = NULL, data = NULL)
 
-info_vline(g, ..., data = NULL)
+info_vline(g, ..., style = NULL, data = NULL)
 
-info_hline(g, ..., data = NULL)
+info_hline(g, ..., style = NULL, data = NULL)
 
-info_region(g, ..., data = NULL)
+info_region(g, ..., style = NULL, data = NULL)
 
-info_region_filter(g, ..., data = NULL)
+info_region_filter(g, ..., style = NULL, data = NULL)
 
-info_marker(g, ..., data = NULL)
+info_marker(g, ..., style = NULL, data = NULL)
 
-info_data_region(g, ..., data = NULL)
+info_data_region(g, ..., style = NULL, data = NULL)
 
-info_shape(g, ..., data = NULL)
+info_shape(g, ..., style = NULL, data = NULL)
 
-info_html(g, ..., data = NULL)
+info_html(g, ..., style = NULL, data = NULL)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} as returned by \code{\link[=g2]{g2()}}.}
 
 \item{...}{Options to pass to the informational annotation.}
+
+\item{style}{A list of options defning the style.}
 
 \item{data}{A dataset to use with \code{\link[=asp]{asp()}}.}
 }

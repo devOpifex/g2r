@@ -9,6 +9,7 @@ info_primitive(
   ...,
   type = c("text", "image", "arc", "line", "region", "regionFilter", "dataMarker",
     "dataRegion", "shape", "html"),
+  style = NULL,
   data = NULL,
   asp = NULL
 )
@@ -23,6 +24,8 @@ pairs of are passed to
 \href{https://g2.antv.vision/en/docs/api/general/style}{style}.}
 
 \item{type}{Type of annotation.}
+
+\item{style}{Style list to pass to the annotation.}
 
 \item{data}{Optional data.frame to use with the \code{\link[=asp]{asp()}}.}
 

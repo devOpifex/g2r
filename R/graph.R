@@ -52,6 +52,8 @@ igraph_to_list <- function(data){
 #'  fig_point(asp(shape = "circle")) %>% 
 #'  axis_hide()
 #' 
+#' @importFrom purrr map
+#' 
 #' @export 
 layout_igraph <- function(
   g, 
@@ -103,8 +105,8 @@ layout_igraph.g2r <- function(
     all.x = TRUE
   )
 
-  g$x$data$edges <- purrr::pmap(g$x$data$edges, list) %>% 
-    purrr::map(function(edge){
+  g$x$data$edges <- pmap(g$x$data$edges, list) %>% 
+    map(function(edge){
       edge$x <- c(edge$source_x, edge$target_x)
       edge$y <- c(edge$source_y, edge$target_y)
 
