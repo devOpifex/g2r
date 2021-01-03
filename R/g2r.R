@@ -59,6 +59,34 @@ g2.default <- function(
 }
 
 #' @export
+#' @method g2 data.frame
+g2.data.frame <- function(
+  data = NULL, 
+  ..., 
+  width = NULL, 
+  height = NULL, 
+  elementId = NULL
+) {
+
+  asp <- get_asp(...)
+
+  x = list(
+    chartOpts = list(
+      autoFit = TRUE,
+      theme = "light",
+      padding = "auto"
+    ),
+    data = as_tib(data), # dataset
+    main_asp = asp, # main aspects
+    views = list(), # views | figures
+    scale = list(), # chart.scale
+    cols = c() # keep track of columns for filter
+  )
+
+  as_widget(x, width, height, elementId)
+}
+
+#' @export
 #' @method g2 igraph
 g2.igraph <- function(
   data = NULL, 
