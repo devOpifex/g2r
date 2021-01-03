@@ -28,8 +28,7 @@ Suggests:
   alter,
   shiny,
   packer,
-  knitr,
-  rmarkdown
+  igraph
 URL: https://g2r.dev, https://github.com/devOpifex/g2r
 Remotes:
   devOpifex/alter

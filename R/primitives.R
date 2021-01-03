@@ -43,6 +43,10 @@ fig_point.g2r <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+
+  if(is.null(data) && !is.null(g$x$graph))
+    data <- g$x$data$nodes
+  
   fig_primitive(
     g, 
     ..., 
@@ -344,6 +348,10 @@ fig_edge.g2r <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+
+  if(is.null(data) && !is.null(g$x$graph))
+    data <- g$x$data$edges
+
   fig_primitive(
     g, 
     ..., 

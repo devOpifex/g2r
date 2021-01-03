@@ -193,7 +193,20 @@ as_tib <- function(data = NULL){
 check_alter <- function(){
   has_it <- base::requireNamespace("alter", quietly = TRUE)
 
-  msg <- "This function requires the {alter} package.\n remotes::install_github(\"devOpifex/alter\")"
+  msg <- "This function requires the {alter} package installed.\n remotes::install_github(\"devOpifex/alter\")"
+  if(!has_it)
+    stop(msg, call. = FALSE)
+}
+
+#' @noRd
+#' @keywords internal
+check_package <- function(pkg){
+  has_it <- base::requireNamespace(pkg, quietly = TRUE)
+
+  msg <- sprintf(
+    "This function requires the {%s} package installed.\n",
+    pkg
+  )
   if(!has_it)
     stop(msg, call. = FALSE)
 }
@@ -231,8 +244,4 @@ as_widget <- function(
       knitr.defaultWidth = "100%"
     ) 
   )
-}
-
-igraph_to_list <- function(data){
-  return(data)
 }

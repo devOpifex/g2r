@@ -1,0 +1,58 @@
+---
+title: "Installation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Installation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+g2r is not yet on CRAN, it can be obtained from Github.
+
+# g2r
+
+## Remotes
+
+```r
+# install.packages("remotes")
+remotes::install_github("devOpifex/g2r")
+```
+
+## Devtools
+
+```r
+# install.packages("devtools")
+devtools::install_github("devOpifex/g2r")
+```
+
+## Pak
+
+```r
+# install.packages("pak")
+pak::pkg_install("devOpifex/g2r")
+```
+
+# alter
+
+Numerous figures internally depend on the [alter package](https://github.com/devOpifex/alter).
+
+## Remotes
+
+```r
+# install.packages("remotes")
+remotes::install_github("devOpifex/alter")
+```
+
+## Devtools
+
+```r
+# install.packages("devtools")
+devtools::install_github("devOpifex/alter")
+```
+
+## Pak
+
+```r
+# install.packages("pak")
+pak::pkg_install("devOpifex/alter")
+```

@@ -99,6 +99,7 @@ g2.igraph <- function(
   asp <- get_asp(...)
 
   x = list(
+    graph = data,
     chartOpts = list(
       autoFit = TRUE,
       theme = "light",

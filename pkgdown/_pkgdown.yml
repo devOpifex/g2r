@@ -34,6 +34,8 @@ navbar:
       href: "reference/index.html"
     - text: "Guide"
       menu: 
+        - text: "Installation"
+          href: articles/installation.html
         - text: "Get Started"
           href: articles/get-started.html
         - text: "Figures"
