@@ -55,3 +55,7 @@ Make sure you include tests before submitting your PR.
 ## Man & Docs
 
 Make sure document your functions with roxygen2 with examples, etc. Optionally, add something to the pkgdown site.
+
+## Dependencies
+
+Do not introduce new dependencies unless absolutely necessary.

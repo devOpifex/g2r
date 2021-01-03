@@ -1,0 +1,132 @@
+---
+title: "Graph"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Graph}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+One can plot networks by either constructing the `data.frame`s of nodes and edges (with `x` and `y` coordinates) or use [igraph](https://igraph.org/r/) objects.
+
+## igraph
+
+If the visualisation was initialised with an object of class `igraph` then the `layout_igraph` function can be used to compute the coordinates of nodes and edges.
+
+The `layout_igraph` function accepts a `method` which accepts an igraph layout function.
+
+```{r}
+library(g2r)
+
+ig <- igraph::make_full_graph(20)
+
+g2(ig, asp(x, y)) %>%
+  layout_igraph(method = igraph::layout_in_circle) %>% 
+  fig_edge() %>% 
+  fig_point(asp(shape = "circle")) %>% 
+  axis_hide()
+```
+
+## Layout
+
+You can also use the `layout_arc` function to layout the node in an arc.
+
+```{r}
+ig <- igraph::erdos.renyi.game(100, 1/100)
+
+g2(ig, asp(x, y)) %>% 
+  layout_arc() %>% 
+  fig_edge(
+    asp(
+      color = source, 
+      shape = "arc"
+    ), 
+    opacity = .3
+  ) %>% 
+  fig_point(
+    asp(
+      color = id, 
+      shape = "circle", 
+      size = value,
+      label = id
+    )
+  ) %>% 
+  coord_type("polar") %>% 
+  coord_reflect("y") %>% 
+  axis_hide() %>% 
+  gauge_label(labelEmit = TRUE) %>% 
+  motif(padding = c(30, 5, 75, 5))
+```
+
+Similar as above but without the polar coordinates.
+
+```{r}
+ig <- igraph::erdos.renyi.game(100, 1/100)
+
+g2(ig, asp(x, y)) %>% 
+  layout_arc(marginRatio = .5) %>% 
+  fig_edge(
+    asp(
+      color = source, 
+      shape = "arc",
+      tooltip = source,
+      tooltip = target
+    ), 
+    opacity = .3
+  ) %>% 
+  fig_point(
+    asp(
+      color = id, 
+      shape = "circle", 
+      size = value,
+      label = id
+    )
+  ) %>% 
+  axis_hide() %>% 
+  gauge_label(
+    offset = -10, 
+    rotate = pi / 2,
+    style = list(
+      textAlign = "left",
+      fontSize = 8
+    )
+  ) %>% 
+  motif(padding = c(20, 20, 30)) %>% 
+  legend_size(FALSE) %>% 
+  legend_color(FALSE)
+```
+
+## Data.frames
+
+You can also use data.frames but then will have to compute the coordinates for the layout manually. For the edges these coordinates, for the edges, must be list columns.
+
+- `x`: source, target x position
+- `y`: source, target y position
+
+```{r}
+# edges
+edges <- data.frame(
+  source = sample(letters, 26),
+  target = sample(letters, 26)
+)
+
+edges$x <- lapply(1:26, function(i){
+  c(runif(1, 1, 10), runif(1, 1, 10))
+})
+
+edges$y <- lapply(1:26, function(i){
+  c(runif(1, 1, 10), runif(1, 1, 10))
+})
+
+edges %>% 
+  head() %>% 
+  knitr::kable()
+```
+
+These can then be used as `x` and `y` aspects.
+
+```{r}
+g2(asp(x, y)) %>% 
+  fig_edge(data = edges) %>% 
+  axis_hide()
+```

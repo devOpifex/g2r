@@ -20,6 +20,8 @@ library(g2r)
 
 g2r comes with a number of figures that can be used to create visualisations. However, these can be used in many different ways than what is presented here in order to produce completely different looking charts.
 
+See the [graph vignette](/articles/graph.html) for network-related figures.
+
 ## Line
 
 The line can be controlled with `shape`: `smooth`, `dot`, or `line` (default).

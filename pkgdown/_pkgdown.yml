@@ -40,6 +40,8 @@ navbar:
           href: articles/get-started.html
         - text: "Figures"
           href: articles/figures.html
+        - text: "Graph"
+          href: articles/graph.html
         - text: "Aspects"
           href: articles/aspects.html
         - text: "Gauges"
@@ -127,6 +129,10 @@ reference:
     desc: "Customise the theme"
     contents:
       - motif
+  - title: "Graph"
+    desc: "Layout graphs"
+    contents:
+      - starts_with("layout_")
 
 authors:
   John Coene:

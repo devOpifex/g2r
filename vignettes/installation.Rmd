@@ -7,9 +7,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-g2r is not yet on CRAN, it can be obtained from Github.
-
 # g2r
+
+g2r is not yet on CRAN, it can be obtained from Github.
 
 ## Remotes
 
@@ -34,7 +34,7 @@ pak::pkg_install("devOpifex/g2r")
 
 # alter
 
-Numerous figures internally depend on the [alter package](https://github.com/devOpifex/alter).
+Numerous figures internally depend on the [alter package](https://github.com/devOpifex/alter), you will be prompted to install it if is not found on your machine.
 
 ## Remotes
 

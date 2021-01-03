@@ -124,6 +124,8 @@ layout_igraph.g2r <- function(
 #' Layout as arc using the alter package.
 #' 
 #' @inheritParams fig_point
+#' @param sourceWeight,targetWeight Bare name of column containing
+#' weights of source and target in the edges data.frame.
 #' @param thickness Node height, between `0` and `1`.
 #' @param marginRatio Space ratio, between `0` and `1`.
 #' 
@@ -146,6 +148,8 @@ layout_igraph.g2r <- function(
 #' @export 
 layout_arc <- function(
   g,
+  sourceWeight = NULL,
+  targetWeight = NULL,
   thickness = .05,
   marginRatio = .1
 ){
@@ -157,9 +161,15 @@ layout_arc <- function(
 #' @export 
 layout_arc.g2r <- function(
   g,
+  sourceWeight = NULL,
+  targetWeight = NULL,
   thickness = .05,
   marginRatio = .1
 ) {
+
+  src_wght_enquo <- enquo(sourceWeight)
+  tgt_wght_enquo <- enquo(targetWeight)
+  weight <- process_weight(g, src_wght_enquo, tgt_wght_enquo)
 
   alt <- alter::Alter$new(g$x$data)$
     source(
@@ -168,6 +178,7 @@ layout_arc.g2r <- function(
     transform(
       type = "diagram.arc",
       y = 0,
+      weight = weight,
       thickness = thickness,
       marginRatio = marginRatio
     )
@@ -226,3 +237,33 @@ layout_arc.g2r <- function(
 
 #   g
 # }
+
+#' Process Weight
+#' 
+#' Process weights for [layout_arc()].
+#' 
+#' @inheritParams fig_point
+#' @param src_wght_enquo,tgt_wght_enquo Source and target
+#' columns asq quosures.
+#' 
+#' @importFrom rlang quo_is_null enquo as_label
+#' 
+#' @keywords internal
+process_weight <- function(g, src_wght_enquo, tgt_wght_enquo){
+  if(quo_is_null(src_wght_enquo) || quo_is_null(tgt_wght_enquo))
+    return(FALSE)
+
+  # source weight
+  source_col <- as_label(src_wght_enquo)
+  index <- c(1:ncol(g$x$data$edges))[names(g$x$data$edges) %in% source_col]
+  names(g$x$data$edges)[index] <- "value"
+
+  # target weight
+  weight_col <- as_label(tgt_wght_enquo)
+  index <- c(1:ncol(g$x$data$edges))[names(g$x$data$edges) %in% weight_col]
+  names(g$x$data$edges)[index] <- "value1"
+
+  g$x$cols <- c(g$x$cols, "value", "value1")
+
+  TRUE
+}

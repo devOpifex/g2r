@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand|Ubuntu+Mono');
 
 h1 {
-  font-size: 50px;
+  font-size: 40px;
 }
 
 h2 {
-  font-size: 39px;
+  font-size: 30px;
 }
 
 h3 {
-  font-size: 28px;
+  font-size: 17px;
 }
 
 .version {
