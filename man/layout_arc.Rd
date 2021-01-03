@@ -4,16 +4,11 @@
 \alias{layout_arc}
 \title{Layout Arc}
 \usage{
-layout_arc(g, ..., thickness = 0.05, marginRatio = 0.1)
+layout_arc(g, thickness = 0.05, marginRatio = 0.1)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
 \code{\link[=g2_proxy]{g2_proxy()}}.}
-
-\item{...}{Options to pass to the figure, including \code{\link[=asp]{asp()}},
-and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, and \code{\link[=selected]{selected()}}, other key value
-pairs of are passed to
-\href{https://g2.antv.vision/en/docs/api/general/style}{style}.}
 
 \item{thickness}{Node height, between \code{0} and \code{1}.}
 

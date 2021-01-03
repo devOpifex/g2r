@@ -406,6 +406,9 @@ sync <- function(
   if_true = NULL
 ){
 
+  if(!length(asp))
+    return(g)
+
   if(is.na(asp))
     return(g)
   

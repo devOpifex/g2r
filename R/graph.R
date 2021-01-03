@@ -144,7 +144,6 @@ layout_igraph.g2r <- function(
 #' @export 
 layout_arc <- function(
   g,
-  ...,
   thickness = .05,
   marginRatio = .1
 ){
@@ -156,7 +155,6 @@ layout_arc <- function(
 #' @export 
 layout_arc.g2r <- function(
   g,
-  ...,
   thickness = .05,
   marginRatio = .1
 ) {
@@ -177,3 +175,52 @@ layout_arc.g2r <- function(
 
   g
 }
+
+# #' @export 
+# layout_sankey <- function(
+#   g,
+#   nodeAlign = c(
+#     "sankeyJustify",
+#     "sankeyLeft",
+#     "sankeyRight",
+#     "sankeyCenter"
+#   ),
+#   nodeWidth = .2,
+#   nodePadding = .02
+# ){
+#   check_alter()
+#   UseMethod("layout_sankey")
+# }
+
+# #' @method layout_sankey g2r
+# #' @export 
+# layout_sankey.g2r <- function(
+#   g,
+#   nodeAlign = c(
+#     "sankeyJustify",
+#     "sankeyLeft",
+#     "sankeyRight",
+#     "sankeyCenter"
+#   ),
+#   nodeWidth = .2,
+#   nodePadding = .02
+# ){
+
+#   node_align <- match.arg(nodeAlign)
+
+#   alt <- alter::Alter$new(g$x$data)$
+#     source(
+#       type = "graph"
+#     )$
+#     transform(
+#       type = "diagram.sankey",
+#       nodeAlign = nodeAlign,
+#       nodeWidth = nodeWidth,
+#       nodePadding = nodePadding
+#     )
+
+#   g$x$data$edges <- alt$get("edges", clean = FALSE)
+#   g$x$data$nodes <- alt$get("nodes")
+
+#   g
+# }
