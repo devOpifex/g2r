@@ -24,6 +24,8 @@ axis_title_y(g, title, ..., fontSize = 10, offset = 30)
 
 \item{...}{Options to customise the title.}
 
+\item{fontSize}{Size of the font of the label.}
+
 \item{offset}{Offset between title and axis,
 if \code{0} the title is not visible.}
 }

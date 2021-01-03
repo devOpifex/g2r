@@ -17,7 +17,9 @@ motif(
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
 \code{\link[=g2_proxy]{g2_proxy()}}.}
 
-\item{...}{Key value pair defining style.}
+\item{...}{Key value pair defining style, please see
+some the options available on the
+\href{https://g2.antv.vision/en/docs/api/advanced/register-theme}{official documentation}.}
 
 \item{renderer}{Renderer to use, defaults to \code{canvas}.}
 
