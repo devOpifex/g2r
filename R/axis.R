@@ -82,6 +82,7 @@ axis_hide.g2r <- function(g){
 #' @param ... Options to customise the title.
 #' @param offset Offset between title and axis,
 #' if `0` the title is not visible.
+#' @param fontSize Size of the font of the label.
 #' 
 #' @name axis_title
 #' @export 
