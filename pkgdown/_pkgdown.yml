@@ -44,6 +44,8 @@ navbar:
           href: articles/gauges.html
         - text: "Axis"
           href: articles/axis.html
+        - text: "Info"
+          href: articles/info.html
         - text: "Planes"
           href: articles/planes.html
         - text: "Motif"
