@@ -14,3 +14,4 @@
 ^index\.md$
 ^vignettes$
 ^makefile$
+^\.github$
