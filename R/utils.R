@@ -221,6 +221,9 @@ check_package <- function(pkg){
 #' @param x List of options.
 #' @param width,height Dimensions of chart.
 #' @param elementId Id of element to create.
+#' @param dependencies Dependencies (for crosstalk).
+#' 
+#' @importFrom crosstalk crosstalkLibs
 #' 
 #' @keywords internal
 as_widget <- function(
@@ -239,7 +242,8 @@ as_widget <- function(
     height = height,
     package = 'g2r',
     elementId = elementId,
-    preRenderHook = renderG2,
+    preRenderHook = pre_render,
+    dependencies = crosstalkLibs(),
     sizingPolicy = sizingPolicy(
       defaultWidth = "100%",
       browser.fill = TRUE,

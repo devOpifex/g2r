@@ -1,5 +1,6 @@
 {
   "widgets": "HTMLWidgets",
   "shiny": "Shiny",
-  "jquery": "jQuery"
+  "jquery": "jQuery",
+  "crosstalk": "crosstalk"
 }

@@ -12,6 +12,8 @@ as_widget(x, width = NULL, height = NULL, elementId = NULL)
 \item{width, height}{Dimensions of chart.}
 
 \item{elementId}{Id of element to create.}
+
+\item{dependencies}{Dependencies (for crosstalk).}
 }
 \description{
 Create widget.

@@ -5,7 +5,7 @@
 #' @return A modified version of `g`.
 #' 
 #' @keywords internal
-renderG2 <- function(g){  
+pre_render <- function(g){  
   
   # filter columns
   cols <- unique(g$x$cols)

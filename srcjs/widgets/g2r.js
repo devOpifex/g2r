@@ -1,4 +1,5 @@
 import 'widgets';
+import 'crosstalk';
 import { Chart, registerTheme } from '@antv/g2';
 import { makeFigure } from '../modules/makeFigure.js'; 
 import { makeCoords } from '../modules/makeCoords.js'; 
@@ -14,7 +15,6 @@ import {
 } from '../modules/interactions.js';
 import { getProxy, getView } from '../modules/shiny.js';
 import { facetFactory } from '../modules/facet.js';
-import { getComponents } from '@antv/g2/lib/interaction/action/util';
 
 HTMLWidgets.widget({
 
@@ -24,11 +24,24 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    let c;
+    let c, sel_handle;
+
+    sel_handle = new crosstalk.SelectionHandle();
+
+    sel_handle.on("change", function(e) {
+      let selected = e.value;
+      c.views.forEach((v) => {
+        v.filter('CROSSTALK_KEYS', (key) => selected.includes(key))
+      })
+      c.render();
+    });
 
     return {
 
       renderValue: function(x) {
+
+        if(x.crosstalk_group)
+          sel_handle.setGroup(x.crosstalk_group);
 
         if(x.theme)
           registerTheme(x.chartOpts.theme, x.theme);
@@ -129,38 +142,4 @@ HTMLWidgets.widget({
   }
 });
 
-if (HTMLWidgets.shinyMode) {
 
-  // Render
-  Shiny.addCustomMessageHandler('render',
-    function(id) {
-      let c = getProxy(id);
-      c.render();
-  });
-
-  // Add Figure
-  Shiny.addCustomMessageHandler('figure',
-    function(x) {
-      console.log(x);
-
-      let c = getProxy(x.id);
-      let view = c.createView();
-
-      annotate(view, x.views[0])
-
-      let figure = makeFigure(view, x.views[0].type);
-      tuneFigure(figure, x.views[0]);
-
-      // data
-      assignData(view, x.views[0], x)
-  });
-
-  // Remove Figure
-  Shiny.addCustomMessageHandler('remove_figure',
-    function(data) {
-      let c = getProxy(data.id);
-      let v = getView(data.id, data.index);
-      c.removeView(v);
-  });
-
-}

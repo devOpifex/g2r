@@ -23,7 +23,8 @@ Imports:
   purrr,
   rlang,
   R6,
-  tibble
+  tibble,
+  crosstalk
 Suggests:
     alter,
     shiny,

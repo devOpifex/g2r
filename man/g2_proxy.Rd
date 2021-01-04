@@ -24,13 +24,13 @@ library(shiny)
 dataset <- data.frame(x = 1:100, y = runif(100, 1, 100))
 
 ui <- fluidPage(
- g2rOutput("plot"),
+ g2Output("plot"),
  actionButton("add", "Add figure")
 )
 
 server <- function(input, output, session){
 
- output$plot <- renderG2r({
+ output$plot <- renderG2({
    g2(dataset, asp(x, y)) \%>\% 
      fig_point()
  })

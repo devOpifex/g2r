@@ -25,13 +25,13 @@ df <- data.frame(
 )
 
 ui <- fluidPage(
- g2rOutput("plot"),
+ g2Output("plot"),
  actionButton("rm", "Randomly remove a figure")
 )
 
 server <- function(input, output){
 
- output$plot <- renderG2r({
+ output$plot <- renderG2({
    g2(df, asp(x, y)) \%>\% 
      fig_point() \%>\% 
      fig_line(asp(y = z))

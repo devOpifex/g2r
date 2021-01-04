@@ -115,6 +115,46 @@ g2.igraph <- function(
   as_widget(x, width, height, elementId)
 }
 
+#' @export
+#' @method g2 SharedData
+g2.SharedData <- function(
+  data = NULL, 
+  ..., 
+  width = NULL, 
+  height = NULL, 
+  elementId = NULL
+) {
+
+  asp <- get_asp(...)
+
+  key_col <- "CROSSTALK_KEYS"
+
+  dataset <- data$origData()
+  dataset[[key_col]] <- data$key()
+
+  x = list(
+    chartOpts = list(
+      autoFit = TRUE,
+      theme = "light",
+      padding = "auto"
+    ),
+    crosstalk_group = data$groupName(),
+    data = dataset, # dataset
+    main_asp = asp, # main aspects
+    views = list(), # views | figures
+    scale = list(), # chart.scale
+    cols = c(key_col) # keep track of columns for filter
+  )
+
+  as_widget(
+    x, 
+    width, 
+    height, 
+    elementId
+  )
+}
+
+
 #' Shiny Bindings
 #'
 #' Output and render functions for using g2r within Shiny
@@ -132,13 +172,13 @@ g2.igraph <- function(
 #' @name g2r-shiny
 #'
 #' @export
-g2rOutput <- function(outputId, width = '100%', height = '400px'){
-  htmlwidgets::shinyWidgetOutput(outputId, 'g2r', width, height, package = 'g2r')
+g2Output <- function(outputId, width = '100%', height = '400px'){
+  shinyWidgetOutput(outputId, 'g2r', width, height, package = 'g2r')
 }
 
 #' @rdname g2r-shiny
 #' @export
-renderG2r <- function(expr, env = parent.frame(), quoted = FALSE) {
+renderG2 <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, g2rOutput, env, quoted = TRUE)
+  shinyRenderWidget(expr, g2Output, env, quoted = TRUE)
 }
