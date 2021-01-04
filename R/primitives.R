@@ -706,9 +706,11 @@ fig_primitive_common <- function(
 
   style <- rm_asp(...)
 
-  if(is.null(style)){
+  if(length(style_asp) && length(style)){
     style_asp <- collapse_asp(style_asp)
     style <- list(style_asp, style)
+  } else if (length(style_asp) && !length(style)){
+    style <- style_asp
   }
   
   # store columns
