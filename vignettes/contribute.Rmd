@@ -61,3 +61,7 @@ Make sure document your functions with roxygen2 with examples, etc. Optionally, 
 ## Dependencies
 
 Do not introduce new dependencies unless absolutely necessary.
+
+## News
+
+Update the `NEWS.md` file with the changes you have made.
