@@ -114,6 +114,7 @@ HTMLWidgets.widget({
 
       resize: function(width, height) {
         // no need in g2.js
+        c.changeSize(width, height);
       },
 
       getChart: function(){
