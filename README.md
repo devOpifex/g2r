@@ -1,9 +1,22 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<div align="center">
+
+<img src="man/figures/logo.png" height = "200px" />
+
+<br />
+<br />
 
 <!-- badges: start -->
 
 <!-- badges: end -->
+
+[G2.js](https://g2.antv.vision/) for R.
+
+[Website](https://g2r.dev) |
+[Shiny Demo](https://shiny.john-coene.com/echarts4rShiny/) | [Get
+Started](https://g2r.dev/articles/get_started.html)
+
+</div>
 
 # g2r
 
