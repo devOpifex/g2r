@@ -31,6 +31,9 @@ remotes::install_github("devOpifex/g2r")
 ```r
 library(g2r)
 
-g2(cars, asp(speed, dist)) %>% 
-  fig_point()
+g2(cars, asp(speed, dist, color = dist)) %>% 
+  fig_point(asp(size = dist)) %>% 
+  gauge_color(c("#FDE725", "#21908C", "#440154"))
 ```
+
+![](man/figures/g2-example.png)
