@@ -59,16 +59,6 @@ gauge_shape.g2r <- function(g, ...){
 
 #' @rdname gaugeViews
 #' @export 
-gauge_label <- function(g, ...) UseMethod("gauge_label")
-
-#' @method gauge_label g2r
-#' @export 
-gauge_label.g2r <- function(g, ...){
-  gauge2_(g, ..., fn = "shape")
-}
-
-#' @rdname gaugeViews
-#' @export 
 gauge_tooltip <- function(g, ...) UseMethod("gauge_tooltip")
 
 #' @method gauge_tooltip g2r
