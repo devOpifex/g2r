@@ -5,8 +5,8 @@
 \alias{gauge_color}
 \alias{gauge_size}
 \alias{gauge_shape}
-\alias{gauge_label}
 \alias{gauge_tooltip}
+\alias{gauge_label}
 \alias{gauge_style}
 \alias{gauge_interplay}
 \title{Gauge Aspects}
@@ -16,8 +16,6 @@ gauge_color(g, ...)
 gauge_size(g, ...)
 
 gauge_shape(g, ...)
-
-gauge_label(g, ...)
 
 gauge_tooltip(g, ...)
 
