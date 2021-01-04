@@ -204,10 +204,15 @@ select_asp <- function(asp, ...){
 
 #' @keywords internal
 select_asp_labels <- function(asp, ...){
-  asp %>% 
+  a <- asp %>% 
     select_asp(...) %>% 
-    sapply(asp_as_string) %>% 
-    unname()
+    sapply(asp_as_string)
+
+  # order x and y
+  if(length(a))
+    a <- a[order(names(a))] 
+  
+  unname(a)
 }
 
 #' Aspect as String

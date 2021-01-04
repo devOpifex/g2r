@@ -65,3 +65,7 @@ Do not introduce new dependencies unless absolutely necessary.
 ## News
 
 Update the `NEWS.md` file with the changes you have made.
+
+## Tests
+
+Add tests for the functionalities you propose.

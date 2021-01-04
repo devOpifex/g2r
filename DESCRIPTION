@@ -25,10 +25,12 @@ Imports:
   R6,
   tibble
 Suggests:
-  alter,
-  shiny,
-  packer,
-  igraph
+    alter,
+    shiny,
+    packer,
+    igraph,
+    testthat (>= 3.0.0)
 URL: https://g2r.dev, https://github.com/devOpifex/g2r
 Remotes:
   devOpifex/alter
+Config/testthat/edition: 3
