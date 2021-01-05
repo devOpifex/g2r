@@ -1,3 +1,10 @@
+test_that("Gauge error", {
+  g <- g2(cars, asp(speed, dist)) %>% 
+    fig_point(asp(color = dist))
+
+  expect_error(gauge_interplay(g))
+})
+
 test_that("Gauge color", {
   g <- g2(cars, asp(speed, dist)) %>% 
     fig_point(asp(color = dist))
@@ -68,4 +75,12 @@ test_that("Gauge style", {
 
   style <- gauge_style(g, htmlwidgets::JS(cb))
   expect_length(style$x$views[[1]]$style, 2)
+})
+
+test_that("Gauge interplay", {
+  g <- g2(cars, asp(speed, dist)) %>% 
+    fig_point(asp(style = dist, interplay = "brush"))
+
+  inter <- gauge_interplay(g, FALSE)
+  expect_false(inter$x$views[[1]]$interaction)
 })

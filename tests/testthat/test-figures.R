@@ -24,6 +24,8 @@ test_that("Figures - Point", {
   expect_equal(g$x$views[[1]]$size, 3)
 
   expect_length(g$x$cols, 3)
+
+  expect_snapshot(asp(hello, world))
 })
 
 test_that("Figures - Line", {

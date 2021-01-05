@@ -9,4 +9,6 @@ test_that("Animation", {
     fig_point(anim)
 
   expect_length(g$x$views[[1]]$animation, 1)
+
+  expect_snapshot(anim)
 })
