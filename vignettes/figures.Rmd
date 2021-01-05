@@ -101,7 +101,7 @@ g2(df, asp(x, y, color = value)) %>%
 ## Heatmap
 
 ```{r}
-g2(mtcars, asp(mpg, qsec, color = drat)) %>% 
+g2(iris, asp(Sepal.Length, Sepal.Width, color = Petal.Length)) %>% 
   fig_heatmap() %>% 
   gauge_color(c("blue", "cyan", "lime", "yellow", "red"))
 ```
