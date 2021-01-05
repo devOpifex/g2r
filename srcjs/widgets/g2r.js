@@ -44,7 +44,7 @@ HTMLWidgets.widget({
 
         // crosstalk
         crosstalkFilter(c, ctFilter);
-        crosstalkSelect(c, ctSelection, x.crosstalk_select.stroke, x.crosstalk_select.fill);
+        crosstalkSelect(c, ctSelection, x.crosstalk_select);
 
         if(x.data)
           c.data(x.data);

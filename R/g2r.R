@@ -122,9 +122,7 @@ g2.SharedData <- function(
   ..., 
   width = NULL, 
   height = NULL, 
-  elementId = NULL,
-  stroke = "black",
-  fill = "none"
+  elementId = NULL
 ) {
 
   asp <- get_asp(...)
@@ -139,10 +137,6 @@ g2.SharedData <- function(
       autoFit = TRUE,
       theme = "light",
       padding = "auto"
-    ),
-    crosstalk_select = list(
-      stroke = stroke,
-      fill = fill
     ),
     crosstalk_group = data$groupName(),
     data = dataset, # dataset

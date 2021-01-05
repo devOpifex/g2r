@@ -32,6 +32,14 @@ devtools::install_github("devOpifex/g2r")
 pak::pkg_install("devOpifex/g2r")
 ```
 
+## Source
+
+```bash
+git clone https://github.com/devOpifex/g2r.git
+cd ./g2r
+make init
+```
+
 # alter
 
 Numerous figures internally depend on the [alter package](https://github.com/devOpifex/alter), you will be prompted to install it if is not found on your machine.

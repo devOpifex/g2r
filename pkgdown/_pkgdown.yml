@@ -139,6 +139,10 @@ reference:
     desc: "Layout graphs"
     contents:
       - starts_with("layout_")
+  - title: "Crosstalk"
+    desc: "Crosstalk-related functions"
+    contents:
+      - starts_with("crosstalk_")
 
 authors:
   John Coene:

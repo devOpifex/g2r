@@ -7,6 +7,8 @@ build:
 
 init: 
 				Rscript -e "packer::npm_install()"
+				Rscript -e "packer::bundle_prod()"
+				Rscript -e "devtools::install()"
 
 site:
 				Rscript -e "pkgdown::build_site()"

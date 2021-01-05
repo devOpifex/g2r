@@ -1,8 +1,6 @@
 const crosstalkFilter = (c, ctFilter) => {
   ctFilter.on("change", function(e) {
 
-    console.log(e);
-
     // reset
     if (e.sender !== ctFilter) {
       c.views.forEach((v) => {
@@ -28,11 +26,10 @@ const crosstalkFilter = (c, ctFilter) => {
   });
 }
 
-const crosstalkSelect = (c, ctSelection, stroke = "black", fill = "none") => {
+const crosstalkSelect = (c, ctSelection, opts) => {
 
-  let firstRun = true, // to set/reset colors;
-      strokeColors = [],
-      fillColors = []; 
+  let firstRun = true,
+      originalAttrs = [];
   
   ctSelection.on("change", (e) => {
 
@@ -41,9 +38,19 @@ const crosstalkSelect = (c, ctSelection, stroke = "black", fill = "none") => {
 
     // if first run collect original colors
     if(firstRun){
-      c.views[0].geometries[0].elements.map(function(el){
-        strokeColors.push(el.shape.attrs.stroke);
-        fillColors.push(el.shape.attrs.fill);
+      c.views.map((v) => {
+        
+        opts.map((opt) => {
+          
+          let values = [];
+          v.geometries[0].elements.map((el) => {
+            values.push(el.shape.attrs[opt.attribute])
+          })
+
+          originalAttrs.push({attribute: opt.attribute, values: values})
+
+        })
+
       })
     }
     
@@ -54,19 +61,44 @@ const crosstalkSelect = (c, ctSelection, stroke = "black", fill = "none") => {
         indices.push(found)
     })
 
-    // loop over elements of plot to color
-    c.views[0].geometries[0].elements.map(function(el, index){
+    if(indices.length === 0){
+      c.views.map((v, vindex) => {
+        v.geometries[0].elements.map(function(el, index){
+  
+          opts.map((opt) => {
+            el.shape.attrs[opt.attribute] = originalAttrs[vindex].values[index];
+          })
+    
+        })
+      })
 
-      if(indices.includes(index)){
-        if(stroke != "none")
-          el.shape.attrs.stroke = stroke;
-        if(fill != "none")
-          el.shape.attrs.fill = fill;
-      } else {
-        el.shape.attrs.stroke = strokeColors[index];
-        el.shape.attrs.fill = fillColors[index];
-      }
+      c.render();
 
+      return ;
+    }
+
+    c.views.map((v, vindex) => {
+      v.geometries[0].elements.map(function(el, index){
+
+        if(indices.includes(index)){
+
+          opts.map((opt) => {
+            if(opt.on !== 'none')
+              el.shape.attrs[opt.attribute] = opt.on
+          })
+
+        } else {
+
+          opts.map((opt) => {
+            if(opt.off === 'none')
+              el.shape.attrs[opt.attribute] = originalAttrs[vindex].values[index];
+            else
+              el.shape.attrs[opt.attribute] = opt.off
+          })
+
+        }
+  
+      })
     })
 
     firstRun = false;
