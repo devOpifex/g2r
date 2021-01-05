@@ -12,10 +12,10 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
 
-```{r setup, include=FALSE}
 library(g2r)
+
+motif_global(fontFamily = "Quicksand")
 ```
 
 ```{r}

@@ -7,6 +7,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r setup, include=FALSE}
+library(g2r)
+
+motif_global(fontFamily = "Quicksand")
+```
+
 # g2r
 
 g2r is not yet on CRAN, it can be obtained from Github.

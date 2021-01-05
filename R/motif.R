@@ -12,6 +12,9 @@
 #' @param padding An integer, or a vector of length 4.
 #' @param visible Whether the chart is visible.
 #' 
+#' @details [motif()] applies the theme to the chart, [motif_global()]
+#' creates a global theme that all subsequent charts will use.
+#' 
 #' @details The styling options are poorly, if at all
 #' documented online.
 #' 
@@ -31,6 +34,7 @@
 #'    )
 #'  )
 #' 
+#' @name motif
 #' @export 
 motif <- function(
   g, 
@@ -70,6 +74,52 @@ motif.g2r <- function(
   g$x$chartOpts$renderer <- renderer
   g$x$chartOpts$padding <- padding
   g$x$chartOpts$visible <- visible
+  g$x$chartOpts$autoFit <- TRUE
   
   g
+}
+
+#' @rdname motif
+#' @export 
+motif_global <- function(
+  ..., 
+  renderer = c("canvas", "svg"),
+  padding = "auto",
+  visible = TRUE,
+  name = "light"
+){
+  renderer <- match.arg(renderer)
+  opts <- list(...)
+
+  if(length(opts) == 0)
+    opts <- NULL
+
+  if(!is.null(opts) && name %in% c("light", "dark"))
+    name <- "custom"
+
+  # theme options
+  options(G2_THEME = opts)
+
+  chart_opts <- list(
+    theme = name,
+    renderer = renderer,
+    padding = padding,
+    visible = visible,
+    autoFit = TRUE
+  )
+  
+  options(G2_CHART_OPTS = chart_opts)
+}
+
+DEFAULT_CHART_OPTS <- list(
+  padding = "auto",
+  autoFit = TRUE
+)
+
+get_global_chart_opts <- function(){
+  getOption("G2_CHART_OPTS", DEFAULT_CHART_OPTS)
+}
+
+get_global_theme <- function(){
+  getOption("G2_THEME", NULL)
 }

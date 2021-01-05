@@ -7,6 +7,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r setup, include=FALSE}
+library(g2r)
+
+motif_global(fontFamily = "Quicksand")
+```
+
 One can control the state of the chart depending on the interactions (referred to as interplay in g2r).
 
 ## State

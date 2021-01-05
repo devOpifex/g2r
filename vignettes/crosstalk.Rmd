@@ -11,15 +11,24 @@ vignette: >
 library(g2r)
 library(plotly)
 library(crosstalk)
+
+motif_global(fontFamily = "Quicksand")
 ```
 
 g2r supports [crosstalk](https://rstudio.github.io/crosstalk/) to link g2 visualisations with other [htmlwidgets](http://htmlwidgets.org/) that [supports crosstalk](https://rstudio.github.io/crosstalk/widgets.html).
+
+<div class="panel panel-warning">
+<div class="panel-heading">Warning</div>
+<div class="panel-body">
+Crosstalk only works with data passed to `g2`.
+</div>
+</div>
 
 ## Filter
 
 For instance, one can add a g2 plot to an example from the [plotly R book](https://plotly-r.com/client-side-linking.html).
 
-```{r, warning=FALSE, message=FALSE, error=FALSE}
+```{r, eval = FALSE, warning=FALSE, message=FALSE, error=FALSE}
 library(g2r)
 library(plotly)
 library(crosstalk)

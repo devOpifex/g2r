@@ -7,6 +7,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r setup, include=FALSE}
+library(g2r)
+
+motif_global(fontFamily = "Quicksand")
+```
+
 Aspects (`asp()`) are analogous to `ggplot2::aes` but may work in somewhat different ways in places.
 
 ```{r}

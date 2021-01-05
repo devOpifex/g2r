@@ -44,11 +44,6 @@ g2.default <- function(
   }
 
   x = list(
-    chartOpts = list(
-      autoFit = TRUE,
-      theme = "light",
-      padding = "auto"
-    ),
     data = as_tib(data), # dataset
     main_asp = asp, # main aspects
     views = list(), # views | figures
@@ -72,11 +67,6 @@ g2.data.frame <- function(
   asp <- get_asp(...)
 
   x = list(
-    chartOpts = list(
-      autoFit = TRUE,
-      theme = "light",
-      padding = "auto"
-    ),
     data = as_tib(data), # dataset
     main_asp = asp, # main aspects
     views = list(), # views | figures
@@ -101,11 +91,6 @@ g2.igraph <- function(
 
   x = list(
     graph = data,
-    chartOpts = list(
-      autoFit = TRUE,
-      theme = "light",
-      padding = "auto"
-    ),
     data = igraph_to_list(data), # dataset
     main_asp = asp, # main aspects
     views = list(), # views | figures
@@ -134,11 +119,6 @@ g2.SharedData <- function(
   dataset[[key_col]] <- data$key()
 
   x = list(
-    chartOpts = list(
-      autoFit = TRUE,
-      theme = "light",
-      padding = "auto"
-    ),
     crosstalk_group = data$groupName(),
     data = dataset, # dataset
     main_asp = asp, # main aspects

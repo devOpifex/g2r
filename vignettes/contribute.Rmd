@@ -7,6 +7,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r setup, include=FALSE}
+library(g2r)
+
+motif_global(fontFamily = "Quicksand")
+```
+
 ## Setup
 
 g2r is an [htmlwidgets](http://htmlwidgets.org/) build with [packer](https://packer.john-coene.com/) so it can make use of the `@antv/g2` NPM package and webpack to modularise the code.

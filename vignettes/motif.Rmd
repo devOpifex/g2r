@@ -7,6 +7,17 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(g2r)
+
+motif_global(fontFamily = "Quicksand")
+```
+
 The theme of the chart can be customised with the `motif` function.
 
 Out-of-the-box G2.js comes with two themes (light), and dark.
@@ -35,3 +46,7 @@ motif(
   colors10 = scales::hue_pal()(3)
 )
 ```
+
+## Globals
+
+The `motif_global` function is very similar to `motif` but instead of applying a chart to a single chart will create a global motif that will be applied to all subsequent charts.

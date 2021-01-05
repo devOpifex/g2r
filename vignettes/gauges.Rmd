@@ -7,6 +7,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r setup, include=FALSE}
+library(g2r)
+
+motif_global(fontFamily = "Quicksand")
+```
+
 The `gauge_*` family of functions is similar to `scale_*` though there are some stark differences in places.
 
 You can gauge aspects specific aspects, just like in ggplot2.

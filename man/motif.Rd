@@ -2,10 +2,19 @@
 % Please edit documentation in R/motif.R
 \name{motif}
 \alias{motif}
+\alias{motif_global}
 \title{Motif}
 \usage{
 motif(
   g,
+  ...,
+  renderer = c("canvas", "svg"),
+  padding = "auto",
+  visible = TRUE,
+  name = "light"
+)
+
+motif_global(
   ...,
   renderer = c("canvas", "svg"),
   padding = "auto",
@@ -34,6 +43,9 @@ Out-of-the-box g2 provides \code{light}, and \code{dark}.}
 Set the motif of the chart, defaults to \code{light}.
 }
 \details{
+\code{\link[=motif]{motif()}} applies the theme to the chart, \code{\link[=motif_global]{motif_global()}}
+creates a global theme that all subsequent charts will use.
+
 The styling options are poorly, if at all
 documented online.
 }

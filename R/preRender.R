@@ -15,6 +15,14 @@ pre_render <- function(g){
   g$x$cols <- NULL
   g$x$main_asp <- NULL
 
+  # globals
+  if(is.null(g$x$theme))
+    g$x$theme <- get_global_theme()
+  
+  if(is.null(g$x$chartOpts))
+    g$x$chartOpts <- get_global_chart_opts()
+
+  # add default select if none specified
   if(is.null(g$x$crosstalk_select))
     g <- crosstalk_select(g, "stroke", "black")
 
