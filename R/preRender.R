@@ -15,5 +15,8 @@ pre_render <- function(g){
   g$x$cols <- NULL
   g$x$main_asp <- NULL
 
+  if(is.null(g$x$crosstalk_select))
+    g$x$crosstalk_select <- list(stroke = "none", fill = "none")
+
   g
 }

@@ -1,0 +1,59 @@
+---
+title: "Crosstalk"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Crosstalk}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+g2r supports [crosstalk](https://rstudio.github.io/crosstalk/) to link g2 visualisations with other [htmlwidgets](http://htmlwidgets.org/) that [supports crosstalk](https://rstudio.github.io/crosstalk/widgets.html).
+
+## Filter
+
+For instance, one can add a g2 plot to an example from the [plotly R book](https://plotly-r.com/client-side-linking.html).
+
+```{r}
+library(g2r)
+library(plotly)
+library(crosstalk)
+
+# plotly
+tx <- highlight_key(txhousing)
+
+# filter widgets
+widgets <- bscols(
+  widths = c(12, 12, 12),
+  filter_select("city", "Cities", tx, ~city),
+  filter_slider("sales", "Sales", tx, ~sales),
+  filter_checkbox("year", "Years", tx, ~year, inline = TRUE)
+)
+
+# arrange
+bscols(
+  widths = c(2, 5, 5),
+  widgets, 
+  plot_ly(tx, x = ~date, y = ~median, showlegend = FALSE) %>% 
+    add_lines(color = ~city, colors = "black"),
+  g2(tx, asp(date, median, color = city)) %>% 
+    fig_line() %>% 
+    legend_color(FALSE)
+)
+```
+
+## Select
+
+```{r}
+library(g2r)
+library(plotly)
+library(crosstalk)
+
+shared_cars <- SharedData$new(cars)
+
+bscols(
+  plot_ly(shared_cars, x = ~speed, y = ~dist) %>% 
+    add_markers(),
+  g2(shared_cars, asp(speed, dist)) %>% 
+    fig_point()
+)
+```

@@ -28,10 +28,11 @@ const crosstalkFilter = (c, ctFilter) => {
   });
 }
 
-const crosstalkSelect = (c, ctSelection) => {
+const crosstalkSelect = (c, ctSelection, stroke = "black", fill = "none") => {
 
   let firstRun = true, // to set/reset colors;
-      strokeColors = []; 
+      strokeColors = [],
+      fillColors = []; 
   
   ctSelection.on("change", (e) => {
 
@@ -41,7 +42,8 @@ const crosstalkSelect = (c, ctSelection) => {
     // if first run collect original colors
     if(firstRun){
       c.views[0].geometries[0].elements.map(function(el){
-        strokeColors.push(el.shape.attrs.stroke)
+        strokeColors.push(el.shape.attrs.stroke);
+        fillColors.push(el.shape.attrs.fill);
       })
     }
     
@@ -56,9 +58,13 @@ const crosstalkSelect = (c, ctSelection) => {
     c.views[0].geometries[0].elements.map(function(el, index){
 
       if(indices.includes(index)){
-        el.shape.attrs.stroke = "black"
+        if(stroke != "none")
+          el.shape.attrs.stroke = stroke;
+        if(fill != "none")
+          el.shape.attrs.fill = fill;
       } else {
-        el.shape.attrs.stroke = strokeColors[index]
+        el.shape.attrs.stroke = strokeColors[index];
+        el.shape.attrs.fill = fillColors[index];
       }
 
     })
