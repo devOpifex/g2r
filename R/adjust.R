@@ -13,7 +13,17 @@
 #' - `stack`
 #' - `dodge`
 #' - `jitter`
-#' - `symmetric
+#' - `symmetric`
+#' 
+#' @examples 
+#' df <- data.frame(
+#'  x = c(letters, letters),
+#'  y = runif(52),
+#'  grp = rep(c("A", "Z"), each = 2)
+#' )
+#' 
+#' g2(df, asp(x, y, color = grp)) %>% 
+#'  fig_interval(adjust("stack"))
 #' 
 #' @importFrom rlang enquo quo_is_null quo_text
 #' 

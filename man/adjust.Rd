@@ -24,7 +24,18 @@ Valid values for the \code{type} argument.
 \item \code{stack}
 \item \code{dodge}
 \item \code{jitter}
-\item `symmetric
+\item \code{symmetric}
 }
 }
 
+\examples{
+df <- data.frame(
+ x = c(letters, letters),
+ y = runif(52),
+ grp = rep(c("A", "Z"), each = 2)
+)
+
+g2(df, asp(x, y, color = grp)) \%>\% 
+ fig_interval(adjust("stack"))
+
+}
