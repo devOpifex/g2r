@@ -145,3 +145,8 @@ a:hover, a:focus {
 .btn-primary{
   background-color: #6906FF;
 }
+
+.panel-info > .panel-heading {
+  background-color: #6906FF;
+  border-color: #ab74fc;
+}

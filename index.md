@@ -14,3 +14,35 @@
 </div>
 
 </div>
+
+
+<div class="row">
+
+<div class="col-sm-4">
+<div class="panel panel-info">
+<div class="panel-heading">Easy to use</div>
+<div class="panel-body">
+An intuitive, familiar <a href="/articles/aspects.html">API</a>, and easy to pick up API.
+</div>
+</div>
+</div>
+
+<div class="col-sm-4">
+<div class="panel panel-info">
+<div class="panel-heading">Crosstalk</div>
+<div class="panel-body">
+Support for <a href="/articles/crosstalk.html">crosstalk</a> selection and filtering.
+</div>
+</div>
+</div>
+
+<div class="col-sm-4">
+<div class="panel panel-info">
+<div class="panel-heading">Shiny</div>
+<div class="panel-body">
+Integration with <a href="/articles/shiny.html">shiny</a> events and proxies.
+</div>
+</div>
+</div>
+
+</div>
