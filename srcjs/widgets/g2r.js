@@ -1,5 +1,4 @@
 import 'widgets';
-import 'crosstalk';
 import { Chart, registerTheme } from '@antv/g2';
 import { makeFigure } from '../modules/makeFigure.js'; 
 import { makeCoords } from '../modules/makeCoords.js'; 
@@ -15,6 +14,7 @@ import {
 } from '../modules/interactions.js';
 import { getProxy, getView } from '../modules/shiny.js';
 import { facetFactory } from '../modules/facet.js';
+import { crosstalkFilter, crosstalkSelect } from '../modules/crosstalk.js'
 
 HTMLWidgets.widget({
 
@@ -24,24 +24,14 @@ HTMLWidgets.widget({
 
   factory: function(el, width, height) {
 
-    let c, sel_handle;
-
-    sel_handle = new crosstalk.SelectionHandle();
-
-    sel_handle.on("change", function(e) {
-      let selected = e.value;
-      c.views.forEach((v) => {
-        v.filter('CROSSTALK_KEYS', (key) => selected.includes(key))
-      })
-      c.render();
-    });
+    let c;
+    // Crosstalk init
+    let ctFilter = new crosstalk.FilterHandle();
+    let ctSelection = new crosstalk.SelectionHandle();
 
     return {
 
       renderValue: function(x) {
-
-        if(x.crosstalk_group)
-          sel_handle.setGroup(x.crosstalk_group);
 
         if(x.theme)
           registerTheme(x.chartOpts.theme, x.theme);
@@ -51,6 +41,10 @@ HTMLWidgets.widget({
         // keep autofit for responsiveness
         x.chartOpts.container = el.id;
         c = new Chart(x.chartOpts);
+
+        // crosstalk
+        crosstalkFilter(c, ctFilter);
+        crosstalkSelect(c, ctSelection);
 
         if(x.data)
           c.data(x.data);
@@ -67,7 +61,7 @@ HTMLWidgets.widget({
         globalInteractions(c, x);
 
         // events
-        captureEvents(c, x);
+        captureEvents(c, el, x);
 
         if(x.axis){
           x.axis.forEach(function(ax){
@@ -120,6 +114,29 @@ HTMLWidgets.widget({
 
         if(x.scrollbar)
           c.option('scrollbar', x.scrollbar);
+
+        if(x.crosstalk_group){
+
+          // set group
+          ctFilter.setGroup(x.crosstalk_group);
+          ctSelection.setGroup(x.crosstalk_group);
+
+          c.on("element:click", function(ev){
+            ctSelection.set([ev.data.data['CROSSTALK_KEYS']]);
+          });
+
+          c.views[0].on("afterpaint", function(){
+            let data = c.views[0].filteredData;
+            let indices = [];
+            data.map((row) => indices.push(row['CROSSTALK_KEYS']));
+
+            if(indices.length == data.length)
+              return ;
+
+            ctFilter.set(indices);
+          })
+
+        }
 
         c.render();
 
