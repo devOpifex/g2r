@@ -39,8 +39,6 @@ capture_event.g2r <- function(
   if(missing(event))
     stop("Missing `event`", call. = FALSE)
 
-  callback <- default_callback(event, callback)
-  callback <- JS(callback)
   opts <- list(
     when = match.arg(when),
     event = event,
@@ -49,30 +47,4 @@ capture_event.g2r <- function(
 
   g$x$events <- append(g$x$events, list(opts))
   g
-}
-
-#' Default Callback
-#' 
-#' Return a default callback in the event none were
-#' specified.
-#' 
-#' @param event Name of event.
-#' @param callback Callback function, or `NULL`.
-#' 
-#' @keywords internal
-default_callback <- function(event, callback = NULL){
-
-  if(!is.null(callback))
-    return(callback)
-
-  input_name <- gsub(":", "_", event)
-  sprintf(
-    "(ev) => {
-      if(HTMLWidgets.shinyMode){
-        Shiny.setInputValue(el.id  + '_%s', ev.data, {priority: 'event'})
-      }
-    }",
-    input_name
-  )
-
 }
