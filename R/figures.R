@@ -640,7 +640,8 @@ fig_pie.g2r <- function(
       data = data,
       inherit_asp = inherit_asp
     ) %>% 
-    coord_type("theta")
+    coord_type("theta") %>% 
+    gauge_x_linear(nice = FALSE)
 }
 
 #' Voronoi
@@ -819,3 +820,75 @@ fig_waffle.g2r <- function(
     legend_asps("_hStep", FALSE)
 }
 
+#' Rug
+#' 
+#' Add a rug figure to the chart.
+#' 
+#' @inheritParams fig_point
+#' @param axis Axis to place the rug marks on.
+#' @param strokeOpacity Opacity of rug marks.
+#' 
+#' @examples 
+#' g2(mtcars, asp(wt, mpg)) %>% 
+#'  fig_point() %>% 
+#'  fig_rug() %>% 
+#'  fig_rug(asp(size = 10), axis = "y")
+#' 
+#' @export 
+fig_rug <- function(
+  g, 
+  ..., 
+  strokeOpacity = .5,
+  axis = c("x", "y"),
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  UseMethod("fig_rug")
+}
+
+#' @method fig_rug g2r
+#' @export 
+fig_rug.g2r <- function(
+  g, 
+  ..., 
+  strokeOpacity = .5,
+  axis = c("x", "y"),
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+
+  axis <- match.arg(axis)
+
+  index <- 1
+  if(axis == "y")
+    index <- 2
+
+  shape <- "hyphen"
+  if(axis == "y")
+    shape <- "line"
+
+  # aspects
+  asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+  position <- select_asp_labels(asp, "x", "y")
+  color <- select_asp_labels(asp, "color")
+
+  # get data for split
+  data <- get_data(g, data)
+  data[[position[index]]] <- 0
+
+  if(is.null(asp$shape))
+    asp$shape <- shape
+
+  fig_primitive(
+    g,
+    ..., 
+    strokeOpacity = .5,
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "point",
+    asp = asp
+  ) 
+}

@@ -419,8 +419,9 @@ sync <- function(
   if(!is.null(if_true))
     sync <- if_true
   
-  # sync x
+  # sync positions
   g$x$scale[[asp]][["sync"]] <- sync
+  g$x$scale[[asp]][["nice"]] <- TRUE
 
   g
 }

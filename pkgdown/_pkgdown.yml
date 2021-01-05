@@ -87,8 +87,8 @@ reference:
   - title: "Shiny"
     desc: "Shiny-specific functions"
     contents:
-      - g2rOutput
-      - renderG2r
+      - g2Output
+      - renderG2
       - g2_proxy
       - capture_event
       - remove_figure

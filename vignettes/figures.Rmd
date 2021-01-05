@@ -221,3 +221,13 @@ g2(fruits, asp(value, color = fruit)) %>%
   motif(padding = c(10, 10, 30, 10)) %>% 
   axis_hide()
 ```
+
+## Rug
+
+```{r}
+g2(mtcars, asp(wt, mpg)) %>% 
+  fig_point() %>% 
+  fig_smooth(asp(shape = "smooth"), method = "polynomial") %>% 
+  fig_rug(asp(size = 10)) %>% 
+  fig_rug(asp(size = 10), axis = "y")
+```
