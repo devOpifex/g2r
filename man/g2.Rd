@@ -7,7 +7,8 @@
 g2(data = NULL, ..., width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
-\item{data}{A data.frame or tibble containing data to chart.}
+\item{data}{A data.frame or tibble containing data to chart,
+an object of class \code{igraph}, or as \code{crosstalk::sharedDataset}.}
 
 \item{...}{Aspects of the chart, see \code{\link[=asp]{asp()}}.}
 

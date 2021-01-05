@@ -2,7 +2,8 @@
 #'
 #' Initialise a chart.
 #' 
-#' @param data A data.frame or tibble containing data to chart.
+#' @param data A data.frame or tibble containing data to chart,
+#' an object of class `igraph`, or as `crosstalk::sharedDataset`.
 #' @param ... Aspects of the chart, see [asp()].
 #' @param width,height Dimensions of the chart, accepts 
 #' any valid CSS unit e.g.: `100%`, numerics are treated
