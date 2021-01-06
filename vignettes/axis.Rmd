@@ -31,6 +31,8 @@ g2(
   gauge_y_pow() 
 ```
 
+## Title
+
 Axis titles can be set with the convenience functions `axis_title_*`.
 
 ```{r}
@@ -43,6 +45,8 @@ g2(
   axis_title_x("Flipper Length (mm)") %>% 
   axis_title_y("Bill Length (mm)")
 ```
+
+## Hide
 
 To hide axis one can pass a boolean to the `axis_*` functions or, to hide both `axis_hide`.
 
@@ -75,4 +79,13 @@ g2(
       alternateColor = c("#ededed", "white")
     )
   )
+```
+
+## Grid
+
+```{r}
+g2(mtcars, asp(wt, qsec)) %>% 
+  fig_point(asp(shape = "circle")) %>% 
+  axis_y(grid = NULL) %>% 
+  axis_x(tickLine = NULL, line = NULL)
 ```

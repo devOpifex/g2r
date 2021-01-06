@@ -40,11 +40,18 @@ g2(df, asp(x, y)) %>%
 
 ## Interplay
 
-Some interactions work at the level of the chart while others will work at the level of the figure, e.g.: `brush` (click and drag to select and area and zoom in).
+Some interactions work at the level of the chart while others will work at the level of the figure, e.g.: `brush` (click and drag to select an area and filter the data points).
 
 ```{r}
 g2(cars, asp(speed, dist)) %>% 
  fig_point(asp(interplay = "brush"))
+```
+
+Alternatively one can use `brush-visible` to, instead of filtering the data points, on show the selected points, hiding others.
+
+```{r}
+g2(cars, asp(speed, dist)) %>% 
+ fig_point(asp(interplay = "brush-visible"))
 ```
 
 G2.js comes with basic interplays out-of-the-box most of the time one will want to register an interplay and bind it to a figure.
