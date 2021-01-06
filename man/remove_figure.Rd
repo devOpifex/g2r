@@ -10,12 +10,25 @@ remove_figure(g, index)
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
 \code{\link[=g2_proxy]{g2_proxy()}}.}
 
-\item{index}{Index of figure to remove.}
+\item{index}{Index of figure to remove. Either
+the numeric index of figure (layer number in order
+it was added to the visualisation), or the \code{id} of
+the figure as set by \code{\link[=config]{config()}} (see examples).}
 }
 \description{
 Remove a figure from the plot.
 }
 \examples{
+g <- g2(mtcars, asp(qsec, wt)) \%>\% 
+ fig_point(config(id = "myPoints")) \%>\% 
+ fig_point(asp(y = drat)) 
+
+# all figures
+g
+
+# remove figure
+remove_figure(g, "myPoints")
+
 library(shiny)
 
 df <- data.frame(

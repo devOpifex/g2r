@@ -3,9 +3,22 @@
 #' Remove a figure from the plot.
 #' 
 #' @inheritParams fig_point
-#' @param index Index of figure to remove.
+#' @param index Index of figure to remove. Either
+#' the numeric index of figure (layer number in order 
+#' it was added to the visualisation), or the `id` of 
+#' the figure as set by [config()] (see examples).
 #' 
 #' @examples 
+#' g <- g2(mtcars, asp(qsec, wt)) %>% 
+#'  fig_point(config(id = "myPoints")) %>% 
+#'  fig_point(asp(y = drat)) 
+#' 
+#' # all figures
+#' g
+#' 
+#' # remove figure
+#' remove_figure(g, "myPoints")
+#' 
 #' library(shiny)
 #' 
 #' df <- data.frame(
@@ -46,7 +59,18 @@ remove_figure.g2r <- function(g, index){
   if(missing(index))
     stop("Missing `index`", call. = FALSE)
 
-  g$x$views[[index]] <- NULL
+  if(is.numeric(index))
+    g$x$views[[index]] <- NULL
+  
+  if(is.character(index)) {
+    pos <- map(g$x$views, function(x, id){
+      isTRUE(x$conf$id == id)
+    }, id = index) %>% 
+      unlist()
+
+    g$x$views <- g$x$views[pos]
+  }
+
   g
 }
 
