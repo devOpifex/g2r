@@ -187,6 +187,8 @@ g2(cars, asp(speed, dist)) %>%
 
 ## Range
 
+Two types: `interval` and `area`.
+
 ```{r}
 df <- data.frame(
  x = 1:10,
@@ -196,6 +198,11 @@ df <- data.frame(
 
 g2(df, asp(x, ymin = ymin, ymax = ymax)) %>% 
  fig_range()
+```
+
+```{r}
+g2(df, asp(x, ymin = ymin, ymax = ymax)) %>% 
+ fig_range(type = "area")
 ```
 
 ## Pie

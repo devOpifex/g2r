@@ -561,6 +561,7 @@ fig_density.g2r <- function(
 #' Add a range figure to the chart.
 #' 
 #' @inheritParams fig_point
+#' @param type Type of figure to use
 #' 
 #' @details Requires the `ymin` and `ymax` aspects.
 #' 
@@ -578,6 +579,7 @@ fig_density.g2r <- function(
 fig_range <- function(
   g, 
   ..., 
+  type = c("interval", "area"),
   sync = TRUE, 
   data = NULL, 
   inherit_asp = TRUE
@@ -590,10 +592,13 @@ fig_range <- function(
 fig_range.g2r <- function(
   g, 
   ..., 
+  type = c("interval", "area"),
   sync = TRUE, 
   data = NULL, 
   inherit_asp = TRUE
 ){
+
+  type <- match.arg(type)
 
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
   cols <- select_asp_labels(asp, "ymin", "ymax")
@@ -617,7 +622,7 @@ fig_range.g2r <- function(
     data = data, 
     inherit_asp = inherit_asp,
     sync = sync,
-    type = "interval",
+    type = type,
     asp = asp
   )
 }
