@@ -1,0 +1,107 @@
+---
+title: "Tooltip"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tooltip}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(g2r)
+
+motif_global(fontFamily = "Quicksand")
+```
+
+G2.js provides a custom tooltip but often times one might want to customise it.
+
+## Default
+
+```{r}
+data(penguins, package = "palmerpenguins") 
+
+g2(penguins, asp(bill_length_mm, bill_depth_mm, color = species)) %>% 
+  fig_point(asp(shape = "circle")) %>% 
+  gauge_color(c("#0C59FE", "#FEC700", "#FC0F00"))
+```
+
+## Global
+
+The global tooltip can be customised with the `tooltip` function. This means applying changes to all tooltips, of all figures.
+
+```{r}
+penguins %>% 
+  g2(asp(bill_length_mm, bill_depth_mm, color = species)) %>% 
+  fig_point(asp(shape = "circle")) %>% 
+  gauge_color(c("#0C59FE", "#FEC700", "#FC0F00")) %>% 
+  tooltip(title = "Penguins!")
+```
+
+This can be used to remove the marker that shows on-hover.
+
+```{r}
+df <- data.frame(x = letters, y = runif(26))
+
+g2(df, asp(x, y)) %>% 
+  fig_interval() %>% 
+  tooltip(showMarkers = FALSE)
+```
+
+## Aspects
+
+One somewhat confusing thing perhaps is that the `tooltip` aspect can be used multiple times: G2.js allows using multiple columns from the dataset in the tooltip, including columns that are not used elsewhere.
+
+```{r}
+g2(penguins, asp(bill_length_mm, bill_depth_mm, color = species)) %>% 
+  fig_point(
+    asp(
+      shape = "circle", 
+      tooltip = island,
+      tooltip = bill_length_mm,
+      tooltip = bill_depth_mm
+    )
+  ) %>% 
+  gauge_color(c("#0C59FE", "#FEC700", "#FC0F00"))
+```
+
+## Template & Gauge
+
+The `tooltip` aspect can be combined with a template and a gauge. The template should be passed to the `itemTpl` argument of the `tooltip` function. The DOM classes can be found [here](https://g2.antv.vision/en/docs/api/general/tooltip); the HTML template must be passed as a string.
+
+There are also two convenience function to create such templates: `tpl`, and `tpl_item`.
+
+```{r}
+template <- tpl(
+  tpl_item(
+    island,
+    bill_depth_mm
+  )
+)
+
+cb <- htmlwidgets::JS(
+  "(island, bill_depth_mm) => {
+    return {
+      island: island,
+      bill_depth_mm: bill_depth_mm
+    };
+  }"
+)
+
+penguins %>% 
+  g2(asp(bill_length_mm, bill_depth_mm, color = species), elementId = "x") %>% 
+  fig_point(
+    asp(
+      shape = "circle",
+      tooltip = island,
+      tooltip = bill_depth_mm
+    )
+  ) %>% 
+  gauge_color(c("#0C59FE", "#FEC700", "#FC0F00")) %>% 
+  gauge_tooltip(cb) %>% 
+  tooltip(itemTpl = template)
+```

@@ -283,7 +283,11 @@ combine_asp <- function(main_asp, asp, inherit_asp = TRUE){
   if(inherit_asp){
     for(i in 1:length(asp)){
       c <- names(asp)[[i]]
-      main_asp[[c]] <- asp[[i]]
+      
+      if(c != "tooltip")
+        main_asp[[c]] <- asp[[i]]
+      else 
+        main_asp <- append(main_asp, asp[i])
     }
   } else {
     main_asp <- asp

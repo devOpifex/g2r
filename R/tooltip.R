@@ -28,3 +28,97 @@ tooltip.g2r <- function(g, ...){
   g$x$tooltip <- list(...)
   g
 }
+
+#' Tooltip Template
+#'  
+#' Convenience function to create tooltip templates
+#' (`itemTp` argument in [tooltip()] function).
+#' 
+#' @param ... One or more [tpl_item()].
+#' @param name,value Name and value of the tooltip item.
+#' @param marker Whether to include the color marker (dot)
+#' in the tooltip.
+#' 
+#' @details The arguments `title`, `name`, and `value` accept
+#' either a bare column name from the data to use as 
+#' `{mustache}`/`{handlebar}` in the template. If a string is 
+#' passed then it is treated as constant.
+#' 
+#' @examples 
+#' template <- tpl(
+#'  tpl_item(
+#'    island,
+#'    bill_depth_mm
+#'  )
+#' )
+#' 
+#' @importFrom rlang enquo quo_is_symbolic as_label
+#' 
+#' @name template
+#' @export
+tpl <- function(...){
+  check_package("htmltools")
+
+  ul <- htmltools::tags$ul(
+    class = "g2-tooltip-list",
+    ...
+  )
+
+  as.character(ul)
+  
+}
+
+#' @rdname template
+#' @export 
+tpl_item <- function(name, value, marker = TRUE){
+  check_package("htmltools")
+
+  if(missing(name))
+    stop("Missing `name`", call. = FALSE)
+
+  if(missing(value))
+    stop("Missing `value`", call. = FALSE)
+
+  name_enquo <- enquo(name)
+  if(quo_is_symbolic(name_enquo)){
+    name <- as_label(name_enquo)
+    name <- sprintf("{%s}", name)
+  }
+
+  value_enquo <- enquo(value)
+  if(quo_is_symbolic(value_enquo)){
+    value <- as_label(value_enquo)
+    value <- sprintf("{%s}", value)
+  }
+
+  li <- htmltools::tags$li(class="g2-tooltip-list-item")
+
+  if(marker){
+    marker <- htmltools::span(
+      style = 'background-color:{color};',
+      class = 'g2-tooltip-marker'
+    )
+    li <- htmltools::tagAppendChild(li, marker)
+  }
+
+  # add name
+  li <- htmltools::tagAppendChild(
+    li,
+    htmltools::span(
+      class = "g2-tooltip-name",
+      name
+    )
+  )
+
+  # add value
+  li <- htmltools::tagAppendChild(
+    li,
+    htmltools::span(
+      class = "g2-tooltip-value",
+      value
+    )
+  )
+
+  li
+
+}

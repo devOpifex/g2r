@@ -54,6 +54,8 @@ navbar:
           href: articles/animations.html
         - text: "Interplay & State"
           href: articles/interplay-state.html
+        - text: "Tooltip"
+          href: articles/tooltip.html
         - text: "Info"
           href: articles/info.html
         - text: "Planes"
@@ -116,6 +118,7 @@ reference:
     desc: "Configure tooltip"
     contents:
       - tooltip
+      - starts_with("tpl")
   - title: "Animation"
     desc: "Customise animations"
     contents:
