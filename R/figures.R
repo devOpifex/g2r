@@ -7,6 +7,8 @@
 #' @param bins Number of bins by dimension (width, height).
 #' @param size_count Whether to size the binds by count.
 #' 
+#' @details Requires the `x` and `y` aspects.
+#' 
 #' @examples 
 #' g2(cars, asp(speed, dist)) %>% 
 #'  fig_bin(size_count = FALSE)
@@ -49,6 +51,9 @@ fig_bin.g2r <- function(
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
   position <- select_asp_labels(asp, "x", "y")
 
+  if(length(position) < 2)
+    stop("Must pass `x` and `y` aspects", call. = FALSE)
+
   data <- alter::Alter$new(get_data(g, data))$
     source()$
     transform(
@@ -75,6 +80,8 @@ fig_bin.g2r <- function(
 #' Add a ribbon figure to the chart.
 #' 
 #' @inheritParams fig_point
+#' 
+#' @details Requires the `ymin` and `ymax` aspects.
 #' 
 #' @examples 
 #' df <- data.frame(
@@ -109,6 +116,9 @@ fig_ribbon.g2r <- function(
 
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
   cols <- select_asp_labels(asp, "ymin", "ymax")
+
+  if(length(cols) < 2)
+    stop("Must pass `ymin` and `ymax` aspects", call. = FALSE)
 
   data <- get_data(g, data)
 
@@ -303,6 +313,8 @@ fig_boxplot.g2r <- function(
 #' @param method Smoothing method to use.
 #' @param band_width Step size for Silverman's algorithm.
 #' 
+#' @details Requires the `x` and `y` aspects.
+#' 
 #' @examples 
 #' g2(cars, asp(speed, dist)) %>% 
 #'  fig_point() %>% 
@@ -391,6 +403,9 @@ fig_smooth.g2r <- function(
   position <- select_asp_labels(asp, "x", "y")
   color <- select_asp_labels(asp, "color")
 
+  if(length(position) < 2)
+    stop("Must pass `x` and `y` aspects", call. = FALSE)
+
   # get data for split
   data <- get_data(g, data)
 
@@ -465,6 +480,8 @@ fig_smooth.g2r <- function(
 #' 
 #' @inheritParams fig_point
 #' 
+#' @details Requires the `x` and `y` aspects.
+#' 
 #' @examples 
 #' g2(cars, asp(speed, dist)) %>% 
 #'  fig_density()
@@ -499,6 +516,9 @@ fig_density.g2r <- function(
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
   position <- select_asp_labels(asp, "x", "y")
   color <- select_asp_labels(asp, "color")
+
+  if(length(position) < 2)
+    stop("Must pass `x` and `y` aspects", call. = FALSE)
 
   # get data for split
   data <- get_data(g, data)
@@ -542,6 +562,8 @@ fig_density.g2r <- function(
 #' 
 #' @inheritParams fig_point
 #' 
+#' @details Requires the `ymin` and `ymax` aspects.
+#' 
 #' @examples 
 #' df <- data.frame(
 #'  x = 1:100,
@@ -575,6 +597,9 @@ fig_range.g2r <- function(
 
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
   cols <- select_asp_labels(asp, "ymin", "ymax")
+
+  if(length(cols) < 2)
+    stop("Must pass `ymin` and `ymax` aspects", call. = FALSE)
 
   data <- get_data(g, data)
 
@@ -650,6 +675,8 @@ fig_pie.g2r <- function(
 #' 
 #' @inheritParams fig_point
 #' 
+#' @details Requires the `x`, `y`, and `color` arguments.
+#' 
 #' @examples 
 #' df <- data.frame(
 #'  x = runif(25, 1, 500),
@@ -723,6 +750,8 @@ fig_voronoi.g2r <- function(
 #' @param size Size of squares.
 #' @param gap Gap between squares.
 #' @param min_size Minimum size of squares.
+#' 
+#' @details Requires the `x` and `color` aspects.
 #' 
 #' @examples 
 #' fruits <- data.frame(
@@ -827,6 +856,8 @@ fig_waffle.g2r <- function(
 #' @inheritParams fig_point
 #' @param axis Axis to place the rug marks on.
 #' @param strokeOpacity Opacity of rug marks.
+#' 
+#' @details Requires the `x` and `y` aspects.
 #' 
 #' @examples 
 #' g2(mtcars, asp(wt, mpg)) %>% 
@@ -997,3 +1028,80 @@ fig_candle.g2r <- function(
     asp = asp
   ) 
 }
+
+#' Error
+#' 
+#' Add an error bar figure to the chart.
+#' 
+#' @inheritParams fig_point
+#' 
+#' @details Requires the `ymin` and `ymax` aspects, the
+#' width of the error bars can be changed with the `size`
+#' aspect.
+#' 
+#' @examples 
+#' df <- data.frame(
+#'  x = as.factor(c(1:10, 1:10)),
+#'  y = runif(20, 10, 15),
+#'  grp = rep(c("A", "B"), each = 2)
+#' )
+#' 
+#' df$ymin <- df$y - runif(20, 1, 2)
+#' df$ymax <- df$y + runif(20, 1, 2)
+#' 
+#' g2(df, asp(x = x, color = grp)) %>% 
+#'  fig_error(asp(ymin = ymin, ymax = ymax), adjust("dodge")) %>% 
+#'  fig_interval(
+#'    asp(y = y), 
+#'    adjust("dodge"),
+#'    fillOpacity = .4
+#'  )
+#' 
+#' @export 
+fig_error <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  UseMethod("fig_error")
+}
+
+#' @method fig_error g2r
+#' @export 
+fig_error.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+
+  asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+  position <- select_asp_labels(asp, "ymin", "ymax")
+
+  if(length(position) != 2)
+    stop("Must pass `ymin`, `ymax` aspects", call. = FALSE)
+
+  data <- get_data(g, data)
+
+  data$range <- pmap(data[, position], list) %>% 
+    map(function(row,position){
+      c(row[[position[2]]], row[[position[1]]])
+    }, position = position)
+
+  asp$y <- "range"
+  asp$shape <- "tick"
+
+  fig_primitive(
+    g,
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "interval",
+    asp = asp
+  ) 
+}
+

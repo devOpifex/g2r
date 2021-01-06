@@ -28,6 +28,9 @@ draw the figure.}
 \description{
 Add a density figure to the chart.
 }
+\details{
+Requires the \code{x} and \code{y} aspects.
+}
 \examples{
 g2(cars, asp(speed, dist)) \%>\% 
  fig_density()

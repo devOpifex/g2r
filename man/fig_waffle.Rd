@@ -49,6 +49,9 @@ draw the figure.}
 \description{
 Add a waffle figure to the chart.
 }
+\details{
+Requires the \code{x} and \code{color} aspects.
+}
 \examples{
 fruits <- data.frame(
  fruit = c("Apples", "Bananas", "Pears", "Oranges"),

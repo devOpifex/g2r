@@ -108,9 +108,25 @@ g2(iris, asp(Sepal.Length, Sepal.Width, color = Petal.Length)) %>%
 
 ## Bin
 
+Use `count` (internally computed) to define the color (optional).
+
 ```{r}
 g2(cars, asp(speed, dist, color = count)) %>% 
   fig_bin() %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+```
+
+Use `size_count` to size the bins by `count`.
+
+```{r}
+data(diamonds, package = "ggplot2")
+
+g2(diamonds, asp(table, price, color = count)) %>% 
+  fig_bin(
+    type = "hex", 
+    size_count = FALSE,
+    stroke = "#fff"
+  ) %>% 
   gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
 ```
 
@@ -241,4 +257,28 @@ g2(wallgreens, asp(date, open = open, close = close, high = high, low = low)) %>
   fig_candle() %>% 
   gauge_x_time_cat() %>% 
   gauge_color(c("green", "red"))
+```
+
+## Error bars
+
+```{r}
+df <- data.frame(
+  x = as.factor(c(1:10, 1:10)),
+  y = runif(20, 10, 15),
+  grp = rep(c("A", "B"), each = 2)
+)
+
+df$ymin <- df$y - runif(20, 1, 2)
+df$ymax <- df$y + runif(20, 1, 2)
+
+g2(df, asp(x = x, color = grp)) %>% 
+  fig_error(
+    asp(ymin = ymin, ymax = ymax, size = 20), 
+    adjust("dodge")
+  ) %>% 
+  fig_interval(
+    asp(y = y), 
+    adjust("dodge"),
+    fillOpacity = .4
+  ) 
 ```

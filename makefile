@@ -11,4 +11,5 @@ init:
 				Rscript -e "devtools::install()"
 
 site:
+				Rscript -e "devtools::install()"
 				Rscript -e "pkgdown::build_site()"

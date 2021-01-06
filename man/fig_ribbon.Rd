@@ -28,6 +28,9 @@ draw the figure.}
 \description{
 Add a ribbon figure to the chart.
 }
+\details{
+Requires the \code{ymin} and \code{ymax} aspects.
+}
 \examples{
 df <- data.frame(
  x = 1:100,

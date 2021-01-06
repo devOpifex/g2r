@@ -40,6 +40,9 @@ draw the figure.}
 \description{
 Add a rug figure to the chart.
 }
+\details{
+Requires the \code{x} and \code{y} aspects.
+}
 \examples{
 g2(mtcars, asp(wt, mpg)) \%>\% 
  fig_point() \%>\% 

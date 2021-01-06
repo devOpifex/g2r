@@ -28,6 +28,9 @@ draw the figure.}
 \description{
 Add a voronoi figure to the chart.
 }
+\details{
+Requires the \code{x}, \code{y}, and \code{color} arguments.
+}
 \examples{
 df <- data.frame(
  x = runif(25, 1, 500),
