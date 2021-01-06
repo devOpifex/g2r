@@ -46,6 +46,8 @@ navbar:
           href: articles/aspects.html
         - text: "Gauges"
           href: articles/gauges.html
+        - text: "Adjust"
+          href: articles/adjust.html
         - text: "Axis"
           href: articles/axis.html
         - text: "Animations"

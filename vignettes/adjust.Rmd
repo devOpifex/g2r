@@ -1,0 +1,73 @@
+---
+title: "Adjust"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Adjust}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(g2r)
+
+motif_global(fontFamily = "Quicksand")
+```
+
+The `adjust` function is used to nudge data. It is often necessary when using `fig_interval` grouped by `color`.
+
+<div class="panel panel-warning">
+<div class="panel-heading">Warning</div>
+<div class="panel-body">
+The graph below is __erroneous.__
+</div>
+</div>
+
+```{r}
+df <- data.frame(
+  x = rep(letters, 3),
+  y = runif(78),
+  grp = rep(c("A", "B", "C"), each = 26)
+)
+
+g2(df, asp(x, y, color = "grp")) %>% 
+  fig_interval()
+```
+
+The above is wrong as bars are overlapping.
+
+## Dodge
+
+```{r}
+g2(df, asp(x, y, color = "grp")) %>% 
+  fig_interval(adjust("dodge"))
+```
+
+## Stack
+
+```{r}
+g2(df, asp(x, y, color = "grp")) %>% 
+  fig_interval(adjust("stack"))
+```
+
+## Symmetric
+
+Note you can use multiple `adjust` in the same figure.
+
+```{r}
+g2(df, asp(x, y, color = "grp")) %>% 
+  fig_interval(adjust("stack"), adjust("symmetric"))
+```
+
+## Jitter
+
+```{r}
+g2(cars, asp(dist, speed)) %>% 
+  fig_point(asp(shape = "circle")) %>% 
+  fig_point(adjust("jitter"))
+```
+

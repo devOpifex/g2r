@@ -7,17 +7,15 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
-library(g2r)
-
-motif_global(fontFamily = "Quicksand")
-```
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+library(g2r)
+
+motif_global(fontFamily = "Quicksand")
 ```
 
 g2r is an interface to the [G2.js](https://g2.antv.vision/en) JavaScript visualisation library. G2.js is itself a Grammar of Graphics (GG ~= 2G) though rather different from R's common understanding of such grammar from [ggplot2](https://ggplot2.tidyverse.org/).
@@ -61,6 +59,14 @@ Where one uses the `group` aesthetic in ggplot2 one will want to use `color` in 
 ```{r}
 g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
   fig_density()
+```
+
+In order to stack bars, or place bars side-by-side, or jitter points one must use the `adjust` function.
+
+```{r}
+g2(mtcars, asp(mpg, qsec)) %>% 
+  fig_point(asp(shape = "circle")) %>% 
+  fig_point(adjust("jitter"))
 ```
 
 G2r also comes with the equivalent of ggplot2's facets, here they are named `planes`.

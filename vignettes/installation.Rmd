@@ -50,6 +50,8 @@ make init
 
 Numerous figures internally depend on the [alter package](https://github.com/devOpifex/alter), you will be prompted to install it if is not found on your machine.
 
+Alter requires [V8](https://github.com/jeroen/V8/).
+
 ## Remotes
 
 ```r

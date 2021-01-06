@@ -77,3 +77,10 @@ g2(df, asp(x, y, color = grp), elementId = "x") %>%
      )
    )
 ```
+
+<div class="panel panel-warning">
+<div class="panel-heading">Warning</div>
+<div class="panel-body">
+Make sure that registered interplay have a `start`, and an `end`, omitting these often causes odd behaviour or bugs.
+</div>
+</div>
