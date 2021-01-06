@@ -12,7 +12,7 @@ const crosstalkFilter = (c, ctFilter) => {
     let filtered = e.value;
     c.views.forEach((v) => {
 
-      if(filtered.length == 0){
+      if(filtered == null || filtered.length == 0){
         v.filter('CROSSTALK_KEYS', null)
       } else {
         v.filter('CROSSTALK_KEYS', (key) => filtered.includes(key))

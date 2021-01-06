@@ -125,15 +125,18 @@ HTMLWidgets.widget({
             ctSelection.set([ev.data.data['CROSSTALK_KEYS']]);
           });
 
-          c.views[0].on("afterpaint", function(){
-            let data = c.views[0].filteredData;
-            let indices = [];
-            data.map((row) => indices.push(row['CROSSTALK_KEYS']));
+          c.views.forEach((view) => {
+            view.on("afterpaint", function(){
+              let data = view.filteredData;
+              let indices = [];
+              data.map((row) => indices.push(row['CROSSTALK_KEYS']));
+  
+              ctFilter.set(indices);
+            })
+          })
 
-            if(indices.length == data.length)
-              return ;
-
-            ctFilter.set(indices);
+          c.on("reset-button:click", () => {
+            ctFilter.clear();
           })
 
         }
@@ -180,8 +183,6 @@ if (HTMLWidgets.shinyMode) {
         let view = c.createView(layer.conf);
 
         annotate(view, layer);
-
-        console.log(layer.conf)
   
         let figure = makeFigure(view, layer.type);
         tuneFigure(figure, layer);

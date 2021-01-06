@@ -28,7 +28,7 @@ Crosstalk only works with data passed to `g2`.
 
 For instance, one can add a g2 plot to an example from the [plotly R book](https://plotly-r.com/client-side-linking.html).
 
-```{r, eval = FALSE, warning=FALSE, message=FALSE, error=FALSE}
+```{r, warning=FALSE, message=FALSE, error=FALSE}
 library(g2r)
 library(plotly)
 library(crosstalk)

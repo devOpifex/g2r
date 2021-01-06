@@ -150,3 +150,8 @@ a:hover, a:focus {
   background-color: #6906FF;
   border-color: #ab74fc;
 }
+
+.panel-heading{
+  font-weight: bold;
+  font-size: 120%;
+}
