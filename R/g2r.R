@@ -135,7 +135,6 @@ g2.SharedData <- function(
   )
 }
 
-
 #' Shiny Bindings
 #'
 #' Output and render functions for using g2r within Shiny

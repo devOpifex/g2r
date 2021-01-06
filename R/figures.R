@@ -892,3 +892,108 @@ fig_rug.g2r <- function(
     asp = asp
   ) 
 }
+
+#' Candle
+#' 
+#' Add a candle figure to the chart.
+#' 
+#' @inheritParams fig_point
+#' 
+#' @details Requires the following aspects defined:
+#' 
+#' - `open`
+#' - `close`
+#' - `high`
+#' - `low`
+#' 
+#' If no `color` argument is passed the candles are colored 
+#' according to their trend (open > close = "up").
+#' 
+#' @examples 
+#' stock <- structure(list(date = structure(c(18626, 18627, 18631, 18632), class = "Date"), 
+#'  open = c(39.52, 39.330002, 40.169998, 41.5), high = c(39.73, 
+#'  40, 41.560001, 42.040001), low = c(39.200001, 39.029999, 
+#'  39.939999, 40.77), close = c(39.34, 39.880001, 41.400002, 
+#'  41.16)), row.names = c(NA, -4L), class = c("tbl_df", "tbl", 
+#'  "data.frame")
+#' )
+#' 
+#' g2(stock, asp(date, open = open, close = close, high = high, low = low)) %>% 
+#'  fig_candle() %>% 
+#'  gauge_x_time_cat()
+#' 
+#' @export 
+fig_candle <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  UseMethod("fig_candle")
+}
+
+#' @method fig_candle g2r
+#' @export 
+fig_candle.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+
+  asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+  position <- select_asp_labels(
+    asp,
+    "open",
+    "close",
+    "high",
+    "low"
+  )
+
+  if(length(position) != 4)
+    stop(
+      "Must pass `open`, `close`, `high`, and `low` aspects", 
+      call. = FALSE
+    )
+
+  data <- get_data(g, data)
+
+  # add range
+  data$range <- pmap(data[, position], list) %>% 
+    map(function(row,position){
+      c(
+        row[[position[4]]], 
+        row[[position[1]]], 
+        row[[position[2]]], 
+        row[[position[3]]]
+      )
+    }, position = position)
+
+  asp$y <- "range"
+  asp$shape <- "candle"
+  
+  # add trend
+  trend <- select_asp_labels(asp, "color")
+
+  if(!length(trend)){
+    data$trend <- ifelse(
+      data[[position[4]]] < data[[position[1]]],
+      "Up",
+      "Down"
+    )
+
+    asp$color <- "trend"
+  }
+
+  fig_primitive(
+    g,
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "schema",
+    asp = asp
+  ) 
+}

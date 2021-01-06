@@ -231,3 +231,14 @@ g2(mtcars, asp(wt, mpg)) %>%
   fig_rug(asp(size = 10)) %>% 
   fig_rug(asp(size = 10), axis = "y")
 ```
+
+## Candle
+
+```{r}
+wallgreens  <- tidyquant::tq_get("WBA", from = Sys.Date() - 90)
+
+g2(wallgreens, asp(date, open = open, close = close, high = high, low = low)) %>% 
+  fig_candle() %>% 
+  gauge_x_time_cat() %>% 
+  gauge_color(c("green", "red"))
+```
