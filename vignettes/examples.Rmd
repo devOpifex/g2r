@@ -219,3 +219,44 @@ g2(diamonds_small, asp(clarity, type, color = clarity)) %>%
   legend_color(FALSE) %>% 
   gauge_y_cat(range = c(0, 1))
 ```
+
+## Radial Bar
+
+```{r}
+fruits2 <- fruits
+fruits2$y <- rev(fruits2$y)
+
+g2(fruits2, asp(x, y, color = y)) %>% 
+  fig_interval() %>% 
+  coord_type("polar", innerRadius = .2) %>% 
+  coord_transpose() %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3")) %>% 
+  gauge_y_linear(max = 20) %>% 
+  axis_x(
+    tickLine = NULL,
+    grid = NULL,
+    line = NULL,
+    label = list(offset = 20)
+  ) %>% 
+  legend_color(FALSE)
+```
+
+## Negative Interval
+
+```{r}
+df <- data.frame(x = 1:10, y = round(rnorm(10, sd = 5)))
+
+cb <- htmlwidgets::JS(
+  "(value) => {
+    if(value > 0)
+      return '#8adb9a';
+    
+    return '#ffa6a6';
+  }"
+)
+
+g2(df, asp(x, y, color = y)) %>% 
+  fig_interval(asp(label = y)) %>% 
+  gauge_color(cb) %>% 
+  legend_color(FALSE)
+```
