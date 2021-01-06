@@ -16,7 +16,8 @@ planes(
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
 \code{\link[=g2_proxy]{g2_proxy()}}.}
 
-\item{asp}{Aspects that define split.}
+\item{asp}{Aspects that define split, these must be defined
+as a formula, e.g.: ~x+y.}
 
 \item{...}{Any other option.}
 
@@ -31,6 +32,6 @@ Split the chart into planes according to variables.
 \examples{
 g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) \%>\% 
  fig_point() \%>\% 
- planes("Species", type = "tree")
+ planes(~Species, type = "tree")
 
 }

@@ -148,7 +148,7 @@ df <- data.frame(
 
 g2(df, asp(x, y, color = grp)) %>% 
   fig_interval() %>% 
-  planes("grp", type = "mirror") %>% 
+  planes(~grp, type = "mirror") %>% 
   gauge_color(c("#8adb9a", "#ffa6a6")) %>% 
   interplay("element", "highlight")
 ```

@@ -4,7 +4,14 @@
 \alias{fig_range}
 \title{Range}
 \usage{
-fig_range(g, ..., sync = TRUE, data = NULL, inherit_asp = TRUE)
+fig_range(
+  g,
+  ...,
+  type = c("interval", "area"),
+  sync = TRUE,
+  data = NULL,
+  inherit_asp = TRUE
+)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -14,6 +21,8 @@ fig_range(g, ..., sync = TRUE, data = NULL, inherit_asp = TRUE)
 and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, \code{\link[=selected]{selected()}}, and \code{\link[=config]{config()}},
 other key value pairs of are passed to
 \href{https://g2.antv.vision/en/docs/api/general/style}{style}.}
+
+\item{type}{Type of figure to use}
 
 \item{sync}{Whether to sync the axis data (align) with that
 used in other figures, set to \code{FALSE} to not sync or set to

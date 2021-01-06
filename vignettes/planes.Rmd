@@ -34,7 +34,7 @@ g2(diamonds, asp(carat, price, color = clarity)) %>%
     asp(shape = "circle", size = 3),
     fillOpacity = 0.3, stroke = 0
   ) %>% 
-  planes("cut", type = "rect") %>% 
+  planes(~cut, type = "rect") %>% 
   motif(padding = c(32, 8, 48, 48))
 ```
 
@@ -46,7 +46,7 @@ g2(diamonds, asp(carat, price, color = cut)) %>%
     asp(shape = "circle", size = 3),
     fillOpacity = 0.3, stroke = 0
   ) %>% 
-  planes(c("cut", "clarity"), type = "rect") %>% 
+  planes(~cut+clarity, type = "rect") %>% 
   motif(padding = c(32, 8, 48, 48))
 ```
 
@@ -61,7 +61,7 @@ g2(diamonds, asp(carat, price, color = cut)) %>%
     fillOpacity = 0.3, stroke = 0
   ) %>% 
   planes(
-    "cut", 
+    ~cut, 
     type = "list",
     cols = 3,
     padding = 30
@@ -94,7 +94,7 @@ g2(df, asp(y = price, color = cut)) %>%
     stroke = "#fff", lineWidth = 2
   ) %>% 
   coord_type("theta", innerRadius = .2) %>% 
-  planes("clarity", type = "circle")
+  planes(~clarity, type = "circle")
 ```
 
 ## Mirror
@@ -111,7 +111,7 @@ df <- data.frame(
 g2(df, asp(x, y, color = grp)) %>% 
   fig_interval() %>% 
   planes(
-    "grp", 
+    ~grp, 
     padding = c(0, 48, 0, 0),
     type = "mirror", 
     transpose = TRUE
@@ -124,5 +124,5 @@ g2(df, asp(x, y, color = grp)) %>%
 ```{r}
 g2(iris, asp(Petal.Width, Petal.Length, color = Species)) %>% 
   fig_point() %>% 
-  planes("Species", type = "tree")
+  planes(~Species, type = "tree")
 ```

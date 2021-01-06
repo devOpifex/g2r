@@ -74,5 +74,5 @@ G2r also comes with the equivalent of ggplot2's facets, here they are named `pla
 ```{r}
 g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
   fig_point(asp(shape = "circle")) %>% 
-  planes("Species", type = "tree")
+  planes(~Species, type = "tree")
 ```
