@@ -12,7 +12,7 @@ import {
   rmInteractions,
   registerInteractions 
 } from '../modules/interactions.js';
-import { getProxy, getView } from '../modules/shiny.js';
+import { getChart, getView } from '../modules/shiny.js';
 import { facetFactory } from '../modules/facet.js';
 import { crosstalkFilter, crosstalkSelect } from '../modules/crosstalk.js'
 
@@ -93,7 +93,7 @@ HTMLWidgets.widget({
 
         } else {
           x.views.forEach(function(v){
-            let view = c.createView();
+            let view = c.createView(v.conf);
 
             annotate(view, x);
 
@@ -153,10 +153,51 @@ HTMLWidgets.widget({
 
       getView: function(index){
         return c.views[index];
+      },
+
+      getViews: function(index){
+        return c.views;
       }
 
     };
   }
 });
 
+if (HTMLWidgets.shinyMode) {
 
+  // Execute
+  Shiny.addCustomMessageHandler('render', (id) => {
+      let c = getChart(id);
+      c.render();
+  });
+
+  // Figure
+  Shiny.addCustomMessageHandler('figure', (x) => {
+
+      let c = getChart(x.id);
+
+      x.views.forEach((layer) => {
+        let view = c.createView(layer.conf);
+
+        annotate(view, layer);
+
+        console.log(layer.conf)
+  
+        let figure = makeFigure(view, layer.type);
+        tuneFigure(figure, layer);
+  
+        // data
+        assignData(view, layer, x)
+      })
+
+  });
+
+  // remove figure
+  Shiny.addCustomMessageHandler('remove-figure', (msg) => {
+    let c = getChart(msg.id);
+    let v = getView(msg.id, msg.index);
+
+    c.removeView(v);
+  })
+
+}

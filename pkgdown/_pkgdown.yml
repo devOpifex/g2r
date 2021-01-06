@@ -80,6 +80,7 @@ reference:
     contents:
       - asp
       - adjust
+      - config
   - title: "Coordinates"
     desc: "Customise the coordinates"
     contents:
@@ -101,10 +102,6 @@ reference:
     desc: "Annotate charts"
     contents:
       - starts_with("info_")
-  - title: "Interplay"
-    desc: "Control interactions"
-    contents:
-      - starts_with("interplay")
   - title: "Planes"
     desc: "Split chart into facets"
     contents:
@@ -127,10 +124,11 @@ reference:
     contents:
       - slider
       - scrollbar
-  - title: "State"
-    desc: "Customise state"
+  - title: "State & Interplay"
+    desc: "Customise interplay (interactions) and state"
     contents:
       - state
+      - starts_with("interplay")
   - title: "Motif"
     desc: "Customise the theme"
     contents:

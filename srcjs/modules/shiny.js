@@ -1,9 +1,9 @@
 import 'widgets';
 
-const getProxy = (id) => {
-  var htmlWidgetsObj = HTMLWidgets.find("#" + id);
+const getChart = (id) => {
+  let htmlWidgetsObj = HTMLWidgets.find("#" + id);
 
-  var chart;
+  let chart;
 
   if (typeof htmlWidgetsObj != 'undefined') {
     chart = htmlWidgetsObj.getChart();
@@ -13,15 +13,26 @@ const getProxy = (id) => {
 }
 
 const getView = (id, index) => {
-  var htmlWidgetsObj = HTMLWidgets.find("#" + id);
+  let htmlWidgetsObj = HTMLWidgets.find("#" + id);
 
-  var chart;
+  let view;
 
   if (typeof htmlWidgetsObj != 'undefined') {
-    chart = htmlWidgetsObj.getView(index);
+    
+    if(typeof index == "string"){
+      let views = htmlWidgetsObj.getViews();
+      index = views.findIndex((data) => data.id == index)
+
+      // cannot find view with index name
+      if(index < 0)
+        return view;
+    }
+
+    view = htmlWidgetsObj.getView(index);
+
   }
 
-  return(chart);
+  return(view);
 }
 
-export { getProxy, getView };
+export { getChart, getView };

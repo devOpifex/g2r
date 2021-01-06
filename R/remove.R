@@ -57,10 +57,11 @@ remove_figure.g2Proxy <- function(g, index){
     stop("Missing `index`", call. = FALSE)
 
   # R index to JavaScript
-  index <- index - 1
+  if(is.numeric(index))
+    index <- index - 1
 
   g$session$sendCustomMessage(
-    "remove_figure", 
+    "remove-figure", 
     list(
       id = g$x$id, 
       index = index

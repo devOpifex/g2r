@@ -173,8 +173,9 @@ rm_asp <- function(...){
   list(...) %>% 
     discard(is_asp) %>% 
     discard(is_state) %>%
+    discard(is_config) %>% 
     discard(is_adjust) %>%  
-    discard(is_animation)
+    discard(is_animation) 
 }
 
 #' Select Specific Aspects

@@ -5,8 +5,8 @@
 #' @param g An object of class `g2r` or `g2Proxy` as returned by [g2()] or 
 #' [g2_proxy()].
 #' @param ... Options to pass to the figure, including [asp()],
-#' and [adjust()], [active()], and [selected()], other key value
-#' pairs of are passed to 
+#' and [adjust()], [active()], [selected()], and [config()], 
+#' other key value pairs of are passed to 
 #' [style](https://g2.antv.vision/en/docs/api/general/style).
 #' @param sync Whether to sync the axis data (align) with that
 #' used in other figures, set to `FALSE` to not sync or set to
@@ -691,6 +691,9 @@ fig_primitive_common <- function(
   # state
   states <- get_state(...)
 
+  # config
+  conf <- get_config(...)
+
   # chart aspects
   if(is.null(asp))
     asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
@@ -725,6 +728,7 @@ fig_primitive_common <- function(
   
   opts <- list(
     type = type,
+    conf = conf,
     data = select_columns(data, cols),
     position = collapse_asp(position),
     color = collapse_asp(color),

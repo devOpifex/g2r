@@ -21,8 +21,8 @@ fig_smooth(
 \code{\link[=g2_proxy]{g2_proxy()}}.}
 
 \item{...}{Options to pass to the figure, including \code{\link[=asp]{asp()}},
-and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, and \code{\link[=selected]{selected()}}, other key value
-pairs of are passed to
+and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, \code{\link[=selected]{selected()}}, and \code{\link[=config]{config()}},
+other key value pairs of are passed to
 \href{https://g2.antv.vision/en/docs/api/general/style}{style}.}
 
 \item{method}{Smoothing method to use.}
