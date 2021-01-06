@@ -11,6 +11,28 @@
 #' @param ... Any other options from the 
 #' [official documentation](https://g2.antv.vision/en/docs/api/general/chart#viewcfg).
 #' 
+#' @examples 
+#' mtcars %>%
+#'  g2(asp(qsec)) %>% 
+#'    fig_point(
+#'      asp(y = mpg),
+#'      config(
+#'        region = list(
+#'          start = list(x = 0, y = 0),
+#'          end = list( x = 0.5, y = 1 )
+#'        )
+#'      )
+#'    ) %>% 
+#'    fig_point(
+#'      asp(y = wt),
+#'      config(
+#'        region = list(
+#'          start = list(x = 0.5, y = 0),
+#'          end = list( x = 1, y = 1 )
+#'      )
+#'    )
+#'  ) 
+#' 
 #' @export 
 config <- function(
   id = NULL,
