@@ -15,14 +15,15 @@
 
 </div>
 
+<br/>
 
 <div class="row">
 
 <div class="col-sm-4">
 <div class="panel panel-info">
 <div class="panel-heading">Easy to use</div>
-<div class="panel-body">
-An intuitive, familiar <a href="/articles/aspects.html">API</a>, and easy to pick up API.
+<div class="panel-body centerize">
+An intuitive, familiar <a href="articles/aspects.html">API</a>, and easy to pick up API.
 </div>
 </div>
 </div>
@@ -30,8 +31,8 @@ An intuitive, familiar <a href="/articles/aspects.html">API</a>, and easy to pic
 <div class="col-sm-4">
 <div class="panel panel-info">
 <div class="panel-heading">Crosstalk</div>
-<div class="panel-body">
-Support for <a href="/articles/crosstalk.html">crosstalk</a> selection and filtering.
+<div class="panel-body centerize">
+Support for <a href="articles/crosstalk.html">crosstalk</a> selection and filtering.
 </div>
 </div>
 </div>
@@ -39,10 +40,28 @@ Support for <a href="/articles/crosstalk.html">crosstalk</a> selection and filte
 <div class="col-sm-4">
 <div class="panel panel-info">
 <div class="panel-heading">Shiny</div>
-<div class="panel-body">
-Integration with <a href="/articles/shiny.html">shiny</a> events and proxies.
+<div class="panel-body centerize">
+Integration with <a href="articles/shiny.html">shiny</a> events and proxies.
 </div>
 </div>
 </div>
 
 </div>
+
+<br/>
+
+```r
+g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>% 
+  fig_point(
+    asp(
+      size = body_mass_g, 
+      shape = species
+    )
+  ) %>% 
+  fig_smooth() %>% 
+  gauge_shape(c("circle", "square", "triangle")) %>% 
+  axis_title_x("Flipper Length (mm)") %>% 
+  axis_title_y("Body Maxx (gram)") 
+```
+
+<iframe class="g2r" src="embed.html" onload="this.width='100%';this.height='505px'" style="border: none;" />

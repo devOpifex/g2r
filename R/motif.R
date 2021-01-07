@@ -58,9 +58,9 @@ motif.g2r <- function(
   name = "light"
 ){
   renderer <- match.arg(renderer)
-  opts <- list(...)
+  opts <- list(styleSheet = list(...))
 
-  if(length(opts) == 0)
+  if(length(opts$styleSheet) == 0)
     opts <- NULL
 
   if(!is.null(opts) && name %in% c("light", "dark"))
@@ -89,9 +89,9 @@ motif_global <- function(
   name = "light"
 ){
   renderer <- match.arg(renderer)
-  opts <- list(...)
+  opts <- list(styleSheet = list(...))
 
-  if(length(opts) == 0)
+  if(length(opts$styleSheet) == 0)
     opts <- NULL
 
   if(!is.null(opts) && name %in% c("light", "dark"))

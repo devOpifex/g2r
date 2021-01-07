@@ -54,6 +54,8 @@ g2(cars, asp(speed, dist)) %>%
  fig_point(asp(interplay = "brush-visible"))
 ```
 
+## Register
+
 G2.js comes with basic interplays out-of-the-box most of the time one will want to register an interplay and bind it to a figure.
 
 ```{r}

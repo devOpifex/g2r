@@ -19,7 +19,7 @@ home:
     href: https://g2.antv.vision/en
 
 development:
-  mode: auto
+  mode: release
 
 navbar:
   title: "g2r"

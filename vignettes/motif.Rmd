@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 
 library(g2r)
 
-motif_global(fontFamily = "Quicksand")
+motif_global_reset()
 ```
 
 The theme of the chart can be customised with the `motif` function.
@@ -43,7 +43,8 @@ You can also customise the motif.
 motif(
   g, 
   background = "lightgrey",
-  colors10 = scales::hue_pal()(3)
+  colors10 = scales::hue_pal()(3),
+  padding = 20
 )
 ```
 

@@ -53,6 +53,13 @@ df <- data.frame(
 
 The `gauge` is only used when a corresponding aspect has been defined, to configure a global feature of the chart there are other functions, e.g.: `tooltip`.
 
+<div class="panel panel-warning">
+<div class="panel-heading">Warning</div>
+<div class="panel-body">
+The graph below is __erroneous.__
+</div>
+</div>
+
 ```{r}
 g2(df, asp(x, y, color = grp)) %>% 
   fig_interval() %>% 

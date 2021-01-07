@@ -91,6 +91,12 @@ small>a{
     rgba(0, 0, 0, 0.2) 0 1px 1px -1px;
 }
 
+pre {
+  -moz-box-shadow:    inset 0 0 2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+  box-shadow:         inset 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
@@ -151,7 +157,12 @@ a:hover, a:focus {
   border-color: #ab74fc;
 }
 
-.panel-heading{
+.panel-info > .panel-heading{
   font-weight: bold;
-  font-size: 120%;
+  font-size: 150%;
+  text-align: center;
+}
+
+.centerize{
+  text-align: center;
 }

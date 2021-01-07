@@ -15,6 +15,8 @@ motif_global(fontFamily = "Quicksand")
 
 The `gauge_*` family of functions is similar to `scale_*` though there are some stark differences in places.
 
+## Options
+
 You can gauge aspects specific aspects, just like in ggplot2.
 
 ```{r}
@@ -24,6 +26,14 @@ g2(cars, asp(speed, dist, color = dist)) %>%
   fig_point() %>% 
   gauge_color(c("#FDE725", "#21908C", "#440154"))
 ```
+
+```{r}
+g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
+  fig_point(asp(shape = Species)) %>% 
+  gauge_shape(c("triangle", "circle", "square"))
+```
+
+## Callback
 
 You can also pass a JavaScript function to the gauge. The function must be wrapped in `htmlwidgets::JS`, the function must accept as argument the aspect variable used.
 
@@ -39,8 +49,11 @@ callback <- htmlwidgets::JS(
 
 g2(cars, asp(speed, dist, color = dist)) %>% 
   fig_point(asp(shape = "circle")) %>% 
-  gauge_color(callback)
+  gauge_color(callback) %>% 
+  legend_color(FALSE)
 ```
+
+## Hide
 
 To use a variable as gauge (e.g.: size, or color) and hide the legend pass a boolean to the appropriate `legend_*` function.
 
@@ -49,6 +62,8 @@ g2(cars, asp(speed, dist, size = dist)) %>%
   fig_point() %>% 
   legend_size(FALSE)
 ```
+
+## Axis
 
 One can also gauge the x and y axis.
 

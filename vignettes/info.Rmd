@@ -54,8 +54,8 @@ g2(cars, asp(speed, dist)) %>%
   fig_point() %>% 
   info_line(
     asp(
-      x = 4, y = 2, 
-      xend = 25, yend = 120,
+      x = 0, y = 0, 
+      xend = "max", yend = "max",
       content = "A diagonal line"
     )
   )
