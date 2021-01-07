@@ -64,6 +64,8 @@ navbar:
           href: articles/motif.html
         - text: "Crosstalk"
           href: articles/crosstalk.html
+        - text: "Shiny"
+          href: articles/shiny.html
     - text: "Examples"
       href: articles/examples.html
   right:

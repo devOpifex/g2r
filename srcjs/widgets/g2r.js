@@ -202,7 +202,16 @@ if (HTMLWidgets.shinyMode) {
       globalInteractions(c, x);
 
       x.views.forEach((layer) => {
-        let view = c.createView(layer.conf);
+
+        let view;
+        
+        // retrieve view instead of create if id is passed
+        if(layer.conf && layer.conf.id)
+          view = getView(x.id, layer.conf.id);
+
+        // if not found create one
+        if(view === undefined)
+          view = c.createView(layer.conf);
 
         annotate(view, layer);
   

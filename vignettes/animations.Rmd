@@ -11,8 +11,6 @@ Animations can be created using the `Animation` object or the `new_animation` cl
 
 ```{r setup, include=FALSE}
 library(g2r)
-
-motif_global(fontFamily = "Quicksand")
 ```
 
 ```{r}

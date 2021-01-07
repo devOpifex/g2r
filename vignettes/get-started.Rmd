@@ -14,8 +14,6 @@ knitr::opts_chunk$set(
 )
 
 library(g2r)
-
-motif_global(fontFamily = "Quicksand")
 ```
 
 g2r is an interface to the [G2.js](https://g2.antv.vision/en) JavaScript visualisation library. G2.js is itself a Grammar of Graphics (GG ~= 2G) though rather different from R's common understanding of such grammar from [ggplot2](https://ggplot2.tidyverse.org/).

@@ -14,8 +14,6 @@ knitr::opts_chunk$set(
 )
 
 library(g2r)
-
-motif_global(fontFamily = "Quicksand")
 ```
 
 The `adjust` function is used to nudge data. It is often necessary when using `fig_interval` grouped by `color`.

@@ -11,8 +11,6 @@ vignette: >
 library(g2r)
 library(plotly)
 library(crosstalk)
-
-motif_global(fontFamily = "Quicksand")
 ```
 
 g2r supports [crosstalk](https://rstudio.github.io/crosstalk/) to link g2 visualisations with other [htmlwidgets](http://htmlwidgets.org/) that [supports crosstalk](https://rstudio.github.io/crosstalk/widgets.html).

@@ -14,8 +14,6 @@ knitr::opts_chunk$set(
 )
 
 library(g2r)
-
-motif_global(fontFamily = "Quicksand")
 ```
 
 G2.js provides a custom tooltip but often times one might want to customise it.
