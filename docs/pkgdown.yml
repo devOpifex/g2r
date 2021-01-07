@@ -1,0 +1,23 @@
+pandoc: 2.9.1.1
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  adjust: adjust.html
+  animations: animations.html
+  aspects: aspects.html
+  axis: axis.html
+  contribute: contribute.html
+  crosstalk: crosstalk.html
+  examples: examples.html
+  figures: figures.html
+  gauges: gauges.html
+  get-started: get-started.html
+  graph: graph.html
+  info: info.html
+  installation: installation.html
+  interplay-state: interplay-state.html
+  motif: motif.html
+  planes: planes.html
+  tooltip: tooltip.html
+last_built: 2021-01-07T19:30Z
+
