@@ -6,6 +6,7 @@ build:
 				Rscript -e "devtools::install()"
 
 init: 
+				Rscript -e "install.packages('packer')"
 				Rscript -e "packer::npm_install()"
 				Rscript -e "packer::bundle_prod()"
 				Rscript -e "devtools::install()"
