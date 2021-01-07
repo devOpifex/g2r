@@ -81,8 +81,15 @@ render <- function(g, update = TRUE) UseMethod("render")
 #' @method render g2Proxy
 #' @export 
 render.g2Proxy <- function(g, update = TRUE){
-  msg <- list(id = g$x$id, update = update)
-  g$session$sendCustomMessage("render", msg)
+  g$x$update <- update
+
+  g$x$data <- proxy_data(g$x$data)
+
+  for(i in 1:length(g$x$views)){
+    g$x$views[[i]]$data <- proxy_data(g$x$views[[i]]$data)
+  }
+
+  g$session$sendCustomMessage("render", g$x)
   invisible(g)
 }
 

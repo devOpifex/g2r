@@ -168,14 +168,8 @@ HTMLWidgets.widget({
 
 if (HTMLWidgets.shinyMode) {
 
-  // Execute
-  Shiny.addCustomMessageHandler('render', (msg) => {
-      let c = getChart(msg.id);
-      c.render(msg.update);
-  });
-
   // Figure
-  Shiny.addCustomMessageHandler('figure', (x) => {
+  Shiny.addCustomMessageHandler('render', (x) => {
 
       let c = getChart(x.id);
 
@@ -218,6 +212,8 @@ if (HTMLWidgets.shinyMode) {
         // data
         assignData(view, layer, x)
       })
+
+      c.render(x.update);
 
   });
 

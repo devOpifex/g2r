@@ -37,6 +37,12 @@ gauge_color.g2r <- function(g, ...){
   gauge2_(g, ..., fn = "color")
 }
 
+#' @method gauge_color g2Proxy
+#' @export 
+gauge_color.g2Proxy <- function(g, ...){
+  gauge2_(g, ..., fn = "color")
+}
+
 #' @rdname gaugeViews
 #' @export 
 gauge_size <- function(g, ...) UseMethod("gauge_size")
@@ -44,6 +50,12 @@ gauge_size <- function(g, ...) UseMethod("gauge_size")
 #' @method gauge_size g2r
 #' @export 
 gauge_size.g2r <- function(g, ...){
+  gauge2_(g, ..., fn = "size")
+}
+
+#' @method gauge_size g2Proxy
+#' @export 
+gauge_size.g2Proxy <- function(g, ...){
   gauge2_(g, ..., fn = "size")
 }
 
@@ -57,6 +69,12 @@ gauge_shape.g2r <- function(g, ...){
   gauge2_(g, ..., fn = "shape")
 }
 
+#' @method gauge_shape g2Proxy
+#' @export 
+gauge_shape.g2Proxy <- function(g, ...){
+  gauge2_(g, ..., fn = "shape")
+}
+
 #' @rdname gaugeViews
 #' @export 
 gauge_tooltip <- function(g, ...) UseMethod("gauge_tooltip")
@@ -64,6 +82,12 @@ gauge_tooltip <- function(g, ...) UseMethod("gauge_tooltip")
 #' @method gauge_tooltip g2r
 #' @export 
 gauge_tooltip.g2r <- function(g, ...){
+  gauge2_(g, ..., fn = "tooltip")
+}
+
+#' @method gauge_tooltip g2Proxy
+#' @export 
+gauge_tooltip.g2Proxy <- function(g, ...){
   gauge2_(g, ..., fn = "tooltip")
 }
 
@@ -77,6 +101,12 @@ gauge_label.g2r <- function(g, ...){
   gauge2_(g, ..., fn = "label")
 }
 
+#' @method gauge_label g2Proxy
+#' @export 
+gauge_label.g2Proxy <- function(g, ...){
+  gauge2_(g, ..., fn = "label")
+}
+
 #' @rdname gaugeViews
 #' @export 
 gauge_style <- function(g, ...) UseMethod("gauge_style")
@@ -87,6 +117,12 @@ gauge_style.g2r <- function(g, ...){
   gauge2_(g, ..., fn = "style")
 }
 
+#' @method gauge_style g2Proxy
+#' @export 
+gauge_style.g2Proxy <- function(g, ...){
+  gauge2_(g, ..., fn = "style")
+}
+
 #' @rdname gaugeViews
 #' @export 
 gauge_interplay <- function(g, ...) UseMethod("gauge_interplay")
@@ -94,6 +130,12 @@ gauge_interplay <- function(g, ...) UseMethod("gauge_interplay")
 #' @method gauge_interplay g2r
 #' @export 
 gauge_interplay.g2r <- function(g, ...){
+  gauge2_(g, ..., fn = "interaction")
+}
+
+#' @method gauge_interplay g2Proxy
+#' @export 
+gauge_interplay.g2Proxy <- function(g, ...){
   gauge2_(g, ..., fn = "interaction")
 }
 
