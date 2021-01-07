@@ -42,6 +42,57 @@ fig_bin.g2r <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+  fig_bin_(
+    g, 
+    ..., 
+    type = type, 
+    bins = bins,
+    size_count = size_count,
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
+
+#' @method fig_bin g2Proxy
+#' @export 
+fig_bin.g2Proxy <- function(
+  g, 
+  ..., 
+  type = c("rectangle", "hexagon"), 
+  bins = c(10, 10),
+  size_count = TRUE,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  fig_bin_(
+    g, 
+    ..., 
+    type = type, 
+    bins = bins,
+    size_count = size_count,
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
+
+#' Bin figure
+#' 
+#' @inheritParams fig_bin
+#' 
+#' @keywords internal
+fig_bin_ <- function(
+  g, 
+  ..., 
+  type = c("rectangle", "hexagon"), 
+  bins = c(10, 10),
+  size_count = TRUE,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+) {
 
   check_alter()
 
@@ -113,6 +164,47 @@ fig_ribbon.g2r <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+  fig_ribbon_(
+    g, 
+    ..., 
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
+
+#' @method fig_ribbon g2Proxy
+#' @export 
+fig_ribbon.g2Proxy <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  fig_ribbon_(
+    g, 
+    ..., 
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
+
+#' Fig ribbon
+#' 
+#' @inheritParams fig_ribbon
+#' 
+#' @importFrom purrr pmap map
+#' 
+#' @keywords internal
+fig_ribbon_ <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
 
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
   cols <- select_asp_labels(asp, "ymin", "ymax")
@@ -122,10 +214,10 @@ fig_ribbon.g2r <- function(
 
   data <- get_data(g, data)
 
-  range <- purrr::pmap(data, list) %>% 
-    purrr::map(function(row, cols){
-      list(row[[cols[1]]], row[[cols[2]]])
-    }, cols = cols)
+  range <- pmap(data, list) %>% 
+    map(function(row, col){
+      list(row[[col[2]]], row[[col[1]]])
+    }, col = cols)
 
   data$range <- range
   asp$y <- "range"
@@ -182,6 +274,49 @@ fig_histogram.g2r <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+  fig_histogram_(
+    g, 
+    ..., 
+    bin_width = bin_width,
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
+
+#' @method fig_histogram g2Proxy
+#' @export 
+fig_histogram.g2Proxy <- function(
+  g, 
+  ..., 
+  bin_width = 5,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  fig_histogram_(
+    g, 
+    ..., 
+    bin_width = bin_width,
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
+
+#' Histogram
+#' 
+#' @inheritParams fig_histogram
+#' 
+#' @keywords internal
+fig_histogram_ <- function(
+  g, 
+  ..., 
+  bin_width = 5,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
 
   check_alter()
 
@@ -210,7 +345,6 @@ fig_histogram.g2r <- function(
       )
     
   data <- data$getRows()
-
   asp$y <- "count"
 
   fig_primitive(
@@ -273,7 +407,45 @@ fig_boxplot.g2r <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+  fig_boxplot_(
+    g, 
+    ..., 
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
 
+#' @method fig_boxplot g2Proxy
+#' @export 
+fig_boxplot.g2Proxy <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  fig_boxplot_(
+    g, 
+    ..., 
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
+
+#' Boxplot
+#' 
+#' @inheritParams fig_boxplot
+#' 
+#' @keywords internal
+fig_boxplot_ <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
   check_alter()
 
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
@@ -380,6 +552,83 @@ fig_smooth.g2r <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+  fig_smooth_(
+    g, 
+    ..., 
+    method = method,
+    band_width = band_width,
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
+
+#' @method fig_smooth g2Proxy
+#' @export 
+fig_smooth.g2Proxy <- function(
+  g, 
+  ..., 
+  method = c(
+    "linear",
+    "gaussian",
+    "cosine",
+    "epanechnikov",
+    "quartic",
+    "triangular",
+    "tricube",
+    "triweight",
+    "uniform",
+    "polynomial",
+    "logarithmic",
+    "power",
+    "polynomial",
+    "exponential"
+  ),
+  band_width = 1,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  fig_smooth_(
+    g, 
+    ..., 
+    method = method,
+    band_width = band_width,
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
+
+#' Smooth
+#' 
+#' @inheritParams fig_smooth
+#' 
+#' @keywords internal
+fig_smooth_ <- function(
+  g, 
+  ..., 
+  method = c(
+    "linear",
+    "gaussian",
+    "cosine",
+    "epanechnikov",
+    "quartic",
+    "triangular",
+    "tricube",
+    "triweight",
+    "uniform",
+    "polynomial",
+    "logarithmic",
+    "power",
+    "polynomial",
+    "exponential"
+  ),
+  band_width = 1,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+) {
 
   check_alter()
 
@@ -511,7 +760,45 @@ fig_density.g2r <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+  fig_density_(
+    g, 
+    ...,
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
 
+#' @method fig_density g2Proxy
+#' @export 
+fig_density.g2Proxy <- function(
+  g, 
+  ...,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  fig_density_(
+    g, 
+    ...,
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
+
+#' Density
+#' 
+#' @inheritParams fig_density
+#' 
+#' @keywords internal
+fig_density_ <- function(
+  g, 
+  ...,
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+) {
   # aspects
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
   position <- select_asp_labels(asp, "x", "y")
@@ -597,7 +884,49 @@ fig_range.g2r <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+  fig_range_(
+    g, 
+    ..., 
+    type = type,
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
 
+#' @method fig_range g2Proxy
+#' @export 
+fig_range.g2Proxy <- function(
+  g, 
+  ..., 
+  type = c("interval", "area"),
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  fig_range_(
+    g, 
+    ..., 
+    type = type,
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
+
+#' Range
+#' 
+#' @inheritParams fig_range
+#' 
+#' @keywords internal
+fig_range_ <- function(
+  g, 
+  ..., 
+  type = c("interval", "area"),
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+) {
   type <- match.arg(type)
 
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
@@ -712,7 +1041,45 @@ fig_voronoi.g2r <- function(
   data = NULL, 
   inherit_asp = TRUE
 ){
+  fig_voronoi_(
+    g, 
+    ..., 
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
 
+#' @method fig_voronoi g2Proxy
+#' @export 
+fig_voronoi.g2Proxy <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  fig_voronoi_(
+    g, 
+    ..., 
+    sync = sync, 
+    data = data, 
+    inherit_asp = inherit_asp
+  )
+}
+
+#' Voronoi
+#' 
+#' @inheritParams fig_voronoi
+#' 
+#' @keywords internal
+fig_voronoi_ <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+) {
   check_alter()
 
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
