@@ -33,18 +33,6 @@ g2(df, asp(x, ymin = ymin, ymax = ymax)) %>%
  fig_line(asp(y = ymax, color = "#8adb9a"))
 ```
 
-## Hex bin
-
-```{r}
-json <- jsonlite::fromJSON(
-  "https://gw.alipayobjects.com/os/antvdemo/assets/data/gaussion-distribution.json"
-)
-
-g2(json, asp(x, y, color = count)) %>% 
-  fig_bin(type = "hex", size_count = FALSE) %>% 
-  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
-```
-
 ## Steamgraph
 
 ```{r}
@@ -103,7 +91,7 @@ g2(df, asp(x, y, color = grp)) %>%
 data(diamonds, package = "ggplot2")
 
 g2(diamonds, asp(depth, color = cut)) %>% 
-  fig_histogram(bin_width = 1)
+  fig_histogram(adjust("stack"), bin_width = 1)
 ```
 
 ## Radial Interval
@@ -142,7 +130,7 @@ g2(fruits, asp(x, y)) %>%
 ```{r}
 df <- data.frame(
   x = c(1:50, 1:50),
-  y = runif(100, 10, 15),
+  y = rnorm(100, rep(c(10, 5), each = 50)),
   grp = rep(c("Male", "Female"), each = 50)
 )
 
@@ -395,8 +383,8 @@ df <- data.frame(
   grp = rep(c("FR", "US", "SA", "CN", "BE"), each = 50),
   values = rnorm(
     250, 
-    c(47, 37, 35, 42, 39),
-    c(1, 2, 3, 3, 2)
+    rep(c(47, 37, 35, 42, 39), each = 50),
+    rep(c(1, 2, 3, 3, 2), each = 50)
   )
 )
 
