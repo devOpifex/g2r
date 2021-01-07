@@ -19,7 +19,6 @@ g <- g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>%
 
 htmlwidgets::saveWidget(g, "embed.html")
 
-fs::file_copy("embed.html", "../docs/dev", overwrite = TRUE)
 fs::file_copy("embed.html", "../docs", overwrite = TRUE)
 
 setwd("../")
