@@ -111,15 +111,28 @@ motif_global <- function(
   options(G2_CHART_OPTS = chart_opts)
 }
 
+#' @rdname motif
+#' @export 
+motif_global_reset <- function(){
+  options(G2_THEME = NULL)
+  options(G2_CHART_OPTS = NULL)
+}
+
+# default chart options
+# required for htmlwidgets
 DEFAULT_CHART_OPTS <- list(
   padding = "auto",
   autoFit = TRUE
 )
 
+#' Get chart options
+#' 
+#' @keywords internal
 get_global_chart_opts <- function(){
   getOption("G2_CHART_OPTS", DEFAULT_CHART_OPTS)
 }
 
+#' @keywords internal
 get_global_theme <- function(){
   getOption("G2_THEME", NULL)
 }

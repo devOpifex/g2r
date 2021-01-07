@@ -3,6 +3,7 @@
 \name{motif}
 \alias{motif}
 \alias{motif_global}
+\alias{motif_global_reset}
 \title{Motif}
 \usage{
 motif(
@@ -21,6 +22,8 @@ motif_global(
   visible = TRUE,
   name = "light"
 )
+
+motif_global_reset()
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or

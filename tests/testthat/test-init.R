@@ -1,4 +1,4 @@
-test_that("g2 default", {
+test_that("Init default", {
   g <- g2()
   expect_null(g$x$data)
   expect_length(g$x$main_asp, 0)
@@ -12,7 +12,7 @@ test_that("g2 default", {
   expect_length(g$x$main_asp, 1)
 })
 
-test_that("g2 igraph", {
+test_that("Init igraph", {
   ig <- igraph::make_ring(10)
 
   g <- g2(ig)
@@ -21,7 +21,7 @@ test_that("g2 igraph", {
   
 })
 
-test_that("g2 crosstalk", {
+test_that("Init crosstalk", {
   sd <- crosstalk::SharedData$new(cars, group = "grp")
 
   g <- g2(sd, asp(speed, dist)) %>% 
@@ -29,4 +29,11 @@ test_that("g2 crosstalk", {
   
   expect_equal(g$x$crosstalk_group, "grp")
   expect_equal(names(g$x$data), c("speed", "dist", "CROSSTALK_KEYS"))
+})
+
+test_that("Init output", {
+  g <- g2(cars, asp(speed, dist), elementId = "x") %>% 
+    fig_point()
+  
+  expect_snapshot_output(g)
 })

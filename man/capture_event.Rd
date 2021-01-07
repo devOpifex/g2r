@@ -13,7 +13,8 @@ capture_event(g, event, callback = NULL, when = c("on", "once", "off"))
 \item{event}{Name of event to trigger the callback.}
 
 \item{callback}{A callback function to run when the \code{event}
-is fired.}
+is fired, if \code{NULL} then a default one is created, see
+details.}
 
 \item{when}{When the event should be triggered.}
 }

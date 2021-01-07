@@ -31,7 +31,7 @@
 #'  grp = c(rep("a", 26), rep("b", 26))
 #' )
 #' 
-#' g2(df, asp(x, y, color = grp), elementId = "x") %>% 
+#' g2(df, asp(x, y, color = grp)) %>% 
 #'  fig_interval(
 #'    asp(interplay = "element-highlight-by-color"),
 #'    adjust("dodge")
