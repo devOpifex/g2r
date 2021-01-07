@@ -651,6 +651,7 @@ fig_primitive.g2Proxy <- function(
     asp = asp
   )
 
+  g$x$data <- proxy_data(g$x$data)
   g$x$views[[1]]$data <- proxy_data(g$x$views[[1]]$data)
 
   g$session$sendCustomMessage("figure", g$x)

@@ -51,7 +51,7 @@ g2_proxy <- function(
     session = session, 
     x = list(
       id = id, # id of chart
-      data = proxy_data(as_tib(data)), # dataset
+      data = as_tib(data), # dataset
       main_asp = get_asp(...), # main aspects
       views = list(), # views | figures
       scale = list(), # chart.scale
@@ -73,14 +73,16 @@ print.g2Proxy <- function(x, ...){
 #' 
 #' @param g An object of class `g2Proxy` as returned 
 #' by [g2_proxy()].
+#' @param update Whether to trigger the update process.
 #' 
 #' @export 
-render <- function(g) UseMethod("render")
+render <- function(g, update = TRUE) UseMethod("render")
 
 #' @method render g2Proxy
 #' @export 
-render.g2Proxy <- function(g){
-  g$session$sendCustomMessage("render", g$x$id)
+render.g2Proxy <- function(g, update = TRUE){
+  msg <- list(id = g$x$id, update = update)
+  g$session$sendCustomMessage("render", msg)
   invisible(g)
 }
 

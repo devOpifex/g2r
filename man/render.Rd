@@ -4,11 +4,13 @@
 \alias{render}
 \title{Render}
 \usage{
-render(g)
+render(g, update = TRUE)
 }
 \arguments{
 \item{g}{An object of class \code{g2Proxy} as returned
 by \code{\link[=g2_proxy]{g2_proxy()}}.}
+
+\item{update}{Whether to trigger the update process.}
 }
 \description{
 Render proxy calls.

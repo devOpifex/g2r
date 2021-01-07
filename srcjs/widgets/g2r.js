@@ -169,15 +169,43 @@ HTMLWidgets.widget({
 if (HTMLWidgets.shinyMode) {
 
   // Execute
-  Shiny.addCustomMessageHandler('render', (id) => {
-      let c = getChart(id);
-      c.render();
+  Shiny.addCustomMessageHandler('render', (msg) => {
+      let c = getChart(msg.id);
+      c.render(msg.update);
   });
 
   // Figure
   Shiny.addCustomMessageHandler('figure', (x) => {
 
       let c = getChart(x.id);
+
+      if(x.axis){
+        x.axis.forEach(function(ax){
+          c.axis(ax.column, ax.opts);
+        })
+      }
+
+      if(x.legend)
+        x.legend.forEach(function(l){
+          c.legend(l.column, l.opts);
+        })
+      
+      if(x.tooltip)
+        c.tooltip(x.tooltip);
+
+      if(x.style)
+        c.style(x.style);
+
+      // scale
+      if(x.scale)
+        c.scale(x.scale);
+
+      // Coordinates
+      makeCoords(c, x);
+
+      // interactions
+      rmInteractions(c, x);
+      globalInteractions(c, x);
 
       x.views.forEach((layer) => {
         let view = c.createView(layer.conf);
