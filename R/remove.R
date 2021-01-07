@@ -64,7 +64,7 @@ remove_figure.g2r <- function(g, index){
   
   if(is.character(index)) {
     pos <- map(g$x$views, function(x, id){
-      isTRUE(x$conf$id == id)
+      !isTRUE(x$conf$id == id)
     }, id = index) %>% 
       unlist()
 
