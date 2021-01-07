@@ -284,7 +284,7 @@ combine_asp <- function(main_asp, asp, inherit_asp = TRUE){
     for(i in 1:length(asp)){
       c <- names(asp)[[i]]
       
-      if(c != "tooltip")
+      if(!c %in% c("tooltip", "label"))
         main_asp[[c]] <- asp[[i]]
       else 
         main_asp <- append(main_asp, asp[i])

@@ -260,3 +260,148 @@ g2(df, asp(x, y, color = y)) %>%
   gauge_color(cb) %>% 
   legend_color(FALSE)
 ```
+
+## Radar
+
+```{r}
+df <- data.frame(
+  x = c(LETTERS[1:8], LETTERS[1:8]),
+  y = runif(16, 10, 15),
+  grp = rep(c("Grp A", "Grp B"), each = 8)
+)
+
+g2(df, asp(x, y, color = grp)) %>% 
+  fig_area() %>% 
+  fig_line(asp(size = 2)) %>% 
+  fig_point(asp(size = 4, shape = "circle")) %>% 
+  coord_type("polar", radius = .8) %>% 
+  tooltip(
+    shared = TRUE, 
+    showCrosshairs = TRUE,
+    crosshairs = list(
+      line = list(
+        style = list(
+          lineDash = c(4, 4),
+          stroke = "#333"
+        )
+      )
+    )
+  )
+```
+
+## Funnel
+
+```{r}
+traffic <- data.frame(
+  label = c("Visit", "Portal", "Signup", "Pay", "Retain"),
+  users = c(1, .7, .5, .3, .1)
+)
+
+cb <- htmlwidgets::JS(
+  "(label, users) => {
+      return {
+        content: `${label} ${users * 100}%`,
+      };
+  }"
+)
+
+g2(traffic, asp(label, users, color = label)) %>% 
+  fig_interval(
+    asp(shape = "funnel", label = label, label = users), 
+    adjust("symmetric")
+  ) %>% 
+  gauge_color(c('#0050B3', '#1890FF', '#40A9FF', '#69C0FF', '#BAE7FF')) %>% 
+  coord_transpose() %>% 
+  coord_scale(1, -1) %>% 
+  axis_hide() %>% 
+  gauge_label(cb)
+```
+
+## Basic Heatmap
+
+```{r}
+weekday <- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+employee <- LETTERS[1:10]
+roster <- expand.grid(weekday = weekday, employee = employee)
+roster$sales <- round(runif(nrow(roster), 10, 50))
+
+g2(roster, asp(employee, weekday, color = sales)) %>% 
+  fig_polygon(
+    asp(label = sales),
+    lineWidth = 1,
+    stroke = "#fff"
+  ) %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+```
+
+## Polar Heatmap
+
+```{r}
+g2(roster, asp(employee, weekday, color = sales)) %>% 
+  fig_polygon(
+    asp(label = sales),
+    lineWidth = 1,
+    stroke = "#fff"
+  ) %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3")) %>% 
+  coord_type("polar", innerRadius = .2) %>% 
+  axis_y(
+    grid = NULL,
+    line = NULL,
+    tickLine = NULL,
+    label = NULL
+  ) %>% 
+  axis_x(
+    grid = NULL,
+    line = NULL,
+    tickLine = NULL
+  )
+```
+
+## Bin Hexagon
+
+```{r}
+json <- jsonlite::fromJSON(
+  "https://gw.alipayobjects.com/os/antvdemo/assets/data/gaussion-distribution.json"
+)
+
+g2(json, asp(x, y, color = count)) %>% 
+  fig_bin(
+    type = "hexagon", 
+    size_count = FALSE,
+    lineWidth = 1,
+    stroke = "#fff"
+  ) %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+```
+
+## Bin Rectangle
+
+```{r}
+data(diamonds, package = "ggplot2")
+
+g2(diamonds, asp(carat, price, color = count)) %>% 
+  fig_bin(
+    size_count = FALSE,
+    bins = c(50, 50)
+  ) %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+```
+
+## Radial Boxplot
+
+```{r}
+df <- data.frame(
+  grp = rep(c("FR", "US", "SA", "CN", "BE"), each = 50),
+  values = rnorm(
+    250, 
+    c(47, 37, 35, 42, 39),
+    c(1, 2, 3, 3, 2)
+  )
+)
+
+g2(df, asp(grp, values, color = grp)) %>% 
+  fig_boxplot(asp(size = 60)) %>% 
+  coord_type("polar", innerRadius = .5) %>% 
+  legend_color(position = "top")
+```
