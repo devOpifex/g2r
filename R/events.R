@@ -5,7 +5,8 @@
 #' @inheritParams fig_point
 #' @param event Name of event to trigger the callback.
 #' @param callback A callback function to run when the `event`
-#' is fired.
+#' is fired, if `NULL` then a default one is created, see
+#' details.
 #' @param when When the event should be triggered.
 #' 
 #' @details The `callback` function should accept a single 
@@ -38,6 +39,9 @@ capture_event.g2r <- function(
 ){
   if(missing(event))
     stop("Missing `event`", call. = FALSE)
+
+  if(!is.null(callback) && !inherits(callback, "JS_EVAL"))
+    stop("`callback` must be either `NULL` or a JavaScript function", call. = FALSE)
 
   opts <- list(
     when = match.arg(when),
