@@ -83,14 +83,43 @@ render <- function(g, update = TRUE) UseMethod("render")
 render.g2Proxy <- function(g, update = TRUE){
   g$x$update <- update
 
-  g$x$data <- proxy_data(g$x$data)
+  g$x$data <- select_columns(g$x$data, g$x$cols)
+  g$x$data <- serialise_df(g$x$data)
 
   for(i in 1:length(g$x$views)){
-    g$x$views[[i]]$data <- proxy_data(g$x$views[[i]]$data)
+    g$x$views[[i]]$data <- select_columns(g$x$views[[i]]$data, g$x$cols)
+    g$x$views[[i]]$data <- serialise_df(g$x$views[[i]]$data)
   }
 
   g$session$sendCustomMessage("render", g$x)
   invisible(g)
+}
+
+#' @importFrom jsonlite toJSON
+#' @method render g2Action
+#' @export 
+render.g2Action <- function(g, update = TRUE){
+  check_package("htmltools")
+
+  g$x$data <- select_columns(g$x$data, g$x$cols)
+  g$x$data <- serialise_df(g$x$data)
+
+  for(i in 1:length(g$x$views)){
+    g$x$views[[i]]$data <- select_columns(g$x$views[[i]]$data, g$x$cols)
+    g$x$views[[i]]$data <- serialise_df(g$x$views[[i]]$data)
+  }
+
+  htmltools::tags$script(
+    `data-for` = g$x$id,
+    class = "g2-actions",
+    type = "application/json",
+    toJSON(
+      g$x, 
+      data.frame = "rows",
+      null = "null",
+      auto_unbox = TRUE
+    )
+  )
 }
 
 #' Serialise
@@ -103,7 +132,7 @@ render.g2Proxy <- function(g, update = TRUE){
 #' 
 #' @importFrom purrr pmap
 #' @keywords internal
-proxy_data <- function(data = NULL){
+serialise_df <- function(data = NULL){
   if(is.null(data))
     return()
 
