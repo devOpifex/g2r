@@ -66,6 +66,8 @@ navbar:
           href: articles/crosstalk.html
         - text: "Shiny"
           href: articles/shiny.html
+        - text: "Rmarkdown"
+          href: articles/actions.html
     - text: "Examples"
       href: articles/examples.html
   right:
@@ -150,6 +152,11 @@ reference:
     desc: "Crosstalk-related functions"
     contents:
       - starts_with("crosstalk_")
+  - title: "Rmarkdown"
+    desc: "Actions and inputs for Rmarkdown"
+    contents:
+      - g2_action
+      - starts_with("input_")
 
 authors:
   John Coene:

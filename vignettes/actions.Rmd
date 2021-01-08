@@ -1,8 +1,8 @@
 ---
-title: "Action"
+title: "Rmarkdown"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Action}
+  %\VignetteIndexEntry{Rmarkdown}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -16,18 +16,29 @@ knitr::opts_chunk$set(
 library(g2r)
 ```
 
-<a class="btn btn-default" id="toggler">Toggle chart visibility</a>
+To include a chart in Rmarkdown simply place the code in a code chunk.
 
 ```{r}
-g2(cars, asp(speed, dist)) %>% 
-  fig_point() %>% 
-  action_toggle_visible("toggler")
+g2(beaver1, asp(time, temp)) %>% 
+  fig_line() %>% 
+  fig_point(asp(shape = "circle"))
+```
+
+## Button
+
+One can also include "actions" in Rmarkdown documents, these are some elements of dynamism.
+
+```{r}
+input_button("toggler", "Toggle chart visibility")
 ```
 
 ```{r}
-input_slider("slider", "Slide me", 5, 0, 10)
+g2(mtcars, asp(mpg, qsec), elementId = "plotty") %>% 
+  fig_point(config("hello"))
 ```
 
 ```{r}
-input_select("selector", "Select me", letters[1:3])
+g2_action("plotty", "toggler", data = mtcars) %>% 
+  fig_point(asp(mpg, wt, shape = "circle"), config("hello")) %>% 
+  render()
 ```
