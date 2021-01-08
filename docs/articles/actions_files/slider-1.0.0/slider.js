@@ -1,14 +1,12 @@
-document.onload = function(){
-
+window.addEventListener('DOMContentLoaded', (event) => {
   var sliders = document.getElementsByClassName("g2-slider");
 
-  sliders.forEach((slider) => {
+  for(let slider of sliders){
     let input = slider.getElementsByTagName("input");
-    let label = slider.getElementsByTagName("label");
+    let label = document.getElementById(input[0].id + "-value");
 
     input[0].addEventListener("change", (ev) => {
-      label[0].innerText = input[0].value;
+      label.innerText = input[0].value;
     })
-  })
-
-}
+  }
+});

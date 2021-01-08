@@ -25,5 +25,9 @@ g2(cars, asp(speed, dist)) %>%
 ```
 
 ```{r}
-slider_input("slider", "Slide me", 5, 0, 10)
+input_slider("slider", "Slide me", 5, 0, 10)
+```
+
+```{r}
+input_select("selector", "Select me", letters[1:3])
 ```

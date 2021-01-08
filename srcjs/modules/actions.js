@@ -4,10 +4,14 @@ const actions = (c, actions) => {
     return ;
 
   actions.forEach((action) => {
-    document.getElementById(action.btn).addEventListener("click", () => {
-      let current = c.visible;
-      c.changeVisible(!current);
-    })
+
+    if(action.name == "change-visibility"){
+      document.getElementById(action.btn).addEventListener("click", () => {
+        let current = c.visible;
+        c.changeVisible(!current);
+      })
+    }
+
   })
 
 }
