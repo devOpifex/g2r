@@ -2,12 +2,14 @@
 % Please edit documentation in R/actions.R
 \name{input_button}
 \alias{input_button}
-\title{Button}
+\title{Button Input}
 \usage{
-input_button(id, class = "default")
+input_button(id, label, class = "default")
 }
 \arguments{
 \item{id}{Id of the button.}
+
+\item{label}{Label to display.}
 
 \item{class}{Class of the button.}
 }

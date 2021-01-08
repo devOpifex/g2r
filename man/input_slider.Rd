@@ -2,7 +2,7 @@
 % Please edit documentation in R/actions.R
 \name{input_slider}
 \alias{input_slider}
-\title{Slider}
+\title{Slider Input}
 \usage{
 input_slider(id, label, value, min, max, step = 1)
 }
