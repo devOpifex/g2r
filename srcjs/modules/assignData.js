@@ -1,8 +1,8 @@
-const assignData = (view, v, x) => {
-  if(v.data)
-    view.data(v.data);
-  else
-    view.data(x.data);
+const getData = (globalData, layerData) => {
+  if(layerData)
+    return layerData;
+  
+  return globalData;
 }
 
-export { assignData };
+export { getData };

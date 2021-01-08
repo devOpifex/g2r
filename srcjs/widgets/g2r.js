@@ -1,21 +1,10 @@
 import 'widgets';
 import { Chart, registerTheme } from '@antv/g2';
-import { makeFigure } from '../modules/makeFigure.js'; 
-import { makeCoords } from '../modules/makeCoords.js'; 
-import { tuneFigure } from '../modules/tuneFigure.js';
-import { assignData } from '../modules/assignData.js';
-import { annotate } from '../modules/annotate.js';
-import { captureEvents } from '../modules/events.js';
-import { 
-  globalInteractions, 
-  interactions, 
-  rmInteractions,
-  registerInteractions 
-} from '../modules/interactions.js';
-import { getChart, getView } from '../modules/shiny.js';
-import { facetFactory } from '../modules/facet.js';
+import { registerInteractions } from '../modules/interactions.js';
 import { crosstalkFilter, crosstalkSelect } from '../modules/crosstalk.js'
-import { actions } from '../modules/actions.js';
+import { observeActions } from '../modules/action.js';
+import { plot } from '../modules/plot.js';
+import { getChart, getView } from '../modules/shiny.js';
 
 HTMLWidgets.widget({
 
@@ -47,74 +36,8 @@ HTMLWidgets.widget({
         crosstalkFilter(c, ctFilter);
         crosstalkSelect(c, ctSelection, x.crosstalk_select);
 
-        if(x.data)
-          c.data(x.data);
-
-        // scale
-        if(x.scale)
-          c.scale(x.scale);
-
-        // Coordinates
-        makeCoords(c, x);
-
-        // interactions
-        rmInteractions(c, x);
-        globalInteractions(c, x);
-
-        // events
-        captureEvents(c, el, x);
-
-        if(x.axis){
-          x.axis.forEach(function(ax){
-            c.axis(ax.column, ax.opts);
-          })
-        }
-
-        if(x.legend)
-          x.legend.forEach(function(l){
-            c.legend(l.column, l.opts);
-          })
-        
-        if(x.tooltip)
-          c.tooltip(x.tooltip);
-
-        if(x.style)
-          c.style(x.style);
-
-        // loop over figures
-        if(x.facet){
-
-          // data
-          c.data(x.data);
-
-          // views
-          x.facet.opts.eachView = facetFactory(x);
-
-          c.facet(x.facet.type, x.facet.opts);
-
-        } else {
-          x.views.forEach(function(v){
-            let view = c.createView(v.conf);
-
-            annotate(view, x);
-
-            // interactions
-            interactions(view, v);
-  
-            let figure = makeFigure(view, v.type);
-            tuneFigure(figure, v);
-  
-            // data
-            assignData(view, v, x)
-            
-          });
-        }
-
-        if(x.slider)
-          c.option('slider', x.slider);
-
-        if(x.scrollbar)
-          c.option('scrollbar', x.scrollbar);
+        // main plot function
+        plot(c, x, el)
 
         if(x.crosstalk_group){
 
@@ -141,8 +64,6 @@ HTMLWidgets.widget({
           })
 
         }
-
-        actions(c, x.actions)
 
         c.render();
 
@@ -176,54 +97,7 @@ if (HTMLWidgets.shinyMode) {
 
       let c = getChart(x.id);
 
-      if(x.axis){
-        x.axis.forEach(function(ax){
-          c.axis(ax.column, ax.opts);
-        })
-      }
-
-      if(x.legend)
-        x.legend.forEach(function(l){
-          c.legend(l.column, l.opts);
-        })
-      
-      if(x.tooltip)
-        c.tooltip(x.tooltip);
-
-      if(x.style)
-        c.style(x.style);
-
-      // scale
-      if(x.scale)
-        c.scale(x.scale);
-
-      // Coordinates
-      makeCoords(c, x);
-
-      // interactions
-      rmInteractions(c, x);
-      globalInteractions(c, x);
-
-      x.views.forEach((layer) => {
-
-        let view;
-        
-        // retrieve view instead of create if id is passed
-        if(layer.conf && layer.conf.id)
-          view = getView(x.id, layer.conf.id);
-
-        // if not found create one
-        if(view === undefined)
-          view = c.createView(layer.conf);
-
-        annotate(view, layer);
-  
-        let figure = makeFigure(view, layer.type);
-        tuneFigure(figure, layer);
-  
-        // data
-        assignData(view, layer, x)
-      })
+      plot(c, x);
 
       c.render(x.update);
 
@@ -238,3 +112,6 @@ if (HTMLWidgets.shinyMode) {
   })
 
 }
+
+// observe actions
+observeActions()

@@ -5,9 +5,13 @@ const getChart = (id) => {
 
   let chart;
 
-  if (typeof htmlWidgetsObj != 'undefined') {
-    chart = htmlWidgetsObj.getChart();
-  }
+  if (htmlWidgetsObj === undefined)
+    return chart;
+
+  if (htmlWidgetsObj === null)
+    return chart;
+  
+  chart = htmlWidgetsObj.getChart();
 
   return(chart);
 }
@@ -17,20 +21,22 @@ const getView = (id, index) => {
 
   let view;
 
-  if (typeof htmlWidgetsObj != 'undefined') {
-    
-    if(typeof index == "string"){
-      let views = htmlWidgetsObj.getViews();
-      index = views.findIndex((data) => data.id == index);
+  if (htmlWidgetsObj === undefined)
+    return view;
 
-      // cannot find view with index name
-      if(index < 0)
-        return view;
-    }
+  if (htmlWidgetsObj === null)
+    return view;
 
-    view = htmlWidgetsObj.getView(index);
+  if(typeof index == "string"){
+    let views = htmlWidgetsObj.getViews();
+    index = views.findIndex((data) => data.id == index);
 
+    // cannot find view with index name
+    if(index < 0)
+      return view;
   }
+
+  view = htmlWidgetsObj.getView(index);
 
   return(view);
 }
