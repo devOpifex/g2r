@@ -15,6 +15,7 @@ import {
 import { getChart, getView } from '../modules/shiny.js';
 import { facetFactory } from '../modules/facet.js';
 import { crosstalkFilter, crosstalkSelect } from '../modules/crosstalk.js'
+import { actions } from '../modules/actions.js';
 
 HTMLWidgets.widget({
 
@@ -140,6 +141,8 @@ HTMLWidgets.widget({
           })
 
         }
+
+        actions(c, x.actions)
 
         c.render();
 

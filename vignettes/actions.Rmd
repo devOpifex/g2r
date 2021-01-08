@@ -1,0 +1,29 @@
+---
+title: "Action"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Action}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(g2r)
+```
+
+<a class="btn btn-default" id="toggler">Toggle chart visibility</a>
+
+```{r}
+g2(cars, asp(speed, dist)) %>% 
+  fig_point() %>% 
+  action_toggle_visible("toggler")
+```
+
+```{r}
+slider_input("slider", "Slide me", 5, 0, 10)
+```

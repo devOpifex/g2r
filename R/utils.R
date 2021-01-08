@@ -232,6 +232,8 @@ as_widget <- function(
   height = NULL, 
   elementId = NULL
 ){
+
+  x$actions <- list()
   
   attr(x, "TOJSON_ARGS") <- list(dataframe = "rows")
 
