@@ -24,7 +24,8 @@ Imports:
   rlang,
   R6,
   tibble,
-  crosstalk
+  crosstalk,
+  jsonlite
 Suggests:
     alter,
     shiny,
