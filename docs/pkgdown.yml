@@ -2,6 +2,7 @@ pandoc: 2.9.1.1
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
+  actions: actions.html
   adjust: adjust.html
   animations: animations.html
   aspects: aspects.html
@@ -20,5 +21,5 @@ articles:
   planes: planes.html
   shiny: shiny.html
   tooltip: tooltip.html
-last_built: 2021-01-07T21:45Z
+last_built: 2021-01-08T18:28Z
 

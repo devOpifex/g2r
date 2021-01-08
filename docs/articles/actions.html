@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Action • g2r</title>
+<title>Rmarkdown • g2r</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="Action">
+<meta property="og:title" content="Rmarkdown">
 <meta property="og:description" content="g2r">
 <meta property="og:image" content="/reference/figures/g2r_social.png">
 <meta property="og:image:alt" content="A grammar of graphics for interactive visualisations">
@@ -57,19 +57,19 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../LICENSE.html">
-    <span class="fa fa-balance-scale"></span>
+    <span class="fas fa-balance-scale"></span>
      
   </a>
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper"></span>
+    <span class="fas fa-newspaper"></span>
      
   </a>
 </li>
@@ -131,6 +131,9 @@
     <li>
       <a href="../articles/shiny.html">Shiny</a>
     </li>
+    <li>
+      <a href="../articles/actions.html">Rmarkdown</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -143,7 +146,7 @@
 </li>
 <li>
   <a href="https://github.com/devOpifex/g2r">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -157,12 +160,11 @@
 
       
 
-      </header><script src="actions_files/header-attrs-2.5/header-attrs.js"></script><script src="actions_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="actions_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="actions_files/anchor-sections-1.0/anchor-sections.js"></script><script src="actions_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="actions_files/g2r-binding-1.0.0.9000/g2r.js"></script><script src="actions_files/jquery-1.11.3/jquery.min.js"></script><link href="actions_files/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet">
-<script src="actions_files/crosstalk-1.1.0.1/js/crosstalk.min.js"></script><script src="actions_files/slider-1.0.0/slider.js"></script><div class="row">
+      </header><script src="actions_files/header-attrs-2.6/header-attrs.js"></script><script src="actions_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="actions_files/htmlwidgets-1.5.3/htmlwidgets.js"></script><script src="actions_files/g2r-binding-1.0.0.9000/g2r.js"></script><script src="actions_files/jquery-1.11.3/jquery.min.js"></script><link href="actions_files/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet">
+<script src="actions_files/crosstalk-1.1.0.1/js/crosstalk.min.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Action</h1>
+      <h1 data-toc-skip>Rmarkdown</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/devOpifex/g2r/blob/master/vignettes/actions.Rmd"><code>vignettes/actions.Rmd</code></a></small>
@@ -172,34 +174,36 @@
 
     
     
-<p><a class="btn btn-default" id="toggler">Toggle chart visibility</a></p>
+<p>To include a chart in Rmarkdown simply place the code in a code chunk.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/g2.html">g2</a></span><span class="op">(</span><span class="va">cars</span>, <span class="fu"><a href="../reference/asp.html">asp</a></span><span class="op">(</span><span class="va">speed</span>, <span class="va">dist</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/fig_point.html">fig_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/action_toggle_visible.html">action_toggle_visible</a></span><span class="op">(</span><span class="st">"toggler"</span><span class="op">)</span></code></pre></div>
-<div id="htmlwidget-a87d2a24b85a920ce325" style="width:700px;height:432.632880098888px;" class="g2r html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a87d2a24b85a920ce325">{"x":{"data":[{"speed":4,"dist":2},{"speed":4,"dist":10},{"speed":7,"dist":4},{"speed":7,"dist":22},{"speed":8,"dist":16},{"speed":9,"dist":10},{"speed":10,"dist":18},{"speed":10,"dist":26},{"speed":10,"dist":34},{"speed":11,"dist":17},{"speed":11,"dist":28},{"speed":12,"dist":14},{"speed":12,"dist":20},{"speed":12,"dist":24},{"speed":12,"dist":28},{"speed":13,"dist":26},{"speed":13,"dist":34},{"speed":13,"dist":34},{"speed":13,"dist":46},{"speed":14,"dist":26},{"speed":14,"dist":36},{"speed":14,"dist":60},{"speed":14,"dist":80},{"speed":15,"dist":20},{"speed":15,"dist":26},{"speed":15,"dist":54},{"speed":16,"dist":32},{"speed":16,"dist":40},{"speed":17,"dist":32},{"speed":17,"dist":40},{"speed":17,"dist":50},{"speed":18,"dist":42},{"speed":18,"dist":56},{"speed":18,"dist":76},{"speed":18,"dist":84},{"speed":19,"dist":36},{"speed":19,"dist":46},{"speed":19,"dist":68},{"speed":20,"dist":32},{"speed":20,"dist":48},{"speed":20,"dist":52},{"speed":20,"dist":56},{"speed":20,"dist":64},{"speed":22,"dist":66},{"speed":23,"dist":54},{"speed":24,"dist":70},{"speed":24,"dist":92},{"speed":24,"dist":93},{"speed":24,"dist":120},{"speed":25,"dist":85}],"views":[{"type":"point","position":"speed*dist"}],"scale":{"speed":{"sync":"mainGroupX","nice":true},"dist":{"sync":"mainGroupY","nice":true}},"actions":[{"btn":"toggler","name":"change-visibility"}],"chartOpts":{"padding":"auto","autoFit":true},"crosstalk_select":[{"attribute":"stroke","on":"black","off":"none"}]},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/input_slider.html">input_slider</a></span><span class="op">(</span><span class="st">"slider"</span>, <span class="st">"Slide me"</span>, <span class="fl">5</span>, <span class="fl">0</span>, <span class="fl">10</span><span class="op">)</span></code></pre></div>
-<div class="g2-slider">
-<label for="slider">
-Slide me
-<span id="slider-value">5</span>
-</label>
-<input type="range" id="slider" name="slider" min="0" max="10" value="5" step="1">
-</div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/g2.html">g2</a></span><span class="op">(</span><span class="va">beaver1</span>, <span class="fu"><a href="../reference/asp.html">asp</a></span><span class="op">(</span><span class="va">time</span>, <span class="va">temp</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/fig_line.html">fig_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/fig_point.html">fig_point</a></span><span class="op">(</span><span class="fu"><a href="../reference/asp.html">asp</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="st">"circle"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-ca109e004fd41f95736b" style="width:700px;height:432.632880098888px;" class="g2r html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ca109e004fd41f95736b">{"x":{"data":[{"time":840,"temp":36.33},{"time":850,"temp":36.34},{"time":900,"temp":36.35},{"time":910,"temp":36.42},{"time":920,"temp":36.55},{"time":930,"temp":36.69},{"time":940,"temp":36.71},{"time":950,"temp":36.75},{"time":1000,"temp":36.81},{"time":1010,"temp":36.88},{"time":1020,"temp":36.89},{"time":1030,"temp":36.91},{"time":1040,"temp":36.85},{"time":1050,"temp":36.89},{"time":1100,"temp":36.89},{"time":1110,"temp":36.67},{"time":1120,"temp":36.5},{"time":1130,"temp":36.74},{"time":1140,"temp":36.77},{"time":1150,"temp":36.76},{"time":1200,"temp":36.78},{"time":1210,"temp":36.82},{"time":1220,"temp":36.89},{"time":1230,"temp":36.99},{"time":1240,"temp":36.92},{"time":1250,"temp":36.99},{"time":1300,"temp":36.89},{"time":1310,"temp":36.94},{"time":1320,"temp":36.92},{"time":1330,"temp":36.97},{"time":1340,"temp":36.91},{"time":1350,"temp":36.79},{"time":1400,"temp":36.77},{"time":1410,"temp":36.69},{"time":1420,"temp":36.62},{"time":1430,"temp":36.54},{"time":1440,"temp":36.55},{"time":1450,"temp":36.67},{"time":1500,"temp":36.69},{"time":1510,"temp":36.62},{"time":1520,"temp":36.64},{"time":1530,"temp":36.59},{"time":1540,"temp":36.65},{"time":1550,"temp":36.75},{"time":1600,"temp":36.8},{"time":1610,"temp":36.81},{"time":1620,"temp":36.87},{"time":1630,"temp":36.87},{"time":1640,"temp":36.89},{"time":1650,"temp":36.94},{"time":1700,"temp":36.98},{"time":1710,"temp":36.95},{"time":1720,"temp":37},{"time":1730,"temp":37.07},{"time":1740,"temp":37.05},{"time":1750,"temp":37},{"time":1800,"temp":36.95},{"time":1810,"temp":37},{"time":1820,"temp":36.94},{"time":1830,"temp":36.88},{"time":1840,"temp":36.93},{"time":1850,"temp":36.98},{"time":1900,"temp":36.97},{"time":1910,"temp":36.85},{"time":1920,"temp":36.92},{"time":1930,"temp":36.99},{"time":1940,"temp":37.01},{"time":1950,"temp":37.1},{"time":2000,"temp":37.09},{"time":2010,"temp":37.02},{"time":2020,"temp":36.96},{"time":2030,"temp":36.84},{"time":2040,"temp":36.87},{"time":2050,"temp":36.85},{"time":2100,"temp":36.85},{"time":2110,"temp":36.87},{"time":2120,"temp":36.89},{"time":2130,"temp":36.86},{"time":2140,"temp":36.91},{"time":2150,"temp":37.53},{"time":2200,"temp":37.23},{"time":2210,"temp":37.2},{"time":2230,"temp":37.25},{"time":2240,"temp":37.2},{"time":2250,"temp":37.21},{"time":2300,"temp":37.24},{"time":2310,"temp":37.1},{"time":2320,"temp":37.2},{"time":2330,"temp":37.18},{"time":2340,"temp":36.93},{"time":2350,"temp":36.83},{"time":0,"temp":36.93},{"time":10,"temp":36.83},{"time":20,"temp":36.8},{"time":30,"temp":36.75},{"time":40,"temp":36.71},{"time":50,"temp":36.73},{"time":100,"temp":36.75},{"time":110,"temp":36.72},{"time":120,"temp":36.76},{"time":130,"temp":36.7},{"time":140,"temp":36.82},{"time":150,"temp":36.88},{"time":200,"temp":36.94},{"time":210,"temp":36.79},{"time":220,"temp":36.78},{"time":230,"temp":36.8},{"time":240,"temp":36.82},{"time":250,"temp":36.84},{"time":300,"temp":36.86},{"time":310,"temp":36.88},{"time":320,"temp":36.93},{"time":330,"temp":36.97},{"time":340,"temp":37.15}],"views":[{"type":"line","position":"time*temp"},{"type":"point","position":"time*temp","shape":"circle"}],"scale":{"time":{"sync":"mainGroupX","nice":true},"temp":{"sync":"mainGroupY","nice":true}},"actions":[],"chartOpts":{"padding":"auto","autoFit":true},"crosstalk_select":[{"attribute":"stroke","on":"black","off":"none"}]},"evals":[],"jsHooks":[]}</script><div id="button" class="section level2">
+<h2 class="hasAnchor">
+<a href="#button" class="anchor"></a>Button</h2>
+<p>One can also include “actions” in Rmarkdown documents, these are some elements of dynamism.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/input_button.html">input_button</a></span><span class="op">(</span><span class="st">"toggler"</span>, <span class="st">"Toggle chart visibility"</span><span class="op">)</span></code></pre></div>
+<p><button id="toggler" class="btn btn-" type="button">Toggle chart visibility</button></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">input_select</span><span class="op">(</span><span class="st">"selector"</span>, <span class="st">"Select me"</span>, <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<div class="form-group">
-<label class="control-label" for="selector"></label>
-<select id="selector"><option value="a">a</option>
-<option value="b">b</option>
-<option value="c">c</option></select>
+<code class="sourceCode R"><span class="fu"><a href="../reference/g2.html">g2</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="../reference/asp.html">asp</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">qsec</span><span class="op">)</span>, elementId <span class="op">=</span> <span class="st">"plotty"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/fig_point.html">fig_point</a></span><span class="op">(</span><span class="fu"><a href="../reference/config.html">config</a></span><span class="op">(</span><span class="st">"hello"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div id="plotty" style="width:700px;height:432.632880098888px;" class="g2r html-widget"></div>
+<script type="application/json" data-for="plotty">{"x":{"data":[{"mpg":21,"qsec":16.46},{"mpg":21,"qsec":17.02},{"mpg":22.8,"qsec":18.61},{"mpg":21.4,"qsec":19.44},{"mpg":18.7,"qsec":17.02},{"mpg":18.1,"qsec":20.22},{"mpg":14.3,"qsec":15.84},{"mpg":24.4,"qsec":20},{"mpg":22.8,"qsec":22.9},{"mpg":19.2,"qsec":18.3},{"mpg":17.8,"qsec":18.9},{"mpg":16.4,"qsec":17.4},{"mpg":17.3,"qsec":17.6},{"mpg":15.2,"qsec":18},{"mpg":10.4,"qsec":17.98},{"mpg":10.4,"qsec":17.82},{"mpg":14.7,"qsec":17.42},{"mpg":32.4,"qsec":19.47},{"mpg":30.4,"qsec":18.52},{"mpg":33.9,"qsec":19.9},{"mpg":21.5,"qsec":20.01},{"mpg":15.5,"qsec":16.87},{"mpg":15.2,"qsec":17.3},{"mpg":13.3,"qsec":15.41},{"mpg":19.2,"qsec":17.05},{"mpg":27.3,"qsec":18.9},{"mpg":26,"qsec":16.7},{"mpg":30.4,"qsec":16.9},{"mpg":15.8,"qsec":14.5},{"mpg":19.7,"qsec":15.5},{"mpg":15,"qsec":14.6},{"mpg":21.4,"qsec":18.6}],"views":[{"type":"point","conf":{"id":"hello"},"position":"mpg*qsec"}],"scale":{"mpg":{"sync":"mainGroupX","nice":true},"qsec":{"sync":"mainGroupY","nice":true}},"actions":[],"chartOpts":{"padding":"auto","autoFit":true},"crosstalk_select":[{"attribute":"stroke","on":"black","off":"none"}]},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/g2_action.html">g2_action</a></span><span class="op">(</span><span class="st">"plotty"</span>, <span class="st">"toggler"</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/fig_point.html">fig_point</a></span><span class="op">(</span><span class="fu"><a href="../reference/asp.html">asp</a></span><span class="op">(</span><span class="va">mpg</span>, <span class="va">wt</span>, shape <span class="op">=</span> <span class="st">"circle"</span><span class="op">)</span>, <span class="fu"><a href="../reference/config.html">config</a></span><span class="op">(</span><span class="st">"hello"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="../reference/render.html">render</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p><script data-for="plotty" class="g2-actions" type="application/json">{"is_action":true,"id":"plotty","input_id":"toggler","data":[{"mpg":21,"wt":2.62},{"mpg":21,"wt":2.875},{"mpg":22.8,"wt":2.32},{"mpg":21.4,"wt":3.215},{"mpg":18.7,"wt":3.44},{"mpg":18.1,"wt":3.46},{"mpg":14.3,"wt":3.57},{"mpg":24.4,"wt":3.19},{"mpg":22.8,"wt":3.15},{"mpg":19.2,"wt":3.44},{"mpg":17.8,"wt":3.44},{"mpg":16.4,"wt":4.07},{"mpg":17.3,"wt":3.73},{"mpg":15.2,"wt":3.78},{"mpg":10.4,"wt":5.25},{"mpg":10.4,"wt":5.424},{"mpg":14.7,"wt":5.345},{"mpg":32.4,"wt":2.2},{"mpg":30.4,"wt":1.615},{"mpg":33.9,"wt":1.835},{"mpg":21.5,"wt":2.465},{"mpg":15.5,"wt":3.52},{"mpg":15.2,"wt":3.435},{"mpg":13.3,"wt":3.84},{"mpg":19.2,"wt":3.845},{"mpg":27.3,"wt":1.935},{"mpg":26,"wt":2.14},{"mpg":30.4,"wt":1.513},{"mpg":15.8,"wt":3.17},{"mpg":19.7,"wt":2.77},{"mpg":15,"wt":3.57},{"mpg":21.4,"wt":2.78}],"main_asp":[],"views":[{"type":"point","conf":{"id":"hello"},"position":"mpg*wt","shape":"circle"}],"scale":{"mpg":{"sync":"mainGroupX","nice":true},"wt":{"sync":"mainGroupY","nice":true}},"cols":["mpg","wt","circle"]}</script></p>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-      </div>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
+</div>
 
 </div>
 
@@ -210,7 +214,7 @@ Slide me
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
