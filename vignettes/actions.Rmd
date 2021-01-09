@@ -83,7 +83,7 @@ One can also dynamically filter the data with either `input_slider` or `input_se
 input_slider(
   id = "yFilter", 
   label = "Filter Y >", 
-  value = 50, 
+  value = 20, 
   min = 0, 
   max = 120, 
   step = 5
@@ -129,6 +129,8 @@ df <- data.frame(
 g2(df, asp(x, y)) %>% 
   fig_point() %>% 
   fig_smooth() %>% 
+  gauge_x_linear(min = 0, max = 100) %>%
+  gauge_y_linear(min = -3, max = 10) %>%  
   action_filter_data(
     "grp",
     group,

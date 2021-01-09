@@ -166,3 +166,77 @@ a:hover, a:focus {
 .centerize{
   text-align: center;
 }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+      background-color: #190536;
+      color: white;
+  }
+
+  h1, h2, h3, h4, h5{
+    color: white;
+  }
+
+  .panel-body{
+    color: #0e0024;
+  }  
+
+  .jumbotron {
+    color: white;
+    background-color: #4200a6;
+    box-shadow:
+      rgba(0, 0, 0, 0.1) 0 2px 3px 1px,
+      rgba(0, 0, 0, 0.1) 0 1px 3px 1px,
+      rgba(0, 0, 0, 0.2) 0 1px 1px -1px;
+  }
+
+  .g2r {
+    box-shadow:
+      rgba(255, 255, 255, 0.1) 0 2px 3px 1px,
+      rgba(255, 255, 255, 0.1) 0 1px 3px 1px,
+      rgba(255, 255, 255, 0.2) 0 1px 1px -1px;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100% !important;
+  }
+
+  .navbar{
+    background-color: #190536;
+  }
+
+  .sourceCode{
+    border: none !important;
+    border-radius: 5px;
+    background: #0e0024;
+    color: #ccc;
+  }
+
+  .sourceCode>a{
+    color: #7042b8;
+  }
+  
+  .fl{
+    color: #7042b8;
+  }
+  
+  .st{
+    color: #F0760F;
+  }
+  
+  .op{
+    color: #ccc;
+  }
+  
+  .kw{
+    color: #ccc;
+  }
+
+  .va{
+    color: #ccc;
+  }
+  
+  .dv, .dt{
+    color: #191919;
+  }
+}

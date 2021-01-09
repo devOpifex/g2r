@@ -15,28 +15,28 @@ library(g2r)
 
 g2r is not yet on CRAN, it can be obtained from Github.
 
-## Remotes
+### Remotes
 
 ```r
 # install.packages("remotes")
 remotes::install_github("devOpifex/g2r")
 ```
 
-## Devtools
+### Devtools
 
 ```r
 # install.packages("devtools")
 devtools::install_github("devOpifex/g2r")
 ```
 
-## Pak
+### Pak
 
 ```r
 # install.packages("pak")
 pak::pkg_install("devOpifex/g2r")
 ```
 
-## Source
+### Source
 
 ```bash
 git clone https://github.com/devOpifex/g2r.git
@@ -48,23 +48,40 @@ make init
 
 Numerous figures internally depend on the [alter package](https://github.com/devOpifex/alter), you will be prompted to install it if is not found on your machine.
 
-Alter requires [V8](https://github.com/jeroen/V8/).
+Alter requires the V8 engine and corresponding [V8](https://github.com/jeroen/V8/) package.
 
-## Remotes
+__V8__
+
+```bash
+# Debian and Ubuntu
+sudo apt-get install -y libv8-dev
+```
+
+```bash
+# Mac
+brew install v8
+```
+
+```bash
+# Fedora (with EPEL release)
+sudo yum install v8-devel
+```
+
+### Remotes
 
 ```r
 # install.packages("remotes")
 remotes::install_github("devOpifex/alter")
 ```
 
-## Devtools
+### Devtools
 
 ```r
 # install.packages("devtools")
 devtools::install_github("devOpifex/alter")
 ```
 
-## Pak
+### Pak
 
 ```r
 # install.packages("pak")
