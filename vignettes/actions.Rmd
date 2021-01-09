@@ -138,7 +138,14 @@ g2(df, asp(x, y)) %>%
 
 ## Action
 
-One can also use `g2Action` in a manner akin to [g2_proxy]: to dynamically add or update figures and other aspects of the chart.
+<div class="panel panel-warning">
+<div class="panel-heading">Warning</div>
+<div class="panel-body">
+This feature is experimental and likely unstable.
+</div>
+</div>
+
+One can also use `g2_action` in a manner akin to `g2_proxy`: to dynamically add or update figures and other aspects of the chart.
 
 ```{r}
 g2(mtcars, asp(mpg, qsec), elementId = "plotty") %>% 
@@ -149,9 +156,27 @@ g2(mtcars, asp(mpg, qsec), elementId = "plotty") %>%
 input_button("update", "Update chart")
 ```
 
+Like `g2_proxy`, `g2_action` takes the `id` of the plot it must change as first argument. 
+
 ```{r}
 g2_action("plotty", "update", asp(mpg), data = mtcars) %>% 
   fig_point(asp(y = drat, shape = "triangle")) %>% 
   fig_point(asp(y = wt, shape = "circle"), config("hello")) %>% 
   render()
+```
+
+## JavaScript
+
+Note that those events are always fired and can thus be used outside of Shiny: clicking a point on the chart below shows an alert.
+
+```{r}
+alert <- htmlwidgets::JS(
+  "(ev) => {
+    alert('You clicked a point with speed:' + ev.data.data.speed)
+  }"
+)
+
+g2(cars, asp(speed, dist)) %>% 
+  fig_point() %>% 
+  capture_event("point:click", alert)
 ```
