@@ -149,7 +149,7 @@ One can also use `g2_action` in a manner akin to `g2_proxy`: to dynamically add 
 
 ```{r}
 g2(mtcars, asp(mpg, qsec), elementId = "plotty") %>% 
-  fig_point(config("hello"))
+  fig_point(config("hello")) 
 ```
 
 ```{r}

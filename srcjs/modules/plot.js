@@ -83,7 +83,7 @@ const plot = (c, x, el) => {
       if(view === undefined) 
         view = c.createView(layer.conf);
 
-      annotate(view, layer.annotations);
+      annotate(view, x.annotations);
 
       interactions(view, layer.interaction);
 

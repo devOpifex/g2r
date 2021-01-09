@@ -153,6 +153,19 @@ gauge_x_linear.g2r <- function(g, ..., tick_interval = NULL){
   )
 }
 
+#' @method gauge_x_linear g2Proxy
+#' @export 
+gauge_x_linear.g2Proxy <- function(g, ..., tick_interval = NULL){
+  cols <- get_aspect_names(g, "position")[1]
+  gauge_(
+    g, 
+    cols, 
+    ...,
+    tickInterval = tick_interval, 
+    type = "linear"
+  )
+}
+
 #' @rdname gauge
 #' @export 
 gauge_y_linear <- function(g, ..., tick_interval = NULL){
@@ -162,6 +175,19 @@ gauge_y_linear <- function(g, ..., tick_interval = NULL){
 #' @method gauge_y_linear g2r
 #' @export 
 gauge_y_linear.g2r <- function(g, ..., tick_interval = NULL){
+  cols <- get_aspect_names(g, "position")[2]
+  gauge_(
+    g, 
+    cols, 
+    ...,
+    tickInterval = tick_interval, 
+    type = "linear"
+  )
+}
+
+#' @method gauge_y_linear g2Proxy
+#' @export 
+gauge_y_linear.g2Proxy <- function(g, ..., tick_interval = NULL){
   cols <- get_aspect_names(g, "position")[2]
   gauge_(
     g, 

@@ -70,21 +70,23 @@ g2(diamonds, asp(carat, price, color = cut)) %>%
 ## Circle
 
 ```{r}
+library(dplyr)
+
 df <- diamonds %>% 
-  dplyr::group_by(clarity, cut) %>% 
-  dplyr::summarise(
+  group_by(clarity, cut) %>% 
+  summarise(
     price = sum(price)
   )
 
 total <- df %>% 
-  dplyr::group_by(clarity) %>% 
-  dplyr::summarise(
+  group_by(clarity) %>% 
+  summarise(
     total = sum(price)
   )
 
 df <- df %>% 
-  dplyr::left_join(total, by = "clarity") %>% 
-  dplyr::mutate(price = price / total)
+  left_join(total, by = "clarity") %>% 
+  mutate(price = (price / total))
 
 g2(df, asp(y = price, color = cut)) %>% 
   fig_interval(
@@ -92,7 +94,8 @@ g2(df, asp(y = price, color = cut)) %>%
     stroke = "#fff", lineWidth = 2
   ) %>% 
   coord_type("theta", innerRadius = .2) %>% 
-  planes(~clarity, type = "circle")
+  planes(~clarity, type = "circle") %>% 
+  gauge_x_linear(nice = FALSE)
 ```
 
 ## Mirror

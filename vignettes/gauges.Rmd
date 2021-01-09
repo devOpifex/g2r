@@ -63,6 +63,10 @@ g2(cars, asp(speed, dist, size = dist)) %>%
 
 ## Axis
 
+__Defaults:__
+
+By default g2r defines two options for the axis used in the chart.
+
 One can also gauge the x and y axis.
 
 ```{r}
