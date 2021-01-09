@@ -19,7 +19,7 @@
 
 <div class="row">
 
-<div class="col-sm-4">
+<div class="col-sm-3">
 <div class="panel panel-info">
 <div class="panel-heading">Easy to use</div>
 <div class="panel-body centerize">
@@ -28,7 +28,7 @@ An intuitive, familiar <a href="articles/aspects.html">API</a>, and easy to pick
 </div>
 </div>
 
-<div class="col-sm-4">
+<div class="col-sm-3">
 <div class="panel panel-info">
 <div class="panel-heading">Crosstalk</div>
 <div class="panel-body centerize">
@@ -37,11 +37,20 @@ Support for <a href="articles/crosstalk.html">crosstalk</a> selection and filter
 </div>
 </div>
 
-<div class="col-sm-4">
+<div class="col-sm-3">
 <div class="panel panel-info">
 <div class="panel-heading">Shiny</div>
 <div class="panel-body centerize">
 Integration with <a href="articles/shiny.html">shiny</a> events and proxies.
+</div>
+</div>
+</div>
+
+<div class="col-sm-3">
+<div class="panel panel-info">
+<div class="panel-heading">Rmd</div>
+<div class="panel-body centerize">
+Integration for dynamic charts in <a href="articles/actions.html">Rmarkdown</a>.
 </div>
 </div>
 </div>
