@@ -1,14 +1,10 @@
-import { makeFigure } from './makeFigure.js'; 
-import { makeCoords } from './makeCoords.js'; 
-import { tuneFigure } from './tuneFigure.js';
-import { getData } from './assignData.js';
+import { addFigure } from './figures.js'; 
+import { makeCoords } from './coords.js'; 
+import { gaugeFigure } from './gauges.js';
+import { getData } from './data.js';
 import { annotate } from './annotate.js';
 import { captureEvents } from './events.js';
-import { 
-  globalInteractions, 
-  interactions, 
-  rmInteractions
-} from './interactions.js';
+import { interactions } from './interactions.js';
 import { facetFactory } from './facet.js';
 import { getView } from './shiny.js';
 
@@ -18,15 +14,29 @@ const plot = (c, x, el) => {
     c.scale(x.scale);
 
   // Coordinates
-  makeCoords(c, x);
+  makeCoords(
+    c, 
+    x.coord, 
+    x.coordRotate, 
+    x.coordScale, 
+    x.coordReflect, 
+    x.coordTranspose
+  );
 
-  // interactions
-  rmInteractions(c, x);
-  globalInteractions(c, x);
+  // remove interactions
+  if(x.rmInteractions)
+    x.rmInteractions.forEach(inter => {
+      c.removeInteraction(inter)
+    });
+
+  // add interactions
+  if(x.interactions)
+    x.interactions.forEach(inter => {
+      c.interaction(inter)
+    })
 
   // events
-  if(el !== undefined)
-    captureEvents(c, el, x);
+  captureEvents(c, el, x.events);
 
   if(x.axis){
     x.axis.forEach(function(ax){
@@ -52,7 +62,7 @@ const plot = (c, x, el) => {
     c.data(x.data);
 
     // views
-    x.facet.opts.eachView = facetFactory(x);
+    x.facet.opts.eachView = facetFactory(x.views);
 
     c.facet(x.facet.type, x.facet.opts);
 
@@ -73,12 +83,12 @@ const plot = (c, x, el) => {
       else 
         existing = false;
 
-      annotate(view, layer);
+      annotate(view, layer.annotations);
 
-      interactions(view, layer);
+      interactions(view, layer.interaction);
 
-      let figure = makeFigure(view, layer.type);
-      tuneFigure(figure, layer);
+      let figure = addFigure(view, layer.type);
+      gaugeFigure(figure, layer);
 
       if(existing){
         view.changeData(data);

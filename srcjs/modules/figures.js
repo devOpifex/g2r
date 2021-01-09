@@ -1,4 +1,4 @@
-const makeFigure = (view, type) => {
+const addFigure = (view, type) => {
   let e;
 
   // view type
@@ -32,4 +32,4 @@ const makeFigure = (view, type) => {
   return e;
 }
 
-export { makeFigure };
+export { addFigure };

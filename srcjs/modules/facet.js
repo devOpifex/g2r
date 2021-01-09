@@ -1,13 +1,13 @@
-import { tuneFigure } from './tuneFigure.js';
-import { makeFigure } from './makeFigure.js'; 
+import { tuneFigure } from './gauges.js';
+import { addFigure } from './figures.js'; 
 
-const facetFactory = (x) =>   {
+const facetFactory = (views) =>   {
   return function(view, facet){
     view.data(facet.data);
     
-    x.views.forEach(function(v){
+    views.forEach(function(v){
 
-      let figure = makeFigure(view, v.type);
+      let figure = addFigure(view, v.type);
       tuneFigure(figure, v);
       
     });

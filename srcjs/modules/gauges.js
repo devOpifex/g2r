@@ -1,6 +1,6 @@
 import { check } from './utils.js'
 
-const tuneFigure = (figure, options) => {
+const gaugeFigure = (figure, options) => {
 
   // position
   figure.position(options.position);
@@ -60,4 +60,4 @@ const tuneFigure = (figure, options) => {
       figure.style(options.style);
 }
 
-export { tuneFigure };
+export { gaugeFigure };

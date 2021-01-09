@@ -1,9 +1,9 @@
 const captureEvents = (c, el, options) => {
 
-  if(!options.events)
+  if(options === undefined)
     return ;
 
-  let events = addCallback(options.events, el.id)
+  let events = addCallback(options, el.id)
 
   events.forEach(function(event){
     if(event.when == 'on')
@@ -15,6 +15,7 @@ const captureEvents = (c, el, options) => {
     if(event.when == 'off')
       c.off(event.event, event.callback)
   })
+  
 }
 
 // Add default callback if missing

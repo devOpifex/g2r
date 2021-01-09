@@ -1,9 +1,9 @@
 const annotate = (view, options) => {
 
-  if(!options.annotations)
+  if(options === undefined)
     return ;
 
-  options.annotations.forEach(function(info){
+  options.forEach(function(info){
     
     if(info.type == "text")
       view.annotation().text(info.opts);
