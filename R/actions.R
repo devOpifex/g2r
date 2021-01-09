@@ -3,7 +3,7 @@
 #' Include dynamic elements in Rmarkdown.
 #' 
 #' @param plot_id Id of chart to interact with.
-#' @param input_id Id of input that triggers the action.
+#' @param btn_id Id of the [input_button()] that triggers the action.
 #' @param ... Aspects, see [asp()].
 #' @param data Data.frame containing data to plot.
 #' 
@@ -11,7 +11,7 @@
 #' @export
 g2_action <- function(
   plot_id,
-  input_id, 
+  btn_id, 
   ..., 
   data = NULL
 ){
@@ -19,14 +19,14 @@ g2_action <- function(
   if(missing(plot_id))
     stop("Missing `plot_id`", call. = FALSE)
 
-  if(missing(input_id))
-    stop("Missing `input_id`", call. = FALSE)
+  if(missing(btn_id))
+    stop("Missing `btn_id`", call. = FALSE)
 
   action <- list(
     x = list(
       is_action = TRUE, 
       id = plot_id, # id of chart
-      input_id = input_id, # id of input
+      input_id = btn_id, # id of input
       data = as_tib(data), # dataset
       main_asp = get_asp(...), # main aspects
       views = list(), # views | figures

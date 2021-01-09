@@ -26,7 +26,7 @@ HTMLWidgets.widget({
         if(x.theme)
           registerTheme(x.chartOpts.theme, x.theme);
 
-        registerInteractions(x);
+        registerInteractions(x.registerInteractions);
 
         // keep autofit for responsiveness
         x.chartOpts.container = el.id;

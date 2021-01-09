@@ -61,6 +61,9 @@ const crosstalkSelect = (c, ctSelection, opts) => {
         indices.push(found)
     })
 
+    console.log(indices);
+    console.log(opts);
+
     if(indices.length === 0){
       c.views.map((v, vindex) => {
         v.geometries[0].elements.map(function(el, index){

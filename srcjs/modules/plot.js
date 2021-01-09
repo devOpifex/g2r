@@ -9,6 +9,11 @@ import { facetFactory } from './facet.js';
 import { getView } from './shiny.js';
 
 const plot = (c, x, el) => {
+
+  // data
+  if(x.crosstalk_group)
+    c.data(x.data);
+
   // scale
   if(x.scale)
     c.scale(x.scale);
@@ -74,14 +79,9 @@ const plot = (c, x, el) => {
       if(layer.conf && layer.conf.id)
         view = getView(x.id, layer.conf.id);
 
-      let existing = true;
-      let data = getData(x.data, layer.data);
-
       // if not found create one
       if(view === undefined)
         view = c.createView(layer.conf);
-      else 
-        existing = false;
 
       annotate(view, layer.annotations);
 
@@ -90,11 +90,7 @@ const plot = (c, x, el) => {
       let figure = addFigure(view, layer.type);
       gaugeFigure(figure, layer);
 
-      if(existing){
-        view.changeData(data);
-      } else {
-        view.data(data);
-      }
+      view.data(getData(x.data, layer.data));
       
     });
   }

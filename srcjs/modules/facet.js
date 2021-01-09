@@ -1,4 +1,4 @@
-import { tuneFigure } from './gauges.js';
+import { gaugeFigure } from './gauges.js';
 import { addFigure } from './figures.js'; 
 
 const facetFactory = (views) =>   {
@@ -8,7 +8,7 @@ const facetFactory = (views) =>   {
     views.forEach(function(v){
 
       let figure = addFigure(view, v.type);
-      tuneFigure(figure, v);
+      gaugeFigure(figure, v);
       
     });
   }

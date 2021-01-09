@@ -91,6 +91,10 @@ render.g2Proxy <- function(g, update = TRUE){
     g$x$views[[i]]$data <- serialise_df(g$x$views[[i]]$data)
   }
 
+  # remove unneeded
+  g$x$cols <- NULL
+  g$x$main_asp <- NULL
+
   g$session$sendCustomMessage("render", g$x)
   invisible(g)
 }
@@ -108,6 +112,10 @@ render.g2Action <- function(g, update = TRUE){
     g$x$views[[i]]$data <- select_columns(g$x$views[[i]]$data, g$x$cols)
     g$x$views[[i]]$data <- serialise_df(g$x$views[[i]]$data)
   }
+
+  # remove unneeded
+  g$x$cols <- NULL
+  g$x$main_asp <- NULL
 
   htmltools::tags$script(
     `data-for` = g$x$id,

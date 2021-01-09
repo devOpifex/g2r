@@ -11,17 +11,13 @@ const observeActions = () => {
       let id = actions[i].getAttribute("data-for");
       let x = JSON.parse(actions[i].innerHTML);
       let input = document.getElementById(x.input_id);
-      let inputType = input.getAttribute("type");
       let c = getChart(id);
       let el = document.getElementById(id);
 
-      if(inputType == "button"){
-        input.addEventListener("click", () => {
-          // main plot
-          plot(c, x, el);
-          c.render(true);
-        })
-      }
+      input.addEventListener("click", () => {
+        plot(c, x, el);
+        c.render(true);
+      })
 
     }
 

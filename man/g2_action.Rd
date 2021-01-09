@@ -4,12 +4,12 @@
 \alias{g2_action}
 \title{Plot Action}
 \usage{
-g2_action(plot_id, input_id, ..., data = NULL)
+g2_action(plot_id, btn_id, ..., data = NULL)
 }
 \arguments{
 \item{plot_id}{Id of chart to interact with.}
 
-\item{input_id}{Id of input that triggers the action.}
+\item{btn_id}{Id of the \code{\link[=input_button]{input_button()}} that triggers the action.}
 
 \item{...}{Aspects, see \code{\link[=asp]{asp()}}.}
 

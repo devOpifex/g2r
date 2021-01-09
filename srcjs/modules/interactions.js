@@ -9,14 +9,14 @@ const interactions = (v, options) => {
   if(checkType(options))
     v.interaction(options[0], options[1]);
   else
-    v.interaction(options.interaction);
+    v.interaction(options);
 }
 
 const registerInteractions = (options) => {
-  if(!options.registerInteractions)
+  if(options === undefined)
     return ;
 
-  options.registerInteractions.forEach((reg) => {
+  options.forEach((reg) => {
     registerInteraction(reg.name, reg.opts);
   })
     

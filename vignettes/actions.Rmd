@@ -29,16 +29,17 @@ g2(beaver1, asp(time, temp)) %>%
 One can also include "actions" in Rmarkdown documents, these are some elements of dynamism.
 
 ```{r}
-input_button("toggler", "Toggle chart visibility")
-```
-
-```{r}
 g2(mtcars, asp(mpg, qsec), elementId = "plotty") %>% 
   fig_point(config("hello"))
 ```
 
 ```{r}
-g2_action("plotty", "toggler", data = mtcars) %>% 
-  fig_point(asp(mpg, wt, shape = "circle"), config("hello")) %>% 
+input_button("Update", "Update chart")
+```
+
+```{r}
+g2_action("plotty", "toggler", asp(mpg), data = mtcars) %>% 
+  fig_point(asp(y = drat, shape = "circle")) %>% 
+  fig_point(asp(y = wt, shape = "circle"), config("hello")) %>% 
   render()
 ```
