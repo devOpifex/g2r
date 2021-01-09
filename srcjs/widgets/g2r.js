@@ -5,6 +5,7 @@ import { crosstalkFilter, crosstalkSelect } from '../modules/crosstalk.js'
 import { observeActions } from '../modules/action.js';
 import { plot } from '../modules/plot.js';
 import { getChart, getView } from '../modules/shiny.js';
+import { actions } from '../modules/actions';
 
 HTMLWidgets.widget({
 
@@ -64,7 +65,7 @@ HTMLWidgets.widget({
           })
 
         }
-
+        actions(c, x.actions);
         c.render();
 
       },

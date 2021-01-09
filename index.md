@@ -64,4 +64,4 @@ g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>%
   axis_title_y("Body Maxx (gram)") 
 ```
 
-<iframe class="g2r" src="embed.html" onload="this.width='100%';this.height='505px'" style="border: none;" />
+<iframe class="g2r" src="embed.html" onload="this.width='100%';this.height='505px'" style="border:none;height:505px;" />

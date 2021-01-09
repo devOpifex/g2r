@@ -78,9 +78,9 @@ const plot = (c, x, el) => {
       // retrieve view instead of create if id is passed
       if(layer.conf && layer.conf.id)
         view = getView(x.id, layer.conf.id);
-
-      // if not found create one
-      if(view === undefined)
+      
+        // if not found create one
+      if(view === undefined) 
         view = c.createView(layer.conf);
 
       annotate(view, layer.annotations);

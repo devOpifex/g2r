@@ -1,5 +1,8 @@
 const actions = (c, actions) => {
 
+  if(actions === undefined)
+    return ;
+
   if(actions.length === 0)
     return ;
 
@@ -18,23 +21,6 @@ const actions = (c, actions) => {
 
     }
 
-    if(action.name == "select-theme"){
-      let select = document.getElementById(action.id);
-
-      if(select === null)
-        return ;
-
-      // initial value
-      c.theme(select.value);
-      c.render();
-
-      select.addEventListener("change", () => {
-        c.theme(select.value);
-        c.render();
-      })  
-
-    }
-
     if(action.name == "select-data"){
       let select = document.getElementById(action.id);
 
@@ -42,11 +28,10 @@ const actions = (c, actions) => {
         return ;
 
       // initial select
-      c.changeData(action.mapping[select.value]);
-      c.render();
+      c.changeData(action.datasets[select.value]);
 
       select.addEventListener("change", () => {
-        c.changeData(action.mapping[select.value]);
+        c.changeData(action.datasets[select.value]);
         c.render();
       })  
 
@@ -59,7 +44,7 @@ const actions = (c, actions) => {
       if(slider === null)
         return ;
 
-      if(action.type === "numeric")
+      if(["double", "integer"].includes(action.type))
         func = new Function(
           "return (val) => val " + action.op + " parseFloat(document.getElementById('" + action.id + "').value);"
         )();
@@ -71,7 +56,7 @@ const actions = (c, actions) => {
       // initial value
       c.views.forEach((v) => {
         v.filter(action.field, func);
-      })
+      });
 
       // listen to changes in slider
       slider.addEventListener("change", () => {

@@ -14,6 +14,9 @@ const observeActions = () => {
       let c = getChart(id);
       let el = document.getElementById(id);
 
+      if(x === null)
+        return ;
+
       input.addEventListener("click", () => {
         plot(c, x, el);
         c.render(true);

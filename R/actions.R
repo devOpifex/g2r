@@ -7,7 +7,6 @@
 #' @param ... Aspects, see [asp()].
 #' @param data Data.frame containing data to plot.
 #' 
-#' 
 #' @export
 g2_action <- function(
   plot_id,
@@ -43,151 +42,167 @@ print.g2Action <- function(x, ...){
   cat("Action for chart: ", x$id, "\n")
 }
 
-#' Button Input
+
+#' Toggle Visibility
 #' 
-#' Add a button input.
+#' Toggle the visibily of a chart.
 #' 
-#' @param id Id of the button.
-#' @param label Label to display.
-#' @param class Class of the button.
+#' @inheritParams fig_point
+#' @param btn Id of the [input_button] that toggles
+#' the visibility.
 #' 
-#' @details The `class` argument defines the style of
-#' the button in Bootstrap 3, generally accepts:`for`
+#' @examples 
+#' # works in Rmarkdown
+#' input_button("toggle", "Show/hide chart")
 #' 
-#' - `default`
-#' - `info`
-#' - `success`
-#' - `warning`
-#' - `danger`
+#' g2(mtcars, asp(qsec, mpg)) %>% 
+#'  fig_point() %>% 
+#'  action_toggle_visibility("toggle")
 #' 
 #' @export 
-input_button <- function(id, label, class = "default"){
-  check_package("htmltools")
+action_toggle_visibility <- function(g, btn) UseMethod("action_toggle_visibility")
 
-  if(missing(label))
-    stop("Missing `label`", call. = FALSE)
+#' @export 
+#' @method action_toggle_visibility g2r
+action_toggle_visibility.g2r <- function(g, btn){ 
+  if(missing(btn))
+    stop("Missing `btn`", call. = FALSE)
 
-  if(missing(id))
-    stop("Missing `id`", call. = FALSE)
-
-  htmltools::tags$button(
-    id = id,
-    class = sprintf("btn btn-", class),
-    type = "button",
-    label
-  )
+  opts <- list(id = btn, name = "toggle-visibility")
+  g$x$actions <- append(g$x$actions, list(opts))
+  g
 }
 
-#' Slider Input
+#' Select Data
 #' 
-#' Add a slider to an R markdown document.
+#' Select a dataset with an [input_select()].
 #' 
-#' @param id Valid CSS id of the element.
-#' @param label Label to display.
-#' @param value Initial value of the slider.
-#' @param min,max Minimum and maximum value the slider can be set.
-#' @param step Interval between steps.
+#' @inheritParams fig_point
+#' @param select Id of the [input_select()] used to
+#' choose the dataset.
+#' @param datasets A key value pair `list` where the `key`
+#' is the name of the dataset as listed in the `choices` of 
+#' the [input_select()].
 #' 
 #' @examples
-#' input_slider(
-#'  "mySlider",
-#'  "The label",
-#'  value = 5,
-#'  min = 0,
-#'  max = 10
+#' # works in Rmarkdown
+#' input_select(
+#'  "selector",
+#'  "Select a dataset",
+#'  c("Cars", "More Cars")
 #' )
 #' 
-#' @export
-input_slider <- function(id, label, value, min, max, step = 1){
-  check_package("htmltools")
-
-  if(missing(id))
-    stop("Missing `id`", call. = FALSE)
-
-  if(missing(label))
-    stop("Missing `label`", call. = FALSE)
-
-  if(missing(value))
-    stop("Missing `value`", call. = FALSE)
-
-  if(missing(min))
-    stop("Missing `min`", call. = FALSE)
-
-  if(missing(max))
-    stop("Missing `max`", call. = FALSE)
-
-  dep <- htmltools::htmlDependency(
-    "slider",
-    version = "1.0.0",
-    src = "actions",
-    script = c(file = "slider.js"), 
-    package = "g2r"
-  )  
-
-  htmltools::div(
-    dep,
-    class = "g2-slider",
-    htmltools::tags$label(
-      `for` = id,
-      label,
-      htmltools::span(
-        value, 
-        id = sprintf("%s-value", id)
-      )
-    ),
-    htmltools::tags$input(
-      type = "range", 
-      id = id,
-      name = id,
-      min = min,
-      max = max,
-      value = value,
-      step = step
-    )
-  )
-}
-
-#' Select Input
+#' cars1 <- cars
+#' cars2 <- cars + c(1, -4)
 #' 
-#' @param id Valid CSS id of the element.
-#' @param label Label to display.
-#' @param choices Vector of choices
-#' 
-#' @importFrom purrr map2
+#' g2(cars, asp(dist, speed)) %>% 
+#'  fig_point() %>% 
+#'  action_select_data(
+#'    "selector",
+#'    datasets = list(
+#'      "Cars" = cars1,
+#'      "More Cars" = cars2
+#'    )
+#'  )
 #' 
 #' @export 
-input_select <- function(id, label, choices){
-  check_package("htmltools")
+action_select_data <- function(g, select, datasets) UseMethod("action_select_data")
 
-  if(missing(id))
-    stop("Missing `id`", call. = FALSE)
+#' @export 
+#' @method action_select_data g2r
+action_select_data.g2r <- function(g, select, datasets){
 
-  if(missing(label))
-    stop("Missing `label`", call. = FALSE)
+  if(missing(select))
+    stop("Missing `select`", call. = FALSE)
 
-  if(missing(choices))
-    stop("Missing `choices`", call. = FALSE)
+  if(missing(datasets))
+    stop("Missing `datasets`", call. = FALSE)
 
-  # allow named vector
-  nms <- names(choices)
-  if(is.null(nms))
-    nms <- choices
-
-  opts <- map2(choices, nms, function(c, v){
-    htmltools::tags$option(value = v, c)
-  })
-
-  htmltools::div(
-    class = "g2-select",
-    htmltools::tags$label(
-      `for` = id,
-      label
-    ),
-    htmltools::tags$select(
-      id = id,
-      name = id,
-      type = "select",
-      opts
-    )
+  opts <- list(
+    id = select, 
+    name = "select-data", 
+    datasets = datasets
   )
+  g$x$actions <- append(g$x$actions, list(opts))
+  g
+}
+
+#' Filter Data
+#' 
+#' Filter data.
+#' 
+#' @inheritParams fig_point
+#' @param input The `id` of the input that triggers the filter,
+#' either [input_select()] or [input_slider()].
+#' @param asp Aspect (column) to filter.
+#' @param operator Operator of the filter, this is combined with 
+#' the value from the `input` and the `asp` to form a filter
+#' statement with the following template; `asp operator inputValue`.
+#' For instance, a filter on input `id = "theFilter"` on the column
+#' `speed` (of the `cars` dataset) with the operator `>` (greater than)
+#' will create the following filter statement: `speed > inputValue`
+#' 
+#' @examples 
+#' # works in Rmarkdown 
+#' input_slider(
+#'  "yFilter", 
+#'  "Filter Y >", 
+#'  value = 50, 
+#'  min = 40, 
+#'  max = 70, 
+#'  step = 5
+#' )
+#' 
+#' g2(cars, asp(speed, dist)) %>% 
+#'  fig_point() %>% 
+#'  fig_smooth() %>% 
+#'  action_filter_data(
+#'    "yFilter",
+#'    dist,
+#'    operator = ">"
+#'  )
+#' 
+#' @importFrom rlang as_label enquo
+#' 
+#' @export 
+action_filter_data <- function(
+  g, 
+  input,
+  asp,
+  operator = ">"
+) {
+  UseMethod("action_filter_data")
+}
+
+#' @export 
+#' @method action_filter_data g2r
+action_filter_data.g2r <- function(
+  g, 
+  input,
+  asp,
+  operator = ">"
+) {
+
+  asp <- as_label(enquo(asp))
+
+  if(!is.null(g$x$data))
+    type <- typeof(g$x$data[[asp]])
+  else 
+    type <- map(g$x$views, function(v, aspect){
+      typeof(v$data[[aspect]])
+    }, aspect = asp) %>% 
+    unlist()
+
+  opts <- list(
+    id = input, 
+    field = asp,
+    name = "filter-data", 
+    op = operator,
+    type = type[1]
+  )
+
+  g$x$cols <- c(g$x$cols, asp)
+  g$x$actions <- append(g$x$actions, list(opts))
+  
+  g
 }

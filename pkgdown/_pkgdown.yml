@@ -157,6 +157,7 @@ reference:
     contents:
       - g2_action
       - starts_with("input_")
+      - starts_with("action_")
 
 authors:
   John Coene:

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 library(g2r)
 ```
 
-To include a chart in Rmarkdown simply place the code in a code chunk.
+To include a chart in Rmarkdown simply place the code in a code chunk/code fence.
 
 ```{r}
 g2(beaver1, asp(time, temp)) %>% 
@@ -24,9 +24,121 @@ g2(beaver1, asp(time, temp)) %>%
   fig_point(asp(shape = "circle"))
 ```
 
-## Button
+## Show/Hide
 
-One can also include "actions" in Rmarkdown documents, these are some elements of dynamism.
+One can also include "actions" in Rmarkdown documents, these are some elements of dynamism in static documents. These "actions" are tied to inputs, similar to shiny.
+
+For instance, create an input button.
+
+```{r}
+input_button(id = "visible", label = "Toggle visibility")
+```
+
+Then tie the input button (above) to the `action_toggle_visibility` on a graph: clicking the button shows or hides the plot below.
+
+```{r}
+g2(mtcars, asp(mpg, qsec)) %>%
+  fig_point() %>% 
+  action_toggle_visibility("visible")
+```
+
+## Change Data
+
+One can also create a dropdown menu with `input_select`.
+
+```{r}
+input_select(
+  id = "dataset", 
+  label = "Select a dataset",
+  choices = c("Cars", "Flowers")
+)
+```
+
+Then bind that select input with `action_select_data` to allow dynamically changing the underlying dataset used in the graph.
+
+```{r}
+generate <- function(n){
+  data.frame(
+    x = 1:100,
+    y = runif(100, 1, n)
+  )
+}
+
+g2(generate(20), asp(x, y)) %>%
+  fig_point() %>% 
+  action_select_data(
+    "dataset", 
+    datasets = list(
+      Cars = generate(30),
+      Flowers = generate(50)
+    )
+  )
+```
+
+## Filter
+
+One can also dynamically filter the data with either `input_slider` or `input_select`.
+
+```{r}
+input_slider(
+  id = "yFilter", 
+  label = "Filter Y >", 
+  value = 50, 
+  min = 0, 
+  max = 120, 
+  step = 5
+)
+```
+
+To filter the data, bind the `action_filter_data` to the chart.
+
+The `operator` of the filter is combined with the value from the `input` and the `asp` to form a filter statement with the following template; `asp operator inputValue`.
+
+For instance, below we create a filter on input `id = "yFilter"` on the column `dist` (of the `cars` dataset) with the operator `>` (greater than) will create the following filter pseudo statement: `speed > yFilterValue`.
+
+```{r}
+g2(cars, asp(speed, dist)) %>% 
+  fig_point() %>% 
+  fig_smooth() %>% 
+  action_filter_data(
+    input = "yFilter",
+    asp = dist,
+    operator = ">"
+  )
+```
+
+The `action_filter_data` can also be bound to an `input_select`.
+
+```{r}
+input_select(
+  "grp", 
+  "Select a group",
+  c("Group A", "Group B", "Group C")
+)
+```
+
+Note the use of the `==` operator in this case.
+
+```{r}
+df <- data.frame(
+  x = rep(1:100, each = 3),
+  y = rnorm(300, rep(c(4,5,2), each = 100)),
+  group = rep(c("Group A", "Group B", "Group C"), each = 100)
+)
+
+g2(df, asp(x, y)) %>% 
+  fig_point() %>% 
+  fig_smooth() %>% 
+  action_filter_data(
+    "grp",
+    group,
+    operator = "=="
+  )
+```
+
+## Action
+
+One can also use `g2Action` in a manner akin to [g2_proxy]: to dynamically add or update figures and other aspects of the chart.
 
 ```{r}
 g2(mtcars, asp(mpg, qsec), elementId = "plotty") %>% 
@@ -34,12 +146,12 @@ g2(mtcars, asp(mpg, qsec), elementId = "plotty") %>%
 ```
 
 ```{r}
-input_button("Update", "Update chart")
+input_button("update", "Update chart")
 ```
 
 ```{r}
-g2_action("plotty", "toggler", asp(mpg), data = mtcars) %>% 
-  fig_point(asp(y = drat, shape = "circle")) %>% 
+g2_action("plotty", "update", asp(mpg), data = mtcars) %>% 
+  fig_point(asp(y = drat, shape = "triangle")) %>% 
   fig_point(asp(y = wt, shape = "circle"), config("hello")) %>% 
   render()
 ```
