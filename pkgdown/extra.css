@@ -111,11 +111,11 @@ pre {
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: #d8d8d8;
+    color: #F0760F;
 }
 
 .navbar-default .navbar-nav > .dropdown > a .caret {
-  color: #999999;
+  color: #F0760F;
 }
 .navbar-default .navbar-nav > .dropdown > a:hover .caret,
 .navbar-default .navbar-nav > .dropdown > a:focus .caret {
@@ -125,18 +125,18 @@ pre {
 .navbar-default .navbar-nav>.open>a,
 .navbar-default .navbar-nav>.open>a:hover,
 .navbar-default .navbar-nav>.open>a:focus{
-  color: #d8d8d8;
+  color: #F0760F;
 }
 
 .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
 .navbar-default .navbar-nav .open .dropdown-menu{
-  color: #d8d8d8;
+  color: #F0760F;
 }
 
 .nav-pills>li.active>a,
 .nav-pills>li.active>a:hover,
 .nav-pills>li.active>a:focus {
-  color: #FFF;
+  color: #F0760F;
   background-color: #6906FF;
   font-weight: bold;
 }
