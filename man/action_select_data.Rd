@@ -4,13 +4,13 @@
 \alias{action_select_data}
 \title{Select Data}
 \usage{
-action_select_data(g, select, datasets)
+action_select_data(g, input, datasets)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
 \code{\link[=g2_proxy]{g2_proxy()}}.}
 
-\item{select}{Id of the \code{\link[=input_select]{input_select()}} used to
+\item{input}{Id of the \code{\link[=input_select]{input_select()}} used to
 choose the dataset.}
 
 \item{datasets}{A key value pair \code{list} where the \code{key}

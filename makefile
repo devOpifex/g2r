@@ -16,4 +16,4 @@ site:
 				Rscript -e "packer::bundle_prod()"
 				Rscript -e "devtools::document()"
 				Rscript -e "devtools::install()"
-				Rscript -e "pkgdown::build_site()"
+				Rscript -e "pkgdown::build_site(preview = TRUE)"
