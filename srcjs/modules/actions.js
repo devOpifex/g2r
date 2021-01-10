@@ -24,14 +24,15 @@ const actions = (c, actions) => {
     if(action.name == "select-data"){
       let select = document.getElementById(action.id);
 
-      if(select === null)
+      if(select === null || select === undefined)
         return ;
 
       // initial select
-      c.changeData(action.datasets[select.value]);
+      c.changeData(action.datasets[getInputValue(action.id)]);
 
       select.addEventListener("change", () => {
-        c.changeData(action.datasets[select.value]);
+        let value = getInputValue(action.id);
+        c.changeData(action.datasets[value]);
         c.render();
       })  
 
@@ -46,11 +47,15 @@ const actions = (c, actions) => {
 
       if(["double", "integer"].includes(action.type))
         func = new Function(
-          "return (val) => val " + action.op + " parseFloat(document.getElementById('" + action.id + "').value);"
+          "return (val) => val " + action.op + " parseFloat(getInputValue('" + action.id + "'));"
+        )();
+      else if (["boolean", "logical"].includes(action.type))
+        func = new Function(
+          "return (val) => String(val) " + action.op + " getInputValue('" + action.id + "');"
         )();
       else 
         func = new Function(
-          "return (val) => val " + action.op + " document.getElementById('" + action.id + "').value;"
+          "return (val) => val " + action.op + " getInputValue('" + action.id + "');"
         )();
 
       // initial value
@@ -71,5 +76,25 @@ const actions = (c, actions) => {
   })
 
 }
+
+const getInputValue = (id) => {
+  var group = document.getElementById(id);
+
+  // if it has a type it's an input
+  if(group.type !== undefined)
+    return group.value;
+
+  // if it does not have a type it's a div
+  // containing checkboxes or radio inputs
+  let inputs = group.getElementsByTagName("input");
+
+  for(let input of inputs){
+    if(input.checked)
+      return input.value
+  }
+
+  return ;
+}
+
 
 export { actions }

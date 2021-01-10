@@ -78,7 +78,7 @@ action_toggle_visibility.g2r <- function(g, btn){
 #' Select a dataset with an [input_select()].
 #' 
 #' @inheritParams fig_point
-#' @param select Id of the [input_select()] used to
+#' @param input Id of the [input_select()] used to
 #' choose the dataset.
 #' @param datasets A key value pair `list` where the `key`
 #' is the name of the dataset as listed in the `choices` of 
@@ -106,20 +106,20 @@ action_toggle_visibility.g2r <- function(g, btn){
 #'  )
 #' 
 #' @export 
-action_select_data <- function(g, select, datasets) UseMethod("action_select_data")
+action_select_data <- function(g, input, datasets) UseMethod("action_select_data")
 
 #' @export 
 #' @method action_select_data g2r
-action_select_data.g2r <- function(g, select, datasets){
+action_select_data.g2r <- function(g, input, datasets){
 
-  if(missing(select))
-    stop("Missing `select`", call. = FALSE)
+  if(missing(input))
+    stop("Missing `input`", call. = FALSE)
 
   if(missing(datasets))
     stop("Missing `datasets`", call. = FALSE)
 
   opts <- list(
-    id = select, 
+    id = input, 
     name = "select-data", 
     datasets = datasets
   )

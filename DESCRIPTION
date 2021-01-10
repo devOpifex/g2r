@@ -27,12 +27,13 @@ Imports:
   crosstalk,
   jsonlite
 Suggests:
-    alter,
-    shiny,
-    packer,
-    igraph,
-    htmltools,
-    testthat (>= 3.0.0)
+  alter,
+  shiny,
+  packer,
+  igraph,
+  pkgdown,
+  htmltools,
+  testthat (>= 3.0.0)
 Remotes:
   devOpifex/alter
 Config/testthat/edition: 3

@@ -75,7 +75,7 @@ input_slider <- function(id, label, value, min, max, step = 1){
     "slider",
     version = "1.0.0",
     src = "actions",
-    script = c(file = "slider.js"), 
+    script = c("slider.js", "inputs.js"), 
     package = "g2r"
   )  
 
@@ -144,5 +144,116 @@ input_select <- function(id, label, choices){
       type = "select",
       opts
     )
+  )
+}
+
+insert_empty <- function(){
+  return("")
+}
+
+#' Checkbox and Radio
+#' 
+#' Add a checkbox or radio input.
+#' 
+#' @param id Id of input.
+#' @param label Label of the input.
+#' @param choices Vector of choices to define
+#' either the checboxes or radio inputs.
+#' @param selected Vector of `choices` that are
+#' selected by default.
+#' @param inline Whether the input is inline.
+#' 
+#' @export 
+input_checkbox <- function(
+  id, 
+  label, 
+  choices, 
+  selected = NULL,
+  inline = TRUE
+){
+  input_tick(
+    id, 
+    label, 
+    choices, 
+    inline, 
+    selected, 
+    type = "checkbox"
+  )
+}
+
+#' @export 
+input_radio <- function(
+  id, 
+  label, 
+  choices, 
+  selected = NULL,
+  inline = TRUE
+){
+  input_tick(
+    id, 
+    label, 
+    choices, 
+    inline, 
+    selected, 
+    type = "radio"
+  )
+}
+
+#' @keywords internal
+input_tick <- function(
+  id, 
+  label, 
+  choices, 
+  inline = TRUE,
+  selected = NULL,  
+  type = c("checkbox", "radio")
+){
+
+  type <- match.arg(type)
+
+  linebreak <- insert_empty
+  wrapper <- htmltools::span
+  if(!inline){
+    linebreak <- htmltools::br
+    wrapper <- htmltools::p
+  }
+
+  # allow named vector
+  nms <- names(choices)
+  if(is.null(nms))
+    nms <- choices
+
+  opts <- map2(choices, nms, function(c, v, lab, br, type){
+    htmltools::tags$label(
+      htmltools::tags$input(
+        type = type, 
+        value = v,
+        name = lab, 
+        c,
+        br()
+      )
+    )
+  }, lab = id, br = linebreak, type = type)
+
+  opts <- map(opts, function(opt, sel){
+    value <- htmltools::tagGetAttribute(
+      opt$children[[1]], 
+      "value"
+    )
+
+    if(value %in% sel)
+      opt$children[[1]] <- htmltools::tagAppendAttributes(
+        opt$children[[1]],
+        checked = NA
+      )
+
+    return(opt) 
+  }, sel = selected)
+
+  htmltools::div(
+    class = sprintf("g2-%s", type),
+    id = id,
+    wrapper(label),
+    opts
   )
 }
