@@ -32,7 +32,7 @@ Like with ggplot2, one creates visualisations by layering figures (geometries) d
 ```{r}
 g2(cars, asp(speed, dist)) %>% 
   fig_point() %>% 
-  fig_smooth() 
+  fig_smooth()
 ```
 
 Similarly to ggplot2, axis of the visualisation can be modified with `gauge_*` (scales in ggplot2).

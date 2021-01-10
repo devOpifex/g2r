@@ -24,8 +24,11 @@ HTMLWidgets.widget({
 
       renderValue: function(x) {
 
-        if(x.theme)
-          registerTheme(x.chartOpts.theme, x.theme);
+        if(x.themes)
+          x.themes.forEach((theme) => {
+            if(theme.opts != null)
+              registerTheme(theme.name, theme.opts);
+          })
 
         registerInteractions(x.registerInteractions);
 

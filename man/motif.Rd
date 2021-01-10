@@ -4,6 +4,7 @@
 \alias{motif}
 \alias{motif_global}
 \alias{motif_global_reset}
+\alias{motif_register}
 \title{Motif}
 \usage{
 motif(
@@ -24,6 +25,8 @@ motif_global(
 )
 
 motif_global_reset()
+
+motif_register(g, name, ...)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -52,6 +55,18 @@ creates a global theme that all subsequent charts will use.
 The styling options are poorly, if at all
 documented online.
 }
+\section{Functions}{
+
+\itemize{
+\item \code{motif}: Register a theme and apply it to chart.
+\item \code{motif_global}: A global theme that will be applied to
+every subsequent charts.
+\item \code{motif_global_reset}: Reset the global motif.
+\item \code{motif_register}: Register a theme but does not apply it
+to the chart.
+}
+}
+
 \examples{
 # mimic ggplot2
 g2(iris, asp(Sepal.Width, Sepal.Length)) \%>\% 

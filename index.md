@@ -61,16 +61,11 @@ Integration for dynamic charts in <a href="articles/actions.html">Rmarkdown</a>.
 
 ```r
 g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>% 
-  fig_point(
-    asp(
-      size = body_mass_g, 
-      shape = species
-    )
-  ) %>% 
+  fig_point(asp(size = body_mass_g, shape = species)) %>% 
   fig_smooth() %>% 
   gauge_shape(c("circle", "square", "triangle")) %>% 
   axis_title_x("Flipper Length (mm)") %>% 
-  axis_title_y("Body Maxx (gram)") 
+  axis_title_y("Body Mass (gram)") 
 ```
 
 <iframe class="g2r" src="embed.html" onload="this.width='100%';this.height='505px'" style="border:none;height:505px;" />

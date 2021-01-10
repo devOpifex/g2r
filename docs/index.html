@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
-<meta property="og:title" content="An R package for interactive visualisations">
+<script src="extra.js"></script><meta property="og:title" content="An R package for interactive visualisations">
 <meta property="og:description" content="A grammar of graphics for interactive visualisations">
 <meta property="og:image" content="/reference/figures/g2r_social.png">
 <meta property="og:image:alt" content="A grammar of graphics for interactive visualisations">
@@ -220,16 +220,11 @@ Integration for dynamic charts in <a href="articles/actions.html">Rmarkdown</a>.
 <p><br></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/g2.html">g2</a></span><span class="op">(</span><span class="va">penguins</span>, <span class="fu"><a href="reference/asp.html">asp</a></span><span class="op">(</span><span class="va">flipper_length_mm</span>, <span class="va">body_mass_g</span>, color <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="reference/fig_point.html">fig_point</a></span><span class="op">(</span>
-    <span class="fu"><a href="reference/asp.html">asp</a></span><span class="op">(</span>
-      size <span class="op">=</span> <span class="va">body_mass_g</span>, 
-      shape <span class="op">=</span> <span class="va">species</span>
-    <span class="op">)</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="reference/fig_point.html">fig_point</a></span><span class="op">(</span><span class="fu"><a href="reference/asp.html">asp</a></span><span class="op">(</span>size <span class="op">=</span> <span class="va">body_mass_g</span>, shape <span class="op">=</span> <span class="va">species</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="reference/fig_smooth.html">fig_smooth</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="reference/gaugeViews.html">gauge_shape</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"circle"</span>, <span class="st">"square"</span>, <span class="st">"triangle"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="reference/axis_title.html">axis_title_x</a></span><span class="op">(</span><span class="st">"Flipper Length (mm)"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="reference/axis_title.html">axis_title_y</a></span><span class="op">(</span><span class="st">"Body Maxx (gram)"</span><span class="op">)</span> </code></pre></div>
+  <span class="fu"><a href="reference/axis_title.html">axis_title_y</a></span><span class="op">(</span><span class="st">"Body Mass (gram)"</span><span class="op">)</span> </code></pre></div>
 <iframe class="g2r" src="embed.html" onload="this.width='100%';this.height='505px'" style="border:none;height:505px;"></iframe>
 
   </div>

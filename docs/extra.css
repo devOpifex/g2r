@@ -33,6 +33,10 @@ p>a {
   color: #F0760F;
 }
 
+.panel-body>a {
+  color: #F0760F;
+}
+
 h4>a {
   color: #F0760F;
 }
@@ -81,6 +85,7 @@ small>a{
   border-radius: 5px;
   padding: 10px;
   width: 100% !important;
+  background-color: white;
 }
 
 .jumbotron {
@@ -163,6 +168,22 @@ a:hover, a:focus {
   text-align: center;
 }
 
+.panel-warning > .panel-heading{
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+.panel-warning{
+  background-color: #ff9800;
+  color: white;
+}
+
+.panel-warning > .panel-body{
+  color: white;
+  font-size: 15px;
+}
+
 .centerize{
   text-align: center;
 }
@@ -172,6 +193,10 @@ a:hover, a:focus {
   body {
       background-color: #190536;
       color: white;
+  }
+
+  footer {
+    color: white;
   }
 
   h1, h2, h3, h4, h5{
@@ -186,19 +211,27 @@ a:hover, a:focus {
     color: white;
     background-color: #4200a6;
     box-shadow:
-      rgba(0, 0, 0, 0.1) 0 2px 3px 1px,
-      rgba(0, 0, 0, 0.1) 0 1px 3px 1px,
-      rgba(0, 0, 0, 0.2) 0 1px 1px -1px;
+    rgba(14, 0, 36, 0.3) 0 2px 3px 1px,
+    rgba(14, 0, 36, 0.3) 0 1px 3px 1px,
+    rgba(14, 0, 36, 0.4) 0 1px 1px -1px;
+  }
+
+  .panel {
+    box-shadow:
+    rgba(14, 0, 36, 0.3) 0 2px 3px 1px,
+    rgba(14, 0, 36, 0.3) 0 1px 3px 1px,
+    rgba(14, 0, 36, 0.4) 0 1px 1px -1px;
   }
 
   .g2r {
     box-shadow:
-      rgba(255, 255, 255, 0.1) 0 2px 3px 1px,
-      rgba(255, 255, 255, 0.1) 0 1px 3px 1px,
-      rgba(255, 255, 255, 0.2) 0 1px 1px -1px;
+      rgba(14, 0, 36, 0.3) 0 2px 3px 1px,
+      rgba(14, 0, 36, 0.3) 0 1px 3px 1px,
+      rgba(14, 0, 36, 0.4) 0 1px 1px -1px;
     border-radius: 5px;
     padding: 10px;
     width: 100% !important;
+    background: #1e024a;
   }
 
   .navbar{
@@ -237,6 +270,10 @@ a:hover, a:focus {
   }
   
   .dv, .dt{
-    color: #191919;
+    color: #ccc;
+  }
+
+  .fu{
+    color: #ccc;
   }
 }

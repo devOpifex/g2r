@@ -15,8 +15,17 @@
 #' @details [motif()] applies the theme to the chart, [motif_global()]
 #' creates a global theme that all subsequent charts will use.
 #' 
-#' @details The styling options are poorly, if at all
+#' The styling options are poorly, if at all
 #' documented online.
+#' 
+#' @section Functions:
+#' 
+#' - `motif`: Register a theme and apply it to chart.
+#' - `motif_global`: A global theme that will be applied to
+#' every subsequent charts.
+#' - `motif_global_reset`: Reset the global motif.
+#' - `motif_register`: Register a theme but does not apply it
+#' to the chart.
 #' 
 #' @examples
 #' # mimic ggplot2
@@ -58,16 +67,17 @@ motif.g2r <- function(
   name = "light"
 ){
   renderer <- match.arg(renderer)
-  opts <- list(styleSheet = list(...))
+  opts <- list(...)
 
-  if(length(opts$styleSheet) == 0)
+  if(length(opts) == 0)
     opts <- NULL
 
   if(!is.null(opts) && name %in% c("light", "dark"))
     name <- "custom"
 
   # theme options
-  g$x$theme <- opts
+  opts <- list(name = name, opts = opts)
+  g$x$themes <- append(g$x$themes, list(opts))
 
   # chart options
   g$x$chartOpts$theme <- name
@@ -116,6 +126,18 @@ motif_global <- function(
 motif_global_reset <- function(){
   options(G2_THEME = NULL)
   options(G2_CHART_OPTS = NULL)
+}
+
+#' @rdname motif
+#' @export 
+motif_register <- function(g, name, ...){
+  if(missing(name))
+    stop("Missing `name`", call. = FALSE)
+
+  opts <- list(name = name, opts = list(...))
+  g$x$themes <- append(g$x$themes, list(opts))
+
+  g
 }
 
 # default chart options
