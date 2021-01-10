@@ -27,7 +27,7 @@ input_button <- function(id, label, class = "default"){
 
   htmltools::tags$button(
     id = id,
-    class = sprintf("btn btn-", class),
+    class = sprintf("btn btn-%s", class),
     type = "button",
     label
   )

@@ -195,6 +195,20 @@ a:hover, a:focus {
       color: white;
   }
 
+  .btn-orange {
+    background-color: #1e024a;
+  }
+
+  .btn-default {
+    color: white;
+    background-color: #4200a6;
+  }
+
+  select{
+    background-color: #4200a6;
+    color: white;
+  }
+
   footer {
     color: white;
   }
@@ -235,7 +249,7 @@ a:hover, a:focus {
   }
 
   .navbar{
-    background-color: #190536;
+    background-color: #1e024a;
   }
 
   .sourceCode{
