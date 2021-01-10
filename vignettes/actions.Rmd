@@ -170,7 +170,7 @@ One can also use `g2_action` in a manner akin to `g2_proxy`: to dynamically add 
 
 ```{r}
 g2(mtcars, asp(mpg, qsec), elementId = "plotty") %>% 
-  fig_point(config("hello")) 
+  fig_point(asp(shape = "square")) 
 ```
 
 ```{r}
@@ -182,7 +182,7 @@ Like `g2_proxy`, `g2_action` takes the `id` of the plot it must change as first 
 ```{r}
 g2_action("plotty", "update", asp(mpg), data = mtcars) %>% 
   fig_point(asp(y = drat, shape = "triangle")) %>% 
-  fig_point(asp(y = wt, shape = "circle"), config("hello")) %>% 
+  fig_point(asp(y = wt)) %>% 
   render()
 ```
 

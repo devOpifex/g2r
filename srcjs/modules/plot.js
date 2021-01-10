@@ -80,7 +80,7 @@ const plot = (c, x, el) => {
         view = getView(x.id, layer.conf.id);
       
         // if not found create one
-      if(view === undefined) 
+      if(view === undefined || view === null) 
         view = c.createView(layer.conf);
 
       annotate(view, x.annotations);
