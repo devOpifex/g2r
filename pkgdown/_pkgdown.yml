@@ -15,8 +15,10 @@ home:
   title: An R package for interactive visualisations
   description: A grammar of graphics for interactive visualisations
   links:
-  - text: G2.js
+  - text: Source library
     href: https://g2.antv.vision/en
+  - text: Alter package
+    href: https://alter.opifex.org
 
 development:
   mode: release
