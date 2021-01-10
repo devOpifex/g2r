@@ -44,17 +44,9 @@ g2(mtcars, asp(mpg, qsec)) %>%
 
 ## Change Data
 
-One can also create a dropdown menu with `input_select`.
+One can also create a dropdown menu with `input_select`. Note that a chart supports multiple actions.
 
-```{r}
-input_select(
-  id = "dataset", 
-  label = "Select a dataset",
-  choices = c("Cars", "Flowers")
-)
-```
-
-Then bind that select input with `action_select_data` to allow dynamically changing the underlying dataset used in the graph.
+We can bind select input or radio buttons to `action_select_data` to allow dynamically changing the underlying dataset used in the graph.
 
 ```{r}
 generate <- function(n){
@@ -64,15 +56,42 @@ generate <- function(n){
   )
 }
 
-g2(generate(20), asp(x, y)) %>%
+Cars <- generate(30)
+Flowers <- generate(50)
+
+g2(Cars, asp(x, y)) %>%
   fig_point() %>% 
   action_select_data(
     "dataset", 
     datasets = list(
-      Cars = generate(30),
-      Flowers = generate(50)
+      Cars = Cars,
+      Flowers = Flowers
+    )
+  ) %>% 
+  action_select_data(
+    "radio", 
+    datasets = list(
+      Cars = Cars,
+      Flowers = Flowers
     )
   )
+```
+
+```{r}
+input_select(
+  id = "dataset", 
+  label = "Select a dataset",
+  choices = c("Cars", "Flowers")
+)
+```
+
+```{r}
+input_radio(
+  "radio", 
+  "Select Dataset", 
+  c("Cars", "Flowers"), 
+  selected = "Cars"
+)
 ```
 
 ## Filter
