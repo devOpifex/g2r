@@ -6,7 +6,7 @@ test_that("Motif", {
   
   t <- motif(g, background = "grey")
 
-  expect_equal(t$x$theme$styleSheet, list(background = "grey"))
+  expect_equal(t$x$themes[[1]]$opts, list(background = "grey"))
 
   d <- motif(g, name = "dark")
   expect_equal(d$x$chartOpts$theme, "dark")
@@ -20,7 +20,7 @@ test_that("Motif", {
 
   motif_global(background = "darkgrey")
   expect_equal(getOption("G2_CHART_OPTS")$theme, "custom")
-  expect_equal(getOption("G2_THEME")$styleSheet, list(background = "darkgrey"))
+  expect_equal(getOption("G2_THEME"), list(background = "darkgrey"))
 
   g_motif <- g2(cars, asp(speed, dist), elementId = "x") %>% 
     fig_point() 

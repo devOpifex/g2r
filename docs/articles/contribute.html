@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="Contribute">
+<script src="../extra.js"></script><meta property="og:title" content="Contribute">
 <meta property="og:description" content="g2r">
 <meta property="og:image" content="/reference/figures/g2r_social.png">
 <meta property="og:image:alt" content="A grammar of graphics for interactive visualisations">
@@ -173,41 +173,73 @@
 
     
     
+<p><strong>Thank you for considering to contribute to g2r!</strong></p>
+<div id="checklist" class="section level2">
+<h2 class="hasAnchor">
+<a href="#checklist" class="anchor"></a>Checklist</h2>
+<p>Please go through this checklist before submitting a PR.</p>
+<p><input type="checkbox"> Ran <code>make build</code></p>
+<p><input type="checkbox"> Added tests</p>
+<p><input type="checkbox"> Updated documentation (roxygen2)</p>
+<p><input type="checkbox"> Added, or changed the vignettes</p>
+<p><input type="checkbox"> Updated <code>NEWs.md</code></p>
+<p><input type="checkbox"> Ran <code>make site</code></p>
+</div>
 <div id="setup" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setup" class="anchor"></a>Setup</h2>
 <p>g2r is an <a href="http://htmlwidgets.org/">htmlwidgets</a> build with <a href="https://packer.john-coene.com/">packer</a> so it can make use of the <code>@antv/g2</code> NPM package and webpack to modularise the code.</p>
+<div id="make" class="section level3">
+<h3 class="hasAnchor">
+<a href="#make" class="anchor"></a>Make</h3>
+<p>Using <code>make</code> is probably the easiest way.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> clone https://github.com/devOpifex/g2r.git</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="bu">cd</span> g2r</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">make</span> init</span></code></pre></div>
+</div>
+<div id="manual" class="section level3">
+<h3 class="hasAnchor">
+<a href="#manual" class="anchor"></a>Manual</h3>
 <p>First, make sure you have packer installed: <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("packer")</a></code>.</p>
 <p>Then, clone the project.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> clone https://github.com/devOpifex/g2r.git</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="bu">cd</span> g2r</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">git</span> clone https://github.com/devOpifex/g2r.git</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="bu">cd</span> g2r</span></code></pre></div>
 <p>As mentioned, <a href="https://packer.john-coene.com/">packer</a> is used to manage webpack and NPM with R: run the function below install the dependencies.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">packer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/packer/man/npm_install.html">npm_install</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>All the JavaScript code is placed in the <code>srcjs</code> directory. The core htmlwidget file is placed in the <code>srcjs/widget</code> directory, it makes use of various modules in the <code>srcjs/modules</code> directory.</p>
+</div>
+</div>
+<div id="development" class="section level2">
+<h2 class="hasAnchor">
+<a href="#development" class="anchor"></a>Development</h2>
 <p>Make changes or additions to those file then bundle them with packer.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">packer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/packer/man/bundle.html">bundle_dev</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>The above bundles the JavaScript with inline sourcemap for debugging. This, however, creates a large <code>.js</code> file which breaks <code>R CMD Check</code>, etc. Only use it as you develop and do not submit PR with the sourcemap, do not build <a href="https://github.com/r-lib/pkgdown">pkgdown</a> site with this large JavaScript file either.</p>
+<p>Make sure you bundle for prod which performs all required optimisations (tree-shaking, minification, etc.).</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">packer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/packer/man/bundle.html">bundle_prod</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>Make sure you bundle for prod, you can run the dev bundle as you try things out (it puts the sourcemap inline for debugging) but make sure you only push the prod bundle as part of the PR.</p>
-<p>in any event, <code>R CMD Check</code> will raise a warning with the dev bundle as the file is too large.</p>
-<p>The easiest way is to use the <code>make</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">make</span> build</span></code></pre></div>
+<p>It is advised to make use of the <code>makefile</code> to ensure one does not miss any of the required steps.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">make</span> build</span></code></pre></div>
 </div>
 <div id="figures-alter" class="section level2">
 <h2 class="hasAnchor">
 <a href="#figures-alter" class="anchor"></a>Figures &amp; Alter</h2>
 <p>G2.js figures are all handled in the <code>primitives.R</code> file; if adding a figure please place it in with other such custom figures in <code>figures.R</code>.</p>
+<p>Do not change “primitives” (unless fixing a bug). There should remain a simple, straightforward 1:1 mapping to the G2.js geoms.</p>
 <p>Many figures internally use the <a href="https://github.com/devOpifex/alter">alter</a> package which interfaces the <code>@antv/data-set</code> package.</p>
 </div>
 <div id="tests" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tests" class="anchor"></a>Tests</h2>
-<p>Make sure you include tests before submitting your PR.</p>
+<p>Any additions, fixes, etc. <strong>must</strong> be accompanied by tests.</p>
 </div>
 <div id="man-docs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#man-docs" class="anchor"></a>Man &amp; Docs</h2>
 <p>Make sure document your functions with roxygen2 with examples, etc. Optionally, add something to the pkgdown site.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">make</span> site</span></code></pre></div>
 </div>
 <div id="dependencies" class="section level2">
 <h2 class="hasAnchor">

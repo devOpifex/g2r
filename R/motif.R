@@ -99,9 +99,9 @@ motif_global <- function(
   name = "light"
 ){
   renderer <- match.arg(renderer)
-  opts <- list(styleSheet = list(...))
+  opts <- list(...)
 
-  if(length(opts$styleSheet) == 0)
+  if(length(opts) == 0)
     opts <- NULL
 
   if(!is.null(opts) && name %in% c("light", "dark"))
