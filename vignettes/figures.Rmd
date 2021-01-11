@@ -278,7 +278,7 @@ df$ymax <- df$y + runif(20, 1, 2)
 
 g2(df, asp(x = x, color = grp)) %>% 
   fig_error(
-    asp(ymin = ymin, ymax = ymax, size = 20), 
+    asp(ymin = ymin, ymax = ymax, size = 10), 
     adjust("dodge")
   ) %>% 
   fig_interval(
