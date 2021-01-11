@@ -18,15 +18,16 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
-  htmlwidgets,
-  magrittr,
+  R6,
   purrr,
   rlang,
-  R6,
   tibble,
+  magrittr,
+  jsonlite,
   crosstalk,
-  jsonlite
+  htmlwidgets
 Suggests:
+  maps,
   alter,
   shiny,
   packer,
