@@ -163,6 +163,7 @@ insert_empty <- function(){
 #' selected by default.
 #' @param inline Whether the input is inline.
 #' 
+#' @name radio
 #' @export 
 input_checkbox <- function(
   id, 
@@ -181,6 +182,7 @@ input_checkbox <- function(
   )
 }
 
+#' @rdname radio
 #' @export 
 input_radio <- function(
   id, 
