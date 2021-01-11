@@ -252,6 +252,14 @@ a:hover, a:focus {
     background-color: #1e024a;
   }
 
+  .dropdown-menu{
+    background-color: #1e024a;
+  }
+
+  .dropdown-menu>li>a{
+    color: #6906FF;
+  }
+
   .sourceCode, pre{
     border: none !important;
     border-radius: 5px;
