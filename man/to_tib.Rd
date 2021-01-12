@@ -4,7 +4,7 @@
 \alias{to_tib}
 \title{Convert to Tibble}
 \usage{
-to_tib(data)
+to_tib(data = NULL)
 }
 \arguments{
 \item{data}{An object to convert.}

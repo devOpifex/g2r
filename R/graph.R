@@ -1,29 +1,3 @@
-#' igraph to List
-#' 
-#' Returns a list of nodes and edges.
-#' 
-#' @param data An igraph object.
-#' 
-#' @return `list` of length 2.
-#' 
-#' @keywords internal
-igraph_to_list <- function(data){
-
-  # nodes and edges as data frame
-  edges <- igraph::as_data_frame(data, what = "edges")
-  nodes <- igraph::as_data_frame(data, what = "vertices")
-
-  # rename for alter transform default
-  names(edges)[1:2] <- c("source", "target")
-
-  if(ncol(nodes) == 0)
-    nodes <- data.frame(id = as.vector(igraph::V(data)))
-
-  names(nodes)[1] <- "id"
-
-  list(nodes = nodes, edges = edges)
-}
-
 #' Layout with igraph
 #' 
 #' Layout the graph using an igraph layout function.
