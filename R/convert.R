@@ -1,37 +1,47 @@
 #' Convert to Tibble
 #' 
-#' Converts objects to `data.frame`.
+#' Converts objects to objects g2r can work with, 
+#' generally a `tibble::tibble`.
 #' 
 #' @param data An object to convert.
 #' 
+#' @details This is exposed so the user can understand
+#' what happens under the hood and which variables/columns
+#' can subsequently be used in figures with [asp()].
+#' 
+#' These methods are used in the [g2()] function to preprocess
+#' `data` objects.
+#' 
 #' @export
-to_tib <- function(data = NULL) UseMethod("to_tib")
+to_g2r <- function(data = NULL) UseMethod("to_g2r")
 
 #' @export
-to_tib.default <- function(data = NULL){
+to_g2r.default <- function(data = NULL){
   as_tib(data)
 }
 
 #' @export
-#' @importFrom zoo as.Date
 #' @importFrom stats time
-#' @method to_tib ts
-to_tib.ts <- function(data = NULL) {
+#' @method to_g2r ts
+to_g2r.ts <- function(data = NULL) {
+  check_package("zoo")
   tibble(
-    x = time(data) %>% as.Date(),
+    x = time(data) %>% zoo::as.Date(),
     y = as.vector(data)
   )
 }
 
 #' @export
-#' @method to_tib data.frame
-to_tib.data.frame <- function(data = NULL) {
+#' @method to_g2r data.frame
+to_g2r.data.frame <- function(data = NULL) {
   as_tib(data)
 }
 
 #' @export
-#' @method to_tib igraph
-to_tib.igraph <- function(data = NULL){
+#' @method to_g2r igraph
+to_g2r.igraph <- function(data = NULL){
+  check_package("igraph")
+
   # nodes and edges as data frame
   edges <- igraph::as_data_frame(data, what = "edges")
   nodes <- igraph::as_data_frame(data, what = "vertices")
@@ -48,12 +58,12 @@ to_tib.igraph <- function(data = NULL){
 }
 
 #' @export
-#' @method to_tib forecast
-to_tib.forecast <- function(data = NULL) {
-  x <- to_tib(data$x)
-  mean <- to_tib(data$mean)
-  lower <- to_tib(data$lower)
-  upper <- to_tib(data$upper)
+#' @method to_g2r forecast
+to_g2r.forecast <- function(data = NULL) {
+  x <- to_g2r(data$x)
+  mean <- to_g2r(data$mean)
+  lower <- to_g2r(data$lower)
+  upper <- to_g2r(data$upper)
   
   names(mean) <- c("x", "mean")
   names(lower) <- c("x", "lower")

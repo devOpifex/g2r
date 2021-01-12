@@ -26,7 +26,4 @@ Initialise a chart.
 g2(cars) \%>\% 
  fig_point(asp(speed, dist))
 
-g2(AirPassenger) \%>\%
- fig_line()
-
 }

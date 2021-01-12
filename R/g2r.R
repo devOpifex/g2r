@@ -15,9 +15,6 @@
 #' g2(cars) %>% 
 #'  fig_point(asp(speed, dist))
 #' 
-#' g2(AirPassenger) %>%
-#'  fig_line(asp(x, y))
-#' 
 #' @import htmlwidgets
 #'
 #' @export
@@ -95,7 +92,7 @@ g2.ts <- function(
 
   asp <- get_asp(...)
 
-  data <- to_tib(data)
+  data <- to_g2r(data)
 
   x = list(
     data = as_tib(data), # dataset
@@ -122,7 +119,7 @@ g2.igraph <- function(
 
   x = list(
     graph = data,
-    data = to_tip(data), # dataset
+    data = to_g2r(data), # dataset
     main_asp = asp, # main aspects
     views = list(), # views | figures
     scale = list(), # chart.scale
@@ -143,11 +140,11 @@ g2.forecast <- function(
 ) {
 
   asp <- get_asp(...)
-  data <- to_tib(data)
+  data <- to_g2r(data)
 
   x = list(
     graph = data,
-    data = igraph_to_list(data), # dataset
+    data = to_g2r(data), # dataset
     main_asp = asp, # main aspects
     views = list(), # views | figures
     scale = list(), # chart.scale

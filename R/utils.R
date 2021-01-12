@@ -207,8 +207,8 @@ check_package <- function(pkg){
   has_it <- base::requireNamespace(pkg, quietly = TRUE)
 
   msg <- sprintf(
-    "This function requires the {%s} package installed.\n",
-    pkg
+    "This function requires {%s}: `install.packages('%s')`.\n",
+    pkg, pkg
   )
   if(!has_it)
     stop(msg, call. = FALSE)
