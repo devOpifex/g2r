@@ -60,6 +60,37 @@ g2(AirPassengers, asp(x, y)) %>%
   fig_area()
 ```
 
+# Mts
+
+```{r}
+deaths <- cbind(ldeaths, fdeaths, mdeaths)
+
+g2(deaths, asp(x)) %>% 
+  fig_line(asp(y = ldeaths, color = "#e63946")) %>% 
+  fig_line(asp(y = fdeaths, color = "#a8dadc")) %>%
+  fig_line(asp(y = mdeaths, color = "#1d3557"))
+```
+
+# Xts
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+library(quantmod)
+
+aapl <- getSymbols("AAPL", env=NULL)
+
+g2(aapl, asp(x, open = AAPL.Open, close = AAPL.Close)) %>% 
+  fig_candle(asp(high = AAPL.High, low = AAPL.Low))
+```
+
+```{r}
+library(quantmod)
+
+rate <- getFX("EUR/CHF", auto.assign = FALSE)
+
+g2(rate, asp(x, EUR.CHF)) %>% 
+  fig_line()
+```
+
 ## Forecast
 
 ```{r}
@@ -89,4 +120,29 @@ g2(km_fit, asp(time, color = "strata", shape = "vh")) %>%
   fig_line(asp(y = estimate)) %>% 
   fig_ribbon(asp(ymin = conf.low, ymax = conf.high)) %>% 
   fig_point(asp(y = n.censor.y, shape = "circle"), stroke = "black")
+```
+
+## Acf
+
+```{r}
+cc <- acf(lh, plot = FALSE)
+
+g2(cc) %>% 
+  fig_interval(asp(lag, acf, size = 2))
+```
+
+## Matrices
+
+```{r}
+correl_mat <- cor(mtcars)
+
+g2(correl_mat) %>% 
+  fig_polygon(asp(Var1, Var2, color = Freq)) %>% 
+  gauge_color(c("#fae0e4", "#ff85a1", "#ff0a54"))
+```
+
+```{r}
+g2(volcano) %>% 
+  fig_polygon(asp(Var1, Var2, color = Freq)) %>% 
+  gauge_color(c("#ffba08", "#dc2f02", "#03071e"))
 ```

@@ -245,7 +245,7 @@ a:hover, a:focus {
     border-radius: 5px;
     padding: 10px;
     width: 100% !important;
-    background: #1e024a;
+    /* background: #1e024a; */
   }
 
   .navbar{

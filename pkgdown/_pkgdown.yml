@@ -42,6 +42,8 @@ navbar:
           href: articles/get-started.html
         - text: "Figures"
           href: articles/figures.html
+        - text: "Methods"
+          href: articles/methods.html
         - text: "Graph"
           href: articles/graph.html
         - text: "Map"

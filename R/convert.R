@@ -88,7 +88,18 @@ to_g2r.igraph <- function(data = NULL){
 #' @export
 #' @method to_g2r matrix
 to_g2r.matrix <- function(data = NULL){
-  as_tib(data)
+  as_tib(as.table(data))
+}
+
+#' @export
+#' @method to_g2r xts
+#' @importFrom tibble tibble
+#' @importFrom stats time
+to_g2r.xts <- function(data = NULL){
+  x <- tibble(x = time(data))
+  values <- as.data.frame(data)
+  cbind.data.frame(x, values) %>% 
+    as_tib()
 }
 
 #' @export
@@ -123,25 +134,28 @@ clean_forecast_names <- function(mts, prefix = ""){
 }
 
 #' @export 
+#' @method to_g2r acf
+to_g2r.acf <- function(data = NULL){
+  check_package("broom")
+  broom::tidy(data)
+}
+
+#' @export 
 #' @method to_g2r loess
 to_g2r.loess <- function(data = NULL){
   check_package("broom")
-  x <- structure(data, class = c("model", class(data)))
-  to_g2r(x)
+  augmented <- broom::augment(data)
+  se <- unlist(predict(data, se = TRUE)[["se.fit"]])
+  augmented[[".se"]] <- se
+  augmented[[".lower"]] <- augmented[[".fitted"]] - augmented[[".se"]]
+  augmented[[".upper"]] <- augmented[[".fitted"]] + augmented[[".se"]]
+  augmented
 }
 
 #' @export 
 #' @method to_g2r lm
 to_g2r.lm <- function(data = NULL){
   check_package("broom")
-  x <- structure(data, class = c("model", class(data)))
-  to_g2r(x)
-}
-
-#' @export 
-#' @method to_g2r model
-#' @importFrom stats predict
-to_g2r.model <- function(data = NULL){
   augmented <- broom::augment(data)
   se <- unlist(predict(data, se = TRUE)[["se.fit"]])
   augmented[[".se"]] <- se

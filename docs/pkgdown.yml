@@ -1,6 +1,6 @@
-pandoc: 2.9.2.1
-pkgdown: 1.6.1.9000
-pkgdown_sha: e1e46f2e13c7efdb17bc4eae40bc3779c2b0b517
+pandoc: 2.9.1.1
+pkgdown: 1.6.1
+pkgdown_sha: ~
 articles:
   actions: actions.html
   adjust: adjust.html
@@ -18,9 +18,10 @@ articles:
   installation: installation.html
   interplay-state: interplay-state.html
   map: map.html
+  methods: methods.html
   motif: motif.html
   planes: planes.html
   shiny: shiny.html
   tooltip: tooltip.html
-last_built: 2021-01-12T15:28Z
+last_built: 2021-01-12T21:19Z
 
