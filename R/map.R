@@ -28,7 +28,6 @@
 get_gadm_data <- function(iso3c, level = c(0, 1, 2, 3, 4), keep = 0.05){
 
   check_package("rmapshaper")
-  check_package("geojsonio")
 
   if(missing(iso3c))
     stop("Missing `iso3c`", call. = FALSE)
@@ -40,7 +39,7 @@ get_gadm_data <- function(iso3c, level = c(0, 1, 2, 3, 4), keep = 0.05){
   BASE <- "https://biogeo.ucdavis.edu/data/gadm3.6/Rsp/gadm36_%s_%s_sp.rds"
 
   # download to temp
-  url <- sprintf(BASE, iso3c, level)
+  url <- sprintf(BASE, iso3c, level[1])
   temp <- tempfile(fileext = ".rds")
   on.exit({
     unlink(temp)
@@ -129,6 +128,10 @@ map_alter <- function(geojson){
   
   dataset <- alter::Alter$new(geojson)$
     source(type = "GeoJSON")$
+    transform(
+      type = "geo.projection",
+      projection = "geoMercator"
+    )$
     get("rows")
 
   structure(dataset, class = c("geoData", class(dataset)))
@@ -144,7 +147,8 @@ map_alter <- function(geojson){
 #' [get_world_map()], [get_gadm_data()], or [get_map_data()],
 #' or a `SpatialPolygonsDataFrame` as
 #' returned by [raster::getData()], or a `geo_list` as
-#' obtained from `geojsonio::geojson_list()`.
+#' obtained from `geojsonio::geojson_list()`, or `MULTIPOLYGON`
+#' of the class`sf` as obtained from reading shapefiles.
 #' 
 #' @examples 
 #' g2() %>% 
@@ -195,6 +199,34 @@ map_data <- function(map, ...) UseMethod("map_data")
 #' @export 
 map_data.default <- function(map, ...) {
   map_data()
+}
+
+#' @export 
+#' @method map_data sf
+#' @importFrom tibble tibble
+map_data.sf <- function(map, ...) {
+  check_package("sf")
+
+  coords <- sf::st_coordinates(map) %>% 
+    as.data.frame() 
+
+  if(!"L3" %in% names(coords))
+    stop("Must be a MULTIPOLYGON object", call. = FALSE)
+  
+  # remove geometry
+  map$geometry <- NULL
+
+  coords <- split(coords, coords[["L3"]]) %>% 
+    map_dfr(function(polygon){
+      tibble(
+        longitude = list(polygon[["X"]]),
+        latitude = list(polygon[["Y"]])
+      )
+    })
+
+  # add other column
+  cbind.data.frame(coords, map)
+
 }
 
 #' @export 

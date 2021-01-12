@@ -27,7 +27,8 @@ of the \code{\link[=get_map_data]{get_map_data()}} function, or map object as re
 \code{\link[=get_world_map]{get_world_map()}}, \code{\link[=get_gadm_data]{get_gadm_data()}}, or \code{\link[=get_map_data]{get_map_data()}},
 or a \code{SpatialPolygonsDataFrame} as
 returned by \code{\link[raster:getData]{raster::getData()}}, or a \code{geo_list} as
-obtained from \code{geojsonio::geojson_list()}.}
+obtained from \code{geojsonio::geojson_list()}, or \code{MULTIPOLYGON}
+of the class\code{sf} as obtained from reading shapefiles.}
 }
 \description{
 Add a map figure.

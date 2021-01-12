@@ -106,7 +106,7 @@ make site
 
 ## Dependencies
 
-Do not introduce new dependencies unless absolutely necessary.
+Do not introduce new dependencies unless absolutely necessary. If needed them to `Suggests` and use the internal `check_package` to check whether said package is installed.
 
 ## News
 

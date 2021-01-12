@@ -11,7 +11,7 @@ vignette: >
 library(g2r)
 ```
 
-# g2r
+# Basic Installation
 
 g2r is not yet on CRAN, it can be obtained from Github.
 
@@ -44,9 +44,33 @@ cd ./g2r
 make init
 ```
 
+## Full Installation
+
+Numerous figures depend on other packages (e.g.: maps & networks) but are only installed optionally, to install all of them includes "Suggests."
+
+### Remotes
+
+```r
+# install.packages("remotes")
+remotes::install_github(
+  "devOpifex/g2r",
+  dependencies = c("Imports", "Suggests")
+)
+```
+
+### Devtools
+
+```r
+# install.packages("devtools")
+devtools::install_github(
+  "devOpifex/g2r",
+  dependencies = c("Imports", "Suggests")
+)
+```
+
 # alter
 
-Numerous figures internally depend on the [alter package](https://github.com/devOpifex/alter), you will be prompted to install it if is not found on your machine.
+Numerous figures internally depend on other packages, namely the [alter package](https://github.com/devOpifex/alter), you will be prompted to install it if is not found on your machine.
 
 Alter requires the V8 engine and corresponding [V8](https://github.com/jeroen/V8/) package.
 

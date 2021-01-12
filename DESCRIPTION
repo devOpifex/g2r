@@ -27,6 +27,7 @@ Imports:
   crosstalk,
   htmlwidgets
 Suggests:
+  sf,
   maps,
   alter,
   shiny,

@@ -57,19 +57,19 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa-home"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../LICENSE.html">
-    <span class="fas fa-balance-scale"></span>
+    <span class="fa fa-balance-scale"></span>
      
   </a>
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fas fa-newspaper"></span>
+    <span class="fa fa-newspaper"></span>
      
   </a>
 </li>
@@ -94,6 +94,9 @@
     </li>
     <li>
       <a href="../articles/graph.html">Graph</a>
+    </li>
+    <li>
+      <a href="../articles/map.html">Map</a>
     </li>
     <li>
       <a href="../articles/aspects.html">Aspects</a>
@@ -146,7 +149,7 @@
 </li>
 <li>
   <a href="https://github.com/devOpifex/g2r">
-    <span class="fab fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -160,7 +163,8 @@
 
       
 
-      </header><script src="installation_files/header-attrs-2.6/header-attrs.js"></script><script src="installation_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="installation_files/header-attrs-2.5/header-attrs.js"></script><script src="installation_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="installation_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="installation_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Installation</h1>
@@ -173,9 +177,9 @@
 
     
     
-<div id="g2r" class="section level1">
+<div id="basic-installation" class="section level1">
 <h1 class="hasAnchor">
-<a href="#g2r" class="anchor"></a>g2r</h1>
+<a href="#basic-installation" class="anchor"></a>Basic Installation</h1>
 <p>g2r is not yet on CRAN, it can be obtained from Github.</p>
 <div id="remotes" class="section level3">
 <h3 class="hasAnchor">
@@ -205,37 +209,62 @@
 <span id="cb4-2"><a href="#cb4-2"></a><span class="bu">cd</span> ./g2r</span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="fu">make</span> init</span></code></pre></div>
 </div>
-</div>
-<div id="alter" class="section level1">
-<h1 class="hasAnchor">
-<a href="#alter" class="anchor"></a>alter</h1>
-<p>Numerous figures internally depend on the <a href="https://github.com/devOpifex/alter">alter package</a>, you will be prompted to install it if is not found on your machine.</p>
-<p>Alter requires the V8 engine and corresponding <a href="https://github.com/jeroen/V8/">V8</a> package.</p>
-<p><strong>V8</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Debian and Ubuntu</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">sudo</span> apt-get install -y libv8-dev</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Mac</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="ex">brew</span> install v8</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Fedora (with EPEL release)</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">sudo</span> yum install v8-devel</span></code></pre></div>
+<div id="full-installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#full-installation" class="anchor"></a>Full Installation</h2>
+<p>Numerous figures depend on other packages (e.g.: maps &amp; networks) but are only installed optionally, to install all of them includes “Suggests.”</p>
 <div id="remotes-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#remotes-1" class="anchor"></a>Remotes</h3>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"devOpifex/alter"</span><span class="op">)</span></code></pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span>
+  <span class="st">"devOpifex/g2r"</span>,
+  dependencies <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Imports"</span>, <span class="st">"Suggests"</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
 </div>
 <div id="devtools-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#devtools-1" class="anchor"></a>Devtools</h3>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span>
+  <span class="st">"devOpifex/g2r"</span>,
+  dependencies <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Imports"</span>, <span class="st">"Suggests"</span><span class="op">)</span>
+<span class="op">)</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="alter" class="section level1">
+<h1 class="hasAnchor">
+<a href="#alter" class="anchor"></a>alter</h1>
+<p>Numerous figures internally depend on other packages, namely the <a href="https://github.com/devOpifex/alter">alter package</a>, you will be prompted to install it if is not found on your machine.</p>
+<p>Alter requires the V8 engine and corresponding <a href="https://github.com/jeroen/V8/">V8</a> package.</p>
+<p><strong>V8</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Debian and Ubuntu</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">sudo</span> apt-get install -y libv8-dev</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Mac</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="ex">brew</span> install v8</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Fedora (with EPEL release)</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">sudo</span> yum install v8-devel</span></code></pre></div>
+<div id="remotes-2" class="section level3">
+<h3 class="hasAnchor">
+<a href="#remotes-2" class="anchor"></a>Remotes</h3>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"devOpifex/alter"</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="devtools-2" class="section level3">
+<h3 class="hasAnchor">
+<a href="#devtools-2" class="anchor"></a>Devtools</h3>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"devOpifex/alter"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="pak-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#pak-1" class="anchor"></a>Pak</h3>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("pak")</span>
 <span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="http://pak.r-lib.org/reference/pkg_install.html">pkg_install</a></span><span class="op">(</span><span class="st">"devOpifex/alter"</span><span class="op">)</span></code></pre></div>
 </div>
@@ -257,7 +286,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

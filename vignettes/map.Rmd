@@ -1,0 +1,63 @@
+---
+title: "Maps"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Maps}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(g2r)
+```
+
+<div class="panel panel-warning">
+<div class="panel-heading">Warning</div>
+<div class="panel-body">
+Maps are still experimental dot not perform very well.
+</div>
+</div>
+
+The function `fig_map` accepts multiple dat formats. Beware of the size and level of details of these maps as they can seriously impact performances.
+
+## sf
+
+The function accepts `sf` objects.
+
+```{r}
+nc <- sf::st_read(system.file("shape/nc.shp", package="sf"))
+
+g2() %>% 
+  fig_map(asp(color = AREA), map = nc) %>% 
+  axis_hide() %>% 
+  gauge_color(c("#0D0887FF", "#CC4678FF", "#F0F921FF"))
+```
+
+## GADM
+
+There is a convenience function to retrieve [GADM](https://gadm.org/) data but will work with the `raster::getData` function as well.
+
+```{r}
+belgium <- get_gadm_data("BEL", level = 3)
+
+g2() %>% 
+  fig_map(stroke = "#fff", fill = "gray", map = belgium) %>% 
+  axis_hide()
+```
+
+## Map data
+
+There is also a `get_map_data` which resembles `ggplot2::map_data`.
+
+```{r}
+china <- get_map_data("China")
+
+g2() %>% 
+  fig_map(map = china) %>% 
+  axis_hide()
+```
