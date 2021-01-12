@@ -3,7 +3,8 @@
 #' Initialise a chart.
 #' 
 #' @param data A data.frame or tibble containing data to chart,
-#' an object of class `igraph`, or as `crosstalk::sharedDataset`.
+#' an object of class `igraph`, an object of class `ts`, 
+#' or as `crosstalk::sharedDataset`.
 #' @param ... Aspects of the chart, see [asp()].
 #' @param width,height Dimensions of the chart, accepts 
 #' any valid CSS unit e.g.: `100%`, numerics are treated
@@ -13,6 +14,9 @@
 #' @examples 
 #' g2(cars) %>% 
 #'  fig_point(asp(speed, dist))
+#' 
+#' g2(AirPassenger) %>%
+#'  fig_line()
 #' 
 #' @import htmlwidgets
 #'
@@ -65,6 +69,35 @@ g2.data.frame <- function(
 ) {
 
   asp <- get_asp(...)
+
+  x = list(
+    data = as_tib(data), # dataset
+    main_asp = asp, # main aspects
+    views = list(), # views | figures
+    scale = list(), # chart.scale
+    cols = c() # keep track of columns for filter
+  )
+
+  as_widget(x, width, height, elementId)
+}
+
+#' @export
+#' @method g2 ts
+g2.ts <- function(
+  data = NULL, 
+  ..., 
+  width = NULL, 
+  height = NULL, 
+  elementId = NULL
+) {
+
+  check_package("zoo")
+
+  asp <- get_asp(...)
+
+  data <- to_tib(data)
+  asp$x <- "x"
+  asp$y <- "y"
 
   x = list(
     data = as_tib(data), # dataset

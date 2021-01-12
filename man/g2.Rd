@@ -8,7 +8,8 @@ g2(data = NULL, ..., width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
 \item{data}{A data.frame or tibble containing data to chart,
-an object of class \code{igraph}, or as \code{crosstalk::sharedDataset}.}
+an object of class \code{igraph}, an object of class \code{ts},
+or as \code{crosstalk::sharedDataset}.}
 
 \item{...}{Aspects of the chart, see \code{\link[=asp]{asp()}}.}
 
@@ -24,5 +25,8 @@ Initialise a chart.
 \examples{
 g2(cars) \%>\% 
  fig_point(asp(speed, dist))
+
+g2(AirPassenger) \%>\%
+ fig_line()
 
 }
