@@ -485,7 +485,11 @@ fig_boxplot_ <- function(
 #' @param method Smoothing method to use.
 #' @param band_width Step size for Silverman's algorithm.
 #' 
-#' @details Requires the `x` and `y` aspects.
+#' @details Requires the `x` and `y` aspects. 
+#' 
+#' This is a convenience function for a quick smoothing, see
+#' the online documentation to see how to use your own model
+#' for more control.
 #' 
 #' @examples 
 #' g2(cars, asp(speed, dist)) %>% 

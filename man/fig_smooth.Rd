@@ -44,6 +44,10 @@ Add a smooth(ing) figure to the chart.
 }
 \details{
 Requires the \code{x} and \code{y} aspects.
+
+This is a convenience function for a quick smoothing, see
+the online documentation to see how to use your own model
+for more control.
 }
 \examples{
 g2(cars, asp(speed, dist)) \%>\% 

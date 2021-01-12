@@ -17,4 +17,11 @@ generally a \code{tibble::tibble}.
 This is exposed so the user can understand
 what happens under the hood and which variables/columns
 can subsequently be used in figures with \code{\link[=asp]{asp()}}.
+
+These methods are used in the \code{\link[=g2]{g2()}} function to preprocess
+\code{data} objects.
+}
+\examples{
+\dontrun{to_g2r(AirPassengers)}
+
 }

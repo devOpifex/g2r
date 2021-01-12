@@ -12,12 +12,24 @@
 #' These methods are used in the [g2()] function to preprocess
 #' `data` objects.
 #' 
+#' @examples 
+#' \dontrun{to_g2r(AirPassengers)}
+#' 
 #' @export
 to_g2r <- function(data = NULL) UseMethod("to_g2r")
 
 #' @export
 to_g2r.default <- function(data = NULL){
   as_tib(data)
+}
+
+#' @export
+#' @method to_g2r survfit
+to_g2r.survfit <- function(data = NULL){
+  check_package("broom")
+  tidied <- broom::tidy(data)
+  tidied$n.censor.y <- ifelse(tidied$n.censor == 1, tidied$estimate, NA)
+  tidied
 }
 
 #' @export
@@ -29,6 +41,22 @@ to_g2r.ts <- function(data = NULL) {
     x = time(data) %>% zoo::as.Date(),
     y = as.vector(data)
   )
+}
+
+#' @export
+#' @importFrom stats time
+#' @method to_g2r mts
+to_g2r.mts <- function(data = NULL) {
+  check_package("zoo")
+  
+  base <- tibble(
+    x = time(data) %>% zoo::as.Date()
+  )
+
+  df <- as_tib(data)
+
+  cbind.data.frame(base, df)
+
 }
 
 #' @export
@@ -58,19 +86,66 @@ to_g2r.igraph <- function(data = NULL){
 }
 
 #' @export
+#' @method to_g2r matrix
+to_g2r.matrix <- function(data = NULL){
+  as_tib(data)
+}
+
+#' @export
 #' @method to_g2r forecast
 to_g2r.forecast <- function(data = NULL) {
   x <- to_g2r(data$x)
   mean <- to_g2r(data$mean)
   lower <- to_g2r(data$lower)
   upper <- to_g2r(data$upper)
+  fitted <- to_g2r(data$fitted)
   
-  names(mean) <- c("x", "mean")
-  names(lower) <- c("x", "lower")
-  names(upper) <- c("x", "upper")
+  names(mean)[2] <- "mean"
+  names(fitted)[2] <- "fitted"
+  lower <- clean_forecast_names(lower, "lower_")
+  upper <- clean_forecast_names(upper, "upper_")
 
   base <- merge(x, mean, by = "x", all = TRUE)
   bands <- merge(lower, upper, by = "x", all = TRUE)
   all <- merge(base, bands, by = "x", all = TRUE)
+  merge(all, fitted, by = "x", all = TRUE)
+}
+
+clean_forecast_names <- function(mts, prefix = ""){
+  nms <- names(mts)
   
+  cleaned <- gsub("\\%", "", nms[2:length(nms)]) 
+  cleaned <- paste0(prefix, cleaned)
+
+  names(mts)[2:length(nms)] <- cleaned
+
+  mts
+}
+
+#' @export 
+#' @method to_g2r loess
+to_g2r.loess <- function(data = NULL){
+  check_package("broom")
+  x <- structure(data, class = c("model", class(data)))
+  to_g2r(x)
+}
+
+#' @export 
+#' @method to_g2r lm
+to_g2r.lm <- function(data = NULL){
+  check_package("broom")
+  x <- structure(data, class = c("model", class(data)))
+  to_g2r(x)
+}
+
+#' @export 
+#' @method to_g2r model
+#' @importFrom stats predict
+to_g2r.model <- function(data = NULL){
+  augmented <- broom::augment(data)
+  se <- unlist(predict(data, se = TRUE)[["se.fit"]])
+  augmented[[".se"]] <- se
+  augmented[[".lower"]] <- augmented[[".fitted"]] - augmented[[".se"]]
+  augmented[[".upper"]] <- augmented[[".fitted"]] + augmented[[".se"]]
+  augmented
 }

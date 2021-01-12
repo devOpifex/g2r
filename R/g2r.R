@@ -45,7 +45,7 @@ g2.default <- function(
   }
 
   x = list(
-    data = as_tib(data), # dataset
+    data = to_g2r(data), # dataset
     main_asp = asp, # main aspects
     views = list(), # views | figures
     scale = list(), # chart.scale
@@ -92,10 +92,8 @@ g2.ts <- function(
 
   asp <- get_asp(...)
 
-  data <- to_g2r(data)
-
   x = list(
-    data = as_tib(data), # dataset
+    data = to_g2r(data), # dataset
     main_asp = asp, # main aspects
     views = list(), # views | figures
     scale = list(), # chart.scale
@@ -140,10 +138,77 @@ g2.forecast <- function(
 ) {
 
   asp <- get_asp(...)
-  data <- to_g2r(data)
 
   x = list(
-    graph = data,
+    data = to_g2r(data), # dataset
+    main_asp = asp, # main aspects
+    views = list(), # views | figures
+    scale = list(), # chart.scale
+    cols = c() # keep track of columns for filter
+  )
+
+  as_widget(x, width, height, elementId)
+}
+
+#' @export
+#' @method g2 loess
+g2.loess <- function(
+  data = NULL, 
+  ..., 
+  width = NULL, 
+  height = NULL, 
+  elementId = NULL
+) {
+
+  asp <- get_asp(...)
+
+  x = list(
+    data = to_g2r(data), # dataset
+    main_asp = asp, # main aspects
+    views = list(), # views | figures
+    scale = list(), # chart.scale
+    cols = c() # keep track of columns for filter
+  )
+
+  as_widget(x, width, height, elementId)
+}
+
+#' @export
+#' @method g2 lm
+g2.lm <- function(
+  data = NULL, 
+  ..., 
+  width = NULL, 
+  height = NULL, 
+  elementId = NULL
+) {
+
+  asp <- get_asp(...)
+
+  x = list(
+    data = to_g2r(data), # dataset
+    main_asp = asp, # main aspects
+    views = list(), # views | figures
+    scale = list(), # chart.scale
+    cols = c() # keep track of columns for filter
+  )
+
+  as_widget(x, width, height, elementId)
+}
+
+#' @export
+#' @method g2 survfit
+g2.survfit <- function(
+  data = NULL, 
+  ..., 
+  width = NULL, 
+  height = NULL, 
+  elementId = NULL
+) {
+
+  asp <- get_asp(...)
+
+  x = list(
     data = to_g2r(data), # dataset
     main_asp = asp, # main aspects
     views = list(), # views | figures
