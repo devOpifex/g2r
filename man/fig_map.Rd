@@ -4,7 +4,7 @@
 \alias{fig_map}
 \title{Map}
 \usage{
-fig_map(g, ..., map = "World")
+fig_map(g, ..., inherit_asp = TRUE, sync = TRUE, map = get_world_map())
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -15,11 +15,26 @@ and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, \code{\lin
 other key value pairs of are passed to
 \href{https://g2.antv.vision/en/docs/api/general/style}{style}.}
 
-\item{map}{Name of map, or map object as returned by
-\code{\link[=get_map_data]{get_map_data()}}, or a \code{SpatialPolygonsDataFrame} as
-as returned by \link[raster:getData]{raster::getData}, or a \code{geo_list} as
+\item{inherit_asp}{Whether to inherit the aspects paseed to
+\code{\link[=g2]{g2()}} initialisation function.}
+
+\item{sync}{Whether to sync the axis data (align) with that
+used in other figures, set to \code{FALSE} to not sync or set to
+a character string to use as name of sync group.}
+
+\item{map}{Name of map to pass to the \code{region} argument
+of the \code{\link[=get_map_data]{get_map_data()}} function, or map object as returned by
+\code{\link[=get_world_map]{get_world_map()}}, \code{\link[=get_gadm_data]{get_gadm_data()}}, or \code{\link[=get_map_data]{get_map_data()}},
+or a \code{SpatialPolygonsDataFrame} as
+returned by \code{\link[raster:getData]{raster::getData()}}, or a \code{geo_list} as
 obtained from \code{geojsonio::geojson_list()}.}
 }
 \description{
 Add a map figure.
+}
+\examples{
+g2() \%>\% 
+ fig_map(stroke = "#fff", fill = "gray") \%>\% 
+ axis_hide()
+
 }

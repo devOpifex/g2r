@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Toggle Visibility — action_toggle_visibility • g2r</title>
+<title>Alter GeoJSON — map_alter • g2r</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="Toggle Visibility — action_toggle_visibility" />
-<meta property="og:description" content="Toggle the visibily of a chart." />
+<meta property="og:title" content="Alter GeoJSON — map_alter" />
+<meta property="og:description" content="Alter GeoJSON" />
 <meta property="og:image" content="/reference/figures/g2r_social.png" />
 <meta property="og:image:alt" content="A grammar of graphics for interactive visualisations" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -210,42 +210,27 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Toggle Visibility</h1>
-    <small class="dont-index">Source: <a href='https://github.com/devOpifex/g2r/blob/master/R/actions.R'><code>R/actions.R</code></a></small>
-    <div class="hidden name"><code>action_toggle_visibility.Rd</code></div>
+    <h1>Alter GeoJSON</h1>
+    <small class="dont-index">Source: <a href='https://github.com/devOpifex/g2r/blob/master/R/map.R'><code>R/map.R</code></a></small>
+    <div class="hidden name"><code>map_alter.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Toggle the visibily of a chart.</p>
+    <p>Alter GeoJSON</p>
     </div>
 
-    <pre class="usage"><span class='fu'>action_toggle_visibility</span><span class='op'>(</span><span class='va'>g</span>, <span class='va'>btn</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>map_alter</span><span class='op'>(</span><span class='va'>geojson</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>g</th>
-      <td><p>An object of class <code>g2r</code> or <code>g2Proxy</code> as returned by <code><a href='g2.html'>g2()</a></code> or
-<code><a href='g2_proxy.html'>g2_proxy()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>btn</th>
-      <td><p>Id of the <a href='input_button.html'>input_button</a> that toggles
-the visibility.</p></td>
+      <th>geojson</th>
+      <td><p>Geojson as list.</p></td>
     </tr>
     </table>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># works in Rmarkdown</span>
-<span class='fu'><a href='input_button.html'>input_button</a></span><span class='op'>(</span><span class='st'>"toggle"</span>, <span class='st'>"Show/hide chart"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; &lt;button id="toggle" class="btn btn-default" type="button"&gt;Show/hide chart&lt;/button&gt;</div><div class='input'>
-<span class='fu'><a href='g2.html'>g2</a></span><span class='op'>(</span><span class='va'>mtcars</span>, <span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>qsec</span>, <span class='va'>mpg</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
- <span class='fu'><a href='fig_point.html'>fig_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
- <span class='fu'>action_toggle_visibility</span><span class='op'>(</span><span class='st'>"toggle"</span><span class='op'>)</span>
-
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
