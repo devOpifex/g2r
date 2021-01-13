@@ -42,8 +42,10 @@ navbar:
           href: articles/get-started.html
         - text: "Figures"
           href: articles/figures.html
-        - text: "Methods"
-          href: articles/methods.html
+        - text: "Quick Plots"
+          href: articles/quick.html
+        - text: "Recipes"
+          href: articles/recipes.html
         - text: "Graph"
           href: articles/graph.html
         - text: "Map"
@@ -87,6 +89,7 @@ reference:
     desc: "Initialise a chart."
     contents: 
       - g2
+      - qg2
   - title: "Figures"
     desc: "Figures available"
     contents:
@@ -171,6 +174,10 @@ reference:
       - g2_action
       - starts_with("input_")
       - starts_with("action_")
+  - title: "Data"
+    desc: "Convert Data to a format g2r understands"
+    contents:
+      - to_g2r
 
 authors:
   John Coene:

@@ -142,6 +142,7 @@ to_g2r.acf <- function(data = NULL){
 
 #' @export 
 #' @method to_g2r loess
+#' @importFrom stats predict
 to_g2r.loess <- function(data = NULL){
   check_package("broom")
   augmented <- broom::augment(data)
@@ -154,6 +155,7 @@ to_g2r.loess <- function(data = NULL){
 
 #' @export 
 #' @method to_g2r lm
+#' @importFrom stats predict
 to_g2r.lm <- function(data = NULL){
   check_package("broom")
   augmented <- broom::augment(data)

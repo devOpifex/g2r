@@ -8,6 +8,7 @@
 \alias{info_line}
 \alias{info_vline}
 \alias{info_hline}
+\alias{info_abline}
 \alias{info_region}
 \alias{info_region_filter}
 \alias{info_marker}
@@ -27,6 +28,8 @@ info_line(g, ..., style = NULL, data = NULL)
 info_vline(g, ..., style = NULL, data = NULL)
 
 info_hline(g, ..., style = NULL, data = NULL)
+
+info_abline(g, ..., style = NULL, data = NULL)
 
 info_region(g, ..., style = NULL, data = NULL)
 

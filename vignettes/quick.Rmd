@@ -1,0 +1,80 @@
+---
+title: "Quick Plots"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Quick Plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+library(g2r)
+```
+
+## Dot and whisker
+
+```{r}
+m1 <- lm(mpg ~ wt + cyl + disp + gear, data = mtcars)
+
+qg2(m1)
+```
+
+```{r}
+m2 <- update(m1, . ~ . + hp)
+m3 <- update(m2, . ~ . + am) 
+
+qg2(list(m1, m2, m3))
+```
+
+## Survival
+
+```{r}
+library(survival)
+
+data(veteran)
+
+fit <- survfit(Surv(time, status) ~ trt, data = veteran)
+
+qg2(fit)
+```
+
+## Acf
+
+```{r}
+cc <- acf(lh, plot = FALSE)
+
+qg2(cc)
+```
+
+# Xts
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+library(quantmod)
+
+aapl <- getSymbols("AAPL", env=NULL)
+
+qg2(aapl)
+```
+
+```{r}
+rate <- getFX("EUR/CHF", auto.assign = FALSE)
+
+qg2(rate)
+```
+
+## Roc curve
+
+```{r}
+library(yardstick)
+
+data(two_class_example)
+
+roc <- roc_curve(two_class_example, truth, Class1)
+
+qg2(roc)
+```

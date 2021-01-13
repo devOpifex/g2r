@@ -222,6 +222,43 @@ info_hline.g2r <- function(
 
 #' @rdname info
 #' @export 
+info_abline <- function(
+  g, 
+  ..., 
+  style = NULL,
+  data = NULL
+){
+  UseMethod("info_abline")
+}
+
+#' @method info_abline g2r
+#' @export 
+info_abline.g2r <- function(
+  g, 
+  ..., 
+  style = NULL,
+  data = NULL
+){
+  
+  asp <- get_asp(...)
+
+  asp$x <- "min"
+  asp$y <- "max"
+  asp$xend <- "max"
+  asp$yend <- "min"
+
+  info_primitive(
+    g, 
+    ..., 
+    type = "line",
+    style = style,
+    data = data,
+    asp = asp
+  )
+}
+
+#' @rdname info
+#' @export 
 info_region <- function(
   g, 
   ..., 
