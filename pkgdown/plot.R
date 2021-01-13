@@ -12,19 +12,19 @@ g <- g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>%
   gauge_shape(c("circle", "square", "triangle")) %>% 
   axis_title_x("Flipper Length (mm)") %>% 
   axis_title_y("Body Mass (gram)") %>% 
-  axis_y(title = list(offset = 50)) %>% 
-  htmlwidgets::prependContent(
-    htmltools::tags$style(
-      "body{
-        background-color: white;
-      }
-      @media (prefers-color-scheme: dark) {
-        body{
-          background-color: #1e024a;
-        }
-      }"
-    )
-  )
+  axis_y(title = list(offset = 50))  
+  # htmlwidgets::prependContent(
+  #   htmltools::tags$style(
+  #     "body{
+  #       background-color: white;
+  #     }
+  #     @media (prefers-color-scheme: dark) {
+  #       body{
+  #         background-color: #1e024a;
+  #       }
+  #     }"
+  #   )
+  # )
 
 htmlwidgets::saveWidget(g, "embed.html")
 

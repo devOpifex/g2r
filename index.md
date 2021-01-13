@@ -57,7 +57,7 @@ Integration for dynamic charts in <a href="articles/actions.html">Rmarkdown</a>.
 
 </div>
 
-<br/>
+<br />
 
 ```r
 g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>% 
@@ -69,3 +69,10 @@ g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>%
 ```
 
 <iframe class="g2r" src="embed.html" onload="this.width='100%';this.height='505px'" style="border:none;height:505px;" />
+
+## Get it
+
+```r
+# install.packages("remotes")
+remotes::install_github("devOpifex/g2r")
+```
