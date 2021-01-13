@@ -49,3 +49,5 @@ motif(
 ## Globals
 
 The `motif_global` function is very similar to `motif` but instead of applying a chart to a single chart will create a global motif that will be applied to all subsequent charts.
+
+You can also use `global_digits` to define the maximum number of digits to use in charts, it defaults to 4. Note that you can also override that for individual charts by setting the number of digits in the `g2` function. 

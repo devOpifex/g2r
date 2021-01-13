@@ -235,12 +235,21 @@ as_widget <- function(
   x, 
   width = NULL, 
   height = NULL, 
-  elementId = NULL
+  elementId = NULL,
+  digits = NULL
 ){
+
+  # if NULL get global
+  # allows overriding for individual charts
+  if(is.null(digits))
+    digits <- get_global_digits()
 
   x$actions <- list()
   
-  attr(x, "TOJSON_ARGS") <- list(dataframe = "rows")
+  attr(x, "TOJSON_ARGS") <- list(
+    dataframe = "rows",
+    digits = digits
+  )
 
   createWidget(
     name = 'g2r',

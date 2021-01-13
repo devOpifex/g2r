@@ -149,3 +149,39 @@ qg2.roc_df <- function(object, ...){
       )
     )
 }
+
+#' @method qg2 matrix
+#' @export 
+qg2.matrix <- function(object, ...){
+  g2(object) %>% 
+    fig_polygon(asp("Var1", "Var2", color = "Freq"))
+}
+
+#' @method qg2 forecast
+#' @export 
+qg2.forecast <- function(object, ...){
+  tidied <- to_g2r(object)
+
+  base <- g2(tidied, asp("x")) %>% 
+    fig_line(asp(y = "y")) %>% 
+    fig_line(asp(y = "mean"))
+
+  if(ncol(tidied) > 6){
+    base %>% 
+      fig_ribbon(asp(ymin = "lower_80", ymax = "upper_80")) %>% 
+      fig_ribbon(asp(ymin = "lower_95", ymax = "upper_95"))
+  } else {
+    base %>% 
+      fig_ribbon(asp(ymin = "lower_y", ymax = "upper_y"))
+  }
+}
+
+#' @method qg2 igraph
+#' @export 
+qg2.igraph <- function(object, ...){
+  g2(object, asp("x", "y")) %>%
+    layout_igraph() %>% 
+    fig_edge() %>% 
+    fig_point(asp(shape = "circle")) %>% 
+    axis_hide()
+}

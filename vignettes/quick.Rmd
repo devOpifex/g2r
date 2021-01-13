@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 library(g2r)
 ```
 
+The `qg2` function allows quickly drawing plots from different types of objects. If you want to reproduce these but have more control on the chart (color, etc.) then please see the [recipes vignette](/articles/recipes) vignettes.
+
 ## Dot and whisker
 
 ```{r}
@@ -77,4 +79,31 @@ data(two_class_example)
 roc <- roc_curve(two_class_example, truth, Class1)
 
 qg2(roc)
+```
+
+# Forecast
+
+```{r}
+library(forecast)
+
+fc <- forecast(ets(USAccDeaths))
+
+qg2(fc)
+```
+
+## Matrices
+
+```{r}
+correl_mat <- cor(mtcars)
+
+qg2(correl_mat) %>% 
+  gauge_color(c("#c77dff", "#7b2cbf", "#240046"))
+```
+
+## igraph
+
+```{r}
+g <- igraph::erdos.renyi.game(500, 2/500)
+
+qg2(g)
 ```

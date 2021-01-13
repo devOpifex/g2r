@@ -4,7 +4,14 @@
 \alias{g2}
 \title{Initialise}
 \usage{
-g2(data = NULL, ..., width = NULL, height = NULL, elementId = NULL)
+g2(
+  data = NULL,
+  ...,
+  width = NULL,
+  height = NULL,
+  elementId = NULL,
+  digits = NULL
+)
 }
 \arguments{
 \item{data}{A data.frame or tibble containing data to chart,
@@ -18,6 +25,9 @@ any valid CSS unit e.g.: \verb{100\%}, numerics are treated
 as pixels, e.g.: \code{400} = \verb{400px}.}
 
 \item{elementId}{Valid CSS id attribute.}
+
+\item{digits}{Maximum number of digits after the comma to show
+on the chart.}
 }
 \description{
 Initialise a chart.

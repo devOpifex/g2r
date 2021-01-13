@@ -4,7 +4,7 @@
 \alias{as_widget}
 \title{Create widget}
 \usage{
-as_widget(x, width = NULL, height = NULL, elementId = NULL)
+as_widget(x, width = NULL, height = NULL, elementId = NULL, digits = NULL)
 }
 \arguments{
 \item{x}{List of options.}

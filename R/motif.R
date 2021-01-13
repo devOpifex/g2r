@@ -140,6 +140,22 @@ motif_register <- function(g, name, ...){
   g
 }
 
+#' Digits
+#' 
+#' Maximum number of digits to show on charts.
+#' 
+#' @param n Maximum number of digits.
+#' 
+#' @export
+global_digits <- function(n = 16L){
+  options(G2_DIGITS = n)
+}
+
+#' @keywords internal
+get_global_digits <- function(){
+  getOption("G2_DIGTIS", 4)
+}
+
 # default chart options
 # required for htmlwidgets
 DEFAULT_CHART_OPTS <- list(

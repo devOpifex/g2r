@@ -14,6 +14,7 @@ pre_render <- function(g){
   # remove unneeded
   g$x$cols <- NULL
   g$x$main_asp <- NULL
+  g$x$graph <- NULL
 
   # globals
   if(is.null(g$x$theme))

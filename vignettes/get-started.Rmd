@@ -27,6 +27,10 @@ g2r's API is halfway between G2.js and ggplot2; some things will be similar to g
 - `ggplot2::facet_*` -> `planes_*`
 - `ggplot2::theme_*` -> `motif_*`
 
+The "localisation" or "translation" of the ggplot2 grammar is not just a gimmick it also allows avoiding having one package clash with the other.
+
+## Initialise
+
 Like with ggplot2, one creates visualisations by layering figures (geometries) defines by aspects (aesthetics).
 
 ```{r}
@@ -34,6 +38,8 @@ g2(cars, asp(speed, dist)) %>%
   fig_point() %>% 
   fig_smooth()
 ```
+
+## Gauge
 
 Similarly to ggplot2, axis of the visualisation can be modified with `gauge_*` (scales in ggplot2).
 
@@ -44,6 +50,8 @@ g2(cars, asp(speed, dist)) %>%
   gauge_y_log()
 ```
 
+## Aspects
+
 As in ggplot2, other aspects of the visualisation can be defined. Unlike ggplot2 though, whether these aspects are columns from the data or constants they can only be specified within `asp`.
 
 ```{r}
@@ -52,12 +60,16 @@ g2(cars, asp(speed, dist, shape = "circle")) %>%
   gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
 ```
 
+## Color = Group
+
 Where one uses the `group` aesthetic in ggplot2 one will want to use `color` in g2r; it'll define both the colour and the group.
 
 ```{r}
 g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
   fig_density()
 ```
+
+## Adjust
 
 In order to stack bars, or place bars side-by-side, or jitter points one must use the `adjust` function.
 
@@ -67,10 +79,22 @@ g2(mtcars, asp(mpg, qsec)) %>%
   fig_point(adjust("jitter"))
 ```
 
+## Planes
+
 G2r also comes with the equivalent of ggplot2's facets, here they are named `planes`.
 
 ```{r}
 g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
   fig_point(asp(shape = "circle")) %>% 
   planes(~Species, type = "tree")
+```
+
+## Quick plots
+
+There is also a function to quickly draw plots based on the class of the object it receives: `qg2`.
+
+```{r}
+model <- lm(mpg ~ wt + cyl + disp + gear + hp + am, data = mtcars)
+
+qg2(model)
 ```

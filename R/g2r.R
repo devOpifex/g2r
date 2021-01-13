@@ -10,6 +10,8 @@
 #' any valid CSS unit e.g.: `100%`, numerics are treated
 #' as pixels, e.g.: `400` = `400px`.
 #' @param elementId Valid CSS id attribute.
+#' @param digits Maximum number of digits after the comma to show
+#' on the chart.
 #'
 #' @examples 
 #' g2(cars) %>% 
@@ -23,7 +25,8 @@ g2 <- function(
   ..., 
   width = NULL, 
   height = NULL, 
-  elementId = NULL
+  elementId = NULL,
+  digits = NULL
 ) {
   UseMethod("g2")
 }
@@ -34,7 +37,8 @@ g2.default <- function(
   ..., 
   width = NULL, 
   height = NULL, 
-  elementId = NULL
+  elementId = NULL,
+  digits = NULL
 ) {
 
   asp <- get_asp(...)
@@ -52,7 +56,7 @@ g2.default <- function(
     cols = c() # keep track of columns for filter
   )
 
-  as_widget(x, width, height, elementId)
+  as_widget(x, width, height, elementId, digits)
 }
 
 #' @export
@@ -62,7 +66,8 @@ g2.data.frame <- function(
   ..., 
   width = NULL, 
   height = NULL, 
-  elementId = NULL
+  elementId = NULL,
+  digits = NULL
 ) {
 
   asp <- get_asp(...)
@@ -75,7 +80,7 @@ g2.data.frame <- function(
     cols = c() # keep track of columns for filter
   )
 
-  as_widget(x, width, height, elementId)
+  as_widget(x, width, height, elementId, digits)
 }
 
 #' @export
@@ -85,7 +90,8 @@ g2.ts <- function(
   ..., 
   width = NULL, 
   height = NULL, 
-  elementId = NULL
+  elementId = NULL,
+  digits = NULL
 ) {
 
   check_package("zoo")
@@ -100,7 +106,7 @@ g2.ts <- function(
     cols = c() # keep track of columns for filter
   )
 
-  as_widget(x, width, height, elementId)
+  as_widget(x, width, height, elementId, digits)
 }
 
 #' @export
@@ -110,7 +116,8 @@ g2.igraph <- function(
   ..., 
   width = NULL, 
   height = NULL, 
-  elementId = NULL
+  elementId = NULL,
+  digits = NULL
 ) {
 
   asp <- get_asp(...)
@@ -124,7 +131,7 @@ g2.igraph <- function(
     cols = c() # keep track of columns for filter
   )
 
-  as_widget(x, width, height, elementId)
+  as_widget(x, width, height, elementId, digits)
 }
 
 #' @export
@@ -134,7 +141,8 @@ g2.forecast <- function(
   ..., 
   width = NULL, 
   height = NULL, 
-  elementId = NULL
+  elementId = NULL,
+  digits = NULL
 ) {
 
   asp <- get_asp(...)
@@ -147,7 +155,7 @@ g2.forecast <- function(
     cols = c() # keep track of columns for filter
   )
 
-  as_widget(x, width, height, elementId)
+  as_widget(x, width, height, elementId, digits)
 }
 
 #' @export
@@ -157,7 +165,8 @@ g2.loess <- function(
   ..., 
   width = NULL, 
   height = NULL, 
-  elementId = NULL
+  elementId = NULL,
+  digits = NULL
 ) {
 
   asp <- get_asp(...)
@@ -170,7 +179,7 @@ g2.loess <- function(
     cols = c() # keep track of columns for filter
   )
 
-  as_widget(x, width, height, elementId)
+  as_widget(x, width, height, elementId, digits)
 }
 
 #' @export
@@ -180,7 +189,8 @@ g2.lm <- function(
   ..., 
   width = NULL, 
   height = NULL, 
-  elementId = NULL
+  elementId = NULL,
+  digits = NULL
 ) {
 
   asp <- get_asp(...)
@@ -193,7 +203,7 @@ g2.lm <- function(
     cols = c() # keep track of columns for filter
   )
 
-  as_widget(x, width, height, elementId)
+  as_widget(x, width, height, elementId, digits)
 }
 
 #' @export
@@ -203,7 +213,8 @@ g2.survfit <- function(
   ..., 
   width = NULL, 
   height = NULL, 
-  elementId = NULL
+  elementId = NULL,
+  digits = NULL
 ) {
 
   asp <- get_asp(...)
@@ -216,7 +227,7 @@ g2.survfit <- function(
     cols = c() # keep track of columns for filter
   )
 
-  as_widget(x, width, height, elementId)
+  as_widget(x, width, height, elementId, digits)
 }
 
 #' @export
@@ -226,7 +237,8 @@ g2.SharedData <- function(
   ..., 
   width = NULL, 
   height = NULL, 
-  elementId = NULL
+  elementId = NULL,
+  digits = NULL
 ) {
 
   asp <- get_asp(...)
@@ -245,12 +257,7 @@ g2.SharedData <- function(
     cols = c(key_col) # keep track of columns for filter
   )
 
-  as_widget(
-    x, 
-    width, 
-    height, 
-    elementId
-  )
+  as_widget(x, width, height, elementId, digits)
 }
 
 #' Shiny Bindings
