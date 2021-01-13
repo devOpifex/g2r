@@ -107,3 +107,5 @@ g <- igraph::erdos.renyi.game(500, 2/500)
 
 qg2(g)
 ```
+
+<a class="btn btn-default" href="recipe.html">Explore recipe</a>

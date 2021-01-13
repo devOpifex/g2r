@@ -50,7 +50,7 @@ g2(cars, asp(speed, dist)) %>%
   gauge_y_log()
 ```
 
-You can read more about [gauges in the vignette](/articles/gauges.html).
+You can read more about [gauges in the vignette](gauges.html).
 
 ## Aspects
 
@@ -62,7 +62,7 @@ g2(cars, asp(speed, dist, shape = "circle")) %>%
   gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
 ```
 
-You can read more about [aspects in the vignette](/articles/aspects.html).
+You can read more about [aspects in the vignette](aspects.html).
 
 ## Color = Group
 
@@ -83,7 +83,7 @@ g2(mtcars, asp(mpg, qsec)) %>%
   fig_point(adjust("jitter"))
 ```
 
-You can read more about [the adjust function in the vignette](/articles/adjust.html).
+You can read more about [the adjust function in the vignette](adjust.html).
 
 ## Planes
 
@@ -95,7 +95,7 @@ g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>%
   planes(~Species, type = "tree")
 ```
 
-You can read more about [planes in the vignette](/articles/planes.html).
+You can read more about [planes in the vignette](planes.html).
 
 ## Quick plots
 
@@ -107,7 +107,7 @@ model <- lm(mpg ~ wt + cyl + disp + gear + hp + am, data = mtcars)
 qg2(model)
 ```
 
-You can read more about [quick plots in the vignette](/articles/quick.html).
+You can read more about [quick plots in the vignette](quick.html).
 
 ## Recipes
 
@@ -119,4 +119,6 @@ model <- lm(mpg ~ wt + cyl + disp + gear + hp + am, data = mtcars)
 qg2(model)
 ```
 
-You can read more about [recipes in it vignette](/articles/recipes.html).
+You can read more about [recipes in it vignette](recipes.html).
+
+<a class="btn btn-default" href="figures.html">Explore figures</a>

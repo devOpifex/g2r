@@ -289,3 +289,5 @@ g2(df, asp(x = x, color = grp)) %>%
     fillOpacity = .4
   ) 
 ```
+
+<a class="btn btn-default" href="quick.html">Explore quick plots</a>
