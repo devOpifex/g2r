@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create widget — as_widget • g2r</title>
+<title>Digits — global_digits • g2r</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="Create widget — as_widget" />
-<meta property="og:description" content="Create widget." />
+<meta property="og:title" content="Digits — global_digits" />
+<meta property="og:description" content="Maximum number of digits to show on charts." />
 <meta property="og:image" content="/reference/figures/g2r_social.png" />
 <meta property="og:image:alt" content="A grammar of graphics for interactive visualisations" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -219,35 +219,23 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create widget</h1>
-    <small class="dont-index">Source: <a href='https://github.com/devOpifex/g2r/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
-    <div class="hidden name"><code>as_widget.Rd</code></div>
+    <h1>Digits</h1>
+    <small class="dont-index">Source: <a href='https://github.com/devOpifex/g2r/blob/master/R/motif.R'><code>R/motif.R</code></a></small>
+    <div class="hidden name"><code>global_digits.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create widget.</p>
+    <p>Maximum number of digits to show on charts.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as_widget</span><span class='op'>(</span><span class='va'>x</span>, width <span class='op'>=</span> <span class='cn'>NULL</span>, height <span class='op'>=</span> <span class='cn'>NULL</span>, elementId <span class='op'>=</span> <span class='cn'>NULL</span>, digits <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>global_digits</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>16L</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>List of options.</p></td>
-    </tr>
-    <tr>
-      <th>width, height</th>
-      <td><p>Dimensions of chart.</p></td>
-    </tr>
-    <tr>
-      <th>elementId</th>
-      <td><p>Id of element to create.</p></td>
-    </tr>
-    <tr>
-      <th>dependencies</th>
-      <td><p>Dependencies (for crosstalk).</p></td>
+      <th>n</th>
+      <td><p>Maximum number of digits.</p></td>
     </tr>
     </table>
 

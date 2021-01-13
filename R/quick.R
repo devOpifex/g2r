@@ -48,6 +48,32 @@ qg2.lm <- function(
 }
 
 #' @export 
+#' @method qg2 biglm
+qg2.biglm <- function(
+  object, 
+  ...,
+  conf_level = .95,
+  intercept = FALSE
+){
+  check_package("broom")
+
+  tidied <- broom::tidy(
+    object, 
+    conf.int = TRUE, 
+    conf.level = conf_level
+  )
+
+  if(!intercept)
+    tidied <- tidied[tidied$term != "(Intercept)",] 
+
+  g2(tidied, asp(x = "term")) %>% 
+    fig_point(asp(y = "estimate", shape = "circle")) %>% 
+    fig_range(asp(ymin = "conf.low", ymax = "conf.high", size = 1)) %>% 
+    coord_transpose()
+
+}
+
+#' @export 
 #' @method qg2 list
 qg2.list <- function(
   object, 

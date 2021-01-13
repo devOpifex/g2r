@@ -153,6 +153,7 @@ reference:
     desc: "Customise the theme"
     contents:
       - motif
+      - global_digits
   - title: "Graph"
     desc: "Layout graphs"
     contents:

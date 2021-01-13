@@ -388,6 +388,6 @@ df <- data.frame(
 
 g2(df, asp(grp, values, color = grp)) %>% 
   fig_boxplot(asp(size = 60)) %>% 
-  coord_type("polar", innerRadius = .5) %>% 
+  coord_type("polar", innerRadius = .2) %>% 
   legend_color(position = "top")
 ```

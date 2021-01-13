@@ -228,7 +228,14 @@
     <p>Initialise a chart.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>g2</span><span class='op'>(</span>data <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span>, width <span class='op'>=</span> <span class='cn'>NULL</span>, height <span class='op'>=</span> <span class='cn'>NULL</span>, elementId <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>g2</span><span class='op'>(</span>
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  width <span class='op'>=</span> <span class='cn'>NULL</span>,
+  height <span class='op'>=</span> <span class='cn'>NULL</span>,
+  elementId <span class='op'>=</span> <span class='cn'>NULL</span>,
+  digits <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -252,6 +259,11 @@ as pixels, e.g.: <code>400</code> = <code>400px</code>.</p></td>
     <tr>
       <th>elementId</th>
       <td><p>Valid CSS id attribute.</p></td>
+    </tr>
+    <tr>
+      <th>digits</th>
+      <td><p>Maximum number of digits after the comma to show
+on the chart.</p></td>
     </tr>
     </table>
 

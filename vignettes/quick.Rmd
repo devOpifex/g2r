@@ -83,7 +83,7 @@ qg2(roc)
 
 # Forecast
 
-```{r}
+```{r, message=FALSE, warning=FALSE, error=FALSE}
 library(forecast)
 
 fc <- forecast(ets(USAccDeaths))
