@@ -50,6 +50,8 @@ g2(cars, asp(speed, dist)) %>%
   gauge_y_log()
 ```
 
+You can read more about [gauges in the vignette](/articles/gauges.html).
+
 ## Aspects
 
 As in ggplot2, other aspects of the visualisation can be defined. Unlike ggplot2 though, whether these aspects are columns from the data or constants they can only be specified within `asp`.
@@ -59,6 +61,8 @@ g2(cars, asp(speed, dist, shape = "circle")) %>%
   fig_point(asp(color = dist, size = dist)) %>% 
   gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
 ```
+
+You can read more about [aspects in the vignette](/articles/aspects.html).
 
 ## Color = Group
 
@@ -79,6 +83,8 @@ g2(mtcars, asp(mpg, qsec)) %>%
   fig_point(adjust("jitter"))
 ```
 
+You can read more about [the adjust function in the vignette](/articles/adjust.html).
+
 ## Planes
 
 G2r also comes with the equivalent of ggplot2's facets, here they are named `planes`.
@@ -89,6 +95,8 @@ g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>%
   planes(~Species, type = "tree")
 ```
 
+You can read more about [planes in the vignette](/articles/planes.html).
+
 ## Quick plots
 
 There is also a function to quickly draw plots based on the class of the object it receives: `qg2`.
@@ -98,3 +106,17 @@ model <- lm(mpg ~ wt + cyl + disp + gear + hp + am, data = mtcars)
 
 qg2(model)
 ```
+
+You can read more about [quick plots in the vignette](/articles/quick.html).
+
+## Recipes
+
+Generally g2r functions accept data in the form of data.frames or tibbles but it will attempt to transform other objects to (generally) data.frames. 
+
+```{r}
+model <- lm(mpg ~ wt + cyl + disp + gear + hp + am, data = mtcars)
+
+qg2(model)
+```
+
+You can read more about [recipes in it vignette](/articles/recipes.html).
