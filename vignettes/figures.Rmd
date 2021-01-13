@@ -149,10 +149,10 @@ g2(df, asp(x, ymin = ymin, ymax = ymax)) %>%
 ```{r}
 df <- data.frame(
  grp = rep(c("A", "B"), each = 200),
-   val = c(
-     rnorm(200, mean = 57, sd = 5), 
-     rnorm(200, mean = 53, sd = 5)
-   )
+  val = c(
+    rnorm(200, mean = 57, sd = 5), 
+    rnorm(200, mean = 53, sd = 5)
+  )
 )
 
 g2(df, asp(val, color = grp)) %>% 

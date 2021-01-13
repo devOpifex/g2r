@@ -9,6 +9,7 @@ articles:
   axis: axis.html
   contribute: contribute.html
   crosstalk: crosstalk.html
+  demo: demo.html
   examples: examples.html
   figures: figures.html
   gauges: gauges.html
@@ -24,5 +25,5 @@ articles:
   recipes: recipes.html
   shiny: shiny.html
   tooltip: tooltip.html
-last_built: 2021-01-13T18:24Z
+last_built: 2021-01-13T19:53Z
 

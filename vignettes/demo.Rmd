@@ -1,0 +1,429 @@
+---
+title: "Demo"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Demo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+
+h <- 250
+
+library(g2r)
+library(dplyr)
+library(htmltools)
+
+n <- 7
+
+df1 <- tibble::tibble(
+  x = c(letters[1:n], letters[1:n]),
+  y = c(rnorm(n, 10, 20), rnorm(n, 12, 19)),
+  grp = rep(c("A", "B"), each = n)
+)
+
+df2 <- tibble::tibble(
+  x = rep(1:n, 2),
+  y = c(rnorm(n, 10, 15), rnorm(n, 12, 17)),
+  grp = rep(c("A", "B"), each = n)
+)
+
+df3 <- data.frame(
+  x = runif(20),
+  y = rnorm(20, 20)
+)
+
+df4 <- expand.grid(x = letters[1:(n*2)], y = letters[1:(n*2)])
+df4$value <- rnorm(nrow(df4))
+
+df5 <- data.frame(
+  x = 1:10,
+  y = rnorm(10, mean = 20, sd = 2)
+)
+
+df5$ymin <- df5$y - runif(10, 1, 2)
+df5$ymax <- df5$y + runif(10, 1, 4)
+
+df6 <- data.frame(
+ grp = rep(c("A", "B"), each = 200),
+  val = c(
+    rnorm(200, mean = 56, sd = 3), 
+    rnorm(200, mean = 53, sd = 5)
+  )
+)
+
+df7 <- data.frame(
+  x = 1:n,
+  ymin = runif(n, 1, 5),
+  ymax = runif(n, 6, 13)
+)
+
+df8 <- data.frame(
+  name = letters[1:n],
+  value = runif(n)
+)
+
+df9 <- dplyr::tibble(
+  x = runif(n * 3, 1, 500),
+  y = runif(n * 3, 1, 500),
+  value = runif(n * 3, 1, 500)
+)
+```
+
+```{r, echo=FALSE}
+point <- g2(cars, asp(speed, dist), height = h) %>% 
+  fig_point()
+
+interval <- g2(df1, asp(x, y, color = grp), height = h) %>% 
+  fig_interval(adjust("stack"))
+
+line <- g2(df2, asp(x, y, color = grp), height = h) %>% 
+  fig_line()
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    point
+  ),
+  div(
+    class = "col-sm-4",
+    interval
+  ),
+  div(
+    class = "col-sm-4",
+    line
+  )
+)
+```
+
+```{r, echo=FALSE}
+area <- df2 %>% 
+  mutate(y = runif(n * 2)) %>% 
+  g2(asp(x, y, color = grp), height = h) %>% 
+  fig_area()
+
+path <- g2(df3, asp(x, y), height = h) %>% 
+  fig_path()
+
+step <- df2 %>% 
+  mutate(y = runif(n * 2)) %>% 
+  g2(asp(x, y, color = grp), height = h) %>% 
+  fig_line(asp(shape = "hv"))
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    area
+  ),
+  div(
+    class = "col-sm-4",
+    path
+  ),
+  div(
+    class = "col-sm-4",
+    step
+  )
+)
+```
+
+```{r, echo=FALSE}
+polygon <- g2(df4, asp(x, y, color = value), height = h) %>% 
+  fig_polygon() %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+
+heatmap <- g2(iris, asp(Sepal.Length, Sepal.Width, color = Petal.Length), height = h) %>% 
+  fig_heatmap() %>% 
+  gauge_color(c("blue", "cyan", "lime", "yellow", "red"))
+
+bin_square <- g2(cars, asp(speed, dist, color = count), height = h) %>% 
+  fig_bin() %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    polygon
+  ),
+  div(
+    class = "col-sm-4",
+    heatmap
+  ),
+  div(
+    class = "col-sm-4",
+    bin_square
+  )
+)
+```
+
+```{r, echo=FALSE}
+ribbon <- g2(df5, asp(x, ymin = ymin, ymax = ymax), height = h) %>% 
+  fig_line(asp(y = y)) %>% 
+  fig_ribbon()
+
+bin_hex <- g2(cars, asp(speed, dist, color = count), height = h) %>% 
+  fig_bin(type = "hexagon", size_count = FALSE) %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+
+histo <- g2(df6, asp(val, color = grp), height = h) %>% 
+ fig_histogram(bin_width = 1, fillOpacity = .5)
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    ribbon
+  ),
+  div(
+    class = "col-sm-4",
+    bin_hex
+  ),
+  div(
+    class = "col-sm-4",
+    histo
+  )
+)
+```
+
+```{r, echo=FALSE}
+dens <- g2(iris, asp(Sepal.Length, Sepal.Width, color = Species), height = h) %>% 
+  fig_density()
+
+iris_long <- tidyr::pivot_longer(iris, -Species)
+
+box <- g2(iris_long, asp(name, value, color = Species), height = h) %>% 
+ fig_boxplot(adjust("dodge"))
+
+smooth <- g2(mtcars, asp(qsec, mpg), height = h) %>% 
+  fig_point() %>% 
+  fig_smooth(asp(shape = "smooth"))
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    box
+  ),
+  div(
+    class = "col-sm-4",
+    smooth
+  ),
+  div(
+    class = "col-sm-4",
+    dens
+  )
+)
+```
+
+```{r, echo=FALSE}
+rng_bar <- g2(df7, asp(x, ymin = ymin, ymax = ymax), height = h) %>% 
+  fig_range()
+
+rng_area <- g2(df7, asp(x, ymin = ymin, ymax = ymax), height = h) %>% 
+  fig_range(asp(shape = "smooth"), type = "area")
+
+pie <- g2(df8, asp(y = value, color = name, label = name), height = h) %>% 
+ fig_pie()
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    rng_bar
+  ),
+  div(
+    class = "col-sm-4",
+    rng_area
+  ),
+  div(
+    class = "col-sm-4",
+    pie
+  )
+)
+```
+
+```{r, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+voronoi <- g2(df9, asp(x, y, color = value), height = h) %>% 
+  fig_voronoi() %>% 
+  gauge_x_linear(nice = FALSE) %>% 
+  gauge_y_linear(nice = FALSE) %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+
+fruits <- dplyr::tibble(
+  fruit = c("Apples", "Bananas", "Pears", "Oranges"),
+  value = c(.45, .15, .35, .05) * 100
+)
+
+waffle <- g2(fruits, asp(value, color = fruit), height = h) %>% 
+  fig_waffle(n = 200, rows = 10, stroke = "white") %>% 
+  motif(padding = c(10, 10, 30, 10)) %>% 
+  axis_hide()
+
+rug <- g2(mtcars, asp(wt, mpg), height = h) %>% 
+  fig_point(asp(shape = "circle")) %>% 
+  fig_rug(asp(size = 4)) %>% 
+  fig_rug(asp(size = 4), axis = "y")
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    voronoi
+  ),
+  div(
+    class = "col-sm-4",
+    waffle
+  ),
+  div(
+    class = "col-sm-4",
+    rug
+  )
+)
+```
+
+```{r, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+wallgreens  <- tidyquant::tq_get("WBA", from = Sys.Date() - 10)
+
+k <- g2(wallgreens, asp(date, open = open, close = close, high = high, low = low), height = h) %>% 
+  fig_candle() %>% 
+  gauge_x_time_cat()
+
+err <- df1 %>% 
+  mutate(
+    ymin = y - runif(n, 1, 2),
+    ymax = y + runif(n, 1, 2)
+  ) %>% 
+  g2(asp(x = x, color = grp), height = h) %>% 
+    fig_error(
+      asp(ymin = ymin, ymax = ymax, size = 10), 
+      adjust("dodge")
+    ) %>% 
+    fig_interval(
+      asp(y = y), 
+      adjust("dodge"),
+      fillOpacity = .4
+    ) 
+
+library(survival)
+
+data(veteran)
+
+fit <- survfit(Surv(time, status) ~ trt, data = veteran)
+q <- qg2(fit)
+q$height <- h
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    k
+  ),
+  div(
+    class = "col-sm-4",
+    err
+  ),
+  div(
+    class = "col-sm-4",
+    q
+  )
+)
+```
+
+```{r, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+cc <- acf(lh, plot = FALSE)
+
+acf <- qg2(cc)
+acf$height <- h
+
+library(yardstick)
+
+data(two_class_example)
+
+roc <- roc_curve(two_class_example, truth, Class1)
+
+r <- qg2(roc)
+r$height <- h
+
+library(forecast)
+
+fc <- forecast(ets(USAccDeaths))
+
+f <- qg2(fc)
+f$height <- h
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    acf
+  ),
+  div(
+    class = "col-sm-4",
+    f
+  ),
+  div(
+    class = "col-sm-4",
+    r
+  )
+)
+```
+
+```{r, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+data(mpg, package = "ggplot2")
+
+l <- loess(hwy ~ displ, data = mpg, span = .3) %>% 
+  g2(asp(displ), height = h) %>% 
+  fig_point(asp(y = hwy, shape = "circle")) %>% 
+  fig_line(asp(y = .fitted, shape = "smooth")) %>% 
+  fig_ribbon(asp(ymin = .lower, ymax = .upper, shape = "smooth"))
+
+json <- jsonlite::fromJSON(
+  "https://gw.alipayobjects.com/os/antvdemo/assets/data/baby-names.json"
+)
+
+steam <- json %>%
+  dplyr::filter(
+    year > 1940
+  ) %>% 
+  dplyr::group_by(name, year) %>%
+  dplyr::summarise(n = sum(n)) %>%  
+  g2(asp(year, n, color = name, shape = "smooth"), height = h) %>% 
+  fig_area(
+    adjust("stack"), adjust("symmetric"),
+    fillOpacity = .85
+  ) %>% 
+  gauge_x_linear(tickInterval = 20) %>% 
+  legend_color(position = "right")
+
+spiral <- data.frame(
+  x = 1:(n*15),
+  y = rnorm(n*15, mean = 32, 5)
+) %>% 
+  g2(asp(x, y, color = y), height = h) %>% 
+  fig_interval(asp(size = .2)) %>% 
+  coord_type("helix") %>% 
+  gauge_color(c("#ffffff", "#1890FF"))
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    l
+  ),
+  div(
+    class = "col-sm-4",
+    steam
+  ),
+  div(
+    class = "col-sm-4",
+    spiral
+  )
+)
+```

@@ -195,6 +195,14 @@ a:hover, a:focus {
       color: white;
   }
 
+  .navbar-default .navbar-toggle{
+    border-color: #4200a6; 
+  }
+
+  .navbar-default .navbar-toggle .icon-bar{
+    background-color: #4200a6; 
+  }
+
   .btn-orange {
     background-color: #1e024a;
   }
