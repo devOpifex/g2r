@@ -170,7 +170,10 @@ ribbon <- g2(df5, asp(x, ymin = ymin, ymax = ymax), height = h) %>%
   fig_ribbon() %>% 
   info_vline(asp(x = 3, content = "Line"))
 
-bin_hex <- g2(cars, asp(speed, dist, color = count), height = h) %>% 
+c <- cars
+c$speed <- c$speed + runif(1)
+
+bin_hex <- g2(c, asp(speed, dist, color = count), height = h) %>% 
   fig_bin(type = "hexagon", size_count = FALSE) %>% 
   gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
 
@@ -200,7 +203,9 @@ dens <- g2(iris, asp(Sepal.Length, Sepal.Width, color = Species), height = h) %>
 
 iris_long <- tidyr::pivot_longer(iris, -Species)
 
-box <- g2(iris_long, asp(name, value, color = Species), height = h) %>% 
+box <- iris_long %>% 
+  dplyr::filter(name %in% c("Petal.Length", "Sepal.Length")) %>% 
+  g2(asp(name, value, color = Species), height = h) %>% 
  fig_boxplot(adjust("dodge"))
 
 smooth <- g2(mtcars, asp(qsec, mpg), height = h) %>% 
@@ -364,7 +369,7 @@ f <- qg2(fc) %>%
     text = list(
       content = "Mark"
     )
-  )
+  ) 
 
 f$height <- h
 
@@ -446,7 +451,8 @@ fc <- forecast(ets(USAccDeaths)) %>% to_g2r()
 area_shade <- fc %>% 
   dplyr::filter(!is.na(y)) %>% 
   g2(asp(x, y), height = h) %>% 
-  fig_area(fill = "l(0) 0:#abd6f5 0.5:#7ec2f3 1:#0083fc")
+  fig_area(fill = "l(0) 0:#abd6f5 0.5:#7ec2f3 1:#0083fc") %>% 
+  fig_line()
 
 df10 <- data.frame(
   x = c(letters[1:7], letters[1:7]),
