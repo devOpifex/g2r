@@ -391,3 +391,19 @@ g2(df, asp(grp, values, color = grp)) %>%
   coord_type("polar", innerRadius = .2) %>% 
   legend_color(position = "top")
 ```
+
+## Filled
+
+```{r}
+df <- data.frame(
+  x = letters,
+  y = runif(26)
+)
+
+df$max <- 1
+
+g2(df, asp(x, y), elementId = "x") %>% 
+  fig_interval(asp(y = max), fill = "lightgrey") %>% 
+  fig_interval(asp(, size = 8)) %>% 
+  gauge_y_linear(min = 0, max = 1)
+```
