@@ -106,7 +106,7 @@ g2(rate, asp(x, EUR.CHF)) %>%
 
 ## Forecast
 
-```{r}
+```{r, error=FALSE, message=FALSE, warning=FALSE}
 library(forecast)
 
 ts <- USAccDeaths %>%

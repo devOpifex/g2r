@@ -113,10 +113,18 @@ You can read more about [quick plots in the vignette](quick.html).
 
 Generally g2r functions accept data in the form of data.frames or tibbles but it will attempt to transform other objects to (generally) data.frames. 
 
-```{r}
-model <- lm(mpg ~ wt + cyl + disp + gear + hp + am, data = mtcars)
+```{r, error=FALSE, message=FALSE, warning=FALSE}
+library(forecast)
 
-qg2(model)
+ts <- WWWusage %>%
+  auto.arima() %>%
+  forecast(h=20)
+ 
+g2(ts, asp(x)) %>% 
+  fig_line(asp(y = y)) %>% 
+  fig_line(asp(y = mean)) %>% 
+  fig_ribbon(asp(ymin = lower_80, ymax = upper_80)) %>% 
+  fig_ribbon(asp(ymin = lower_95, ymax = upper_95))
 ```
 
 You can read more about [recipes in it vignette](recipes.html).

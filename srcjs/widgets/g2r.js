@@ -6,6 +6,7 @@ import { observeActions } from '../modules/action.js';
 import { plot } from '../modules/plot.js';
 import { getChart, getView } from '../modules/shiny.js';
 import { actions } from '../modules/actions';
+import { observeThemes } from '../modules/theme.js';
 
 HTMLWidgets.widget({
 
@@ -24,6 +25,9 @@ HTMLWidgets.widget({
 
       renderValue: function(x) {
 
+
+        observeThemes();
+        
         if(x.themes)
           x.themes.forEach((theme) => {
             if(theme.opts != null)

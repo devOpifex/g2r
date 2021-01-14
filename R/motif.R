@@ -26,6 +26,8 @@
 #' - `motif_global_reset`: Reset the global motif.
 #' - `motif_register`: Register a theme but does not apply it
 #' to the chart.
+#' - `motif_register_ui`: Registers a theme in a shiny UI or 
+#' Rmarkdown document.
 #' 
 #' @examples
 #' # mimic ggplot2
@@ -138,6 +140,27 @@ motif_register <- function(g, name, ...){
   g$x$themes <- append(g$x$themes, list(opts))
 
   g
+}
+
+#' @rdname motif
+#' @export 
+motif_register_ui <- function(name, ...){
+
+  theme <- list(
+    name = name,
+    opts = list(...)
+  )
+
+  htmltools::tags$script(
+    class = "g2-themes",
+    type = "application/json",
+    toJSON(
+      theme, 
+      data.frame = "rows",
+      null = "null",
+      auto_unbox = TRUE
+    )
+  )
 }
 
 #' Digits

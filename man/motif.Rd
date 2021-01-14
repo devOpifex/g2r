@@ -5,6 +5,7 @@
 \alias{motif_global}
 \alias{motif_global_reset}
 \alias{motif_register}
+\alias{motif_register_ui}
 \title{Motif}
 \usage{
 motif(
@@ -27,6 +28,8 @@ motif_global(
 motif_global_reset()
 
 motif_register(g, name, ...)
+
+motif_register_ui(name, ..., stylesheet = FALSE)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -64,6 +67,8 @@ every subsequent charts.
 \item \code{motif_global_reset}: Reset the global motif.
 \item \code{motif_register}: Register a theme but does not apply it
 to the chart.
+\item \code{motif_register_ui}: Registers a theme in a shiny UI or
+Rmarkdown document.
 }
 }
 
