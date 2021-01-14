@@ -141,7 +141,7 @@ g2(km_fit, asp(time, color = strata, shape = "vh")) %>%
 cc <- acf(lh, plot = FALSE)
 
 g2(cc) %>% 
-  fig_interval(asp(lag, acf, size = 2))
+  fig_interval(asp(lag, acf, shape = "line"))
 ```
 
 ## Matrices
@@ -196,7 +196,6 @@ g2(df, asp(name, value, color = Species)) %>%
     adjust("dodge"), adjust("jitter")
   )
 ```
-
 
 ## Stl
 

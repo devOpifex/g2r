@@ -22,7 +22,16 @@ See the [graph vignette](/articles/graph.html) for network-related figures.
 
 ## Line
 
-The line can be controlled with `shape`: `smooth`, `dot`, or `line` (default).
+The line can be controlled with `shape`: 
+
+- `smooth`
+- `dot`
+- `vh`
+- `hv`
+- `hvh`
+- `vhv`
+- `dash`
+- `line` (default).
 
 ```{r}
 df <- data.frame(
@@ -45,12 +54,38 @@ g2(df, asp(x, y)) %>%
 
 ## Point
 
+The `shape` of the point can also be set to:
+
+- `circle`
+- `bowtie`
+- `cross`
+- `diamond`
+- `hexagon`
+- `hollow-bowtie`
+- `hollow-circle` (default)
+- `hollow-diamond`
+- `hollow-hexagon`
+- `hollow-triangle`
+- `hollow-triangle-down`
+- `line`
+- `hyphen`
+- `plus`
+- `tick`
+- `square`
+
 ```{r}
 g2(iris, asp(Sepal.Width, Sepal.Length, color = Species)) %>% 
   fig_point()
 ```
 
 ## Area
+
+The `shape` of the area can also be set to:
+
+- `area` (default)
+- `line`
+- `smooth`
+- `smooth-line`
 
 ```{r}
 blockchain <- jsonlite::fromJSON(
@@ -74,6 +109,15 @@ g2(df, asp(x, y)) %>%
 ```
 
 ## Interval
+
+The `shape` of the interval can also be set to:
+
+- `rect` (default)
+- `funnel`
+- `hollow-rect`
+- `line`
+- `pyramid`
+- `tick`
 
 ```{r}
 df <- data.frame(

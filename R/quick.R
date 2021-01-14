@@ -138,7 +138,7 @@ qg2.survfit <- function(object, ...){
 #' @export 
 qg2.acf <- function(object, ...){
   g2(object) %>% 
-    fig_interval(asp("lag", "acf", size = 2))
+    fig_interval(asp("lag", "acf", shape = "line"))
 }
 
 #' @method qg2 xts
