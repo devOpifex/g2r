@@ -116,9 +116,8 @@ Generally g2r functions accept data in the form of data.frames or tibbles but it
 ```{r, error=FALSE, message=FALSE, warning=FALSE}
 library(forecast)
 
-ts <- WWWusage %>%
-  auto.arima() %>%
-  forecast(h=20)
+ts <- AirPassengers %>%
+  stlf(lambda=0)
  
 g2(ts, asp(x)) %>% 
   fig_line(asp(y = y)) %>% 
