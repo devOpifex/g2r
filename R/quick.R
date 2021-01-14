@@ -211,3 +211,12 @@ qg2.igraph <- function(object, ...){
     fig_point(asp(shape = "circle")) %>% 
     axis_hide()
 }
+
+#' @method qg2 stl
+#' @export 
+qg2.stl <- function(object, ...){
+  g2(object, asp("x", "value", color = "variable")) %>% 
+    fig_line() %>% 
+    planes(~variable, cols = 1, rows = 4, type = "list", padding = 20) %>% 
+    motif(padding = c(10, 10, 30, 30))
+}

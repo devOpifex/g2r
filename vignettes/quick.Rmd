@@ -69,6 +69,14 @@ rate <- getFX("EUR/CHF", auto.assign = FALSE)
 qg2(rate)
 ```
 
+## stl
+
+```{r}
+s <- stl(nottem, "per")
+
+qg2(s)
+```
+
 ## Roc curve
 
 ```{r}

@@ -80,7 +80,7 @@ deaths <- rbind(ldeaths, fdeaths, mdeaths)
 
 g2(deaths, asp(Var2, Freq, color = Var1)) %>% 
   fig_area() %>% 
-  planes(~Var1, rows = 3, cols = 1, type = "list") %>% 
+  planes(~Var1, rows = 3, cols = 1, type = "list", padding = 20) %>% 
   motif(padding = 30)
 ```
 
@@ -196,3 +196,16 @@ g2(df, asp(name, value, color = Species)) %>%
     adjust("dodge"), adjust("jitter")
   )
 ```
+
+
+## Stl
+
+```{r}
+decomposed <- stl(mdeaths, "per")
+
+g2(decomposed, asp(x, value, color = variable)) %>% 
+  fig_line() %>% 
+  planes(~variable, cols = 1, rows = 4, type = "list", padding = 20) %>% 
+  motif(padding = c(10, 10, 30, 30))
+```
+

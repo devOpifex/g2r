@@ -165,3 +165,30 @@ to_g2r.lm <- function(data = NULL){
   augmented[[".upper"]] <- augmented[[".fitted"]] + augmented[[".se"]]
   augmented
 }
+
+#' @export 
+#' @method to_g2r stl
+#' @importFrom stats time
+#' @importFrom tibble tibble
+to_g2r.stl <- function(data = NULL){
+  check_package("broom")
+
+  ts <- data[["time.series"]]
+  original <- ts %*% c(1,1,1)
+
+  df <- to_g2r(ts)
+
+  tibble(
+    x = rep(df$x, 4),
+    variable = rep(
+      c("data", "seasonal", "trend", "remainder"),
+      each = nrow(df)
+    ),
+    value = c(
+      original,
+      df$seasonal,
+      df$trend,
+      df$remainder
+    )
+  )
+}

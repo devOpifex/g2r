@@ -29,7 +29,7 @@ motif_global_reset()
 
 motif_register(g, name, ...)
 
-motif_register_ui(name, ..., stylesheet = FALSE)
+motif_register_ui(name, ...)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
