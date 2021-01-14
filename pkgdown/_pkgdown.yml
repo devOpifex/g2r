@@ -76,6 +76,8 @@ navbar:
           href: articles/shiny.html
         - text: "Rmarkdown"
           href: articles/actions.html
+    - text: "Gallery"
+      href: articles/gallery.html
     - text: "Examples"
       href: articles/examples.html
   right:

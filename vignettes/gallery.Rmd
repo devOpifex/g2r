@@ -1,8 +1,8 @@
 ---
-title: "Demo"
+title: "Gallery"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Demo}
+  %\VignetteIndexEntry{Gallery}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -19,7 +19,7 @@ library(g2r)
 library(dplyr)
 library(htmltools)
 
-n <- 7
+n <- 9
 
 df1 <- tibble::tibble(
   x = c(letters[1:n], letters[1:n]),
@@ -106,9 +106,10 @@ div(
 area <- df2 %>% 
   mutate(y = runif(n * 2)) %>% 
   g2(asp(x, y, color = grp), height = h) %>% 
-  fig_area()
+  fig_area(adjust("stack"), fillOpacity = 1)
 
 path <- g2(df3, asp(x, y), height = h) %>% 
+  fig_point(asp(shape = "square")) %>% 
   fig_path()
 
 step <- df2 %>% 
@@ -166,7 +167,8 @@ div(
 ```{r, echo=FALSE}
 ribbon <- g2(df5, asp(x, ymin = ymin, ymax = ymax), height = h) %>% 
   fig_line(asp(y = y)) %>% 
-  fig_ribbon()
+  fig_ribbon() %>% 
+  info_vline(asp(x = 3, content = "Line"))
 
 bin_hex <- g2(cars, asp(speed, dist, color = count), height = h) %>% 
   fig_bin(type = "hexagon", size_count = FALSE) %>% 
@@ -202,7 +204,7 @@ box <- g2(iris_long, asp(name, value, color = Species), height = h) %>%
  fig_boxplot(adjust("dodge"))
 
 smooth <- g2(mtcars, asp(qsec, mpg), height = h) %>% 
-  fig_point() %>% 
+  fig_point(asp(shape = "plus")) %>% 
   fig_smooth(asp(shape = "smooth"))
 
 div(
@@ -227,7 +229,8 @@ rng_bar <- g2(df7, asp(x, ymin = ymin, ymax = ymax), height = h) %>%
   fig_range()
 
 rng_area <- g2(df7, asp(x, ymin = ymin, ymax = ymax), height = h) %>% 
-  fig_range(asp(shape = "smooth"), type = "area")
+  fig_range(asp(shape = "smooth"), type = "area") %>% 
+  info_hline(asp(y = "median", content = "Median"))
 
 pie <- g2(df8, asp(y = value, color = name, label = name), height = h) %>% 
  fig_pie()
@@ -297,7 +300,7 @@ k <- g2(wallgreens, asp(date, open = open, close = close, high = high, low = low
 
 err <- df1 %>% 
   mutate(
-    ymin = y - runif(n, 1, 2),
+    ymin = y - runif(n, 1, 5),
     ymax = y + runif(n, 1, 2)
   ) %>% 
   g2(asp(x = x, color = grp), height = h) %>% 
@@ -355,7 +358,14 @@ library(forecast)
 
 fc <- forecast(ets(USAccDeaths))
 
-f <- qg2(fc)
+f <- qg2(fc) %>% 
+  info_marker(
+    position = c("1976-07-01", 10080),
+    text = list(
+      content = "Mark"
+    )
+  )
+
 f$height <- h
 
 div(
@@ -380,7 +390,7 @@ data(mpg, package = "ggplot2")
 
 l <- loess(hwy ~ displ, data = mpg, span = .3) %>% 
   g2(asp(displ), height = h) %>% 
-  fig_point(asp(y = hwy, shape = "circle")) %>% 
+  fig_point(asp(y = hwy, shape = "circle", size = 3), fillOpacity = .3, stroke = 0) %>% 
   fig_line(asp(y = .fitted, shape = "smooth")) %>% 
   fig_ribbon(asp(ymin = .lower, ymax = .upper, shape = "smooth"))
 
@@ -424,6 +434,152 @@ div(
   div(
     class = "col-sm-4",
     spiral
+  )
+)
+```
+
+```{r, echo=FALSE, error=FALSE, warning=FALSE, message=FALSE}
+library(forecast)
+
+fc <- forecast(ets(USAccDeaths)) %>% to_g2r()
+
+area_shade <- fc %>% 
+  dplyr::filter(!is.na(y)) %>% 
+  g2(asp(x, y), height = h) %>% 
+  fig_area(fill = "l(0) 0:#abd6f5 0.5:#7ec2f3 1:#0083fc")
+
+df10 <- data.frame(
+  x = c(letters[1:7], letters[1:7]),
+  y = round(runif(14, 20, 70)),
+  grp = rep(c("A", "Z"), each = 7)
+)
+
+polar <- g2(df10, asp(x, y, color = grp), height = h) %>% 
+  fig_interval(adjust("dodge", margin = 1)) %>% 
+  coord_type("polar") %>% 
+  interplay("active", "region") %>% 
+  tooltip(
+    showMarkers = FALSE,
+    shared = TRUE
+  )
+
+fruits <- data.frame(
+  x = c(
+    "Apple", "Banana", "Orange", "Coconut", "Melon",
+    "Grapes", "Strawberry", "Pear", "Kiwi", "Apricot"
+  ),
+  y = rev(c(1, 3, 4, 6, 9, 10, 12, 13, 14, 16))
+)
+
+rad <- g2(fruits, asp(x, y, color = y), height = h) %>% 
+  fig_interval(
+    asp(label = y),
+    lineWidth = 1,
+    stroke = "#fff"
+  ) %>% 
+  coord_type(
+    "polar", 
+    startAngle = pi, 
+    endAngle = pi * (3 / 2)
+  ) %>% 
+  gauge_color(c("rgb(255,215,135)", "rgb(252,143,72)")) %>% 
+  gauge_y_linear(tickCount = 10) %>% 
+  interplay("element", "highlight") %>% 
+  axis_x(
+    tickLine = list(aligntick = FALSE),
+    grid = list(alignTick = FALSE)
+  ) %>% 
+  axis_y(
+    grid = list(closed = FALSE)
+  ) %>% 
+  tooltip(showMarker = FALSE) %>% 
+  legend_color(FALSE)
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    area_shade
+  ),
+  div(
+    class = "col-sm-4",
+    polar
+  ),
+  div(
+    class = "col-sm-4",
+    rad
+  )
+)
+```
+
+```{r, echo=FALSE}
+traffic <- data.frame(
+  label = c("Visit", "Portal", "Signup", "Pay", "Retain"),
+  users = c(1, .7, .5, .3, .1)
+)
+
+fun <- g2(traffic, asp(label, users, color = label), height = h) %>% 
+  fig_interval(
+    asp(shape = "funnel"), 
+    adjust("symmetric")
+  ) %>% 
+  gauge_color(c('#0050B3', '#1890FF', '#40A9FF', '#69C0FF', '#BAE7FF')) %>% 
+  coord_transpose() %>% 
+  coord_scale(1, -1) %>% 
+  axis_hide() 
+
+weekday <- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+employee <- LETTERS[1:10]
+roster <- expand.grid(weekday = weekday, employee = employee)
+roster$sales <- round(runif(nrow(roster), 10, 50))
+
+radian <- g2(roster, asp(employee, weekday, color = sales), height = h) %>% 
+  fig_polygon(
+    lineWidth = 1,
+    stroke = "#fff"
+  ) %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3")) %>% 
+  coord_type("polar", innerRadius = .2) %>% 
+  axis_y(
+    grid = NULL,
+    line = NULL,
+    tickLine = NULL,
+    label = NULL
+  ) %>% 
+  axis_x(
+    grid = NULL,
+    line = NULL,
+    tickLine = NULL
+  )
+
+df11 <- data.frame(
+  grp = rep(c("FR", "US", "SA"), each = 50),
+  values = rnorm(
+    150, 
+    rep(c(47, 37, 35), each = 50),
+    rep(c(1, 2, 3), each = 50)
+  )
+)
+
+polar_polar_box <- g2(df11, asp(grp, values, color = grp), height = h) %>% 
+  fig_boxplot(asp(size = 60)) %>% 
+  coord_type("polar", innerRadius = .2) %>% 
+  legend_color(position = "top") %>% 
+  gauge_y_linear(nice = FALSE)
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    fun
+  ),
+  div(
+    class = "col-sm-4",
+    radian
+  ),
+  div(
+    class = "col-sm-4",
+    polar_polar_box
   )
 )
 ```

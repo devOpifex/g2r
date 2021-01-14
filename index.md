@@ -9,7 +9,7 @@
 <br/>
 <br/>
 <a class="btn btn-primary btn-lg" href="articles/get-started.html" role="button">Get Started</a>
-<a class="btn btn-orange btn-lg" href="articles/demo.html" role="button">Demo</a>
+<a class="btn btn-orange btn-lg" href="articles/gallery.html" role="button">Gallery</a>
 </p>
 </div>
 
