@@ -534,28 +534,17 @@ fun <- g2(traffic, asp(label, users, color = label), height = h) %>%
   coord_scale(1, -1) %>% 
   axis_hide() 
 
-weekday <- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-employee <- LETTERS[1:10]
-roster <- expand.grid(weekday = weekday, employee = employee)
-roster$sales <- round(runif(nrow(roster), 10, 50))
+x <- 1:nrow(volcano)
+y <- 1:ncol(volcano)
+df <- expand.grid(x = x,y = y)
+df$z = apply(df, 1, function(x){ 
+ volcano[x[1],x[2]]
+})
 
-radian <- g2(roster, asp(employee, weekday, color = sales), height = h) %>% 
-  fig_polygon(
-    lineWidth = 1,
-    stroke = "#fff"
-  ) %>% 
-  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3")) %>% 
-  coord_type("polar", innerRadius = .2) %>% 
-  axis_y(
-    grid = NULL,
-    line = NULL,
-    tickLine = NULL,
-    label = NULL
-  ) %>% 
-  axis_x(
-    grid = NULL,
-    line = NULL,
-    tickLine = NULL
+contour_filled <- g2(df, asp(x, y, z = z)) %>% 
+  fig_contour(
+    type = "filled",
+    colors = c("#000004FF", "#BB3754FF", "#FCFFA4FF")
   )
 
 df11 <- data.frame(
@@ -581,7 +570,7 @@ div(
   ),
   div(
     class = "col-sm-4",
-    radian
+    contour_filled
   ),
   div(
     class = "col-sm-4",
@@ -631,6 +620,30 @@ data(faithfuld, package = "ggplot2")
 contour <- g2(faithfuld, asp(waiting, eruptions, z = density), height = h) %>% 
   fig_contour(colors = c("#440154FF", "#21908CFF", "#FDE725FF"))
 
+weekday <- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+employee <- LETTERS[1:10]
+roster <- expand.grid(weekday = weekday, employee = employee)
+roster$sales <- round(runif(nrow(roster), 10, 50))
+
+radian <- g2(roster, asp(employee, weekday, color = sales), height = h) %>% 
+  fig_polygon(
+    lineWidth = 1,
+    stroke = "#fff"
+  ) %>% 
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3")) %>% 
+  coord_type("polar", innerRadius = .2) %>% 
+  axis_y(
+    grid = NULL,
+    line = NULL,
+    tickLine = NULL,
+    label = NULL
+  ) %>% 
+  axis_x(
+    grid = NULL,
+    line = NULL,
+    tickLine = NULL
+  )
+
 div(
   class = "row",
   div(
@@ -638,7 +651,8 @@ div(
     contour
   ),
   div(
-    class = "col-sm-4"
+    class = "col-sm-4",
+    radian
   ),
   div(
     class = "col-sm-4"

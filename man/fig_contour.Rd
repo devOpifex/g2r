@@ -14,7 +14,8 @@ fig_contour(
   nlevels = 10,
   binwidth,
   levels,
-  criticalRatio = 5
+  criticalRatio = 5,
+  type = c("line", "filled")
 )
 }
 \arguments{
@@ -45,7 +46,7 @@ An integer number of bins to split the data into \emph{iff}
 
 \item{binwidth}{Passed to \code{contoureR::getContourLines}.
 The desired width of the bins, if specified, will override
-‘nlevels’}
+‘nlevels’.}
 
 \item{levels}{Passed to \code{contoureR::getContourLines}.
 A numeric vector of the explicitly specified levels (zvalues)
@@ -60,7 +61,9 @@ be poor in the proximity to the convex hull, Del's that have
 an aspect ratio greater than this value are not considered when
 producing the contours. In this context, the aspect ratio is
 defined as the circumradius to twice its inradius, equilateral
-triangles have an aspect ratio of 1, everything else is larger}
+triangles have an aspect ratio of 1, everything else is larger.}
+
+\item{type}{Whether to draw the lines or polygons.}
 }
 \description{
 Add a contour line figure to the chart.
@@ -85,5 +88,6 @@ g <- g2(df, asp(x, y, z = z))
 fig_contour(g)
 
 fig_contour(g, colors = c("red", "blue"))
+fig_contour(g, type = "filled")
 
 }

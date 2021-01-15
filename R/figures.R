@@ -1493,7 +1493,7 @@ fig_error.g2r <- function(
 #' ‘levels’ or ‘binwidth’ have not been specified.
 #' @param binwidth Passed to `contoureR::getContourLines`.
 #' The desired width of the bins, if specified, will override
-#' ‘nlevels’
+#' ‘nlevels’.
 #' @param levels Passed to `contoureR::getContourLines`.
 #' A numeric vector of the explicitly specified levels (zvalues) 
 #' to contour, by specifying this argument, it will override 
@@ -1506,7 +1506,8 @@ fig_error.g2r <- function(
 #' an aspect ratio greater than this value are not considered when 
 #' producing the contours. In this context, the aspect ratio is 
 #' defined as the circumradius to twice its inradius, equilateral 
-#' triangles have an aspect ratio of 1, everything else is larger
+#' triangles have an aspect ratio of 1, everything else is larger.
+#' @param type Whether to draw the lines or polygons.
 #' 
 #' @details Requires the `x`, `y` and `z` aspects, the
 #' width of the error bars can be changed with the `size`
@@ -1528,7 +1529,10 @@ fig_error.g2r <- function(
 #' 
 #' fig_contour(g, colors = c("red", "blue"))
 #' 
+#' fig_contour(g, type = "filled", colors = c("darkblue", "white"))
+#' 
 #' @importFrom grDevices colorRampPalette
+#' @importFrom tibble tibble
 #' 
 #' @export 
 fig_contour <- function(
@@ -1541,7 +1545,8 @@ fig_contour <- function(
   nlevels = 10, 
   binwidth, 
   levels, 
-  criticalRatio = 5
+  criticalRatio = 5,
+  type = c("line", "filled")
 ){
   UseMethod("fig_contour")
 }
@@ -1558,10 +1563,13 @@ fig_contour.g2r <- function(
   nlevels = 10, 
   binwidth, 
   levels, 
-  criticalRatio = 5
+  criticalRatio = 5,
+  type = c("line", "filled")
 ){
 
   check_package("contoureR")
+
+  type <- match.arg(type)
 
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
   position <- select_asp_labels(asp, "x", "y", "z")
@@ -1575,35 +1583,51 @@ fig_contour.g2r <- function(
     data[[position[1]]], 
     data[[position[2]]],
     data[[position[3]]],
-    nlevels = 10, 
+    nlevels = nlevels, 
     binwidth, 
     levels, 
-    criticalRatio = 5
+    criticalRatio = criticalRatio
   )
 
   asp$x <- "x"
   asp$y <- "y"
 
+  chart_type <- "path"
+
   data_list <- split(data, data[["Group"]])
+
+  if(type == "filled"){
+    chart_type <- "polygon"
+    data_list <- purrr::map(data_list, function(grp){
+      tibble(x = list(grp[["x"]]), y = list(grp[["y"]]))
+    })
+  }
 
   if(!is.null(colors))
     colors <- colorRampPalette(colors)(length(data_list))
 
   for(i in 1:length(data_list)){
-    col <- "#5B8FF9"
-    if(!is.null(colors))
-      col <- colors[i]
-    
-    g <- fig_primitive(
+
+    args <- list(
       g,
-      ..., 
-      stroke = col,
+      ...,
       data = data_list[[i]], 
       inherit_asp = inherit_asp,
       sync = sync,
-      type = "path",
+      type = chart_type,
       asp = asp
-    ) 
+    )
+
+    col <- "#5B8FF9"
+    if(!is.null(colors))
+      col <- colors[i]
+
+    if(type == "line")
+      args$stroke <- col
+    else 
+      args$fill <- col
+    
+    g <- do.call(fig_primitive, args)
   }
 
   g

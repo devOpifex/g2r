@@ -175,7 +175,8 @@
   nlevels <span class='op'>=</span> <span class='fl'>10</span>,
   <span class='va'>binwidth</span>,
   <span class='va'>levels</span>,
-  criticalRatio <span class='op'>=</span> <span class='fl'>5</span>
+  criticalRatio <span class='op'>=</span> <span class='fl'>5</span>,
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"line"</span>, <span class='st'>"filled"</span><span class='op'>)</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -224,7 +225,7 @@ An integer number of bins to split the data into <em>iff</em>
       <th>binwidth</th>
       <td><p>Passed to <code><a href='https://rdrr.io/pkg/contoureR/man/getContourLines.html'>contoureR::getContourLines</a></code>.
 The desired width of the bins, if specified, will override
-‘nlevels’</p></td>
+‘nlevels’.</p></td>
     </tr>
     <tr>
       <th>levels</th>
@@ -243,7 +244,11 @@ be poor in the proximity to the convex hull, Del's that have
 an aspect ratio greater than this value are not considered when
 producing the contours. In this context, the aspect ratio is
 defined as the circumradius to twice its inradius, equilateral
-triangles have an aspect ratio of 1, everything else is larger</p></td>
+triangles have an aspect ratio of 1, everything else is larger.</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>Whether to draw the lines or polygons.</p></td>
     </tr>
     </table>
 
@@ -268,6 +273,7 @@ aspect.</p>
 <span class='fu'>fig_contour</span><span class='op'>(</span><span class='va'>g</span><span class='op'>)</span>
 
 <span class='fu'>fig_contour</span><span class='op'>(</span><span class='va'>g</span>, colors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"red"</span>, <span class='st'>"blue"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>fig_contour</span><span class='op'>(</span><span class='va'>g</span>, type <span class='op'>=</span> <span class='st'>"filled"</span><span class='op'>)</span>
 
 </div></pre>
   </div>
