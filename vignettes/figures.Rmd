@@ -340,13 +340,11 @@ g2(df, asp(x = x, color = grp)) %>%
 ```{r}
 data(faithfuld, package = "ggplot2")
 
-g <- g2(faithfuld, asp(waiting, eruptions, z = density)) %>% 
+g2(faithfuld, asp(waiting, eruptions, z = density)) %>% 
   fig_contour(
     binwidth = 0.001,
     colors = c("#440154FF", "#21908CFF", "#FDE725FF")
   )
-
-fig_contour(g)
 ```
 
 ```{r}
