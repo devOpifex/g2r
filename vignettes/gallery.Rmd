@@ -595,7 +595,7 @@ radar <- g2(df1, asp(x, y, color = grp), height = h) %>%
   fig_area() %>% 
   fig_line(asp(size = 2)) %>% 
   fig_point(asp(size = 4, shape = "circle")) %>% 
-  coord_type("polar", radius = .8) 
+  coord_type("polar") 
 
 g <- igraph::erdos.renyi.game(50, 2/50)
 
@@ -621,6 +621,27 @@ div(
   div(
     class = "col-sm-4",
     mat
+  )
+)
+```
+
+```{r, echo=FALSE}
+data(faithfuld, package = "ggplot2")
+
+contour <- g2(faithfuld, asp(waiting, eruptions, z = density), height = h) %>% 
+  fig_contour(colors = c("#440154FF", "#21908CFF", "#FDE725FF"))
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    contour
+  ),
+  div(
+    class = "col-sm-4"
+  ),
+  div(
+    class = "col-sm-4"
   )
 )
 ```
