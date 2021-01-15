@@ -53,7 +53,7 @@ cc <- acf(lh, plot = FALSE)
 qg2(cc)
 ```
 
-# Xts
+## Xts
 
 ```{r, warning=FALSE, message=FALSE, error=FALSE}
 library(quantmod)
@@ -89,7 +89,7 @@ roc <- roc_curve(two_class_example, truth, Class1)
 qg2(roc)
 ```
 
-# Forecast
+## Forecast
 
 ```{r, message=FALSE, warning=FALSE, error=FALSE}
 library(forecast)

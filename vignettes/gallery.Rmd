@@ -589,3 +589,38 @@ div(
   )
 )
 ```
+
+```{r, echo=FALSE}
+radar <- g2(df1, asp(x, y, color = grp), height = h) %>% 
+  fig_area() %>% 
+  fig_line(asp(size = 2)) %>% 
+  fig_point(asp(size = 4, shape = "circle")) %>% 
+  coord_type("polar", radius = .8) 
+
+g <- igraph::erdos.renyi.game(50, 2/50)
+
+graph <- qg2(g)
+graph$height <- h
+
+correl_mat <- cor(mtcars[,1:5])
+
+mat <- qg2(correl_mat) %>% 
+  gauge_color(c("#c77dff", "#7b2cbf", "#240046"))
+mat$height <- h
+
+div(
+  class = "row",
+  div(
+    class = "col-sm-4",
+    radar
+  ),
+  div(
+    class = "col-sm-4",
+    graph
+  ),
+  div(
+    class = "col-sm-4",
+    mat
+  )
+)
+```

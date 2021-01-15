@@ -34,48 +34,8 @@ navbar:
       href: news/index.html
     - text: API
       href: "reference/index.html"
-    - text: "Guide"
-      menu: 
-        - text: "Installation"
-          href: articles/installation.html
-        - text: "Get Started"
-          href: articles/get-started.html
-        - text: "Figures"
-          href: articles/figures.html
-        - text: "Quick Plots"
-          href: articles/quick.html
-        - text: "Recipes"
-          href: articles/recipes.html
-        - text: "Graph"
-          href: articles/graph.html
-        - text: "Map"
-          href: articles/map.html
-        - text: "Aspects"
-          href: articles/aspects.html
-        - text: "Gauges"
-          href: articles/gauges.html
-        - text: "Adjust"
-          href: articles/adjust.html
-        - text: "Axis"
-          href: articles/axis.html
-        - text: "Animations"
-          href: articles/animations.html
-        - text: "Interplay & State"
-          href: articles/interplay-state.html
-        - text: "Tooltip"
-          href: articles/tooltip.html
-        - text: "Info"
-          href: articles/info.html
-        - text: "Planes"
-          href: articles/planes.html
-        - text: "Motif"
-          href: articles/motif.html
-        - text: "Crosstalk"
-          href: articles/crosstalk.html
-        - text: "Shiny"
-          href: articles/shiny.html
-        - text: "Rmarkdown"
-          href: articles/actions.html
+    - text: Docs
+      href: "articles/docs.html"
     - text: "Gallery"
       href: articles/gallery.html
     - text: "Examples"

@@ -157,6 +157,18 @@ a:hover, a:focus {
   background-color: #6906FF;
 }
 
+.panel-orange > .panel-heading {
+  background-color: #F0760F;
+  border-color: #F7BA87;
+  color: white;
+}
+
+.panel-orange > .panel-heading{
+  font-weight: bold;
+  font-size: 150%;
+  text-align: center;
+}
+
 .panel-info > .panel-heading {
   background-color: #6906FF;
   border-color: #ab74fc;

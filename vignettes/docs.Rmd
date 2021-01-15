@@ -1,0 +1,197 @@
+---
+title: "Documentation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Documentation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+library(htmltools)
+
+box <- function(title, text, link, class = "info", width = 4){
+  div(
+    class = sprintf("col-sm-%s", width),
+    tags$a(
+      href = sprintf("%s.html", link),
+      div(
+        class = sprintf("panel panel-%s", class),
+        div(
+          class = "panel-heading",
+          title
+        ),
+        div(
+          class = "panel-body centerize",
+          text
+        )
+      )
+    )
+  )
+}
+
+row <- function(...){
+  div(
+    class = "row",
+    ...
+  )
+}
+```
+
+## Quick Start
+
+```{r, echo=FALSE}
+row(
+  box(
+    "Installation",
+    "How to install the package",
+    "installation"
+  ),
+  box(
+    "Get Started",
+    "A quick guide to get started with g2r",
+    "get-started",
+    class = "orange"
+  ),
+  box(
+    "Quick Plots",
+    "Convenient function to quickly draw plots",
+    "quick"
+  )
+)
+```
+
+## Figures
+
+```{r, echo=FALSE}
+row(
+  box(
+    "Figures",
+    "Browse based figures available",
+    "figures",
+    width = 3
+  ),
+  box(
+    "Graph",
+    "How to draw networks with g2r",
+    "graph",
+    width = 3
+  ),
+  box(
+    "Maps",
+    "Draw maps with g2r",
+    "map",
+    width = 3
+  ),
+  box(
+    "Recipes",
+    "Common patterns to draw plots with g2r",
+    "recipes",
+    width = 3
+  )
+)
+```
+
+## Customise
+
+```{r, echo=FALSE}
+row(
+  box(
+    "Tooltip",
+    "Customise the tooltip",
+    "tooltip"
+  ),
+  box(
+    "Aspects",
+    "How to define aspects of a visualisation",
+    "aspects",
+    class = "orange"
+  ),
+  box(
+    "Adjust",
+    "Learn about the adjust function",
+    "adjust"
+  )
+)
+```
+
+```{r, echo=FALSE}
+row(
+  box(
+    "Axis",
+    "How to handle axes",
+    "axis"
+  ),
+  box(
+    "Gauges",
+    "Learn about gauges to scales aspects of plots",
+    "gauges"
+  ),
+  box(
+    "Info",
+    "How to draw informational annotations",
+    "info"
+  )
+)
+```
+
+## Layout
+
+```{r, echo=FALSE}
+row(
+  box(
+    "Planes",
+    "How to facet the plot",
+    "planes",
+    width = 6
+  ),
+  box(
+    "Motif",
+    "How to customise the theme of visualisations",
+    "motif",
+    width = 6
+  )
+)
+```
+
+## Interactions
+
+```{r, echo=FALSE}
+row(
+  box(
+    "Animations",
+    "How to customise animations",
+    "animations",
+    width = 6
+  ),
+  box(
+    "Interplay",
+    "Customise interactions and state",
+    "interplay-state",
+    width = 6
+  )
+)
+```
+
+## Integrations
+
+```{r, echo=FALSE}
+row(
+  box(
+    "Crosstalk",
+    "Linking g2r visualisations with other widgets",
+    "crosstalk"
+  ),
+  box(
+    "Shiny",
+    "How to use g2r with shiny",
+    "shiny"
+  ),
+  box(
+    "Rmarkdown",
+    "Integration of g2r with rmarkdown",
+    "actions"
+  )
+)
+```
+

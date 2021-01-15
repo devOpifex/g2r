@@ -1,6 +1,6 @@
-pandoc: 2.9.1.1
-pkgdown: 1.6.1
-pkgdown_sha: ~
+pandoc: 2.9.2.1
+pkgdown: 1.6.1.9000
+pkgdown_sha: e1e46f2e13c7efdb17bc4eae40bc3779c2b0b517
 articles:
   actions: actions.html
   adjust: adjust.html
@@ -9,6 +9,7 @@ articles:
   axis: axis.html
   contribute: contribute.html
   crosstalk: crosstalk.html
+  docs: docs.html
   examples: examples.html
   figures: figures.html
   gallery: gallery.html
@@ -25,5 +26,5 @@ articles:
   recipes: recipes.html
   shiny: shiny.html
   tooltip: tooltip.html
-last_built: 2021-01-14T22:19Z
+last_built: 2021-01-15T10:20Z
 
