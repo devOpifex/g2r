@@ -277,6 +277,10 @@ a:hover, a:focus {
     background-color: #1e024a;
   }
 
+  .navbar-default .navbar-nav>li>a{
+    color: #a973fa;
+  }
+
   .dropdown-menu{
     background-color: #1e024a;
   }
