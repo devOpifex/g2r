@@ -334,4 +334,22 @@ g2(df, asp(x = x, color = grp)) %>%
   ) 
 ```
 
+## Contour
+
+```{r}
+data(faithfuld, package = "ggplot2")
+
+g <- g2(faithfuld, asp(waiting, eruptions, z = density))
+
+fig_contour(g)
+```
+
+```{r}
+fig_contour(
+  g, 
+  binwidth = 0.001,
+  colors = c("#440154FF", "#21908CFF", "#FDE725FF")
+)
+```
+
 <a class="btn btn-default" href="quick.html">Explore quick plots</a>

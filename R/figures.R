@@ -1480,3 +1480,132 @@ fig_error.g2r <- function(
     asp = asp
   ) 
 }
+
+#' Contour
+#' 
+#' Add a contour line figure to the chart.
+#' 
+#' @inheritParams fig_point
+#' @param colors A palette of colors to define the `stroke`
+#' of each path.
+#' @param nlevels Passed to `contoureR::getContourLines`. 
+#' An integer number of bins to split the data into *iff* 
+#' ‘levels’ or ‘binwidth’ have not been specified.
+#' @param binwidth Passed to `contoureR::getContourLines`.
+#' The desired width of the bins, if specified, will override
+#' ‘nlevels’
+#' @param levels Passed to `contoureR::getContourLines`.
+#' A numeric vector of the explicitly specified levels (zvalues) 
+#' to contour, by specifying this argument, it will override 
+#' ‘nlevels’ and/or ‘binwidth’. If this argument is provided, 
+#' the stacking order of the contours will be preserved in the 
+#' order of first occurence within the supplied vector.
+#' @param criticalRatio Passed to `contoureR::getContourLines`.
+#' When producing the Delaunay Mesh, the quality of the mesh can 
+#' be poor in the proximity to the convex hull, Del's that have 
+#' an aspect ratio greater than this value are not considered when 
+#' producing the contours. In this context, the aspect ratio is 
+#' defined as the circumradius to twice its inradius, equilateral 
+#' triangles have an aspect ratio of 1, everything else is larger
+#' 
+#' @details Requires the `x`, `y` and `z` aspects, the
+#' width of the error bars can be changed with the `size`
+#' aspect.
+#' 
+#' @examples 
+#' data(volcano)
+#' 
+#' x <- 1:nrow(volcano)
+#' y <- 1:ncol(volcano)
+#' df <- expand.grid(x = x,y = y)
+#' df$z = apply(df, 1, function(x){ 
+#'  volcano[x[1],x[2]]
+#' })
+#' 
+#' g <- g2(df, asp(x, y, z = z)) 
+#' 
+#' fig_contour(g)
+#' 
+#' fig_contour(g, colors = c("red", "blue"))
+#' 
+#' @importFrom grDevices colorRampPalette
+#' 
+#' @export 
+fig_contour <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  colors = NULL,
+  nlevels = 10, 
+  binwidth, 
+  levels, 
+  criticalRatio = 5
+){
+  UseMethod("fig_contour")
+}
+
+#' @method fig_contour g2r
+#' @export 
+fig_contour.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE,
+  colors = NULL,
+  nlevels = 10, 
+  binwidth, 
+  levels, 
+  criticalRatio = 5
+){
+
+  check_package("contoureR")
+
+  asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+  position <- select_asp_labels(asp, "x", "y", "z")
+
+  if(length(position) != 3)
+    stop("Must pass `x`, `y`, and `z` aspects", call. = FALSE)
+
+  data <- get_data(g, data)
+
+  data <- contoureR::getContourLines(
+    data[[position[1]]], 
+    data[[position[2]]],
+    data[[position[3]]],
+    nlevels = 10, 
+    binwidth, 
+    levels, 
+    criticalRatio = 5
+  )
+
+  asp$x <- "x"
+  asp$y <- "y"
+
+  data_list <- split(data, data[["Group"]])
+
+  if(!is.null(colors))
+    colors <- colorRampPalette(colors)(length(data_list))
+
+  for(i in 1:length(data_list)){
+    col <- "#5B8FF9"
+    if(!is.null(colors))
+      col <- colors[i]
+    
+    g <- fig_primitive(
+      g,
+      ..., 
+      stroke = col,
+      data = data_list[[i]], 
+      inherit_asp = inherit_asp,
+      sync = sync,
+      type = "path",
+      asp = asp
+    ) 
+  }
+
+  g
+}
+

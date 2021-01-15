@@ -36,6 +36,7 @@ Suggests:
   packer,
   igraph,
   pkgdown,
+  contoureR,
   geojsonio,
   htmltools,
   rmapshaper,
