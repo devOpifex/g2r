@@ -7,6 +7,9 @@ import { plot } from '../modules/plot.js';
 import { getChart, getView } from '../modules/shiny.js';
 import { actions } from '../modules/actions';
 import { observeThemes } from '../modules/theme.js';
+import { registerShapes } from '../modules/shapes.js';
+
+registerShapes();
 
 HTMLWidgets.widget({
 

@@ -118,6 +118,7 @@ The `shape` of the interval can also be set to:
 - `line`
 - `pyramid`
 - `tick`
+- `triangle`
 
 ```{r}
 df <- data.frame(

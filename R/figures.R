@@ -1609,3 +1609,120 @@ fig_contour.g2r <- function(
   g
 }
 
+# #' Outliers
+# #' @export 
+# fig_outlier <- function(
+#   g, 
+#   ..., 
+#   sync = TRUE, 
+#   data = NULL, 
+#   inherit_asp = TRUE
+# ){
+#   UseMethod("fig_outlier")
+# }
+
+# #' @method fig_outlier g2r
+# #' @export 
+# fig_outlier.g2r <- function(
+#   g, 
+#   ..., 
+#   sync = TRUE, 
+#   data = NULL, 
+#   inherit_asp = TRUE
+# ){
+#   fig_outlier_(
+#     g, 
+#     ..., 
+#     sync = sync, 
+#     data = data, 
+#     inherit_asp = inherit_asp
+#   )
+# }
+
+# #' Outlier
+# #' 
+# #' @inheritParams fig_outlier
+# #' 
+# #' @keywords internal
+# fig_outlier_ <- function(
+#   g, 
+#   ..., 
+#   sync = TRUE, 
+#   data = NULL, 
+#   inherit_asp = TRUE
+# ){
+#   check_alter()
+
+#   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+#   x <- select_asp_labels(asp, "x")
+#   y <- select_asp_labels(asp, "y")
+#   color <- select_asp_labels(asp, "color")
+
+#   data <- get_data(g, data)
+
+#   if(length(color))
+#     data <- split(data, data[[color]])
+#   else
+#     data <- list(data)
+  
+#   data <- purrr::map(data, function(df, x){
+#     if(length(x))
+#       df <- split(df, df[[x]])
+
+#     return(df)
+#   }, x = x)
+
+#   data <- purrr::map_dfr(data, function(group, x, y, color){
+#     dat <- data.frame()
+
+#     if(!is.data.frame(group)){
+#       outliers <- purrr::map_dfr(group, function(df, x, y, color){
+
+#         outliers <- boxplot(df[[y]], plot = FALSE)$out
+
+#         if(!length(outliers))
+#           return(
+#             data.frame(
+#               x = unique(df[[x]]),
+#               y = NA,
+#               colors = unique(df[[color]])
+#             )
+#           )
+
+#         dat <- data.frame(
+#           x = unique(df[[x]]),
+#           y = outliers,
+#           colors = unique(df[[color]])
+#         )
+
+#         return(dat)        
+
+#       }, x = x, y = y, color = color)
+#     } else {
+#       outliers <- boxplot(group[[y]], plot = FALSE)$out
+
+#       if(!length(outliers))
+#         return(dat)
+
+#       dat <- data.frame(
+#         x = unique(group[[2]][[x]]),
+#         y = outliers
+#       )
+#       dat[[color]] <- unique(group[[2]][[color]])
+#       return(dat)
+#     }
+
+#   }, x = x, y = y, color = color)
+
+#   names(data) <- c(x, y, color)
+
+#   fig_primitive(
+#     g, 
+#     ..., 
+#     data = data, 
+#     inherit_asp = inherit_asp,
+#     sync = sync,
+#     type = "point",
+#     asp = asp
+#   )
+# }
