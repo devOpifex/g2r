@@ -69,25 +69,34 @@ row(
     "Figures",
     "Browse based figures available",
     "figures",
-    width = 3
+    class = "orange"
   ),
   box(
     "Graph",
     "How to draw networks with g2r",
-    "graph",
-    width = 3
+    "graph"
   ),
   box(
     "Maps",
     "Draw maps with g2r",
-    "map",
-    width = 3
-  ),
+    "map"
+  )
+)
+```
+
+```{r, echo=FALSE}
+row(
   box(
     "Recipes",
     "Common patterns to draw plots with g2r",
     "recipes",
-    width = 3
+    width = 6
+  ),
+  box(
+    "Advanced",
+    "Short vignettes detailing some of the inner-workings of the package",
+    "advanced",
+    width = 6
   )
 )
 ```
@@ -97,15 +106,15 @@ row(
 ```{r, echo=FALSE}
 row(
   box(
-    "Tooltip",
-    "Customise the tooltip",
-    "tooltip"
-  ),
-  box(
     "Aspects",
     "How to define aspects of a visualisation",
     "aspects",
     class = "orange"
+  ),
+  box(
+    "Tooltip",
+    "Customise the tooltip",
+    "tooltip"
   ),
   box(
     "Adjust",

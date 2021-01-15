@@ -1,0 +1,85 @@
+---
+title: "Advanced"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Advanced}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+library(g2r)
+```
+
+## Figures
+
+At its code G2.js comprises of just a few [primitive figures](https://g2.antv.vision/en/docs/api/advanced/register-shape).
+
+- `fig_point`
+- `fig_interval` (bar)
+- `fig_line`
+- `fig_polygon`
+- `fig_edge`
+- `fig_schema`
+- `fig_area`
+
+However, g2r provides many more. This is simply to say that all figures provided by g2r but not G2.js are actually built, under-the-hood, by the aforementioned primitive figures.
+
+Take for instance `fig_ribbon` which G2.js does not handle out of the box. A ribbon chart is essentially an area chart that holds two `y` values for every `x`, where the first is the lower bound and the second is the higher bound.
+
+So why add `fig_ribbon`? Well because the shape of the data that must be passed to G2.js is somewhat unwieldy.
+
+```json
+[
+  [
+    0,    // x
+    [1,2] // ymin, ymax
+  ],
+  [
+    1,    // x
+    [3,4] // ymin, ymax
+  ]
+  [
+    2,    // x
+    [1,5] // ymin, ymax
+  ]
+]
+```
+
+Instead of using `fig_ribbon` one could simply build the a list column tibble that resembles the above and use `fig_area`.
+
+```{r}
+library(dplyr)
+
+df <- tibble(
+  x = 1:100,
+  y = runif(100)
+) %>% 
+  mutate(
+    y = lapply(y, function(x) list(x - 1, x + 1))
+  )
+
+df %>% 
+  head() %>% 
+  knitr::kable()
+```
+
+With the list column where the `y` column actually holds two values one can now simply use `fig_area`.
+
+```{r}
+g2(df, asp(x, y)) %>% 
+  fig_area()
+```
+
+All of the custom figures provided by g2r are in the [figures.R file](https://github.com/devOpifex/g2r/blob/master/R/figures.R), feel free to take a look to learn more about how they work.
+
+## Aspects
+
+It may be somewhat counterintuitive at first but G2.js allows multiple "aspects" where one would often only expect one. For instance the tooltip of a visualisation can make use or present multiple variables.
+
+```{r}
+mtcars %>% 
+  mutate(vs = as.factor(vs)) %>% 
+  g2(asp(mpg, wt, size = qsec, tooltip = gear, tooltip = carb)) %>% 
+  fig_point(asp(shape = "circle", color = vs))
+```
