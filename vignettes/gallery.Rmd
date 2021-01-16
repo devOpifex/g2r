@@ -173,8 +173,10 @@ ribbon <- g2(df5, asp(x, ymin = ymin, ymax = ymax), height = h) %>%
 c <- cars
 c$speed <- c$speed + runif(1)
 
-bin_hex <- g2(c, asp(speed, dist, color = count), height = h) %>% 
-  fig_bin(type = "hexagon", size_count = FALSE) %>% 
+data(diamonds, package = "ggplot2")
+
+bin_hex <- g2(diamonds, asp(carat, price, color = count), height = h) %>% 
+  fig_bin(type = "hexagon", size_count = FALSE, bins = c(50, 50)) %>% 
   gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
 
 histo <- g2(df6, asp(val, color = grp), height = h) %>% 
