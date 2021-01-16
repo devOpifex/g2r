@@ -176,7 +176,7 @@ c$speed <- c$speed + runif(1)
 data(diamonds, package = "ggplot2")
 
 bin_hex <- g2(diamonds, asp(carat, price, color = count), height = h) %>% 
-  fig_bin(type = "hexagon", size_count = FALSE, bins = c(50, 50)) %>% 
+  fig_bin(type = "hexagon", size_count = FALSE, bins = c(20, 20)) %>% 
   gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
 
 histo <- g2(df6, asp(val, color = grp), height = h) %>% 
@@ -646,6 +646,20 @@ radian <- g2(roster, asp(employee, weekday, color = sales), height = h) %>%
     tickLine = NULL
   )
 
+seg <- df <- data.frame(
+  x = c(4, 24),
+  y = c(2, 70),
+  xend = c(8, 25),
+  yend = c(16, 85)
+)
+
+seg <- g2(cars, asp(speed, dist)) %>% 
+  fig_point(asp(shape = "square")) %>% 
+  fig_segment(
+    asp(x = x, y = y, xend = xend, yend = yend),
+    data = seg
+  )
+
 div(
   class = "row",
   div(
@@ -657,7 +671,8 @@ div(
     radian
   ),
   div(
-    class = "col-sm-4"
+    class = "col-sm-4",
+    seg
   )
 )
 ```

@@ -366,4 +366,22 @@ g2(faithfuld, asp(eruptions, waiting, z = density)) %>%
   gauge_y_linear(nice = FALSE)
 ```
 
+## Segments
+
+```{r}
+seg <- df <- data.frame(
+  x = c(24, 23),
+  y = c(70, 54),
+  xend = c(17, 24),
+  yend = c(50, 93)
+)
+
+g2(cars, asp(speed, dist)) %>% 
+  fig_point() %>% 
+  fig_segment(
+    asp(x = x, y = y, xend = xend, yend = yend),
+    data = seg
+  )
+```
+
 <a class="btn btn-default" href="quick.html">Explore quick plots</a>

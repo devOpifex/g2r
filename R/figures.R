@@ -1673,6 +1673,68 @@ fig_contour.g2r <- function(
   g
 }
 
+#' Segment
+#' 
+#' Add a segments figure to the chart.
+#' 
+#' @inheritParams fig_point
+#' 
+#' @export 
+fig_segment <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+  UseMethod("fig_segment")
+}
+
+#' @method fig_segment g2r
+#' @export 
+fig_segment.g2r <- function(
+  g, 
+  ..., 
+  sync = TRUE, 
+  data = NULL, 
+  inherit_asp = TRUE
+){
+
+  check_package("contoureR")
+
+  asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+  position <- select_asp_labels(asp, "x", "y", "xend", "yend")
+
+  if(length(position) != 4)
+    stop("Must pass `x`, `y`, `xend`, and `yend` aspects", call. = FALSE)
+
+  data <- get_data(g, data)
+
+  data <- data %>% 
+    purrr::pmap(list) %>% 
+    purrr::map(function(row, p){
+      ls <- list(
+        list(row[[p[1]]], row[[p[2]]]),
+        list(row[[p[3]]], row[[p[4]]])
+      )
+
+      names(ls) <- c(p[1], p[3])
+
+      return(ls)
+
+    }, p = position)
+
+  fig_primitive(
+    g,
+    ..., 
+    data = data, 
+    inherit_asp = inherit_asp,
+    sync = sync,
+    type = "edge",
+    asp = asp
+  ) 
+}
+
 # #' Outliers
 # #' @export 
 # fig_outlier <- function(
