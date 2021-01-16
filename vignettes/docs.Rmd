@@ -43,15 +43,15 @@ row <- function(...){
 ```{r, echo=FALSE}
 row(
   box(
-    "Installation",
-    "How to install the package",
-    "installation"
-  ),
-  box(
     "Get Started",
     "A quick guide to get started with g2r",
     "get-started",
     class = "orange"
+  ),
+  box(
+    "Installation",
+    "How to install the package",
+    "installation"
   ),
   box(
     "Quick Plots",

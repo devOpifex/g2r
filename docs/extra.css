@@ -149,6 +149,10 @@ pre {
   color: #6906FF;
 }
 
+div>a{
+  color: #4200a6;
+}
+
 a:hover, a:focus {
   color: #6906FF;
 }
@@ -230,7 +234,7 @@ a:hover, a:focus {
   }
 
   select{
-    background-color: #4200a6;
+    background-color: #a19ea5;
     color: white;
   }
 
