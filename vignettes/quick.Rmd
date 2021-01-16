@@ -116,4 +116,12 @@ g <- igraph::erdos.renyi.game(500, 2/500)
 qg2(g)
 ```
 
+## PCA
+
+```{r}
+pca <- prcomp(mtcars[,c(1:7,10,11)], center = TRUE,scale. = TRUE)
+
+qg2(pca)
+```
+
 <a class="btn btn-default" href="recipe.html">Explore recipe</a>

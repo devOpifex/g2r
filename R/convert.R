@@ -192,3 +192,10 @@ to_g2r.stl <- function(data = NULL){
     )
   )
 }
+
+#' @export 
+#' @method to_g2r prcomp
+to_g2r.prcomp <- function(data, ...){
+  eig <- data$sdev ^ 2 
+  tibble(dim = factor(1:length(eig)), eig = eig)
+}

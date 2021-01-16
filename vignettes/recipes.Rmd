@@ -208,3 +208,20 @@ g2(decomposed, asp(x, value, color = variable)) %>%
   motif(padding = c(10, 10, 30, 30))
 ```
 
+## T SNE
+
+```{r}
+library(Rtsne)
+
+# remove uniques
+iris_unique <- unique(iris)
+
+set.seed(42L)
+tsne <- Rtsne(as.matrix(iris_unique[,1:4]))
+
+df <- as.data.frame(tsne$Y)
+df$specie <- iris_unique$Species
+
+g2(df, asp(V1, V2, color = specie)) %>% 
+  fig_point(asp(shape = "circle"))
+```

@@ -183,6 +183,15 @@ qg2.matrix <- function(object, ...){
     fig_polygon(asp("Var1", "Var2", color = "Freq"))
 }
 
+#' @method qg2 prcomp
+#' @export 
+qg2.prcomp <- function(object, ...){
+  g2(object, asp("dim", "eig")) %>% 
+    fig_interval() %>% 
+    fig_line(stroke = "black") %>% 
+    fig_point(fill = "black")
+}
+
 #' @method qg2 forecast
 #' @export 
 qg2.forecast <- function(object, ...){
