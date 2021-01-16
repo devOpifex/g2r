@@ -162,13 +162,32 @@ qg2.xts <- function(object, ...) {
 
 }
 
+#' @method qg2 grouped_roc_df
+#' @export 
+qg2.grouped_roc_df <- function(object, ...){
+  object[["specificity"]] <- 1 - object[["specificity"]]
+
+  g2(object, asp("specificity", "sensitivity", color = "Resample")) %>% 
+    fig_path() %>% 
+    gauge_y_linear(min = 0, max = 1) %>% 
+    planes(
+      ~.level, 
+      type = "list", 
+      cols = 2, 
+      rows = 2,
+      padding = 25
+    ) %>% 
+    tooltip(shared = TRUE)
+}
+
 #' @method qg2 roc_df
 #' @export 
 qg2.roc_df <- function(object, ...){
+  object[["specificity"]] <- 1 - object[["specificity"]]
+
   g2(object, asp("specificity", "sensitivity")) %>% 
-    fig_line(asp(shape = "vh")) %>% 
+    fig_path() %>% 
     gauge_y_linear(min = 0, max = 1) %>% 
-    coord_reflect("x") %>% 
     info_abline(
       style = list(
         lineDash = c(1,1)

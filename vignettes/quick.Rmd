@@ -89,6 +89,15 @@ roc <- roc_curve(two_class_example, truth, Class1)
 qg2(roc)
 ```
 
+```{r}
+data(hpc_cv)
+
+hpc_cv %>%
+  dplyr::group_by(Resample) %>%
+  roc_curve(obs, VF:L) %>% 
+  qg2()
+```
+
 ## Forecast
 
 ```{r, message=FALSE, warning=FALSE, error=FALSE}

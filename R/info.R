@@ -243,9 +243,9 @@ info_abline.g2r <- function(
   asp <- get_asp(...)
 
   asp$x <- "min"
-  asp$y <- "max"
+  asp$y <- "min"
   asp$xend <- "max"
-  asp$yend <- "min"
+  asp$yend <- "max"
 
   info_primitive(
     g, 
