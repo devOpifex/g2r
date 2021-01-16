@@ -10,7 +10,8 @@ fig_histogram(
   bin_width = 5,
   sync = TRUE,
   data = NULL,
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "count"
 )
 }
 \arguments{
@@ -33,6 +34,9 @@ draw the figure.}
 
 \item{inherit_asp}{Whether to inherit the aspects paseed to
 \code{\link[=g2]{g2()}} initialisation function.}
+
+\item{alias}{Name of the range to display on tooltips,
+labels, etc.}
 }
 \description{
 Add a histogram figure to the chart.

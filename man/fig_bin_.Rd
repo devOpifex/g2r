@@ -12,7 +12,8 @@ fig_bin_(
   size_count = TRUE,
   sync = TRUE,
   data = NULL,
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "count"
 )
 }
 \arguments{
@@ -39,6 +40,9 @@ draw the figure.}
 
 \item{inherit_asp}{Whether to inherit the aspects paseed to
 \code{\link[=g2]{g2()}} initialisation function.}
+
+\item{alias}{Name of the range to display on tooltips,
+labels, etc.}
 }
 \description{
 Bin figure

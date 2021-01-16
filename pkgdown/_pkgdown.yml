@@ -96,6 +96,7 @@ reference:
     contents:
       - tooltip
       - starts_with("tpl")
+      - aka
   - title: "Animation"
     desc: "Customise animations"
     contents:

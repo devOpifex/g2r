@@ -6,6 +6,8 @@
 #' @param type The shape of bin to create.
 #' @param bins Number of bins by dimension (width, height).
 #' @param size_count Whether to size the binds by count.
+#' @param alias Name of the range to display on tooltips,
+#' labels, etc.
 #' 
 #' @details Requires the `x` and `y` aspects.
 #' 
@@ -25,7 +27,8 @@ fig_bin <- function(
   size_count = TRUE,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "count"
 ){
   UseMethod("fig_bin")
 }
@@ -40,7 +43,8 @@ fig_bin.g2r <- function(
   size_count = TRUE,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "count"
 ){
   fig_bin_(
     g, 
@@ -50,7 +54,8 @@ fig_bin.g2r <- function(
     size_count = size_count,
     sync = sync, 
     data = data, 
-    inherit_asp = inherit_asp
+    inherit_asp = inherit_asp,
+    alias = alias
   )
 }
 
@@ -64,7 +69,8 @@ fig_bin.g2Proxy <- function(
   size_count = TRUE,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "count"
 ){
   fig_bin_(
     g, 
@@ -74,7 +80,8 @@ fig_bin.g2Proxy <- function(
     size_count = size_count,
     sync = sync, 
     data = data, 
-    inherit_asp = inherit_asp
+    inherit_asp = inherit_asp,
+    alias = alias
   )
 }
 
@@ -91,7 +98,8 @@ fig_bin_ <- function(
   size_count = TRUE,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "count"
 ) {
 
   check_alter()
@@ -112,7 +120,7 @@ fig_bin_ <- function(
       type = type, 
       fields = position, 
       bins = bins,
-      as = c(position, "count")
+      as = c(position, alias)
     )$
     getRows()
 
@@ -133,6 +141,8 @@ fig_bin_ <- function(
 #' @inheritParams fig_point
 #' 
 #' @details Requires the `ymin` and `ymax` aspects.
+#' @param alias Name of the range to display on tooltips,
+#' labels, etc.
 #' 
 #' @examples 
 #' df <- data.frame(
@@ -150,7 +160,8 @@ fig_ribbon <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "ribbon"
 ){
   UseMethod("fig_ribbon")
 }
@@ -162,14 +173,16 @@ fig_ribbon.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "ribbon"
 ){
   fig_ribbon_(
     g, 
     ..., 
     sync = sync, 
     data = data, 
-    inherit_asp = inherit_asp
+    inherit_asp = inherit_asp,
+    alias = alias
   )
 }
 
@@ -180,14 +193,16 @@ fig_ribbon.g2Proxy <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "ribbon"
 ){
   fig_ribbon_(
     g, 
     ..., 
     sync = sync, 
     data = data, 
-    inherit_asp = inherit_asp
+    inherit_asp = inherit_asp,
+    alias = alias
   )
 }
 
@@ -203,7 +218,8 @@ fig_ribbon_ <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "ribbon"
 ){
 
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
@@ -219,8 +235,8 @@ fig_ribbon_ <- function(
       list(row[[col[2]]], row[[col[1]]])
     }, col = cols)
 
-  data$range <- range
-  asp$y <- "range"
+  data[[alias]] <- range
+  asp$y <- alias
 
   fig_primitive(
     g, 
@@ -239,6 +255,8 @@ fig_ribbon_ <- function(
 #' 
 #' @inheritParams fig_point
 #' @param bin_width Width of bin.
+#' @param alias Name of the range to display on tooltips,
+#' labels, etc.
 #' 
 #' @examples 
 #' df <- data.frame(
@@ -259,7 +277,8 @@ fig_histogram <- function(
   bin_width = 5,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "count"
 ){
   UseMethod("fig_histogram")
 }
@@ -272,7 +291,8 @@ fig_histogram.g2r <- function(
   bin_width = 5,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "count"
 ){
   fig_histogram_(
     g, 
@@ -280,7 +300,8 @@ fig_histogram.g2r <- function(
     bin_width = bin_width,
     sync = sync, 
     data = data, 
-    inherit_asp = inherit_asp
+    inherit_asp = inherit_asp,
+    alias = alias
   )
 }
 
@@ -292,7 +313,8 @@ fig_histogram.g2Proxy <- function(
   bin_width = 5,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "count"
 ){
   fig_histogram_(
     g, 
@@ -300,7 +322,8 @@ fig_histogram.g2Proxy <- function(
     bin_width = bin_width,
     sync = sync, 
     data = data, 
-    inherit_asp = inherit_asp
+    inherit_asp = inherit_asp,
+    alias = alias
   )
 }
 
@@ -315,7 +338,8 @@ fig_histogram_ <- function(
   bin_width = 5,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "count"
 ){
 
   check_alter()
@@ -331,7 +355,7 @@ fig_histogram_ <- function(
         type = "bin.histogram",
         field = x,
         binWidth = bin_width,
-        as = c(x, "count")
+        as = c(x, alias)
       )
   else
     data <- alter::Alter$new(get_data(g, data))$
@@ -341,11 +365,11 @@ fig_histogram_ <- function(
         field = x,
         binWidth = bin_width,
         groupBy = as.list(color),
-        as = c(x, "count")
+        as = c(x, alias)
       )
     
   data <- data$getRows()
-  asp$y <- "count"
+  asp$y <- alias
 
   fig_primitive(
     g, 
@@ -852,7 +876,9 @@ fig_density_ <- function(
 #' Add a range figure to the chart.
 #' 
 #' @inheritParams fig_point
-#' @param type Type of figure to use
+#' @param type Type of figure to use.
+#' @param alias Name of the range to display on tooltips,
+#' labels, etc.
 #' 
 #' @details Requires the `ymin` and `ymax` aspects.
 #' 
@@ -873,7 +899,8 @@ fig_range <- function(
   type = c("interval", "area"),
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "range"
 ){
   UseMethod("fig_range")
 }
@@ -886,7 +913,8 @@ fig_range.g2r <- function(
   type = c("interval", "area"),
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "range"
 ){
   fig_range_(
     g, 
@@ -894,7 +922,8 @@ fig_range.g2r <- function(
     type = type,
     sync = sync, 
     data = data, 
-    inherit_asp = inherit_asp
+    inherit_asp = inherit_asp,
+    alias = alias
   )
 }
 
@@ -906,7 +935,8 @@ fig_range.g2Proxy <- function(
   type = c("interval", "area"),
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "range"
 ){
   fig_range_(
     g, 
@@ -914,7 +944,8 @@ fig_range.g2Proxy <- function(
     type = type,
     sync = sync, 
     data = data, 
-    inherit_asp = inherit_asp
+    inherit_asp = inherit_asp,
+    alias = alias
   )
 }
 
@@ -929,7 +960,8 @@ fig_range_ <- function(
   type = c("interval", "area"),
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "range"
 ) {
   type <- match.arg(type)
 
@@ -946,8 +978,8 @@ fig_range_ <- function(
       list(row[[cols[1]]], row[[cols[2]]])
     }, cols = cols)
 
-  data$range <- range
-  asp$y <- "range"
+  data[[alias]] <- range
+  asp$y <- alias
 
   fig_primitive(
     g, 
@@ -1305,6 +1337,8 @@ fig_rug.g2r <- function(
 #' Add a candle figure to the chart.
 #' 
 #' @inheritParams fig_point
+#' @param alias Name of the range to display on tooltips,
+#' labels, etc.
 #' 
 #' @details Requires the following aspects defined:
 #' 
@@ -1335,7 +1369,8 @@ fig_candle <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "range"
 ){
   UseMethod("fig_candle")
 }
@@ -1347,7 +1382,8 @@ fig_candle.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "range"
 ){
 
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
@@ -1368,7 +1404,7 @@ fig_candle.g2r <- function(
   data <- get_data(g, data)
 
   # add range
-  data$range <- pmap(data[, position], list) %>% 
+  data[[alias]] <- pmap(data[, position], list) %>% 
     map(function(row,position){
       c(
         row[[position[4]]], 
@@ -1378,7 +1414,7 @@ fig_candle.g2r <- function(
       )
     }, position = position)
 
-  asp$y <- "range"
+  asp$y <- alias
   asp$shape <- "candle"
   
   # add trend
@@ -1410,6 +1446,8 @@ fig_candle.g2r <- function(
 #' Add an error bar figure to the chart.
 #' 
 #' @inheritParams fig_point
+#' @param alias Name of the range to display on tooltips,
+#' labels, etc.
 #' 
 #' @details Requires the `ymin` and `ymax` aspects, the
 #' width of the error bars can be changed with the `size`
@@ -1439,7 +1477,8 @@ fig_error <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "error"
 ){
   UseMethod("fig_error")
 }
@@ -1451,7 +1490,8 @@ fig_error.g2r <- function(
   ..., 
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "error"
 ){
 
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
@@ -1462,12 +1502,12 @@ fig_error.g2r <- function(
 
   data <- get_data(g, data)
 
-  data$range <- pmap(data[, position], list) %>% 
+  data[[alias]] <- pmap(data[, position], list) %>% 
     map(function(row,position){
       c(row[[position[2]]], row[[position[1]]])
     }, position = position)
 
-  asp$y <- "range"
+  asp$y <- alias
   asp$shape <- "tick"
 
   fig_primitive(

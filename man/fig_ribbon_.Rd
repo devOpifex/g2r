@@ -4,7 +4,14 @@
 \alias{fig_ribbon_}
 \title{Fig ribbon}
 \usage{
-fig_ribbon_(g, ..., sync = TRUE, data = NULL, inherit_asp = TRUE)
+fig_ribbon_(
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
+  inherit_asp = TRUE,
+  alias = "ribbon"
+)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -24,6 +31,9 @@ draw the figure.}
 
 \item{inherit_asp}{Whether to inherit the aspects paseed to
 \code{\link[=g2]{g2()}} initialisation function.}
+
+\item{alias}{Name of the range to display on tooltips,
+labels, etc.}
 }
 \description{
 Fig ribbon

@@ -4,7 +4,14 @@
 \alias{fig_error}
 \title{Error}
 \usage{
-fig_error(g, ..., sync = TRUE, data = NULL, inherit_asp = TRUE)
+fig_error(
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
+  inherit_asp = TRUE,
+  alias = "error"
+)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -24,6 +31,9 @@ draw the figure.}
 
 \item{inherit_asp}{Whether to inherit the aspects paseed to
 \code{\link[=g2]{g2()}} initialisation function.}
+
+\item{alias}{Name of the range to display on tooltips,
+labels, etc.}
 }
 \description{
 Add an error bar figure to the chart.

@@ -10,7 +10,8 @@ fig_range_(
   type = c("interval", "area"),
   sync = TRUE,
   data = NULL,
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "range"
 )
 }
 \arguments{
@@ -22,7 +23,7 @@ and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, \code{\lin
 other key value pairs of are passed to
 \href{https://g2.antv.vision/en/docs/api/general/style}{style}.}
 
-\item{type}{Type of figure to use}
+\item{type}{Type of figure to use.}
 
 \item{sync}{Whether to sync the axis data (align) with that
 used in other figures, set to \code{FALSE} to not sync or set to
@@ -33,6 +34,9 @@ draw the figure.}
 
 \item{inherit_asp}{Whether to inherit the aspects paseed to
 \code{\link[=g2]{g2()}} initialisation function.}
+
+\item{alias}{Name of the range to display on tooltips,
+labels, etc.}
 }
 \description{
 Range

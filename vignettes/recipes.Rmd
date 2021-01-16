@@ -118,8 +118,14 @@ ts <- USAccDeaths %>%
 g2(ts, asp(x)) %>% 
   fig_line(asp(y = y)) %>% 
   fig_line(asp(y = mean)) %>% 
-  fig_ribbon(asp(ymin = lower_80, ymax = upper_80)) %>% 
-  fig_ribbon(asp(ymin = lower_95, ymax = upper_95))
+  fig_ribbon(
+    asp(ymin = lower_80, ymax = upper_80),
+    alias = "80"
+  ) %>% 
+  fig_ribbon(
+    asp(ymin = lower_95, ymax = upper_95),
+    alias = "90"
+  )
 ```
 
 ## Survival
