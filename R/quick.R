@@ -223,8 +223,14 @@ qg2.forecast <- function(object, ...){
 
   if(ncol(tidied) > 6){
     base %>% 
-      fig_ribbon(asp(ymin = "lower_80", ymax = "upper_80")) %>% 
-      fig_ribbon(asp(ymin = "lower_95", ymax = "upper_95"))
+      fig_ribbon(
+        asp(ymin = "lower_80", ymax = "upper_80"),
+        alias = "80"
+      ) %>% 
+      fig_ribbon(
+        asp(ymin = "lower_95", ymax = "upper_95"),
+        alias = "90"
+      )
   } else {
     base %>% 
       fig_ribbon(asp(ymin = "lower_y", ymax = "upper_y"))
