@@ -157,6 +157,10 @@ a:hover, a:focus {
   color: #6906FF;
 }
 
+.panel{
+  min-height: 140px;
+}
+
 .btn-primary{
   background-color: #6906FF;
 }
