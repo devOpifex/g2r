@@ -541,7 +541,7 @@ df$z = apply(df, 1, function(x){
  volcano[x[1],x[2]]
 })
 
-contour_filled <- g2(df, asp(x, y, z = z)) %>% 
+contour_filled <- g2(df, asp(x, y, z = z), height = h) %>% 
   fig_contour(
     type = "filled",
     colors = c("#000004FF", "#BB3754FF", "#FCFFA4FF")

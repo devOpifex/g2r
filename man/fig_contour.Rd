@@ -88,6 +88,7 @@ g <- g2(df, asp(x, y, z = z))
 fig_contour(g)
 
 fig_contour(g, colors = c("red", "blue"))
-fig_contour(g, type = "filled")
+
+fig_contour(g, type = "filled", colors = c("darkblue", "white"))
 
 }
