@@ -58,9 +58,11 @@ qg2(cc)
 ```{r, warning=FALSE, message=FALSE, error=FALSE}
 library(quantmod)
 
-aapl <- getSymbols("AAPL", env=NULL)
+aapl <- getSymbols("AAPL", env = NULL)
 
-qg2(aapl)
+aapl %>% 
+  head(50) %>% 
+  qg2()
 ```
 
 ```{r}

@@ -305,10 +305,19 @@ g2(mtcars, asp(wt, mpg)) %>%
 ```{r}
 wallgreens  <- tidyquant::tq_get("WBA", from = Sys.Date() - 90)
 
+cb <- htmlwidgets::JS(
+  "(trend) => {
+    if(trend == 'Up')
+      return 'green';
+    
+    return 'red';
+  }"
+)
+
 g2(wallgreens, asp(date, open = open, close = close, high = high, low = low)) %>% 
   fig_candle() %>% 
   gauge_x_time_cat() %>% 
-  gauge_color(c("green", "red"))
+  gauge_color(cb)
 ```
 
 ## Error bars

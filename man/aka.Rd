@@ -23,6 +23,6 @@ tooltips, labels, and other places.
 # see tooltip
 g2(cars, asp(speed, dist)) \%>\% 
  fig_point() \%>\% 
- aka(speed, "SO FAST")
+ aka(dist, "SO FAR")
 
 }
