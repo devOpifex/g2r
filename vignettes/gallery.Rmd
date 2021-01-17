@@ -654,7 +654,7 @@ seg <- df <- data.frame(
 )
 
 seg <- g2(cars, asp(speed, dist), height = h) %>% 
-  fig_point(asp(shape = "square")) %>% 
+  fig_point() %>% 
   fig_segment(
     asp(x = x, y = y, xend = xend, yend = yend),
     data = seg
