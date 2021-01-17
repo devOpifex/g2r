@@ -54,6 +54,8 @@ You can also use `global_digits` to define the maximum number of digits to use i
 
 ## Colors
 
+### Continuous
+
 ```{r, echo=FALSE}
 library(htmltools)
 
@@ -136,6 +138,8 @@ row(
   )
 )
 ```
+
+### Discrete
 
 ```{r, echo=FALSE}
 row(
