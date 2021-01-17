@@ -127,7 +127,7 @@ library(yardstick)
 data(hpc_cv)
 
 cm <- hpc_cv %>%
-  filter(Resample == "Fold01") %>%
+  dplyr::filter(Resample == "Fold01") %>%
   conf_mat(obs, pred)
 
 qg2(cm)
