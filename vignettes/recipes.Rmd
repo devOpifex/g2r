@@ -244,6 +244,19 @@ miss <- to_g2r(airquality) %>%
 
 g2(airquality, asp(Ozone, Solar.R)) %>% 
   fig_point() %>% 
-  fig_rug(asp(shape = "circle"), fill = "red", data = miss) %>% 
-  fig_rug(asp(shape = "circle"), fill = "red", data = miss, axis  = "y")
+  fig_rug(
+    asp(shape = "circle"), 
+    fill = "#ff7d7d", 
+    fillOpacity = .5,
+    stroke = 0,
+    data = miss
+  ) %>% 
+  fig_rug(
+    asp(shape = "circle"), 
+    fill = "#ff7d7d",
+    fillOpacity = .5, 
+    stroke = 0,
+    data = miss, 
+    axis  = "y"
+  )
 ```
