@@ -31,7 +31,7 @@ The "localisation" or "translation" of the ggplot2 grammar is not just a gimmick
 
 ## Initialise
 
-Like with ggplot2, one creates visualisations by layering figures (geometries) defines by aspects (aesthetics).
+Like with ggplot2, one creates visualisations by layering figures (geometries) defined by aspects (aesthetics).
 
 ```{r}
 g2(cars, asp(speed, dist)) %>% 
