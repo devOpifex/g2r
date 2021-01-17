@@ -13,7 +13,7 @@ library(g2r)
 
 The `gauge_*` family of functions is similar to `scale_*` though there are some stark differences in places.
 
-See [motif.html] for examples of built-in color palettes.
+See [motif vignette](motif.html) for examples of built-in color palettes.
 
 ## Options
 
