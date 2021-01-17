@@ -233,3 +233,17 @@ df$specie <- iris_unique$Species
 g2(df, asp(V1, V2, color = specie)) %>% 
   fig_point(asp(shape = "circle"))
 ```
+
+## Missing data
+
+Similar to [naniar](https://naniar.njtierney.com/) `geom_miss_point`.
+
+```{r}
+miss <- to_g2r(airquality) %>% 
+  dplyr::filter(is.na(Ozone) | is.na(Solar.R))
+
+g2(airquality, asp(Ozone, Solar.R)) %>% 
+  fig_point() %>% 
+  fig_rug(asp(shape = "circle"), fill = "red", data = miss) %>% 
+  fig_rug(asp(shape = "circle"), fill = "red", data = miss, axis  = "y")
+```
