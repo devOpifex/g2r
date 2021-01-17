@@ -521,11 +521,11 @@ gauge_color_aw <- function(g){
 #' @export 
 gauge_color_g2rq <- function(g){
   cols <- c(
-    "#6906FF", 
-    "#F0760F", 
-    "#F00F51", 
-    "#0FF0AE", 
-    "#FFE606"
+    "#731dd8", 
+    "#05a8aa",  
+    "#f44708", 
+    "#ffae03",
+    "#944bbb"
   )
 
   gauge_color(g, cols)
