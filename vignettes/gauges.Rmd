@@ -13,6 +13,8 @@ library(g2r)
 
 The `gauge_*` family of functions is similar to `scale_*` though there are some stark differences in places.
 
+See [motif.html] for examples of built-in color palettes.
+
 ## Options
 
 You can gauge aspects specific aspects, just like in ggplot2.

@@ -51,3 +51,143 @@ motif(
 The `motif_global` function is very similar to `motif` but instead of applying a chart to a single chart will create a global motif that will be applied to all subsequent charts.
 
 You can also use `global_digits` to define the maximum number of digits to use in charts, it defaults to 4. Note that you can also override that for individual charts by setting the number of digits in the `g2` function. 
+
+## Colors
+
+```{r, echo=FALSE}
+library(htmltools)
+
+row <- function(...){
+  div(class = "row", ...)
+}
+
+col <- function(...){
+  div(class = "col-sm-3", ...)
+}
+
+code <- function(...){
+  tags$code(...)
+}
+
+gen_data_cont <- function(){
+  tibble::tibble(
+    x = 1:50,
+    y = rnorm(50, rep(c(0, 3), each = 25))
+  )
+}
+
+gen_data_qual <- function(){
+  tibble::tibble(
+    x = rep(1:25, 3),
+    y = rnorm(75, rep(c(0, 4, 7), each = 25)),
+    grp = rep(c("A", "B", "C"), each = 25)
+  )
+}
+
+g_cont <- function(){
+  g2(gen_data_cont(), asp(x, y), height = 250) %>% 
+    fig_point(asp(shape = "circle", color = y))
+}
+
+g_qual <- function(){
+  g2(gen_data_qual(), asp(x, y, color = grp), height = 250) %>% 
+    fig_point(asp(shape = "circle"))
+}
+```
+
+```{r, echo=FALSE}
+row(
+  col(
+    code("gauge_color_viridis"),
+    gauge_color_viridis(g_cont())
+  ),
+  col(
+    code("gauge_color_plasma"),
+    gauge_color_plasma(g_cont())
+  ),
+  col(
+    code("gauge_color_inferno"),
+    gauge_color_inferno(g_cont())
+  ),
+  col(
+    code("gauge_color_magma"),
+    gauge_color_magma(g_cont())
+  )
+)
+```
+
+```{r, echo=FALSE}
+row(
+  col(
+    code("gauge_color_neon"),
+    gauge_color_neon(g_cont())
+  ),
+  col(
+    code("gauge_color_lime"),
+    gauge_color_lime(g_cont())
+  ),
+  col(
+    code("gauge_color_orange"),
+    gauge_color_orange(g_cont())
+  ),
+  col(
+    code("gauge_color_pink"),
+    gauge_color_pink(g_cont())
+  )
+)
+```
+
+```{r, echo=FALSE}
+row(
+  col(
+    code("gauge_color_accent"),
+    gauge_color_accent(g_qual())
+  ),
+  col(
+    code("gauge_color_dark2"),
+    gauge_color_dark2(g_qual())
+  ),
+  col(
+    code("gauge_color_paired"),
+    gauge_color_paired(g_qual())
+  ),
+  col(
+    code("gauge_color_pastel1"),
+    gauge_color_pastel1(g_qual())
+  )
+)
+```
+
+```{r, echo=FALSE}
+row(
+  col(
+    code("gauge_color_pastel2"),
+    gauge_color_pastel2(g_qual())
+  ),
+  col(
+    code("gauge_color_set1"),
+    gauge_color_set1(g_qual())
+  ),
+  col(
+    code("gauge_color_set2"),
+    gauge_color_set2(g_qual())
+  ),
+  col(
+    code("gauge_color_set3"),
+    gauge_color_set3(g_qual())
+  )
+)
+```
+
+```{r, echo=FALSE}
+row(
+  col(
+    code("gauge_color_std"),
+    gauge_color_std(g_qual())
+  ),
+  col(
+    code("gauge_color_aw"),
+    gauge_color_aw(g_qual())
+  )
+)
+```
