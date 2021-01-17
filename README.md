@@ -8,6 +8,7 @@
 
 <!-- badges: start -->
 
+[![R-CMD-check](https://github.com/devOpifex/g2r/workflows/R-CMD-check/badge.svg)](https://github.com/devOpifex/g2r/actions)
 <!-- badges: end -->
 
 [G2.js](https://g2.antv.vision/) for R.
