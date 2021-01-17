@@ -33,10 +33,10 @@ select_columns <- function(data = NULL, cols){
   if(is.null(data))
     return()
   
+  data <- to_g2r(data)
+  
   if(!inherits(data, "data.frame"))
     return(data)
-
-  data <- to_g2r(data)
   
   data[, names(data) %in% cols]
 }
