@@ -208,3 +208,60 @@ row(
   )
 )
 ```
+
+## Diverging
+
+```{r, echo=FALSE}
+row(
+  col(
+    code("gauge_color_g2rd"),
+    gauge_color_g2rd(g_cont())
+  ),
+  col(
+    code("gauge_color_brbg"),
+    gauge_color_brbg(g_cont())
+  ),
+  col(
+    code("gauge_color_piyg"),
+    gauge_color_piyg(g_cont())
+  ),
+  col(
+    code("gauge_color_prgn"),
+    gauge_color_prgn(g_cont())
+  )
+)
+```
+
+```{r, echo=FALSE}
+row(
+  col(
+    code("gauge_color_puor"),
+    gauge_color_puor(g_cont())
+  ),
+  col(
+    code("gauge_color_rdbu"),
+    gauge_color_rdbu(g_cont())
+  ),
+  col(
+    code("gauge_color_rdgy"),
+    gauge_color_rdgy(g_cont())
+  ),
+  col(
+    code("gauge_color_rdylbu"),
+    gauge_color_rdylbu(g_cont())
+  )
+)
+```
+
+```{r, echo=FALSE}
+row(
+  col(
+    code("gauge_color_rdylgn"),
+    gauge_color_puor(g_cont())
+  ),
+  col(
+    code("gauge_color_spectral"),
+    gauge_color_spectral(g_cont())
+  )
+)
+```

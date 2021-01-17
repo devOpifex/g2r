@@ -155,7 +155,7 @@ gauge_interplay.g2Proxy <- function(g, ...){
 #' - `gauge_color_inferno` (continuous)
 #' - `gauge_color_magma` (continuous)
 #' 
-#' Qualtitative palettes from color brewer:
+#' Palettes from color brewer:
 #' 
 #' - `gauge_color_accent` (qualitative)
 #' - `gauge_color_dark2` (qualitative)
@@ -165,6 +165,15 @@ gauge_interplay.g2Proxy <- function(g, ...){
 #' - `gauge_color_set1` (qualitative)
 #' - `gauge_color_set2` (qualitative)
 #' - `gauge_color_set3` (qualitative)
+#' - `gauge_color_brbg` (diverging)
+#' - `gauge_color_piyg` (diverging)
+#' - `gauge_color_prgn` (diverging)
+#' - `gauge_color_puor` (diverging)
+#' - `gauge_color_rdbu` (diverging)
+#' - `gauge_color_rdgy` (diverging)
+#' - `gauge_color_rdylbu` (diverging)
+#' - `gauge_color_rdylgn` (diverging)
+#' - `gauge_color_spectral` (diverging) 
 #' 
 #' Palettes taken from [coolors.co](https://coolors.co):
 #' 
@@ -182,6 +191,7 @@ gauge_interplay.g2Proxy <- function(g, ...){
 #' 
 #' - `gauge_color_g2rc` (continuous)
 #' - `gauge_color_g2rq` (qualitative)
+#' - `gauge_color_g2rd` (diverging)
 #' 
 #' @name palettes
 #' @export 
@@ -546,6 +556,154 @@ gauge_color_g2rc <- function(g){
     "#eedaff"
   ) %>% 
     rev()
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_g2rd <- function(g){
+  cols <- c(
+    "#432892", 
+    "#5d4aa2",  
+    "#f5c945", 
+    "#efb62a"
+  )
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_brbg <- function(g){
+  cols <- c(
+    "#8c510a", 
+    "#d8b365",  
+    "#f6e8c3", 
+    "#c7eae5",
+    "#5ab4ac",
+    "#01665e"
+  )
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_piyg <- function(g){
+  cols <- c(
+    "#c51b7d", 
+    "#e9a3c9",  
+    "#fde0ef", 
+    "#e6f5d0",
+    "#a1d76a",
+    "#4d9221"
+  )
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_prgn <- function(g){
+  cols <- c(
+    "#762a83", 
+    "#af8dc3",  
+    "#e7d4e8", 
+    "#d9f0d3",
+    "#7fbf7b",
+    "#1b7837"
+  )
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_puor <- function(g){
+  cols <- c(
+    "#b35806", 
+    "#f1a340",  
+    "#fee0b6", 
+    "#d8daeb",
+    "#998ec3",
+    "#542788"
+  )
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_rdbu <- function(g){
+  cols <- c(
+    "#b2182b", 
+    "#ef8a62",  
+    "#fddbc7", 
+    "#d1e5f0",
+    "#67a9cf",
+    "#2166ac"
+  )
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_rdgy <- function(g){
+  cols <- c(
+    "#b2182b", 
+    "#ef8a62",  
+    "#fddbc7", 
+    "#e0e0e0",
+    "#999999",
+    "#4d4d4d"
+  )
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_rdylbu <- function(g){
+  cols <- c(
+    "#d73027", 
+    "#fc8d59",  
+    "#fee090", 
+    "#e0f3f8",
+    "#91bfdb",
+    "#4575b4"
+  )
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_rdylgn <- function(g){
+  cols <- c(
+    "#d73027", 
+    "#fc8d59",  
+    "#fee08b", 
+    "#d9ef8b",
+    "#91cf60",
+    "#1a9850"
+  )
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_spectral <- function(g){
+  cols <- c(
+    "#d53e4f", 
+    "#fc8d59",  
+    "#fee08b", 
+    "#e6f598",
+    "#99d594",
+    "#3288bd"
+  )
 
   gauge_color(g, cols)
 }

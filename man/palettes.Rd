@@ -22,6 +22,16 @@
 \alias{gauge_color_aw}
 \alias{gauge_color_g2rq}
 \alias{gauge_color_g2rc}
+\alias{gauge_color_g2rd}
+\alias{gauge_color_brbg}
+\alias{gauge_color_piyg}
+\alias{gauge_color_prgn}
+\alias{gauge_color_puor}
+\alias{gauge_color_rdbu}
+\alias{gauge_color_rdgy}
+\alias{gauge_color_rdylbu}
+\alias{gauge_color_rdylgn}
+\alias{gauge_color_spectral}
 \title{Color Palettes}
 \usage{
 gauge_color_viridis(g)
@@ -63,6 +73,26 @@ gauge_color_aw(g)
 gauge_color_g2rq(g)
 
 gauge_color_g2rc(g)
+
+gauge_color_g2rd(g)
+
+gauge_color_brbg(g)
+
+gauge_color_piyg(g)
+
+gauge_color_prgn(g)
+
+gauge_color_puor(g)
+
+gauge_color_rdbu(g)
+
+gauge_color_rdgy(g)
+
+gauge_color_rdylbu(g)
+
+gauge_color_rdylgn(g)
+
+gauge_color_spectral(g)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -83,7 +113,7 @@ continuous data.
 \item \code{gauge_color_magma} (continuous)
 }
 
-Qualtitative palettes from color brewer:
+Palettes from color brewer:
 \itemize{
 \item \code{gauge_color_accent} (qualitative)
 \item \code{gauge_color_dark2} (qualitative)
@@ -93,12 +123,21 @@ Qualtitative palettes from color brewer:
 \item \code{gauge_color_set1} (qualitative)
 \item \code{gauge_color_set2} (qualitative)
 \item \code{gauge_color_set3} (qualitative)
+\item \code{gauge_color_brbg} (diverging)
+\item \code{gauge_color_piyg} (diverging)
+\item \code{gauge_color_prgn} (diverging)
+\item \code{gauge_color_puor} (diverging)
+\item \code{gauge_color_rdbu} (diverging)
+\item \code{gauge_color_rdgy} (diverging)
+\item \code{gauge_color_rdylbu} (diverging)
+\item \code{gauge_color_rdylgn} (diverging)
+\item \code{gauge_color_spectral} (diverging)
 }
 
 Palettes taken from \href{https://coolors.co}{coolors.co}:
 \itemize{
 \item \code{gauge_color_neon} (continuous)
-\item \code{gauge_color_std} (qualitative)
+\item \code{gauge_color_std} (continuous)
 \item \code{gauge_color_orange} (continuous)
 \item \code{gauge_color_pink} (continuous)
 \item \code{gauge_color_lime} (continuous)
@@ -113,6 +152,7 @@ Custom:
 \itemize{
 \item \code{gauge_color_g2rc} (continuous)
 \item \code{gauge_color_g2rq} (qualitative)
+\item \code{gauge_color_g2rd} (diverging)
 }
 }
 
