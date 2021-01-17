@@ -199,3 +199,9 @@ to_g2r.prcomp <- function(data, ...){
   eig <- data$sdev ^ 2 
   tibble(dim = factor(1:length(eig)), eig = eig)
 }
+
+#' @export 
+#' @method to_g2r conf_mat
+to_g2r.conf_mat <- function(data, ...){
+  as.data.frame(data[["table"]])
+}

@@ -256,3 +256,11 @@ qg2.stl <- function(object, ...){
     motif(padding = c(10, 10, 30, 30)) %>% 
     tooltip(shared = TRUE)
 }
+
+#' @method qg2 conf_mat
+#' @export 
+qg2.conf_mat <- function(object, ...){
+  g2(object, asp("Prediction", "Truth", color = "Freq")) %>% 
+    fig_polygon(stroke = "#fff") %>% 
+    gauge_color(c("#a9d6e5", "#2c7da0", "#012a4a"))
+}

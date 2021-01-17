@@ -119,6 +119,20 @@ qg2(correl_mat) %>%
   gauge_color(c("#c77dff", "#7b2cbf", "#240046"))
 ```
 
+## Confusion Matrix
+
+```{r}
+library(yardstick)
+
+data(hpc_cv)
+
+cm <- hpc_cv %>%
+  filter(Resample == "Fold01") %>%
+  conf_mat(obs, pred)
+
+qg2(cm)
+```
+
 ## igraph
 
 ```{r}
