@@ -6,6 +6,7 @@
 #' @param ... Options to pass to the informational annotation.
 #' @param style A list of options defning the style.
 #' @param data A dataset to use with [asp()].
+#' @param direction Direction of diagonal line.
 #' 
 #' @details `info_vline`, and `info_hline` use the `x`, and `y`
 #' [asp()] for placement.
@@ -226,7 +227,8 @@ info_abline <- function(
   g, 
   ..., 
   style = NULL,
-  data = NULL
+  data = NULL,
+  direction = c(1, 2)
 ){
   UseMethod("info_abline")
 }
@@ -237,15 +239,25 @@ info_abline.g2r <- function(
   g, 
   ..., 
   style = NULL,
-  data = NULL
+  data = NULL,
+  direction = c(1, 2)
 ){
+
+  direction <- direction[1]
   
   asp <- get_asp(...)
 
-  asp$x <- "min"
-  asp$y <- "min"
-  asp$xend <- "max"
-  asp$yend <- "max"
+  if(direction == 1){
+    asp$x <- "min"
+    asp$y <- "min"
+    asp$xend <- "max"
+    asp$yend <- "max"
+  } else {
+    asp$x <- "min"
+    asp$y <- "max"
+    asp$xend <- "max"
+    asp$yend <- "min"
+  }
 
   info_primitive(
     g, 

@@ -29,7 +29,7 @@ info_vline(g, ..., style = NULL, data = NULL)
 
 info_hline(g, ..., style = NULL, data = NULL)
 
-info_abline(g, ..., style = NULL, data = NULL)
+info_abline(g, ..., style = NULL, data = NULL, direction = c(1, 2))
 
 info_region(g, ..., style = NULL, data = NULL)
 
@@ -51,6 +51,8 @@ info_html(g, ..., style = NULL, data = NULL)
 \item{style}{A list of options defning the style.}
 
 \item{data}{A dataset to use with \code{\link[=asp]{asp()}}.}
+
+\item{direction}{Direction of diagonal line.}
 }
 \description{
 Add a point figure.
