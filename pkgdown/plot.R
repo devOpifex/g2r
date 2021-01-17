@@ -12,7 +12,8 @@ g <- g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>%
   gauge_shape(c("circle", "square", "triangle")) %>% 
   axis_title_x("Flipper Length (mm)") %>% 
   axis_title_y("Body Mass (gram)") %>% 
-  axis_y(title = list(offset = 50))  
+  axis_y(title = list(offset = 50)) %>% 
+  gauge_color_g2rq()
   # htmlwidgets::prependContent(
   #   htmltools::tags$style(
   #     "body{

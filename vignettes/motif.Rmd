@@ -139,6 +139,19 @@ row(
 )
 ```
 
+```{r, echo=FALSE}
+row(
+  col(
+    code("gauge_color_std"),
+    gauge_color_std(g_cont())
+  ),
+  col(
+    code("gauge_color_g2rc"),
+    gauge_color_g2rc(g_cont())
+  )
+)
+```
+
 ### Discrete
 
 ```{r, echo=FALSE}
@@ -186,12 +199,12 @@ row(
 ```{r, echo=FALSE}
 row(
   col(
-    code("gauge_color_std"),
-    gauge_color_std(g_qual())
-  ),
-  col(
     code("gauge_color_aw"),
     gauge_color_aw(g_qual())
+  ),
+  col(
+    code("gauge_color_g2rq"),
+    gauge_color_g2rq(g_qual())
   )
 )
 ```

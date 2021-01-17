@@ -20,6 +20,8 @@
 \alias{gauge_color_orange}
 \alias{gauge_color_lime}
 \alias{gauge_color_aw}
+\alias{gauge_color_g2rq}
+\alias{gauge_color_g2rc}
 \title{Color Palettes}
 \usage{
 gauge_color_viridis(g)
@@ -57,6 +59,10 @@ gauge_color_orange(g)
 gauge_color_lime(g)
 
 gauge_color_aw(g)
+
+gauge_color_g2rq(g)
+
+gauge_color_g2rc(g)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -71,36 +77,42 @@ Convenience function to easily apply colors palettes.
 Palletes from the \code{viridisLite} package, ideal for:
 continuous data.
 \itemize{
-\item \code{gauge_color_viridis}
-\item \code{gauge_color_plasma}
-\item \code{gauge_color_inferno}
-\item \code{gauge_color_magma}
+\item \code{gauge_color_viridis} (continuous)
+\item \code{gauge_color_plasma} (continuous)
+\item \code{gauge_color_inferno} (continuous)
+\item \code{gauge_color_magma} (continuous)
 }
 
 Qualtitative palettes from color brewer:
 \itemize{
-\item \code{gauge_color_accent}
-\item \code{gauge_color_dark2}
-\item \code{gauge_color_paired}
-\item \code{gauge_color_pastel1}
-\item \code{gauge_color_pastel2}
-\item \code{gauge_color_set1}
-\item \code{gauge_color_set2}
-\item \code{gauge_color_set3}
+\item \code{gauge_color_accent} (qualitative)
+\item \code{gauge_color_dark2} (qualitative)
+\item \code{gauge_color_paired} (qualitative)
+\item \code{gauge_color_pastel1} (qualitative)
+\item \code{gauge_color_pastel2} (qualitative)
+\item \code{gauge_color_set1} (qualitative)
+\item \code{gauge_color_set2} (qualitative)
+\item \code{gauge_color_set3} (qualitative)
 }
 
 Palettes taken from \href{https://coolors.co}{coolors.co}:
 \itemize{
-\item \code{gauge_color_neon}
-\item \code{gauge_color_std}
-\item \code{gauge_color_orange}
-\item \code{gauge_color_pink}
-\item \code{gauge_color_lime}
+\item \code{gauge_color_neon} (continuous)
+\item \code{gauge_color_std} (qualitative)
+\item \code{gauge_color_orange} (continuous)
+\item \code{gauge_color_pink} (continuous)
+\item \code{gauge_color_lime} (continuous)
 }
 
 Palettes from \code{awtools} package:
 \itemize{
-\item \code{gauge_color_aw}
+\item \code{gauge_color_aw} (qualitative)
+}
+
+Custom:
+\itemize{
+\item \code{gauge_color_g2rc} (continuous)
+\item \code{gauge_color_g2rq} (qualitative)
 }
 }
 

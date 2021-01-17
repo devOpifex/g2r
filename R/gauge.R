@@ -150,33 +150,38 @@ gauge_interplay.g2Proxy <- function(g, ...){
 #' Palletes from the `viridisLite` package, ideal for:
 #' continuous data.
 #' 
-#' - `gauge_color_viridis`
-#' - `gauge_color_plasma`
-#' - `gauge_color_inferno`
-#' - `gauge_color_magma`
+#' - `gauge_color_viridis` (continuous)
+#' - `gauge_color_plasma` (continuous)
+#' - `gauge_color_inferno` (continuous)
+#' - `gauge_color_magma` (continuous)
 #' 
 #' Qualtitative palettes from color brewer:
 #' 
-#' - `gauge_color_accent`
-#' - `gauge_color_dark2`
-#' - `gauge_color_paired`
-#' - `gauge_color_pastel1`
-#' - `gauge_color_pastel2`
-#' - `gauge_color_set1`
-#' - `gauge_color_set2`
-#' - `gauge_color_set3`
+#' - `gauge_color_accent` (qualitative)
+#' - `gauge_color_dark2` (qualitative)
+#' - `gauge_color_paired` (qualitative)
+#' - `gauge_color_pastel1` (qualitative)
+#' - `gauge_color_pastel2` (qualitative)
+#' - `gauge_color_set1` (qualitative)
+#' - `gauge_color_set2` (qualitative)
+#' - `gauge_color_set3` (qualitative)
 #' 
 #' Palettes taken from [coolors.co](https://coolors.co):
 #' 
-#' - `gauge_color_neon`
-#' - `gauge_color_std`
-#' - `gauge_color_orange`
-#' - `gauge_color_pink`
-#' - `gauge_color_lime`
+#' - `gauge_color_neon` (continuous)
+#' - `gauge_color_std` (continuous)
+#' - `gauge_color_orange` (continuous)
+#' - `gauge_color_pink` (continuous)
+#' - `gauge_color_lime` (continuous)
 #' 
 #' Palettes from `awtools` package:
 #' 
-#' - `gauge_color_aw`
+#' - `gauge_color_aw` (qualitative)
+#' 
+#' Custom:
+#' 
+#' - `gauge_color_g2rc` (continuous)
+#' - `gauge_color_g2rq` (qualitative)
 #' 
 #' @name palettes
 #' @export 
@@ -508,6 +513,39 @@ gauge_color_aw <- function(g){
     "#c6c6c6", 
     "#444444"
   )
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_g2rq <- function(g){
+  cols <- c(
+    "#6906FF", 
+    "#F0760F", 
+    "#F00F51", 
+    "#0FF0AE", 
+    "#FFE606"
+  )
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_g2rc <- function(g){
+  cols <- c(
+    "#3b1577",
+    "#4a15a3", 
+    "#5a11d0", 
+    "#6906ff", 
+    "#8e45ff", 
+    "#ab6dff",
+    "#c492ff",
+    "#dab6ff",
+    "#eedaff"
+  ) %>% 
+    rev()
 
   gauge_color(g, cols)
 }
