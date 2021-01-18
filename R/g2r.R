@@ -84,6 +84,30 @@ g2.data.frame <- function(
 }
 
 #' @export
+#' @method g2 matrix
+g2.matrix <- function(
+  data = NULL, 
+  ..., 
+  width = NULL, 
+  height = NULL, 
+  elementId = NULL,
+  digits = NULL
+) {
+
+  asp <- get_asp(...)
+
+  x = list(
+    data = to_g2r(data), # dataset
+    main_asp = asp, # main aspects
+    views = list(), # views | figures
+    scale = list(), # chart.scale
+    cols = c() # keep track of columns for filter
+  )
+
+  as_widget(x, width, height, elementId, digits)
+}
+
+#' @export
 #' @method g2 ts
 g2.ts <- function(
   data = NULL, 

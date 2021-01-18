@@ -163,7 +163,7 @@ to_g2r.lm <- function(data = NULL){
   augmented[[".se"]] <- se
   augmented[[".lower"]] <- augmented[[".fitted"]] - augmented[[".se"]]
   augmented[[".upper"]] <- augmented[[".fitted"]] + augmented[[".se"]]
-  augmented[order(unname(unlist(data$x[,1]))),]
+  augmented[order(augmented[[names(fit$model[2])]]),]
 }
 
 #' @export 

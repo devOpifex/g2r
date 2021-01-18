@@ -193,6 +193,9 @@ as_tib <- function(data = NULL){
   if(is.null(data))
     return()
 
+  if(inherits(data, "list"))
+    return(data)
+
   if(!inherits(data, "matrix"))
     data <- as.data.frame(data)
 

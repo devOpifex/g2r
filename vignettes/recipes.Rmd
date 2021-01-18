@@ -27,7 +27,7 @@ For instance, running `to_g2r` on an object of class `loess` returns the followi
 ```{r}
 data(mpg, package = "ggplot2")
 
-smooth <- loess(dist ~ speed, data = cars, span = .3)
+smooth <- loess(hwy ~ displ, data = mpg, span = .3)
 
 to_g2r(smooth) %>% 
   head() %>% 
@@ -39,8 +39,8 @@ Variables in the table able above are therefore available as `asp()`; see chart 
 ## Loess
 
 ```{r}
-g2(smooth, asp(speed)) %>% 
-  fig_point(asp(y = dist, shape = "circle")) %>% 
+g2(smooth, asp(displ)) %>% 
+  fig_point(asp(y = hwy, shape = "circle")) %>% 
   fig_line(asp(y = .fitted, shape = "smooth")) %>% 
   fig_ribbon(asp(ymin = .lower, ymax = .upper, shape = "smooth"))
 ```
@@ -93,7 +93,9 @@ library(quantmod)
 
 aapl <- getSymbols("AAPL", env=NULL)
 
-g2(aapl, asp(x, open = AAPL.Open, close = AAPL.Close)) %>% 
+aapl %>%
+  head(50) %>% 
+  g2(asp(x, open = AAPL.Open, close = AAPL.Close)) %>% 
   fig_candle(asp(high = AAPL.High, low = AAPL.Low))
 ```
 
