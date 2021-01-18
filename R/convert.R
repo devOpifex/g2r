@@ -150,7 +150,7 @@ to_g2r.loess <- function(data = NULL){
   augmented[[".se"]] <- se
   augmented[[".lower"]] <- augmented[[".fitted"]] - augmented[[".se"]]
   augmented[[".upper"]] <- augmented[[".fitted"]] + augmented[[".se"]]
-  augmented
+  augmented[order(unname(unlist(data$x[, 1]))),]
 }
 
 #' @export 
@@ -163,7 +163,7 @@ to_g2r.lm <- function(data = NULL){
   augmented[[".se"]] <- se
   augmented[[".lower"]] <- augmented[[".fitted"]] - augmented[[".se"]]
   augmented[[".upper"]] <- augmented[[".fitted"]] + augmented[[".se"]]
-  augmented
+  augmented[order(unname(unlist(data$x[,1]))),]
 }
 
 #' @export 

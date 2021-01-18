@@ -152,6 +152,23 @@ rehsape_data <- function(data){
     })
 }
 
+order_data <- function(data, x){
+
+  print(head(data))
+  print(x)
+  
+  if(is.null(data))
+    return()
+
+  if(!length(x))
+    return(data)
+  
+  if(!inherits(data[[x]], "numeric"))
+    return(data)
+  
+  data[order(data[[x]]),]
+}
+
 #' Get Data
 #' 
 #' @inheritParams fig_point
