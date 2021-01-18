@@ -4,7 +4,7 @@ setwd("./pkgdown")
 
 data(penguins, package = "palmerpenguins")
 
-g <-g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>%  
+g <- g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>%  
   fig_point(
     asp(size = body_mass_g, shape = "circle"),
     fillOpacity = .5,

@@ -152,21 +152,21 @@ rehsape_data <- function(data){
     })
 }
 
-order_data <- function(data, x){
+order_data <- function(data, cols){
 
-  print(head(data))
-  print(x)
-  
   if(is.null(data))
     return()
 
-  if(!length(x))
+  if(!length(cols))
+    return(data)
+
+  if(!inherits(data, "data.frame"))
     return(data)
   
-  if(!inherits(data[[x]], "numeric"))
+  if(!inherits(data[[cols[1]]], "numeric") || !inherits(data[[cols[1]]], "factor"))
     return(data)
   
-  data[order(data[[x]]),]
+  data[order(data[[cols[1]]]),]
 }
 
 #' Get Data

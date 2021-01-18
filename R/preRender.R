@@ -8,7 +8,7 @@
 pre_render <- function(g){  
   
   # filter columns
-  cols <- unique(g$x$cols)
+  cols <- unique(g$x$cols) %>% unlist()
   g$x$data <- select_columns(g$x$data, cols)
   
   # remove unneeded
