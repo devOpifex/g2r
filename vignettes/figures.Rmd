@@ -35,8 +35,8 @@ The line can be controlled with `shape`:
 
 ```{r}
 df <- data.frame(
-  x = 1:90,
-  y = rnorm(90, mean = rep(c(65,70,75),each=30), sd = 2) 
+  x = 1:99,
+  y = rnorm(99, mean = rep(c(65,70,75),each=33), sd = 2) 
 )
 
 g2(df, asp(x, y)) %>% 
@@ -177,12 +177,12 @@ g2(diamonds, asp(table, price, color = count)) %>%
 
 ```{r}
 df <- data.frame(
- x = 1:90,
- y = rnorm(90, mean = rep(c(67,70,73),each=30), sd = 2)
+ x = 1:50,
+ y = rnorm(50, mean = rep(c(67,73),each=25), sd = 2)
 )
 
-df$ymin <- df$y - runif(90, 1, 2)
-df$ymax <- df$y + runif(90, 1, 4)
+df$ymin <- df$y - runif(50, 2, 3)
+df$ymax <- df$y + runif(50, 2, 4)
 
 g2(df, asp(x, ymin = ymin, ymax = ymax)) %>% 
   fig_line(asp(y = y)) %>% 

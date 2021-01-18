@@ -215,6 +215,10 @@ a:hover, a:focus {
       color: white;
   }
 
+  .navbar-default .navbar-link{
+    color: #a973fa;
+  }
+
   .navbar-default .navbar-toggle{
     border-color: #a973fa; 
   }
