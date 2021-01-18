@@ -65,8 +65,12 @@ Integration for dynamic charts in <a href="articles/actions.html">Rmarkdown</a>.
 </div>
 
 ```r
-g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>% 
-  fig_point(asp(size = body_mass_g, shape = species)) %>% 
+g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>%  
+  fig_point(
+    asp(size = body_mass_g, shape = "circle"),
+    fillOpacity = .5,
+    stroke = 0
+  ) %>%  
   fig_smooth() %>% 
   gauge_shape(c("circle", "square", "triangle")) %>% 
   axis_title_x("Flipper Length (mm)") %>% 
