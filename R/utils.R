@@ -160,10 +160,12 @@ order_data <- function(data, cols){
   if(!length(cols))
     return(data)
 
+  cols <- unlist(cols)
+
   if(!inherits(data, "data.frame"))
     return(data)
   
-  if(!inherits(data[[cols[1]]], "numeric") || !inherits(data[[cols[1]]], "factor"))
+  if(!inherits(data[[cols[1]]], "numeric") && !inherits(data[[cols[1]]], "factor"))
     return(data)
   
   data[order(data[[cols[1]]]),]
