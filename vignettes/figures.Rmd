@@ -138,7 +138,7 @@ df$value <- rnorm(nrow(df))
 
 g2(df, asp(x, y, color = value)) %>% 
   fig_polygon() %>% 
-  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+  gauge_color_blue()
 ```
 
 ## Heatmap
@@ -156,7 +156,7 @@ Use `count` (internally computed) to define the color (optional).
 ```{r}
 g2(cars, asp(speed, dist, color = count)) %>% 
   fig_bin() %>% 
-  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+  gauge_color_blue()
 ```
 
 Use `size_count` to size the bins by `count`.
@@ -170,7 +170,7 @@ g2(diamonds, asp(table, price, color = count)) %>%
     size_count = FALSE,
     stroke = "#fff"
   ) %>% 
-  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+  gauge_color_blue()
 ```
 
 ## Ribbon
@@ -273,7 +273,7 @@ g2(df, asp(x, y, color = value)) %>%
   fig_voronoi() %>% 
   gauge_x_linear(nice = FALSE) %>% 
   gauge_y_linear(nice = FALSE) %>% 
-  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+  gauge_color_blue()
 ```
 
 ## Waffle

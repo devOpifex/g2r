@@ -19,6 +19,7 @@
 \alias{gauge_color_pink}
 \alias{gauge_color_orange}
 \alias{gauge_color_lime}
+\alias{gauge_color_blue}
 \alias{gauge_color_aw}
 \alias{gauge_color_g2rq}
 \alias{gauge_color_g2rc}
@@ -67,6 +68,8 @@ gauge_color_pink(g)
 gauge_color_orange(g)
 
 gauge_color_lime(g)
+
+gauge_color_blue(g)
 
 gauge_color_aw(g)
 
@@ -141,6 +144,7 @@ Palettes taken from \href{https://coolors.co}{coolors.co}:
 \item \code{gauge_color_orange} (continuous)
 \item \code{gauge_color_pink} (continuous)
 \item \code{gauge_color_lime} (continuous)
+\item \code{gauge_color_blue} (continuous)
 }
 
 Palettes from \code{awtools} package:

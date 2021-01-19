@@ -182,6 +182,7 @@ gauge_interplay.g2Proxy <- function(g, ...){
 #' - `gauge_color_orange` (continuous)
 #' - `gauge_color_pink` (continuous)
 #' - `gauge_color_lime` (continuous)
+#' - `gauge_color_blue` (continuous)
 #' 
 #' Palettes from `awtools` package:
 #' 
@@ -506,6 +507,18 @@ gauge_color_lime <- function(g){
     "#ffff3f"
   ) %>% 
     rev()
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_blue <- function(g){
+  cols <- c(
+    "#BAE7FF", 
+    "#1890FF",
+    "#0050B3"
+  )
 
   gauge_color(g, cols)
 }

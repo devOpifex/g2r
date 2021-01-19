@@ -148,6 +148,10 @@ row(
   col(
     code("gauge_color_g2rc"),
     gauge_color_g2rc(g_cont())
+  ),
+  col(
+    code("gauge_color_blue"),
+    gauge_color_blue(g_cont())
   )
 )
 ```

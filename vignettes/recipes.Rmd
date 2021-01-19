@@ -162,7 +162,7 @@ correl_mat <- cor(mtcars)
 
 g2(correl_mat) %>% 
   fig_polygon(asp(Var1, Var2, color = Freq)) %>% 
-  gauge_color(c("#fae0e4", "#ff85a1", "#ff0a54"))
+  gauge_color_pink()
 ```
 
 ```{r}
