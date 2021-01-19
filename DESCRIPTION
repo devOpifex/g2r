@@ -8,7 +8,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "jcoenep@gmail.com"),
     person(family = "Opifex",
-           role = c("cph"),
+           role = c("cph", "fnd"),
            email = "john@opifex.org")
   )
 Description: Interactive grammar of graphics.
