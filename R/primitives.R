@@ -625,13 +625,19 @@ fig_primitive <- function(
   # scales
   g <- sync(g, position[1], sync, if_true = "mainGroupX")
   g <- sync(g, position[2], sync, if_true = "mainGroupY")
-  # g <- sync(g, color, sync, if_true = "mainColor")
   g <- gauges_types(g, cols, data)
+
+  data <- select_columns(data, cols)
+
+  # don't reorder those figures
+  # either breaks it or there is no point
+  if(!type %in% NO_REORDER_TYPES)
+    data <- order_data(data, position)
   
   opts <- list(
     type = type,
     conf = conf,
-    data = select_columns(data, cols),
+    data = data,
     position = collapse_asp(position),
     color = collapse_asp(color),
     shape = collapse_asp(shape),

@@ -10,6 +10,13 @@ pre_render <- function(g){
   # filter columns
   cols <- unique(g$x$cols)
   g$x$data <- select_columns(g$x$data, cols)
+  types <- sapply(g$x$views, function(view){
+    view$type
+  })
+
+  x <- select_asp_labels(g$x$main_asp, "x")
+  if(!any(types %in% NO_REORDER_TYPES))
+    g$x$data <- order_data(g$x$data, x)
   
   # remove unneeded
   g$x$cols <- NULL

@@ -22,6 +22,7 @@ At its code G2.js comprises of just a few [primitive figures](https://g2.antv.vi
 - `fig_edge`
 - `fig_schema`
 - `fig_area`
+- `fig_heatmap`
 
 However, g2r provides many more. This is simply to say that all figures provided by g2r but not G2.js are actually built, under-the-hood, by the aforementioned primitive figures.
 
@@ -83,3 +84,19 @@ mtcars %>%
   g2(asp(mpg, wt, size = qsec, tooltip = gear, tooltip = carb)) %>% 
   fig_point(asp(shape = "circle", color = vs))
 ```
+
+Also, while in ggplot2 one can pass operations to the `aes` function, e.g.: `aes(x = y + 20)` one cannot do that with g2r. This is because g2r does not process the data is receives in any way. It likely never will either. 
+
+This is because, in an attempt to improve performances, g2r does not "bind" the data used in a figure to it. If data was passed to the initialisation function `g2` then that data is used _but no subset of it is copied or processed._
+
+"Binding" the data to the figure would enable preprocessing it but would also dramatically increase the amount of data to serialise from R and read from JavaScript.
+
+## Data
+
+It's not strictly true that g2r does not preprocess the data, it performs one operation: reordering. This is because G2.js expects the data to be reordered along the x axis. At the exception of a few figures where it is either not necessary (e.g.: `fig_point`) or where it would result in a an erroneous output.
+
+- `path` 
+- `polygon` 
+- `edge`
+- `point`
+- `heatmap`

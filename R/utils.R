@@ -152,6 +152,23 @@ rehsape_data <- function(data){
     })
 }
 
+# Figure types that SHOULD NOT be reordered
+NO_REORDER_TYPES <- c("path", "polygon", "edge", "point", "heatmap")
+
+#' Order Data
+#' 
+#' Fortunately or unfortunately G2.js does not reorder 
+#' the data and uses it as-is.
+#' 
+#' This function reorders along the `x` axis to make sure
+#' most plots look correct, see the `NO_REORDER_TYPES` for 
+#' figures types that are excluded from reordering.
+#' 
+#' @param data Data to reorder.
+#' @param cols Columns, only uses the first which is assumes
+#' is the `x` axis.
+#' 
+#' @keywords internal
 order_data <- function(data, cols){
 
   if(is.null(data))
@@ -165,7 +182,8 @@ order_data <- function(data, cols){
   if(!inherits(data, "data.frame"))
     return(data)
   
-  if(!inherits(data[[cols[1]]], "numeric") && !inherits(data[[cols[1]]], "factor"))
+  valid_classes <- c("numeric", "factor", "POSIXt", "Date")
+  if(!inherits(data[[cols[1]]], valid_classes))
     return(data)
   
   data[order(data[[cols[1]]]),]
