@@ -24,3 +24,5 @@ iris %>%
   g2(asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
   fig_point(asp(shape = "circle"), anim)
 ```
+
+The above only configures the animations of the plot appearing on the page, similar animations can be customised when the plot is updated or a figure removed though these will only be relevant [shiny](shiny.html) or [rmarkdown](actions.html) where such events occur.
