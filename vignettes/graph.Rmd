@@ -22,11 +22,11 @@ The `layout_igraph` function accepts a `method` which accepts an igraph layout f
 ```{r}
 library(g2r)
 
-ig <- igraph::make_full_graph(20)
+ig <- igraph::erdos.renyi.game(500, 2/500)
 
 g2(ig, asp(x, y)) %>%
-  layout_igraph(method = igraph::layout_in_circle) %>% 
-  fig_edge() %>% 
+  layout_igraph() %>% 
+  fig_edge(strokeOpacity = .5) %>% 
   fig_point(asp(shape = "circle")) %>% 
   axis_hide()
 ```
