@@ -34,7 +34,7 @@ library(g2r)
 
 g2(cars, asp(speed, dist, color = dist)) %>% 
   fig_point(asp(size = dist)) %>% 
-  gauge_color(c("#FDE725", "#21908C", "#440154"))
+  gauge_color_viridis()
 ```
 
 ![](man/figures/g2-example.png)
