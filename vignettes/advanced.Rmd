@@ -32,16 +32,16 @@ So why add `fig_ribbon`? Well because the shape of the data that must be passed 
 ```json
 [
   [
-    0,    // x
-    [1,2] // ymin, ymax
+    0,      // x
+    [1, 2]  // ymin, ymax
   ],
   [
-    1,    // x
-    [3,4] // ymin, ymax
+    1,      // x
+    [3, 4]  // ymin, ymax
   ]
   [
-    2,    // x
-    [1,5] // ymin, ymax
+    2,      // x
+    [1, 5]  // ymin, ymax
   ]
 ]
 ```

@@ -14,11 +14,10 @@ knitr::opts_chunk$set(
 )
 
 library(g2r)
+library(ggplot2)
 ```
 
-g2r is an interface to the [G2.js](https://g2.antv.vision/en) JavaScript visualisation library. G2.js is itself a Grammar of Graphics (GG ~= 2G) though rather different from R's common understanding of such grammar from [ggplot2](https://ggplot2.tidyverse.org/).
-
-g2r's API is halfway between G2.js and ggplot2; some things will be similar to ggplot2 in places.
+g2r is an interface to the [G2.js](https://g2.antv.vision/en) JavaScript visualisation library. G2.js is itself a Grammar of Graphics (GG ~= 2G) though some things differ from R's common understanding of such grammar as implemented in [ggplot2](https://ggplot2.tidyverse.org/), some things will be similar to ggplot2 in places.
 
 - `ggplot2::ggplot` -> `g2`
 - `ggplot2::aes` -> `asp`
@@ -33,11 +32,24 @@ The "localisation" or "translation" of the ggplot2 grammar is not just a gimmick
 
 Like with ggplot2, one creates visualisations by layering figures (geometries) defined by aspects (aesthetics).
 
+<div class="row">
+<div class="col-sm-6">
+<strong>g2r</strong>
 ```{r}
 g2(cars, asp(speed, dist)) %>% 
   fig_point() %>% 
   fig_smooth()
 ```
+</div>
+<div class="col-sm-6">
+<strong>ggplot2</strong>
+```{r, fig.height=9}
+ggplot(cars, aes(speed, dist)) + 
+  geom_point() +
+  geom_smooth(method = "lm", formula = "y ~ x")
+```
+</div>
+</div>
 
 ## Gauge
 
@@ -123,7 +135,8 @@ g2(ts, asp(x)) %>%
   fig_line(asp(y = y)) %>% 
   fig_line(asp(y = mean)) %>% 
   fig_ribbon(asp(ymin = lower_80, ymax = upper_80)) %>% 
-  fig_ribbon(asp(ymin = lower_95, ymax = upper_95))
+  fig_ribbon(asp(ymin = lower_95, ymax = upper_95)) %>% 
+  tooltip(shared = TRUE)
 ```
 
 <a class="btn btn-default" href="recipes.html">Recipes vignette</a>
