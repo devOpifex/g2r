@@ -81,7 +81,7 @@ gen_data_cont <- function(){
 gen_data_qual <- function(){
   tibble::tibble(
     x = rep(1:25, 3),
-    y = rnorm(75, rep(c(0, 4, 7), each = 25)),
+    y = rnorm(75, rep(c(0, 5, 8), each = 25)),
     grp = rep(c("A", "B", "C"), each = 25)
   )
 }
@@ -152,6 +152,10 @@ row(
   col(
     code("gauge_color_blue"),
     gauge_color_blue(g_cont())
+  ),
+  col(
+    code("gauge_color_red"),
+    gauge_color_red(g_cont())
   )
 )
 ```
@@ -207,13 +211,21 @@ row(
     gauge_color_aw(g_qual())
   ),
   col(
+    code("gauge_color_flashy"),
+    gauge_color_flashy(g_qual())
+  ),
+  col(
     code("gauge_color_g2rq"),
     gauge_color_g2rq(g_qual())
+  ),
+  col(
+    code("gauge_color_flashy"),
+    gauge_color_flashy(g_qual())
   )
 )
 ```
 
-## Diverging
+### Diverging
 
 ```{r, echo=FALSE}
 row(
@@ -266,6 +278,14 @@ row(
   col(
     code("gauge_color_spectral"),
     gauge_color_spectral(g_cont())
+  ),
+  col(
+    code("gauge_color_ryb"),
+    gauge_color_ryb(g_cont())
+  ),
+  col(
+    code("gauge_color_bwg"),
+    gauge_color_bwg(g_cont())
   )
 )
 ```

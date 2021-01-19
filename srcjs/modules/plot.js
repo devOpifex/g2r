@@ -90,16 +90,17 @@ const plot = (c, x, el) => {
       let figure = addFigure(view, layer.type);
       gaugeFigure(figure, layer);
 
+      if(x.slider)
+        view.option('slider', x.slider);
+  
+      if(x.scrollbar)
+        view.option('scrollbar', x.scrollbar);
+
       view.data(getData(x.data, layer.data));
       
     });
   }
 
-  if(x.slider)
-    c.option('slider', x.slider);
-
-  if(x.scrollbar)
-    c.option('scrollbar', x.scrollbar);
 }
 
 export { plot }

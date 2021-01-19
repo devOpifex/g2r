@@ -16,6 +16,9 @@ slider <- function(g, ...) UseMethod("slider")
 slider.g2r <- function(g, ...){
   opts <- list(...)
 
+  if(!length(opts))
+    stop("Must pass options to `...`", call. = FALSE)
+
   if(is.logical(opts[[1]]))
     opts <- FALSE
 
@@ -40,6 +43,9 @@ scrollbar <- function(g, ...) UseMethod("scrollbar")
 #' @export 
 scrollbar.g2r <- function(g, ...){
   opts <- list(...)
+
+  if(!length(opts))
+    stop("Must pass options to `...`", call. = FALSE)
 
   if(is.logical(opts[[1]]))
     opts <- FALSE

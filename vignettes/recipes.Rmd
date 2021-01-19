@@ -95,9 +95,10 @@ library(quantmod)
 aapl <- getSymbols("AAPL", env=NULL)
 
 aapl %>%
-  head(50) %>% 
+  head(100) %>% 
   g2(asp(x, open = AAPL.Open, close = AAPL.Close)) %>% 
-  fig_candle(asp(high = AAPL.High, low = AAPL.Low))
+  fig_candle(asp(high = AAPL.High, low = AAPL.Low)) %>% 
+  slider(start = 0.5, end = .8)
 ```
 
 ```{r}

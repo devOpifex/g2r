@@ -183,6 +183,10 @@ gauge_interplay.g2Proxy <- function(g, ...){
 #' - `gauge_color_pink` (continuous)
 #' - `gauge_color_lime` (continuous)
 #' - `gauge_color_blue` (continuous)
+#' - `gauge_color_red` (discrete)
+#' - `gauge_color_flashy` (discrete)
+#' - `gauge_color_ryb` (discrete)
+#' - `gauge_color_bwg` (diverging)
 #' 
 #' Palettes from `awtools` package:
 #' 
@@ -716,6 +720,69 @@ gauge_color_spectral <- function(g){
     "#e6f598",
     "#99d594",
     "#3288bd"
+  )
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_flashy <- function(g){
+  cols <- c(
+    "#70d6ff", 
+    "#ff70a6",  
+    "#ff9770", 
+    "#ffd670",
+    "#e9ff70"
+  )
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_red <- function(g){
+  cols <- c(
+    "#641220", 
+    "#6e1423",  
+    "#85182a", 
+    "#a11d33",
+    "#a71e34",
+    "#b21e35",
+    "#bd1f36",
+    "#c71f37",
+    "#da1e37",
+    "#e01e37"
+  ) %>% 
+    rev()
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_ryb <- function(g){
+  cols <- c(
+    "#006ba6", 
+    "#0496ff",  
+    "#ffbc42", 
+    "#d81159",
+    "#8f2d56"
+  ) %>% 
+    rev()
+
+  gauge_color(g, cols)
+}
+
+#' @rdname palettes
+#' @export 
+gauge_color_bwg <- function(g){
+  cols <- c(
+    "#05668d", 
+    "#427aa1",  
+    "#ebf2fa", 
+    "#679436",
+    "#a5be00"
   )
 
   gauge_color(g, cols)

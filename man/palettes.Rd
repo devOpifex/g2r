@@ -33,6 +33,10 @@
 \alias{gauge_color_rdylbu}
 \alias{gauge_color_rdylgn}
 \alias{gauge_color_spectral}
+\alias{gauge_color_flashy}
+\alias{gauge_color_red}
+\alias{gauge_color_ryb}
+\alias{gauge_color_bwg}
 \title{Color Palettes}
 \usage{
 gauge_color_viridis(g)
@@ -96,6 +100,14 @@ gauge_color_rdylbu(g)
 gauge_color_rdylgn(g)
 
 gauge_color_spectral(g)
+
+gauge_color_flashy(g)
+
+gauge_color_red(g)
+
+gauge_color_ryb(g)
+
+gauge_color_bwg(g)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -145,6 +157,10 @@ Palettes taken from \href{https://coolors.co}{coolors.co}:
 \item \code{gauge_color_pink} (continuous)
 \item \code{gauge_color_lime} (continuous)
 \item \code{gauge_color_blue} (continuous)
+\item \code{gauge_color_red} (discrete)
+\item \code{gauge_color_flashy} (discrete)
+\item \code{gauge_color_ryb} (discrete)
+\item \code{gauge_color_bwg} (diverging)
 }
 
 Palettes from \code{awtools} package:
