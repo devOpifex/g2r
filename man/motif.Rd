@@ -2,8 +2,6 @@
 % Please edit documentation in R/motif.R
 \name{motif}
 \alias{motif}
-\alias{motif_global}
-\alias{motif_global_reset}
 \title{Motif}
 \usage{
 motif(
@@ -15,16 +13,6 @@ motif(
   padding = "auto",
   visible = TRUE
 )
-
-motif_global(
-  ...,
-  renderer = c("canvas", "svg"),
-  padding = "auto",
-  visible = TRUE,
-  name = "light"
-)
-
-motif_global_reset()
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -35,36 +23,20 @@ motif_global_reset()
 
 \item{brandColor}{Main default color.}
 
-\item{backgroundColor}{Plot background color.}
+\item{backgroundColor}{Plot background color.
+
+The styling options are poorly, if at all
+documented online.}
 
 \item{renderer}{Renderer to use, defaults to \code{canvas}.}
 
 \item{padding}{An integer, or a vector of length 4.}
 
 \item{visible}{Whether the chart is visible.}
-
-\item{name}{Name of the theme.}
 }
 \description{
 Set the motif of the chart, defaults to \code{light}.
 }
-\details{
-\code{\link[=motif]{motif()}} applies the theme to the chart, \code{\link[=motif_global]{motif_global()}}
-creates a global theme that all subsequent charts will use.
-
-The styling options are poorly, if at all
-documented online.
-}
-\section{Functions}{
-
-\itemize{
-\item \code{motif}: Register a theme and apply it to chart.
-\item \code{motif_global}: A global theme that will be applied to
-every subsequent charts.
-\item \code{motif_global_reset}: Reset the global motif.
-}
-}
-
 \examples{
 g2(iris, asp(Sepal.Width, Sepal.Length)) \%>\% 
  fig_point(

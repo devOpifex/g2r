@@ -10,20 +10,9 @@
 #' @param visible Whether the chart is visible.
 #' @param brandColor Main default color.
 #' @param backgroundColor Plot background color.
-#' @param name Name of the theme.
-#' 
-#' @details [motif()] applies the theme to the chart, [motif_global()]
-#' creates a global theme that all subsequent charts will use.
 #' 
 #' The styling options are poorly, if at all
 #' documented online.
-#' 
-#' @section Functions:
-#' 
-#' - `motif`: Register a theme and apply it to chart.
-#' - `motif_global`: A global theme that will be applied to
-#' every subsequent charts.
-#' - `motif_global_reset`: Reset the global motif.
 #' 
 #' @examples
 #' g2(iris, asp(Sepal.Width, Sepal.Length)) %>% 
@@ -67,7 +56,7 @@ motif.g2r <- function(
 ){
   renderer <- match.arg(renderer)
 
-  misc <- rmv_elements(...)
+  misc <- rm_elements(...)
   geoms <- get_elements(...)
 
   # theme options
@@ -376,7 +365,7 @@ default_shape <- function(figure){
 #' 
 #' @keywords internal
 is_element <- function(obj){
-  inherits(obj, "element")
+  if(inherits(obj, "element"))
     return(TRUE)
   FALSE
 }
@@ -394,48 +383,9 @@ get_elements <- function(...){
 }
 
 #' @keywords internal
-rmv_elements <- function(...){
+rm_elements <- function(...){
   list(...) %>% 
     discard(is_element)
-}
-
-#' @rdname motif
-#' @export 
-motif_global <- function(
-  ..., 
-  renderer = c("canvas", "svg"),
-  padding = "auto",
-  visible = TRUE,
-  name = "light"
-){
-  renderer <- match.arg(renderer)
-  opts <- list(...)
-
-  if(length(opts) == 0)
-    opts <- NULL
-
-  if(!is.null(opts) && name %in% c("light", "dark"))
-    name <- "custom"
-
-  # theme options
-  options(G2_THEME = opts)
-
-  chart_opts <- list(
-    theme = name,
-    renderer = renderer,
-    padding = padding,
-    visible = visible,
-    autoFit = TRUE
-  )
-  
-  options(G2_CHART_OPTS = chart_opts)
-}
-
-#' @rdname motif
-#' @export 
-motif_global_reset <- function(){
-  options(G2_THEME = NULL)
-  options(G2_CHART_OPTS = NULL)
 }
 
 #' Digits
