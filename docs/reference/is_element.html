@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Motif — motif • g2r</title>
+<title>Element Check — is_element • g2r</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,8 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   <script src="../extra.js"></script>
 
-<meta property="og:title" content="Motif — motif" />
-<meta property="og:description" content="Set the motif of the chart, defaults to light." />
+<meta property="og:title" content="Element Check — is_element" />
+<meta property="og:description" content="Check whether the object is an element()." />
 <meta property="og:image" content="/reference/figures/g2r_social.png" />
 <meta property="og:image:alt" content="A grammar of graphics for interactive visualisations" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -156,89 +156,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Motif</h1>
+    <h1>Element Check</h1>
     <small class="dont-index">Source: <a href='https://github.com/devOpifex/g2r/blob/master/R/motif.R'><code>R/motif.R</code></a></small>
-    <div class="hidden name"><code>motif.Rd</code></div>
+    <div class="hidden name"><code>is_element.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Set the motif of the chart, defaults to <code>light</code>.</p>
+    <p>Check whether the object is an <code><a href='elements.html'>element()</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>motif</span><span class='op'>(</span>
-  <span class='va'>g</span>,
-  <span class='va'>...</span>,
-  brandColor <span class='op'>=</span> <span class='cn'>NULL</span>,
-  backgroundColor <span class='op'>=</span> <span class='st'>"transparent"</span>,
-  renderer <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"canvas"</span>, <span class='st'>"svg"</span><span class='op'>)</span>,
-  padding <span class='op'>=</span> <span class='st'>"auto"</span>,
-  visible <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span>
-
-<span class='fu'>motif_from_json</span><span class='op'>(</span><span class='va'>g</span>, <span class='va'>path</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>is_element</span><span class='op'>(</span><span class='va'>obj</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>g</th>
-      <td><p>An object of class <code>g2r</code> or <code>g2Proxy</code> as returned by <code><a href='g2.html'>g2()</a></code> or
-<code><a href='g2_proxy.html'>g2_proxy()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Key value pair defining style, or
-<code><a href='elements.html'>element()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>brandColor</th>
-      <td><p>Main default color.</p></td>
-    </tr>
-    <tr>
-      <th>backgroundColor</th>
-      <td><p>Plot background color.</p></td>
-    </tr>
-    <tr>
-      <th>renderer</th>
-      <td><p>Renderer to use, defaults to <code>canvas</code>.</p></td>
-    </tr>
-    <tr>
-      <th>padding</th>
-      <td><p>An integer, or a vector of length 4.</p></td>
-    </tr>
-    <tr>
-      <th>visible</th>
-      <td><p>Whether the chart is visible.</p></td>
-    </tr>
-    <tr>
-      <th>path</th>
-      <td><p>Path to JSON file.</p></td>
+      <th>obj</th>
+      <td><p>An object to check.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The function <code>motif_from_json()</code> can be used to
-define the theme from a JSON file of theme, to see the
-default theme file:
-<code><a href='https://rdrr.io/r/base/system.file.html'>system.file("theme.json", package = "g2r")</a></code>.</p>
+    <p>If <code><a href='elements.html'>element()</a></code> returns <code>TRUE</code>,
+otherwise returns <code>FALSE</code>.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='g2.html'>g2</a></span><span class='op'>(</span><span class='va'>iris</span>, <span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span>, <span class='va'>Sepal.Length</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
- <span class='fu'><a href='fig_point.html'>fig_point</a></span><span class='op'>(</span>
-   <span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>Species</span>, shape <span class='op'>=</span> <span class='st'>"circle"</span><span class='op'>)</span>
- <span class='op'>)</span> <span class='op'>%&gt;%</span> 
- <span class='fu'>motif</span><span class='op'>(</span>
-   brandColor <span class='op'>=</span> <span class='st'>"orange"</span>,
-   backgroundColor <span class='op'>=</span> <span class='st'>"black"</span>,
-   <span class='fu'><a href='elements.html'>elementPoint</a></span><span class='op'>(</span>
-     shape <span class='op'>=</span> <span class='st'>"circle"</span>,
-     stroke <span class='op'>=</span> <span class='st'>"white"</span>,
-     fiillOpacity <span class='op'>=</span> <span class='fl'>.7</span>
-   <span class='op'>)</span>
- <span class='op'>)</span>
-
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

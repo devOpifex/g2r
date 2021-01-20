@@ -116,6 +116,7 @@ reference:
     desc: "Customise the theme"
     contents:
       - motif
+      - starts_with("element")
       - global_digits
   - title: "Graph"
     desc: "Layout graphs"

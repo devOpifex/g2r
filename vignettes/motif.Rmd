@@ -20,37 +20,37 @@ The theme of the chart can be customised with the `motif` function.
 
 Out-of-the-box G2.js comes with two themes (light), and dark.
 
+You can also customise the motif with the various `element*` functions.
+
 ```{r}
 library(g2r)
 
 data(penguins, package = "palmerpenguins")
 
-g <- g2(penguins, asp(bill_length_mm, bill_depth_mm)) %>% 
-  fig_point(asp(color = island, shape = "circle"))
-
-g
-```
-
-```{r}
-motif(g, name = "dark")
-```
-
-You can also customise the motif.
-
-```{r}
-motif(
-  g, 
-  background = "lightgrey",
-  colors10 = scales::hue_pal()(3),
-  padding = 20
+g2(penguins, asp(bill_length_mm, bill_depth_mm)) %>% 
+  fig_point(asp(color = island, shape = "circle")) %>% 
+  motif(
+    backgroundColor = "lightgrey",
+    colors10 = scales::hue_pal()(3),
+    padding = 20,
+    elementPoint(
+      shape = "circle",
+      stroke = 0,
+      opacity = 1
+    )
 )
 ```
 
-## Globals
-
-The `motif_global` function is very similar to `motif` but instead of applying a chart to a single chart will create a global motif that will be applied to all subsequent charts.
-
-You can also use `global_digits` to define the maximum number of digits to use in charts, it defaults to 4. Note that you can also override that for individual charts by setting the number of digits in the `g2` function. 
+```{r}
+g2(cars, asp(speed, dist)) %>% 
+  fig_point(asp(shape = "circle")) %>% 
+  fig_smooth() %>% 
+  motif(
+    padding = 10,
+    brandColor = "orange",
+    backgroundColor = "#363636"
+  )
+```
 
 ## Colors
 
