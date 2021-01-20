@@ -2,6 +2,7 @@
 % Please edit documentation in R/motif.R
 \name{motif}
 \alias{motif}
+\alias{motif_from_json}
 \title{Motif}
 \usage{
 motif(
@@ -13,6 +14,8 @@ motif(
   padding = "auto",
   visible = TRUE
 )
+
+motif_from_json(g, path)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -23,19 +26,24 @@ motif(
 
 \item{brandColor}{Main default color.}
 
-\item{backgroundColor}{Plot background color.
-
-The styling options are poorly, if at all
-documented online.}
+\item{backgroundColor}{Plot background color.}
 
 \item{renderer}{Renderer to use, defaults to \code{canvas}.}
 
 \item{padding}{An integer, or a vector of length 4.}
 
 \item{visible}{Whether the chart is visible.}
+
+\item{path}{Path to JSON file.}
 }
 \description{
 Set the motif of the chart, defaults to \code{light}.
+}
+\details{
+The function \code{\link[=motif_from_json]{motif_from_json()}} can be used to
+define the theme from a JSON file of theme, to see the
+default theme file:
+\code{system.file("theme.json", package = "g2r")}.
 }
 \examples{
 g2(iris, asp(Sepal.Width, Sepal.Length)) \%>\% 

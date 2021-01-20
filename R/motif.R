@@ -10,9 +10,12 @@
 #' @param visible Whether the chart is visible.
 #' @param brandColor Main default color.
 #' @param backgroundColor Plot background color.
+#' @param path Path to JSON file.
 #' 
-#' The styling options are poorly, if at all
-#' documented online.
+#' @details The function [motif_from_json()] can be used to
+#' define the theme from a JSON file of theme, to see the 
+#' default theme file: 
+#' `system.file("theme.json", package = "g2r")`.
 #' 
 #' @examples
 #' g2(iris, asp(Sepal.Width, Sepal.Length)) %>% 
@@ -80,6 +83,22 @@ motif.g2r <- function(
   g$x$chartOpts$visible <- visible
   g$x$chartOpts$autoFit <- TRUE
   
+  g
+}
+
+#' @rdname motif
+#' @export
+motif_from_json <- function(g, path){
+  UseMethod("motif_from_json")
+}
+
+#' @export 
+#' @method motif_from_json g2r
+motif_from_json.g2r <- function(g, path){
+  if(missing(path))
+    stop("Missing `path`", call. = FALSE)
+  
+  g$x$motif <- jsonlite::read_json(path)
   g
 }
 
