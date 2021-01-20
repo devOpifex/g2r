@@ -3,6 +3,7 @@
 \name{motif}
 \alias{motif}
 \alias{motif_from_json}
+\alias{motif_from_list}
 \title{Motif}
 \usage{
 motif(
@@ -16,6 +17,8 @@ motif(
 )
 
 motif_from_json(g, path)
+
+motif_from_list(g, motif)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -35,6 +38,8 @@ motif_from_json(g, path)
 \item{visible}{Whether the chart is visible.}
 
 \item{path}{Path to JSON file.}
+
+\item{motif}{List defnining the theme, similar to JSON.}
 }
 \description{
 Set the motif of the chart, defaults to \code{light}.

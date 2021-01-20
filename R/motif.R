@@ -11,6 +11,7 @@
 #' @param brandColor Main default color.
 #' @param backgroundColor Plot background color.
 #' @param path Path to JSON file.
+#' @param motif List defnining the theme, similar to JSON.
 #' 
 #' @details The function [motif_from_json()] can be used to
 #' define the theme from a JSON file of theme, to see the 
@@ -99,6 +100,19 @@ motif_from_json.g2r <- function(g, path){
     stop("Missing `path`", call. = FALSE)
   
   g$x$motif <- jsonlite::read_json(path)
+  g
+}
+
+#' @rdname motif
+#' @export
+motif_from_list <- function(g, motif){
+  UseMethod("motif_from_json")
+}
+
+#' @export 
+#' @method motif_from_list g2r
+motif_from_list.g2r <- function(g, motif){
+  g$x$motif <- motif
   g
 }
 
