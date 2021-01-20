@@ -743,16 +743,11 @@ gauge_color_flashy <- function(g){
 #' @export 
 gauge_color_red <- function(g){
   cols <- c(
-    "#641220", 
-    "#6e1423",  
-    "#85182a", 
-    "#a11d33",
-    "#a71e34",
-    "#b21e35",
-    "#bd1f36",
-    "#c71f37",
-    "#da1e37",
-    "#e01e37"
+    "#cc444b", 
+    "#da5552",  
+    "#df7373", 
+    "#e39695",
+    "#e4b1ab"
   ) %>% 
     rev()
 
