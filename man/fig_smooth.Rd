@@ -9,7 +9,7 @@ fig_smooth(
   ...,
   method = c("linear", "gaussian", "cosine", "epanechnikov", "quartic", "triangular",
     "tricube", "triweight", "uniform", "polynomial", "logarithmic", "power",
-    "polynomial", "exponential"),
+    "exponential"),
   band_width = 1,
   sync = TRUE,
   data = NULL,
