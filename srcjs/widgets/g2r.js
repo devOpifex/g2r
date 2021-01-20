@@ -41,7 +41,11 @@ HTMLWidgets.widget({
 
         // keep autofit for responsiveness
         x.chartOpts.container = el.id;
-        c = new Chart(x.chartOpts);
+
+        if(!c)
+          c = new Chart(x.chartOpts);
+        else
+          c.clear();
 
         // crosstalk
         crosstalkFilter(c, ctFilter);
