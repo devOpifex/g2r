@@ -4,17 +4,16 @@
 \alias{motif}
 \alias{motif_global}
 \alias{motif_global_reset}
-\alias{motif_register}
-\alias{motif_register_ui}
 \title{Motif}
 \usage{
 motif(
   g,
   ...,
+  brandColor = NULL,
+  backgroundColor = "transparent",
   renderer = c("canvas", "svg"),
   padding = "auto",
-  visible = TRUE,
-  name = "light"
+  visible = TRUE
 )
 
 motif_global(
@@ -26,18 +25,17 @@ motif_global(
 )
 
 motif_global_reset()
-
-motif_register(g, name, ...)
-
-motif_register_ui(name, ...)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
 \code{\link[=g2_proxy]{g2_proxy()}}.}
 
-\item{...}{Key value pair defining style, please see
-some the options available on the
-\href{https://g2.antv.vision/en/docs/api/advanced/register-theme}{official documentation}.}
+\item{...}{Key value pair defining style, or
+\code{\link[=element]{element()}}.}
+
+\item{brandColor}{Main default color.}
+
+\item{backgroundColor}{Plot background color.}
 
 \item{renderer}{Renderer to use, defaults to \code{canvas}.}
 
@@ -45,8 +43,7 @@ some the options available on the
 
 \item{visible}{Whether the chart is visible.}
 
-\item{name}{Name of the motif to apply to charts.
-Out-of-the-box g2 provides \code{light}, and \code{dark}.}
+\item{name}{Name of the theme.}
 }
 \description{
 Set the motif of the chart, defaults to \code{light}.
@@ -65,26 +62,21 @@ documented online.
 \item \code{motif_global}: A global theme that will be applied to
 every subsequent charts.
 \item \code{motif_global_reset}: Reset the global motif.
-\item \code{motif_register}: Register a theme but does not apply it
-to the chart.
-\item \code{motif_register_ui}: Registers a theme in a shiny UI or
-Rmarkdown document.
 }
 }
 
 \examples{
-# mimic ggplot2
 g2(iris, asp(Sepal.Width, Sepal.Length)) \%>\% 
  fig_point(
    asp(color = Species, shape = "circle")
  ) \%>\% 
  motif(
-   background = "darkgrey",
-   colors10 = c(
-     "#F8766D", 
-     "#7CAE00", 
-     "#00BFC4", 
-     "#C77CFF"
+   brandColor = "orange",
+   backgroundColor = "black",
+   elementPoint(
+     shape = "circle",
+     stroke = "white",
+     fiillOpacity = .7
    )
  )
 

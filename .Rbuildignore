@@ -15,3 +15,4 @@
 ^vignettes$
 ^makefile$
 ^\.github$
+theme.json

@@ -3,14 +3,14 @@
 #' Set the motif of the chart, defaults to `light`.
 #' 
 #' @inheritParams fig_point
-#' @param name Name of the motif to apply to charts.
-#' Out-of-the-box g2 provides `light`, and `dark`.
-#' @param ... Key value pair defining style, please see
-#' some the options available on the 
-#' [official documentation](https://g2.antv.vision/en/docs/api/advanced/register-theme).
+#' @param ... Key value pair defining style, or
+#' [element()].
 #' @param renderer Renderer to use, defaults to `canvas`.
 #' @param padding An integer, or a vector of length 4.
 #' @param visible Whether the chart is visible.
+#' @param brandColor Main default color.
+#' @param backgroundColor Plot background color.
+#' @param name Name of the theme.
 #' 
 #' @details [motif()] applies the theme to the chart, [motif_global()]
 #' creates a global theme that all subsequent charts will use.
@@ -24,24 +24,19 @@
 #' - `motif_global`: A global theme that will be applied to
 #' every subsequent charts.
 #' - `motif_global_reset`: Reset the global motif.
-#' - `motif_register`: Register a theme but does not apply it
-#' to the chart.
-#' - `motif_register_ui`: Registers a theme in a shiny UI or 
-#' Rmarkdown document.
 #' 
 #' @examples
-#' # mimic ggplot2
 #' g2(iris, asp(Sepal.Width, Sepal.Length)) %>% 
 #'  fig_point(
 #'    asp(color = Species, shape = "circle")
 #'  ) %>% 
 #'  motif(
-#'    background = "darkgrey",
-#'    colors10 = c(
-#'      "#F8766D", 
-#'      "#7CAE00", 
-#'      "#00BFC4", 
-#'      "#C77CFF"
+#'    brandColor = "orange",
+#'    backgroundColor = "black",
+#'    elementPoint(
+#'      shape = "circle",
+#'      stroke = "white",
+#'      fiillOpacity = .7
 #'    )
 #'  )
 #' 
@@ -50,10 +45,11 @@
 motif <- function(
   g, 
   ..., 
+  brandColor = NULL,
+  backgroundColor = "transparent",
   renderer = c("canvas", "svg"),
   padding = "auto",
-  visible = TRUE,
-  name = "light"
+  visible = TRUE
 ){
   UseMethod("motif")
 }
@@ -62,33 +58,345 @@ motif <- function(
 #' @export 
 motif.g2r <- function(
   g, 
-  ..., 
+  ...,
+  brandColor = NULL,
+  backgroundColor = "transparent",
   renderer = c("canvas", "svg"),
   padding = "auto",
-  visible = TRUE,
-  name = "light"
+  visible = TRUE
 ){
   renderer <- match.arg(renderer)
-  opts <- list(...)
 
-  if(length(opts) == 0)
-    opts <- NULL
-
-  if(!is.null(opts) && name %in% c("light", "dark"))
-    name <- "custom"
+  misc <- rmv_elements(...)
+  geoms <- get_elements(...)
 
   # theme options
-  opts <- list(name = name, opts = opts)
-  g$x$themes <- append(g$x$themes, list(opts))
+  theme <- list(
+    styleSheet = drop_nulls(
+      list(
+        brandColor = brandColor,
+        backgroundColor = backgroundColor
+      )
+    )
+  ) %>% 
+    append(misc)
+
+  theme <- make_geoms(theme, geoms)
+
+  g$x$motif <- theme
 
   # chart options
-  g$x$chartOpts$theme <- name
   g$x$chartOpts$renderer <- renderer
   g$x$chartOpts$padding <- padding
   g$x$chartOpts$visible <- visible
   g$x$chartOpts$autoFit <- TRUE
   
   g
+}
+
+#' Element
+#' 
+#' Function to use in [motif()] and style specific elements.
+#' 
+#' @param ... Key value pairs to pass to `style`.
+#' @param figure Figure to modify.
+#' @param shape Shape to modify, if `NULL` selects
+#' a common default based on the figure, 
+#' e.g.: `hollow-circle` for the `point` shape.
+#' @param state State of the shape to modify.
+#' 
+#' @section Functions:
+#' 
+#' [element()] will work for any figure, but other
+#' functions may be more convienient to use.
+#' 
+#' - `element`: Customise any element.
+#' - `elementPoint`: Customise point.
+#' - `elementLine`: Customise line.
+#' - `elementArea`: Customise area.
+#' - `elementEdge`: Customise edge.
+#' - `elementInterval`: Customise interval.
+#' - `elementPolygon`: Customise polygon.
+#' - `elementSchema`: Customise schema.
+#' 
+#' @name elements
+#' @export 
+element <- function(
+  ...,
+  shape = NULL,
+  figure = c(
+    "point",
+    "area",
+    "edge",
+    "line",
+    "interval",
+    "polygon",
+    "schema"
+  ),
+  state = c(
+    "default",
+    "active",
+    "inactive",
+    "selected"
+  )
+) {
+
+  state <- match.arg(state)
+  figure <- match.arg(figure)
+
+  if(is.null(shape))
+    shape <- default_shape(figure)
+
+  el <- list(
+    figure = figure,
+    shape = shape,
+    state = state,
+    opts = list(
+      ...
+    )
+  )
+  
+  structure(el, class = c("element", class(el)))
+}
+
+#' @rdname elements
+#' @export 
+elementPoint <- function(
+  ..., 
+  shape = c(
+    "hollow-circle",
+    "cross",
+    "hypen",
+    "line",
+    "plus",
+    "tick",
+    "circle",
+    "square",
+    "bowtie",
+    "diamond",
+    "hexagon",
+    "triangle",
+    "triangle-down",
+    "hollow-square",
+    "hollow-bowtie",
+    "hollow-triangle-down"
+  ), 
+  state = c(
+    "default",
+    "active",
+    "inactive",
+    "selected"
+  )
+){
+  shape <- match.arg(shape)
+  element(..., state = state, shape = shape, figure = "point")
+}
+
+#' @rdname elements
+#' @export 
+elementLine <- function(
+  ..., 
+  shape = c(
+    "line",
+    "dot",
+    "dash",
+    "smooth",
+    "hv",
+    "vh",
+    "hvh",
+    "vhv"
+  ), 
+  state = c(
+    "default",
+    "active",
+    "inactive",
+    "selected"
+  )
+){
+  shape <- match.arg(shape)
+  element(..., state = state, shape = shape, figure = "line")
+}
+
+#' @rdname elements
+#' @export 
+elementArea <- function(
+  ..., 
+  shape = c(
+    "area",
+    "smooth",
+    "line",
+    "smooth-line"
+  ), 
+  state = c(
+    "default",
+    "active",
+    "inactive",
+    "selected"
+  )
+){
+  shape <- match.arg(shape)
+  element(..., state = state, shape = shape, figure = "area")
+}
+
+#' @rdname elements
+#' @export 
+elementEdge <- function(
+  ..., 
+  shape = c(
+    "line",
+    "vhv",
+    "smooth",
+    "arc"
+  ), 
+  state = c(
+    "default",
+    "active",
+    "inactive",
+    "selected"
+  )
+){
+  shape <- match.arg(shape)
+  element(..., state = state, shape = shape, figure = "edge")
+}
+
+#' @rdname elements
+#' @export 
+elementInterval <- function(
+  ..., 
+  shape = c(
+    "rect",
+    "hollow-rect",
+    "line",
+    "tick",
+    "funnel",
+    "pyramid"
+  ), 
+  state = c(
+    "default",
+    "active",
+    "inactive",
+    "selected"
+  )
+){
+  shape <- match.arg(shape)
+  element(..., state = state, shape = shape, figure = "interval")
+}
+
+#' @rdname elements
+#' @export 
+elementPolygon <- function(
+  ..., 
+  state = c(
+    "default",
+    "active",
+    "inactive",
+    "selected"
+  )
+){
+  element(..., state = state, shape = "polygon", figure = "polygon")
+}
+
+#' @rdname elements
+#' @export 
+elementSchema <- function(
+  ..., 
+  shape = c(
+    "box",
+    "candle"
+  ),
+  state = c(
+    "default",
+    "active",
+    "inactive",
+    "selected"
+  )
+){
+  shape <- match.arg(shape)
+  element(..., state = state, shape = shape, figure = "schema")
+}
+
+#' Make geoms
+#' 
+#' Make geometries structure for theme.
+#' 
+#' @param theme Base theme object.
+#' @param geoms List of geoms as returned by [get_elements()].
+#' 
+#' @keywords internal
+make_geoms <- function(theme, geoms){
+  if(!length(geoms))
+    return(theme)
+
+  for(i in 1:length(geoms)){
+    geom <- geoms[[i]]
+    theme$geometries[[geom$figure]][[geom$shape]][[geom$state]]$style <- geom$opts 
+  }
+  
+  theme
+}
+
+#' @export
+print.element <- function(x, ...){
+  cat(
+    "Element changing:\n",
+    "Figure:", x$figure, "\n",
+    "Shape:", x$shape, "\n",
+    "State:", x$state
+  )
+}
+
+#' Default Shape
+#' 
+#' Selects a default shape given a figure.
+#' 
+#' @param figure Figure.
+#' 
+#' @keywords internal
+default_shape <- function(figure){
+  switch(
+    figure,
+    point = "hollow-circle",
+    area = "area",
+    edge = "line",
+    line = "line",
+    interval = "rect",
+    polygon = "polygon",
+    schema = "box"
+  )
+}
+
+#' Element Check
+#' 
+#' Check whether the object is an [element()].
+#' 
+#' @param obj An object to check.
+#' 
+#' @return If [element()] returns `TRUE`,
+#' otherwise returns `FALSE`. 
+#' 
+#' @keywords internal
+is_element <- function(obj){
+  inherits(obj, "element")
+    return(TRUE)
+  FALSE
+}
+
+#' Get or Remove Elements
+#' 
+#' Get or remove elements from three dot constructs.
+#' 
+#' @param ... Passed from [motif()].
+#' 
+#' @keywords internal
+get_elements <- function(...){
+  list(...) %>% 
+    keep(is_element)
+}
+
+#' @keywords internal
+rmv_elements <- function(...){
+  list(...) %>% 
+    discard(is_element)
 }
 
 #' @rdname motif
@@ -128,39 +436,6 @@ motif_global <- function(
 motif_global_reset <- function(){
   options(G2_THEME = NULL)
   options(G2_CHART_OPTS = NULL)
-}
-
-#' @rdname motif
-#' @export 
-motif_register <- function(g, name, ...){
-  if(missing(name))
-    stop("Missing `name`", call. = FALSE)
-
-  opts <- list(name = name, opts = list(...))
-  g$x$themes <- append(g$x$themes, list(opts))
-
-  g
-}
-
-#' @rdname motif
-#' @export 
-motif_register_ui <- function(name, ...){
-
-  theme <- list(
-    name = name,
-    opts = list(...)
-  )
-
-  htmltools::tags$script(
-    class = "g2-themes",
-    type = "application/json",
-    toJSON(
-      theme, 
-      data.frame = "rows",
-      null = "null",
-      auto_unbox = TRUE
-    )
-  )
 }
 
 #' Digits

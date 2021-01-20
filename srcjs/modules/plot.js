@@ -100,6 +100,9 @@ const plot = (c, x, el) => {
         view.changeData(getData(x.data, layer.data));
       else
         view.data(getData(x.data, layer.data));
+
+      if(x.motif)
+        view.theme(x.motif);
       
     });
   }

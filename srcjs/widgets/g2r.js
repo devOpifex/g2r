@@ -6,7 +6,6 @@ import { observeActions } from '../modules/action.js';
 import { plot } from '../modules/plot.js';
 import { getChart, getView } from '../modules/shiny.js';
 import { actions } from '../modules/actions';
-import { observeThemes } from '../modules/theme.js';
 import { registerShapes } from '../modules/shapes.js';
 
 registerShapes();
@@ -27,16 +26,7 @@ HTMLWidgets.widget({
     return {
 
       renderValue: function(x) {
-
-
-        observeThemes();
         
-        if(x.themes)
-          x.themes.forEach((theme) => {
-            if(theme.opts != null)
-              registerTheme(theme.name, theme.opts);
-          })
-
         registerInteractions(x.registerInteractions);
 
         // keep autofit for responsiveness
@@ -52,7 +42,10 @@ HTMLWidgets.widget({
         crosstalkSelect(c, ctSelection, x.crosstalk_select);
 
         // main plot function
-        plot(c, x, el)
+        plot(c, x, el);
+
+        if(x.motif)
+          c.theme(x.motif);
 
         if(x.crosstalk_group){
 
