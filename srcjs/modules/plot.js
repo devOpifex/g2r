@@ -96,7 +96,10 @@ const plot = (c, x, el) => {
       if(x.scrollbar)
         view.option('scrollbar', x.scrollbar);
 
-      view.data(getData(x.data, layer.data));
+      if(layer.conf && layer.conf.id)
+        view.changeData(getData(x.data, layer.data));
+      else
+        view.data(getData(x.data, layer.data));
       
     });
   }
