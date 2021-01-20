@@ -197,7 +197,7 @@ order_data <- function(data, cols){
 #' @keywords internal
 get_data <- function(g, data = NULL){
   if(!is.null(data))
-    return(as_tib(data))
+    return(to_g2r(data))
 
   g$x$data
 }

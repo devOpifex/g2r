@@ -543,7 +543,6 @@ fig_smooth <- function(
     "polynomial",
     "logarithmic",
     "power",
-    "polynomial",
     "exponential"
   ),
   band_width = 1,
@@ -572,7 +571,6 @@ fig_smooth.g2r <- function(
     "polynomial",
     "logarithmic",
     "power",
-    "polynomial",
     "exponential"
   ),
   band_width = 1,
@@ -609,7 +607,6 @@ fig_smooth.g2Proxy <- function(
     "polynomial",
     "logarithmic",
     "power",
-    "polynomial",
     "exponential"
   ),
   band_width = 1,
@@ -649,7 +646,6 @@ fig_smooth_ <- function(
     "polynomial",
     "logarithmic",
     "power",
-    "polynomial",
     "exponential"
   ),
   band_width = 1,
