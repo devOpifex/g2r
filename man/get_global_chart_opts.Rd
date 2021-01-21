@@ -7,6 +7,7 @@
 get_global_chart_opts()
 }
 \description{
-Get chart options
+We don't currently provide a way to set the theme
+globally but it'll be useful then.
 }
 \keyword{internal}

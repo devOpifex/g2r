@@ -18,6 +18,17 @@
 #' default theme file: 
 #' `system.file("theme.json", package = "g2r")`.
 #' 
+#' @section Functions:
+#' 
+#' - `motif`: Defines the motif of a visualisation.
+#' - `motif_from_json`: Defines the motif from a JSON
+#' file of theme, see the theme file. 
+#' `system.file("theme.json", package = "g2r")`
+#' - `motif_from_list`: Defines the motif from a `list`,
+#' derived from the JSON file.
+#' - `motif_as_list`: Returns a motif as a `list` to use
+#' with [motif_from_list()].
+#' 
 #' @examples
 #' g2(iris, asp(Sepal.Width, Sepal.Length)) %>% 
 #'  fig_point(
@@ -99,8 +110,8 @@ motif_from_json.g2r <- function(g, path){
   if(missing(path))
     stop("Missing `path`", call. = FALSE)
   
-  g$x$motif <- jsonlite::read_json(path)
-  g
+  lst <- jsonlite::read_json(path)
+  motif_from_list(g, lst)
 }
 
 #' @rdname motif
@@ -114,6 +125,30 @@ motif_from_list <- function(g, motif){
 motif_from_list.g2r <- function(g, motif){
   g$x$motif <- motif
   g
+}
+
+#' @rdname motif
+#' @export
+motif_as_list <- function(
+  ...,
+  brandColor = NULL,
+  backgroundColor = "transparent"
+){
+  misc <- rm_elements(...)
+  geoms <- get_elements(...)
+
+  # theme options
+  theme <- list(
+    styleSheet = drop_nulls(
+      list(
+        brandColor = brandColor,
+        backgroundColor = backgroundColor
+      )
+    )
+  ) %>% 
+    append(misc)
+
+  make_geoms(theme, geoms)
 }
 
 #' Element
@@ -460,6 +495,9 @@ DEFAULT_CHART_OPTS <- list(
 )
 
 #' Get chart options
+#' 
+#' We don't currently provide a way to set the theme
+#' globally but it'll be useful then.
 #' 
 #' @keywords internal
 get_global_chart_opts <- function(){

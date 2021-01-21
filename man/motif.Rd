@@ -4,6 +4,7 @@
 \alias{motif}
 \alias{motif_from_json}
 \alias{motif_from_list}
+\alias{motif_as_list}
 \title{Motif}
 \usage{
 motif(
@@ -19,6 +20,8 @@ motif(
 motif_from_json(g, path)
 
 motif_from_list(g, motif)
+
+motif_as_list(..., brandColor = NULL, backgroundColor = "transparent")
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -50,6 +53,20 @@ define the theme from a JSON file of theme, to see the
 default theme file:
 \code{system.file("theme.json", package = "g2r")}.
 }
+\section{Functions}{
+
+\itemize{
+\item \code{motif}: Defines the motif of a visualisation.
+\item \code{motif_from_json}: Defines the motif from a JSON
+file of theme, see the theme file.
+\code{system.file("theme.json", package = "g2r")}
+\item \code{motif_from_list}: Defines the motif from a \code{list},
+derived from the JSON file.
+\item \code{motif_as_list}: Returns a motif as a \code{list} to use
+with \code{\link[=motif_from_list]{motif_from_list()}}.
+}
+}
+
 \examples{
 g2(iris, asp(Sepal.Width, Sepal.Length)) \%>\% 
  fig_point(
