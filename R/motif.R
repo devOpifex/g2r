@@ -141,6 +141,21 @@ motif_from_list.g2r <- function(g, motif){
 #' - `elementPolygon`: Customise polygon.
 #' - `elementSchema`: Customise schema.
 #' 
+#' @examples
+#' g2(iris, asp(Sepal.Width, Sepal.Length)) %>% 
+#'  fig_point(
+#'    asp(color = Species, shape = "circle")
+#'  ) %>% 
+#'  motif(
+#'    brandColor = "orange",
+#'    backgroundColor = "black",
+#'    elementPoint(
+#'      shape = "circle",
+#'      stroke = "white",
+#'      fiillOpacity = .7
+#'    )
+#'  )
+#' 
 #' @name elements
 #' @export 
 element <- function(
