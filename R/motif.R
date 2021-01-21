@@ -40,7 +40,7 @@
 #'    elementPoint(
 #'      shape = "circle",
 #'      stroke = "white",
-#'      fiillOpacity = .7
+#'      fillOpacity = .7
 #'    )
 #'  )
 #' 
@@ -187,7 +187,7 @@ motif_as_list <- function(
 #'    elementPoint(
 #'      shape = "circle",
 #'      stroke = "white",
-#'      fiillOpacity = .7
+#'      fillOpacity = .7
 #'    )
 #'  )
 #' 
