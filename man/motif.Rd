@@ -78,7 +78,7 @@ g2(iris, asp(Sepal.Width, Sepal.Length)) \%>\%
    elementPoint(
      shape = "circle",
      stroke = "white",
-     fiillOpacity = .7
+     fillOpacity = .7
    )
  )
 

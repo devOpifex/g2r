@@ -74,14 +74,21 @@ const plot = (c, x, el) => {
   } else {
     x.views.forEach(function(layer){
       let view;
-        
+      
       // retrieve view instead of create if id is passed
       if(layer.conf && layer.conf.id)
         view = getView(x.id, layer.conf.id);
       
-        // if not found create one
+      // if not found create one
       if(view === undefined || view === null) 
         view = c.createView(layer.conf);
+
+      // if(index != 0){
+      //   let positions = layer.position.split("\*");
+      //   positions.forEach(function(pos){
+      //     view.axis(pos, false);
+      //   })
+      // }
 
       annotate(view, x.annotations);
 
