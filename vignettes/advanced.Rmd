@@ -100,3 +100,15 @@ It's not strictly true that g2r does not preprocess the data, it performs one op
 - `edge`
 - `point`
 - `heatmap`
+
+## Aliases
+
+In G2.js variables can be aliases which changes the name that is displayed across the visualisation, in labels, tooltips, etc.
+
+E.g.: Aliasing the variable below with `aka` changes the way it is displayed on the tooltip.
+
+```{r}
+g2(freeny, asp(income.level, market.potential)) %>% 
+  fig_point() %>% 
+  aka(market.potential, "Market Potential")
+```
