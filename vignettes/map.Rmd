@@ -33,9 +33,14 @@ The function accepts `sf` objects.
 nc <- sf::st_read(system.file("shape/nc.shp", package="sf"))
 
 g2() %>% 
-  fig_map(asp(color = AREA), map = nc) %>% 
+  fig_map(asp(color = AREA, tooltip = NAME), map = nc) %>% 
   axis_hide() %>% 
-  gauge_color(c("#0D0887FF", "#CC4678FF", "#F0F921FF"))
+  gauge_color(c("#0D0887FF", "#CC4678FF", "#F0F921FF")) %>% 
+  tooltip(
+    marker = FALSE,
+    showTitle = FALSE
+  ) %>% 
+  aka(NAME_3, "Province")
 ```
 
 ## GADM
@@ -46,8 +51,16 @@ There is a convenience function to retrieve [GADM](https://gadm.org/) data but w
 belgium <- get_gadm_data("BEL", level = 3)
 
 g2() %>% 
-  fig_map(stroke = "#fff", fill = "gray", map = belgium) %>% 
-  axis_hide()
+  fig_map(
+    asp(tooltip = NAME_3),
+    stroke = "#fff", fill = "gray", map = belgium
+  ) %>% 
+  axis_hide() %>% 
+  tooltip(
+    marker = FALSE,
+    showTitle = FALSE
+  ) %>% 
+  aka(NAME_3, "Province")
 ```
 
 ## Map data
@@ -59,5 +72,9 @@ china <- get_map_data("China")
 
 g2() %>% 
   fig_map(map = china) %>% 
-  axis_hide()
+  axis_hide() %>% 
+  tooltip(
+    marker = FALSE,
+    showTitle = FALSE
+  ) 
 ```

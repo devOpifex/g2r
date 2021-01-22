@@ -134,6 +134,12 @@ map_alter <- function(geojson){
     )$
     get("rows")
 
+  if("properties" %in% names(dataset)){
+    properties <- dataset$properties
+    dataset <- cbind.data.frame(dataset, properties)
+    dataset$properties <- NULL
+  }
+
   structure(dataset, class = c("geoData", class(dataset)))
 }
 

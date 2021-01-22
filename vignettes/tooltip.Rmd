@@ -50,6 +50,14 @@ g2(df, asp(x, y)) %>%
   tooltip(showMarkers = FALSE)
 ```
 
+```{r}
+g2(iris, asp(Petal.Width, Petal.Length, color = Species)) %>% 
+  fig_point(asp(shape = Species)) %>% 
+  tooltip(showCrosshairs = TRUE) %>% 
+  gauge_color_set2() %>% 
+  gauge_shape(c("square", "circle", "triangle"))
+```
+
 ## Aspects
 
 One somewhat confusing thing perhaps is that the `tooltip` aspect can be used multiple times: G2.js allows using multiple columns from the dataset in the tooltip, including columns that are not used elsewhere.
