@@ -9,6 +9,7 @@ vignette: >
 
 ```{r setup, include=FALSE}
 library(g2r)
+library(dplyr)
 ```
 
 ## Figures

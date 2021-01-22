@@ -72,7 +72,7 @@ const plot = (c, x, el) => {
     c.facet(x.facet.type, x.facet.opts);
 
   } else {
-    x.views.forEach(function(layer){
+    x.views.forEach(function(layer, index){
       let view;
       
       // retrieve view instead of create if id is passed
@@ -83,12 +83,31 @@ const plot = (c, x, el) => {
       if(view === undefined || view === null) 
         view = c.createView(layer.conf);
 
-      // if(index != 0){
-      //   let positions = layer.position.split("\*");
-      //   positions.forEach(function(pos){
-      //     view.axis(pos, false);
-      //   })
-      // }
+      // otherwise the label is written on top of the previous
+      if(index != 0){
+        let positions = layer.position.split("\*");
+        positions.forEach(function(pos){
+
+          // skip this if the axis is hidden
+          if(x.axis){
+            for(let i = 0; i < x.axis.length; i++){
+              if(x.axis[i].column == pos && x.axis[i].opts === false){
+                return ;
+              }
+            }
+          }
+
+          // draw labels with 0 opacity
+          // this avoids smudge labels
+          view.axis(pos, {
+            label: {
+              style: {
+                opacity: 0
+              }
+            }
+          });
+        })
+      }
 
       annotate(view, x.annotations);
 

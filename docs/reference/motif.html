@@ -177,7 +177,9 @@
 
 <span class='fu'>motif_from_json</span><span class='op'>(</span><span class='va'>g</span>, <span class='va'>path</span><span class='op'>)</span>
 
-<span class='fu'>motif_from_list</span><span class='op'>(</span><span class='va'>g</span>, <span class='va'>motif</span><span class='op'>)</span></pre>
+<span class='fu'>motif_from_list</span><span class='op'>(</span><span class='va'>g</span>, <span class='va'>motif</span><span class='op'>)</span>
+
+<span class='fu'>motif_as_list</span><span class='op'>(</span><span class='va'>...</span>, brandColor <span class='op'>=</span> <span class='cn'>NULL</span>, backgroundColor <span class='op'>=</span> <span class='st'>"transparent"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -228,6 +230,21 @@
 define the theme from a JSON file of theme, to see the
 default theme file:
 <code><a href='https://rdrr.io/r/base/system.file.html'>system.file("theme.json", package = "g2r")</a></code>.</p>
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    
+
+<ul>
+<li><p><code>motif</code>: Defines the motif of a visualisation.</p></li>
+<li><p><code>motif_from_json</code>: Defines the motif from a JSON
+file of theme, see the theme file.
+<code><a href='https://rdrr.io/r/base/system.file.html'>system.file("theme.json", package = "g2r")</a></code></p></li>
+<li><p><code>motif_from_list</code>: Defines the motif from a <code>list</code>,
+derived from the JSON file.</p></li>
+<li><p><code>motif_as_list</code>: Returns a motif as a <code>list</code> to use
+with <code>motif_from_list()</code>.</p></li>
+</ul>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='g2.html'>g2</a></span><span class='op'>(</span><span class='va'>iris</span>, <span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>Sepal.Width</span>, <span class='va'>Sepal.Length</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
@@ -240,7 +257,7 @@ default theme file:
    <span class='fu'><a href='elements.html'>elementPoint</a></span><span class='op'>(</span>
      shape <span class='op'>=</span> <span class='st'>"circle"</span>,
      stroke <span class='op'>=</span> <span class='st'>"white"</span>,
-     fiillOpacity <span class='op'>=</span> <span class='fl'>.7</span>
+     fillOpacity <span class='op'>=</span> <span class='fl'>.7</span>
    <span class='op'>)</span>
  <span class='op'>)</span>
 
