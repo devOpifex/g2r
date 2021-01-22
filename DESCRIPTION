@@ -45,3 +45,4 @@ Remotes:
   devOpifex/alter
 Config/testthat/edition: 3
 URL: https://g2r.opifex.org/, https://github.com/devOpifex/g2r/
+BugReports: https://github.com/devOpifex/g2r/issues/
