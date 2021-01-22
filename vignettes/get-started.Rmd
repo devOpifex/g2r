@@ -34,19 +34,19 @@ Like with ggplot2, one creates visualisations by layering figures (geometries) d
 
 <div class="row">
 <div class="col-sm-6">
+<strong>ggplot2</strong>
+```{r, fig.height=9, message=FALSE, error=FALSE, warning=FALSE}
+ggplot(cars, aes(speed, dist)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+</div>
+<div class="col-sm-6">
 <strong>g2r</strong>
 ```{r}
 g2(cars, asp(speed, dist)) %>% 
   fig_point() %>% 
   fig_smooth()
-```
-</div>
-<div class="col-sm-6">
-<strong>ggplot2</strong>
-```{r, fig.height=9}
-ggplot(cars, aes(speed, dist)) + 
-  geom_point() +
-  geom_smooth(method = "lm", formula = "y ~ x")
 ```
 </div>
 </div>
@@ -55,12 +55,28 @@ ggplot(cars, aes(speed, dist)) +
 
 Similarly to ggplot2, axis of the visualisation can be modified with `gauge_*` (scales in ggplot2).
 
-```{r}
-g2(cars, asp(speed, dist)) %>% 
-  fig_point() %>% 
-  fig_smooth(method = "polynomial") %>% 
-  gauge_y_log()
+<div class="row">
+<div class="col-sm-6">
+<strong>ggplot2</strong>
+```{r, fig.height=9, message=FALSE, error=FALSE, warning=FALSE}
+ggplot(iris, 
+    aes(Sepal.Length, Sepal.Width, color = Petal.Width)
+  ) + 
+  geom_point(aes(size = Sepal.Width)) +
+  scale_color_viridis_c()
 ```
+</div>
+<div class="col-sm-6">
+<strong>g2r</strong>
+```{r}
+g2(iris, 
+    asp(Sepal.Length, Sepal.Width, color = Petal.Width)
+  ) %>% 
+  fig_point(asp(size = Sepal.Width)) %>% 
+  gauge_color_viridis()
+```
+</div>
+</div>
 
 <a class="btn btn-default" href="gauges.html">Gauges vignette</a>
 
@@ -69,16 +85,35 @@ g2(cars, asp(speed, dist)) %>%
 As in ggplot2, other aspects of the visualisation can be defined. Unlike ggplot2 though, whether these aspects are columns from the data or constants they can only be specified within `asp`.
 
 ```{r}
-g2(cars, asp(speed, dist, shape = "circle")) %>% 
-  fig_point(asp(color = dist, size = dist)) %>% 
-  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+data(penguins, package = "palmerpenguins")
 ```
+
+<div class="row">
+<div class="col-sm-6">
+<strong>ggplot2</strong>
+```{r, fig.height=9, message=FALSE, error=FALSE, warning=FALSE}
+ggplot(penguins, 
+    aes(bill_length_mm, bill_depth_mm, color = island)
+  ) + 
+  geom_point(aes(shape = island)) 
+```
+</div>
+<div class="col-sm-6">
+<strong>g2r</strong>
+```{r}
+g2(penguins, 
+    asp(bill_length_mm, bill_depth_mm, color = island)
+  ) %>% 
+  fig_point(asp(shape = island)) 
+```
+</div>
+</div>
 
 <a class="btn btn-default" href="aspects.html">Aspects vignette</a>
 
 ## Color = Group
 
-Where one uses the `group` aesthetic in ggplot2 one will want to use `color` in g2r; it'll define both the colour and the group.
+Where one might use the `group` aesthetic in ggplot2 one will want to use `color` in g2r; it'll define both the colour and the group.
 
 ```{r}
 g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
