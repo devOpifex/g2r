@@ -84,9 +84,17 @@ const plot = (c, x, el) => {
         view = c.createView(layer.conf);
 
       // otherwise the label is written on top of the previous
-      if(index != 0){
+      if(index != 0 && !x.coord){
         let positions = layer.position.split("\*");
         positions.forEach(function(pos){
+
+          let opts = {
+            label: {
+              style: {
+                opacity: 0
+              }
+            }
+          };
 
           // skip this if the axis is hidden
           if(x.axis){
@@ -94,18 +102,13 @@ const plot = (c, x, el) => {
               if(x.axis[i].column == pos && x.axis[i].opts === false){
                 return ;
               }
-            }
-          }
 
-          // draw labels with 0 opacity
-          // this avoids smudge labels
-          view.axis(pos, {
-            label: {
-              style: {
-                opacity: 0
-              }
             }
-          });
+          } else {
+            // draw labels with 0 opacity
+            // this avoids smudge labels
+            view.axis(pos, opts);
+          }
         })
       }
 
