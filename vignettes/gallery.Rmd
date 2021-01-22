@@ -77,13 +77,23 @@ df9 <- dplyr::tibble(
 
 ```{r, echo=FALSE}
 point <- g2(cars, asp(speed, dist), height = h) %>% 
-  fig_point()
+  fig_point() %>% 
+  tooltip(
+    showCrosshairs = TRUE,
+    crosshairs = list(
+      type = "xy"
+    )
+  )
 
 interval <- g2(df1, asp(x, y, color = grp), height = h) %>% 
-  fig_interval(adjust("stack"))
+  fig_interval(adjust("stack")) %>% 
+  tooltip(marker = FALSE)
 
 line <- g2(df2, asp(x, y, color = grp), height = h) %>% 
-  fig_line()
+  fig_line() %>% 
+  tooltip(
+    showCrosshairs = TRUE
+  )
 
 div(
   class = "row",
@@ -106,7 +116,8 @@ div(
 area <- df2 %>% 
   mutate(y = runif(n * 2)) %>% 
   g2(asp(x, y, color = grp), height = h) %>% 
-  fig_area(adjust("stack"), fillOpacity = 1)
+  fig_area(adjust("stack"), fillOpacity = 1) %>% 
+  tooltip(shared = TRUE)
 
 path <- g2(df3, asp(x, y), height = h) %>% 
   fig_point(asp(shape = "square")) %>% 
@@ -115,7 +126,8 @@ path <- g2(df3, asp(x, y), height = h) %>%
 step <- df2 %>% 
   mutate(y = runif(n * 2)) %>% 
   g2(asp(x, y, color = grp), height = h) %>% 
-  fig_line(asp(shape = "hv"))
+  fig_line(asp(shape = "vh")) %>% 
+  tooltip(shared = TRUE)
 
 div(
   class = "row",
@@ -168,7 +180,8 @@ div(
 ribbon <- g2(df5, asp(x, ymin = ymin, ymax = ymax), height = h) %>% 
   fig_line(asp(y = y)) %>% 
   fig_ribbon() %>% 
-  info_vline(asp(x = 3, content = "Line"))
+  info_vline(asp(x = 3, content = "Line")) %>% 
+  tooltip(showCrosshairs = TRUE, shared = TRUE)
 
 c <- cars
 c$speed <- c$speed + runif(1)
@@ -180,7 +193,8 @@ bin_hex <- g2(diamonds, asp(carat, price, color = count), height = h) %>%
   gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
 
 histo <- g2(df6, asp(val, color = grp), height = h) %>% 
- fig_histogram(bin_width = 1, fillOpacity = .5)
+ fig_histogram(bin_width = 1, fillOpacity = .5) %>% 
+ tooltip(shared = TRUE)
 
 div(
   class = "row",
@@ -233,14 +247,19 @@ div(
 
 ```{r, echo=FALSE}
 rng_bar <- g2(df7, asp(x, ymin = ymin, ymax = ymax), height = h) %>% 
-  fig_range()
+  fig_range() %>% 
+  tooltip(marked = FALSE)
 
 rng_area <- g2(df7, asp(x, ymin = ymin, ymax = ymax), height = h) %>% 
   fig_range(asp(shape = "smooth"), type = "area") %>% 
-  info_hline(asp(y = "median", content = "Median"))
+  info_hline(asp(y = "median", content = "Median")) %>% 
+  tooltip(
+    showCrosshairs = TRUE
+  )
 
 pie <- g2(df8, asp(y = value, color = name, label = name), height = h) %>% 
- fig_pie()
+ fig_pie() %>% 
+ tooltip(marker = FALSE)
 
 div(
   class = "row",
@@ -264,7 +283,8 @@ voronoi <- g2(df9, asp(x, y, color = value), height = h) %>%
   fig_voronoi() %>% 
   gauge_x_linear(nice = FALSE) %>% 
   gauge_y_linear(nice = FALSE) %>% 
-  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3"))
+  gauge_color(c("#BAE7FF", "#1890FF", "#0050B3")) %>% 
+  tooltip(marker = FALSE)
 
 fruits <- dplyr::tibble(
   fruit = c("Apples", "Bananas", "Pears", "Oranges"),
@@ -326,7 +346,8 @@ library(survival)
 data(veteran)
 
 fit <- survfit(Surv(time, status) ~ trt, data = veteran)
-q <- qg2(fit)
+q <- qg2(fit) %>% 
+  tooltip(showCrosshairs = TRUE)
 q$height <- h
 
 div(
@@ -467,7 +488,7 @@ polar <- g2(df10, asp(x, y, color = grp), height = h) %>%
   coord_type("polar") %>% 
   interplay("active", "region") %>% 
   tooltip(
-    showMarkers = FALSE,
+    marker = FALSE,
     shared = TRUE
   )
 
@@ -500,7 +521,7 @@ rad <- g2(fruits, asp(x, y, color = y), height = h) %>%
   axis_y(
     grid = list(closed = FALSE)
   ) %>% 
-  tooltip(showMarker = FALSE) %>% 
+  tooltip(marker = FALSE) %>% 
   legend_color(FALSE)
 
 div(
@@ -534,11 +555,12 @@ fun <- g2(traffic, asp(label, users, color = label), height = h) %>%
   gauge_color(c('#0050B3', '#1890FF', '#40A9FF', '#69C0FF', '#BAE7FF')) %>% 
   coord_transpose() %>% 
   coord_scale(1, -1) %>% 
-  axis_hide() 
+  axis_hide()  %>% 
+  tooltip(marker = FALSE)
 
 x <- 1:nrow(volcano)
 y <- 1:ncol(volcano)
-df <- expand.grid(x = x,y = y)
+df <- expand.grid(x = x, y = y)
 df$z = apply(df, 1, function(x){ 
  volcano[x[1],x[2]]
 })

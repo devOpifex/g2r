@@ -53,7 +53,12 @@ g2(df, asp(x, y)) %>%
 ```{r}
 g2(iris, asp(Petal.Width, Petal.Length, color = Species)) %>% 
   fig_point(asp(shape = Species)) %>% 
-  tooltip(showCrosshairs = TRUE) %>% 
+  tooltip(
+    showCrosshairs = TRUE,
+    crosshairs = list(
+      type = "xy"
+    )
+  ) %>% 
   gauge_color_set2() %>% 
   gauge_shape(c("square", "circle", "triangle"))
 ```
