@@ -43,6 +43,17 @@ g2() %>%
   aka(NAME_3, "Province")
 ```
 
+```{r}
+# remotes::install_github("JohnCoene/globe4r")
+data(cables, package = "globe4r")
+
+g2() %>%
+  fig_map(fill = "grey") %>% 
+  fig_path(data = cables, asp(X, Y, color = L1)) %>% 
+  legend_color(FALSE) %>% 
+  axis_hide()
+```
+
 ## GADM
 
 There is a convenience function to retrieve [GADM](https://gadm.org/) data but will work with the `raster::getData` function as well.
@@ -71,7 +82,7 @@ There is also a `get_map_data` which resembles `ggplot2::map_data`.
 china <- get_map_data("China")
 
 g2() %>% 
-  fig_map(map = china) %>% 
+  fig_map(map = china, asp(tooltip = level)) %>% 
   axis_hide() %>% 
   tooltip(
     marker = FALSE,
