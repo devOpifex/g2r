@@ -60,6 +60,20 @@ to_g2r.mts <- function(data = NULL) {
 }
 
 #' @export
+#' @method to_g2r sf
+to_g2r.sf <- function(data = NULL) {
+  check_package("sf")
+  coords <- data %>% 
+    sf::st_coordinates() %>% 
+    as.data.frame() %>% 
+    as_tib()
+  
+  # treat other columns as character for color
+  coords[,!names(coords) %in% c("X", "Y")] <- apply(coords[,!names(coords) %in% c("X", "Y")], 2, as.character)
+  coords
+}
+
+#' @export
 #' @method to_g2r data.frame
 to_g2r.data.frame <- function(data = NULL) {
   as_tib(data)

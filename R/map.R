@@ -115,7 +115,9 @@ get_world_map <- function(){
 
   json <- read_json(url)
 
-  map_alter(json)
+  map <- map_alter(json)
+  map[, 14] <- NULL
+  map
 }
 
 #' Alter GeoJSON

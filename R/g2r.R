@@ -73,7 +73,7 @@ g2.data.frame <- function(
   asp <- get_asp(...)
 
   x = list(
-    data = as_tib(data), # dataset
+    data = to_g2r(data), # dataset
     main_asp = asp, # main aspects
     views = list(), # views | figures
     scale = list(), # chart.scale
