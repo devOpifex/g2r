@@ -757,10 +757,10 @@ fig_smooth_ <- function(
 #' @details Requires the `x` aspects.
 #' 
 #' @examples 
-#' g2(cars, asp(speed, dist)) %>% 
+#' g2(cars, asp(speed)) %>% 
 #'  fig_density()
 #' 
-#' g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
+#' g2(iris, asp(Sepal.Width, color = Species)) %>% 
 #'  fig_density()
 #' 
 #' @importFrom purrr map

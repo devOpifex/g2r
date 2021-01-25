@@ -218,7 +218,6 @@ a:hover, a:focus {
 .panel-danger > .panel-body{
   color: white;
   font-size: 15px;
-  font-weight: 400;
 }
 
 .panel-danger {

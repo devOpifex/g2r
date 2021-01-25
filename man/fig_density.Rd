@@ -41,10 +41,10 @@ Add a density figure to the chart.
 Requires the \code{x} aspects.
 }
 \examples{
-g2(cars, asp(speed, dist)) \%>\% 
+g2(cars, asp(speed)) \%>\% 
  fig_density()
 
-g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) \%>\% 
+g2(iris, asp(Sepal.Width, color = Species)) \%>\% 
  fig_density()
 
 }
