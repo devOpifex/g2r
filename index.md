@@ -15,6 +15,12 @@
 
 </div>
 
+<div class="panel panel-danger">
+<div class="panel-body">
+<strong>This package is not open-source, perhaps one day it will be.</strong>
+</div>
+</div>
+
 <div style="margin-bottom:30px;">
 
 ```r

@@ -204,6 +204,27 @@ a:hover, a:focus {
   font-size: 15px;
 }
 
+.panel-danger > .panel-heading{
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+.panel-danger{
+  background-color: #cc1400;
+  color: white;
+}
+
+.panel-danger > .panel-body{
+  color: white;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.panel-danger {
+  min-height: 50px!important;
+}
+
 .centerize{
   text-align: center;
 }
