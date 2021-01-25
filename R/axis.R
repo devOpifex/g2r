@@ -36,7 +36,7 @@ axis_x <- function(g, ...) UseMethod("axis_x")
 #' @method axis_x g2r
 #' @export 
 axis_x.g2r <- function(g, ...){
-  cols <- get_aspect_names(g, "position")[1]
+  cols <- get_aspect_names(g, "position", 1)
   axis_asps(g, cols, ...)
 }
 
@@ -47,7 +47,7 @@ axis_y <- function(g, ...) UseMethod("axis_y")
 #' @method axis_y g2r
 #' @export 
 axis_y.g2r <- function(g, ...){
-  cols <- get_aspect_names(g, "position")[2]
+  cols <- get_aspect_names(g, "position", 2)
   axis_asps(g, cols, ...)
 }
 

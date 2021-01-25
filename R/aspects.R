@@ -301,17 +301,22 @@ combine_asp <- function(main_asp, asp, inherit_asp = TRUE){
 #' @importFrom purrr map
 #' 
 #' @keywords internal
-get_aspect_names <- function(g, aspect){
+get_aspect_names <- function(g, aspect, index = NULL){
   g$x$views %>% 
     map(aspect) %>% 
-    map(function(x){
+    map(function(x, i){
 
       if(is.null(x))
         return()
       
       # split the collapsed aspects x*y
-      strsplit(x[[1]], split = "\\*")
-    }) %>% 
+      spl <- strsplit(x[[1]], split = "\\*")[[1]]
+
+      if(!is.null(i))
+        spl <- spl[i]
+
+      return(spl)
+    }, i = index) %>% 
     unlist()
 }
 
