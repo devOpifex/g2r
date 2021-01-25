@@ -49,7 +49,7 @@ data(cables, package = "globe4r")
 
 g2() %>%
   fig_map(fill = "grey", asp(tooltip = name)) %>% 
-  fig_path(data = cables, asp(X, Y, color = L1)) %>% 
+  fig_path(data = cables, asp(X, Y, color = L1, shape = "smooth")) %>% 
   legend_color(FALSE) %>% 
   axis_hide() %>% 
   tooltip(
