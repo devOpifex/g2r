@@ -4,7 +4,7 @@
 \alias{get_aspect_names}
 \title{Get column names}
 \usage{
-get_aspect_names(g, aspect)
+get_aspect_names(g, aspect, index = NULL)
 }
 \description{
 Get column names
