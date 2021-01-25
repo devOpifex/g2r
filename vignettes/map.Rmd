@@ -54,7 +54,7 @@ g2() %>%
   axis_hide() %>% 
   tooltip(
     showTitle = FALSE,
-    showMarker = FALSE
+    marker = FALSE
   )
 ```
 
