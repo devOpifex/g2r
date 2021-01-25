@@ -4,7 +4,14 @@
 \alias{fig_density_}
 \title{Density}
 \usage{
-fig_density_(g, ..., sync = TRUE, data = NULL, inherit_asp = TRUE)
+fig_density_(
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
+  inherit_asp = TRUE,
+  alias = "density"
+)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -24,6 +31,8 @@ draw the figure.}
 
 \item{inherit_asp}{Whether to inherit the aspects paseed to
 \code{\link[=g2]{g2()}} initialisation function.}
+
+\item{alias}{Name of the density curve.}
 }
 \description{
 Density

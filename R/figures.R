@@ -752,8 +752,9 @@ fig_smooth_ <- function(
 #' Add a density figure to the chart.
 #' 
 #' @inheritParams fig_point
+#' @param alias Name of the density curve.
 #' 
-#' @details Requires the `x` and `y` aspects.
+#' @details Requires the `x` aspects.
 #' 
 #' @examples 
 #' g2(cars, asp(speed, dist)) %>% 
@@ -770,7 +771,8 @@ fig_density <- function(
   ...,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "density"
 ){
   UseMethod("fig_density")
 }
@@ -782,14 +784,16 @@ fig_density.g2r <- function(
   ...,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "density"
 ){
   fig_density_(
     g, 
     ...,
     sync = sync, 
     data = data, 
-    inherit_asp = inherit_asp
+    inherit_asp = inherit_asp,
+    alias = alias
   )
 }
 
@@ -800,14 +804,16 @@ fig_density.g2Proxy <- function(
   ...,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "density"
 ){
   fig_density_(
     g, 
     ...,
     sync = sync, 
     data = data, 
-    inherit_asp = inherit_asp
+    inherit_asp = inherit_asp,
+    alias = alias
   )
 }
 
@@ -821,15 +827,16 @@ fig_density_ <- function(
   ...,
   sync = TRUE, 
   data = NULL, 
-  inherit_asp = TRUE
+  inherit_asp = TRUE,
+  alias = "density"
 ) {
   # aspects
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
-  position <- select_asp_labels(asp, "x", "y")
+  position <- select_asp_labels(asp, "x")
   color <- select_asp_labels(asp, "color")
 
-  if(length(position) < 2)
-    stop("Must pass `x` and `y` aspects", call. = FALSE)
+  if(length(position) < 1)
+    stop("Must pass `x` aspects", call. = FALSE)
 
   # get data for split
   data <- get_data(g, data)
@@ -839,20 +846,22 @@ fig_density_ <- function(
   else
     data <- list(data)
 
-  df <- map(data, function(df, pos, color){
+  df <- map(data, function(df, pos, color, a){
 
     density <- stats::density(df[[pos[1]]])
     tidy <- data.frame(
       x = density$x,
       y = density$y
     )
-    names(tidy) <- pos
+    names(tidy) <- c(pos, a)
 
     if(length(color))
       tidy[[color]] <- unique(df[[color]])
 
     return(tidy)
-  }, pos = position, color = color)
+  }, pos = position, color = color, a = alias)
+
+  asp$y <- alias
 
   df <- do.call(rbind, lapply(df, as.data.frame))
 

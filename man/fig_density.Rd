@@ -4,7 +4,14 @@
 \alias{fig_density}
 \title{Density}
 \usage{
-fig_density(g, ..., sync = TRUE, data = NULL, inherit_asp = TRUE)
+fig_density(
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
+  inherit_asp = TRUE,
+  alias = "density"
+)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or
@@ -24,12 +31,14 @@ draw the figure.}
 
 \item{inherit_asp}{Whether to inherit the aspects paseed to
 \code{\link[=g2]{g2()}} initialisation function.}
+
+\item{alias}{Name of the density curve.}
 }
 \description{
 Add a density figure to the chart.
 }
 \details{
-Requires the \code{x} and \code{y} aspects.
+Requires the \code{x} aspects.
 }
 \examples{
 g2(cars, asp(speed, dist)) \%>\% 

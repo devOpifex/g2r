@@ -207,7 +207,7 @@ g2(df, asp(val, color = grp)) %>%
 ## Density
 
 ```{r}
-g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
+g2(iris, asp(Sepal.Length, color = Species)) %>% 
   fig_density()
 ```
 

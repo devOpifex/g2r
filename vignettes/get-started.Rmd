@@ -35,7 +35,7 @@ Like with ggplot2, one creates visualisations by layering figures (geometries) d
 <div class="row">
 <div class="col-sm-6">
 <strong>ggplot2</strong>
-```{r, fig.height=9, message=FALSE, error=FALSE, warning=FALSE}
+```{r, fig.height=8, message=FALSE, error=FALSE, warning=FALSE}
 ggplot(cars, aes(speed, dist)) + 
   geom_point() +
   geom_smooth(method = "lm")
@@ -58,7 +58,7 @@ Similarly to ggplot2, axis of the visualisation can be modified with `gauge_*` (
 <div class="row">
 <div class="col-sm-6">
 <strong>ggplot2</strong>
-```{r, fig.height=9, message=FALSE, error=FALSE, warning=FALSE}
+```{r, fig.height=8, message=FALSE, error=FALSE, warning=FALSE}
 ggplot(iris, 
     aes(Sepal.Length, Sepal.Width, color = Petal.Width)
   ) + 
@@ -91,7 +91,7 @@ data(penguins, package = "palmerpenguins")
 <div class="row">
 <div class="col-sm-6">
 <strong>ggplot2</strong>
-```{r, fig.height=9, message=FALSE, error=FALSE, warning=FALSE}
+```{r, fig.height=8, message=FALSE, error=FALSE, warning=FALSE}
 ggplot(penguins, 
     aes(bill_length_mm, bill_depth_mm, color = island)
   ) + 
@@ -116,7 +116,7 @@ g2(penguins,
 Where one might use the `group` aesthetic in ggplot2 one will want to use `color` in g2r; it'll define both the colour and the group.
 
 ```{r}
-g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
+g2(iris, asp(Petal.Width, color = Species)) %>% 
   fig_density()
 ```
 
@@ -149,9 +149,9 @@ g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>%
 There is also a function to quickly draw plots based on the class of the object it receives: `qg2`.
 
 ```{r}
-model <- lm(mpg ~ wt + cyl + disp + gear + hp + am, data = mtcars)
+s <- stl(nottem, "per")
 
-qg2(model)
+qg2(s)
 ```
 
 <a class="btn btn-default" href="quick.html">Quick plots vignette</a>

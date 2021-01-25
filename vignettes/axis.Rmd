@@ -67,10 +67,7 @@ g2(df, asp(name, value, color = name)) %>%
 To customise anything else one has to use the `axis_*` functions. The documentation on the available arguments is on the [official website](https://g2.antv.vision/en/docs/api/general/axis).
 
 ```{r}
-g2(
-  penguins, 
-  asp(bill_length_mm, flipper_length_mm, color = sex)
-) %>% 
+g2(penguins, asp(bill_length_mm, color = sex)) %>% 
   fig_density() %>%   
   axis_y( 
     grid = list(

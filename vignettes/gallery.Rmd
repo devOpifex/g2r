@@ -214,7 +214,7 @@ div(
 ```
 
 ```{r, echo=FALSE}
-dens <- g2(iris, asp(Sepal.Length, Sepal.Width, color = Species), height = h) %>% 
+dens <- g2(iris, asp(Sepal.Width, color = Species), height = h) %>% 
   fig_density()
 
 iris_long <- tidyr::pivot_longer(iris, -Species)
