@@ -8,7 +8,7 @@ fig_smooth_(
   g,
   ...,
   method = c("linear", "gaussian", "cosine", "epanechnikov", "quartic", "triangular",
-    "tricube", "triweight", "uniform", "polynomial", "logarithmic", "power",
+    "tricube", "triweight", "uniform", "polynomial", "logarithmic", "boxcar", "power",
     "exponential"),
   band_width = 1,
   sync = TRUE,

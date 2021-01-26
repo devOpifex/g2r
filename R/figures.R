@@ -537,6 +537,7 @@ fig_smooth <- function(
     "uniform",
     "polynomial",
     "logarithmic",
+    "boxcar",
     "power",
     "exponential"
   ),
@@ -565,6 +566,7 @@ fig_smooth.g2r <- function(
     "uniform",
     "polynomial",
     "logarithmic",
+    "boxcar",
     "power",
     "exponential"
   ),
@@ -601,6 +603,7 @@ fig_smooth.g2Proxy <- function(
     "uniform",
     "polynomial",
     "logarithmic",
+    "boxcar",
     "power",
     "exponential"
   ),
@@ -640,6 +643,7 @@ fig_smooth_ <- function(
     "uniform",
     "polynomial",
     "logarithmic",
+    "boxcar",
     "power",
     "exponential"
   ),
@@ -655,16 +659,14 @@ fig_smooth_ <- function(
     "polynomial",
     "logarithmic",
     "power",
-    "polynomial",
     "exponential"
   )
 
   # method and type for alter
   method <- match.arg(method)
   type <- "kernel-smooth.regression"
-  if (method %in% methods) {
+  if (method %in% methods)
     type <- "regression"
-  }
 
   # aspects
   asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
@@ -690,12 +692,12 @@ fig_smooth_ <- function(
   df <- map(
     data,
     function(
-  df,
-  color,
-  type,
-  method,
-  bandwidth,
-  position
+      df,
+      color,
+      type,
+      method,
+      bandwidth,
+      position
     ) {
       dat <- alter::Alter$new(df)$
         source()$
@@ -821,9 +823,8 @@ fig_density_ <- function(
   position <- select_asp_labels(asp, "x")
   color <- select_asp_labels(asp, "color")
 
-  if (length(position) < 1) {
+  if (length(position) < 1) 
     stop("Must pass `x` aspects", call. = FALSE)
-  }
 
   # get data for split
   data <- get_data(g, data)
