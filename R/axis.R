@@ -98,14 +98,14 @@ axis_title_x.g2r <- function(g, title, ..., fontSize = 10, offset = 30) {
 
 #' @rdname axis_title
 #' @export
-axis_title_y <- function(g, title, ..., fontSize = 10, offset = 30) {
+axis_title_y <- function(g, title, ..., fontSize = 10, offset = 50) {
   UseMethod("axis_title_y")
 }
 
 #' @method axis_title_y g2r
 #' @rdname axis_title
 #' @export
-axis_title_y.g2r <- function(g, title, ..., fontSize = 10, offset = 30) {
+axis_title_y.g2r <- function(g, title, ..., fontSize = 10, offset = 50) {
   axis_title_(g, title, ..., fontSize = fontSize, offset = offset, axis = "y")
 }
 
@@ -142,4 +142,32 @@ axis_title_ <- function(g, title, ..., fontSize = 10, offset = 30, axis = c("x",
         )
       )
     )
+}
+
+font <- '"-apple-system", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji'
+
+#' Subject
+#' 
+#' Add a subject to the plot.
+#' 
+#' @inheritParams fig_point
+#' @param subject Subject of chart to display.
+#' @param tag `htmltools` tag function to use.
+#' 
+#' @examples 
+#' g2(cars, asp(speed, dist)) %>% 
+#'  fig_point() %>% 
+#'  subject("Points")
+#' 
+#' @export 
+subject <- function(g, subject, tag = htmltools::h3){
+  UseMethod("subject")
+}
+
+#' @export 
+#' @method subject g2r
+#' @importFrom htmltools tags
+subject.g2r <- function(g, subject, tag = htmltools::h3){
+  font <- sprintf("font-family:%s;", font)
+  prependContent(g, tag(subject, style = font))
 }

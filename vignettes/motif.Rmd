@@ -46,7 +46,7 @@ g2(cars, asp(speed, dist)) %>%
   fig_point(asp(shape = "circle")) %>% 
   fig_smooth() %>% 
   motif(
-    padding = 10,
+    padding = 30,
     brandColor = "orange",
     backgroundColor = "#363636"
   )

@@ -15,9 +15,10 @@
 #' - `warning`
 #' - `danger`
 #'
+#' @importFrom htmltools tags
+#' 
 #' @export
 input_button <- function(id, label, class = "default") {
-  check_package("htmltools")
 
   if (missing(label)) {
     stop("Missing `label`", call. = FALSE)
@@ -27,7 +28,7 @@ input_button <- function(id, label, class = "default") {
     stop("Missing `id`", call. = FALSE)
   }
 
-  htmltools::tags$button(
+  tags$button(
     id = id,
     class = sprintf("btn btn-%s", class),
     type = "button",
@@ -53,9 +54,11 @@ input_button <- function(id, label, class = "default") {
 #'   min = 0,
 #'   max = 10
 #' )
+#' 
+#' @importFrom htmltools tags span div htmlDependency
+#' 
 #' @export
 input_slider <- function(id, label, value, min, max, step = 1) {
-  check_package("htmltools")
 
   if (missing(id)) {
     stop("Missing `id`", call. = FALSE)
@@ -77,7 +80,7 @@ input_slider <- function(id, label, value, min, max, step = 1) {
     stop("Missing `max`", call. = FALSE)
   }
 
-  dep <- htmltools::htmlDependency(
+  dep <- htmlDependency(
     "slider",
     version = "1.0.0",
     src = "actions",
@@ -85,18 +88,18 @@ input_slider <- function(id, label, value, min, max, step = 1) {
     package = "g2r"
   )
 
-  htmltools::div(
+  div(
     dep,
     class = "g2-slider",
-    htmltools::tags$label(
+    tags$label(
       `for` = id,
       label,
-      htmltools::span(
+      span(
         value,
         id = sprintf("%s-value", id)
       )
     ),
-    htmltools::tags$input(
+    tags$input(
       type = "range",
       id = id,
       name = id,
@@ -115,10 +118,10 @@ input_slider <- function(id, label, value, min, max, step = 1) {
 #' @param choices Vector of choices
 #'
 #' @importFrom purrr map2
+#' @importFrom htmltools tags div
 #'
 #' @export
 input_select <- function(id, label, choices) {
-  check_package("htmltools")
 
   if (missing(id)) {
     stop("Missing `id`", call. = FALSE)
@@ -139,16 +142,16 @@ input_select <- function(id, label, choices) {
   }
 
   opts <- map2(choices, nms, function(c, v) {
-    htmltools::tags$option(value = v, c)
+    tags$option(value = v, c)
   })
 
-  htmltools::div(
+  div(
     class = "g2-select",
-    htmltools::tags$label(
+    tags$label(
       `for` = id,
       label
     ),
-    htmltools::tags$select(
+    tags$select(
       id = id,
       name = id,
       type = "select",

@@ -12,9 +12,9 @@ axis_title_x(g, title, ..., fontSize = 10, offset = 30)
 
 \method{axis_title_x}{g2r}(g, title, ..., fontSize = 10, offset = 30)
 
-axis_title_y(g, title, ..., fontSize = 10, offset = 30)
+axis_title_y(g, title, ..., fontSize = 10, offset = 50)
 
-\method{axis_title_y}{g2r}(g, title, ..., fontSize = 10, offset = 30)
+\method{axis_title_y}{g2r}(g, title, ..., fontSize = 10, offset = 50)
 }
 \arguments{
 \item{g}{An object of class \code{g2r} or \code{g2Proxy} as returned by \code{\link[=g2]{g2()}} or

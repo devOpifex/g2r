@@ -90,6 +90,7 @@ reference:
   - title: "Axis"
     desc: "Configure axes"
     contents:
+      - subject
       - starts_with("axis_")
   - title: "Tooltip"
     desc: "Configure tooltip"

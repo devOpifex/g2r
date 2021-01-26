@@ -51,13 +51,13 @@ tooltip.g2r <- function(g, ...) {
 #'   )
 #' )
 #' @importFrom rlang enquo quo_is_symbolic as_label
+#' @importFrom htmltools tags
 #'
 #' @name template
 #' @export
 tpl <- function(...) {
-  check_package("htmltools")
 
-  ul <- htmltools::tags$ul(
+  ul <- tags$ul(
     class = "g2-tooltip-list",
     ...
   )
@@ -67,8 +67,8 @@ tpl <- function(...) {
 
 #' @rdname template
 #' @export
+#' @importFrom htmltools tags span tagAppendChild
 tpl_item <- function(name, value, marker = TRUE) {
-  check_package("htmltools")
 
   if (missing(name)) {
     stop("Missing `name`", call. = FALSE)
@@ -90,29 +90,29 @@ tpl_item <- function(name, value, marker = TRUE) {
     value <- sprintf("{%s}", value)
   }
 
-  li <- htmltools::tags$li(class = "g2-tooltip-list-item")
+  li <- tags$li(class = "g2-tooltip-list-item")
 
   if (marker) {
-    marker <- htmltools::span(
+    marker <- span(
       style = "background-color:{color};",
       class = "g2-tooltip-marker"
     )
-    li <- htmltools::tagAppendChild(li, marker)
+    li <- tagAppendChild(li, marker)
   }
 
   # add name
-  li <- htmltools::tagAppendChild(
+  li <- tagAppendChild(
     li,
-    htmltools::span(
+    span(
       class = "g2-tooltip-name",
       name
     )
   )
 
   # add value
-  li <- htmltools::tagAppendChild(
+  li <- tagAppendChild(
     li,
-    htmltools::span(
+    span(
       class = "g2-tooltip-value",
       value
     )

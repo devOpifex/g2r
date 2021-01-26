@@ -25,6 +25,7 @@ Imports:
   magrittr,
   jsonlite,
   crosstalk,
+  htmltools,
   htmlwidgets
 Suggests:
   sf,
@@ -38,7 +39,6 @@ Suggests:
   pkgdown,
   contoureR,
   geojsonio,
-  htmltools,
   rmapshaper,
   testthat (>= 3.0.0)
 Remotes:

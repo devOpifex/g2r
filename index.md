@@ -78,7 +78,6 @@ g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>%
     stroke = 0
   ) %>%  
   fig_smooth() %>% 
-  gauge_shape(c("circle", "square", "triangle")) %>% 
   axis_title_x("Flipper Length (mm)") %>% 
   axis_title_y("Body Mass (gram)") 
 ```

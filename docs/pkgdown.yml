@@ -1,4 +1,4 @@
-pandoc: 2.9.1.1
+pandoc: '2.5'
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
@@ -27,5 +27,5 @@ articles:
   recipes: recipes.html
   shiny: shiny.html
   tooltip: tooltip.html
-last_built: 2021-01-25T19:36Z
+last_built: 2021-01-26T21:46Z
 

@@ -29,6 +29,14 @@ code a, pre a{
   color: #6906FF;
 }
 
+.docs-link:hover{
+  text-decoration: none;
+}
+
+.docs-link{
+  color: #1e024a;
+}
+
 p>a {
   color: #F0760F;
 }
@@ -211,13 +219,14 @@ a:hover, a:focus {
 }
 
 .panel-danger{
-  background-color: #cc1400;
+  background-color: #e84f3f;
   color: white;
 }
 
 .panel-danger > .panel-body{
   color: white;
-  font-size: 15px;
+  font-size: 18px;
+  text-align:center;
 }
 
 .panel-danger {

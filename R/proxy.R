@@ -103,10 +103,10 @@ render.g2Proxy <- function(g, update = TRUE) {
 }
 
 #' @importFrom jsonlite toJSON
+#' @importFrom htmltools tags
 #' @method render g2Action
 #' @export
 render.g2Action <- function(g, update = TRUE) {
-  check_package("htmltools")
 
   g$x$data <- select_columns(g$x$data, g$x$cols)
   g$x$data <- serialise_df(g$x$data)
@@ -120,7 +120,7 @@ render.g2Action <- function(g, update = TRUE) {
   g$x$cols <- NULL
   g$x$main_asp <- NULL
 
-  htmltools::tags$script(
+  tags$script(
     `data-for` = g$x$id,
     class = "g2-actions",
     type = "application/json",

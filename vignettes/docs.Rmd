@@ -15,6 +15,7 @@ box <- function(title, text, link, class = "info", width = 4){
     class = sprintf("col-sm-%s", width),
     tags$a(
       href = sprintf("%s.html", link),
+      class = "docs-link",
       div(
         class = sprintf("panel panel-%s", class),
         div(
