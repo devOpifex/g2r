@@ -685,13 +685,10 @@ fig_smooth_ <- function(
   # remove NAs to not break transform
   data <- data[stats::complete.cases(data[, unlist(c(position, color))]), ]
 
-  lvls <- NULL
-  if(length(color)){
-    lvls <- unique(data[[color]])
+  if(length(color))
     data <- split(data, data[[color]])
-  } else {
+  else 
     data <- list(data)
-  }
 
   df <- map(
     data, 
@@ -728,13 +725,6 @@ fig_smooth_ <- function(
   )
 
   df <- do.call(rbind.data.frame, lapply(df, as.data.frame))
-
-  # color var must be in the same order as originally passed
-  # or colors do not match
-  if(!is.null(lvls)){
-    df[[color]] <- factor(df[[color]], levels = lvls)
-    df <- df[order(df[[color]]),]
-  }
 
   fig_primitive(
     g, 

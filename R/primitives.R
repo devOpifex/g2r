@@ -631,8 +631,8 @@ fig_primitive <- function(
 
   # don't reorder those figures
   # either breaks it or there is no point
-  if(!type %in% NO_REORDER_TYPES)
-    data <- order_data(data, position)
+  if(!type %in% NO_REORDER_TYPES && g$x$reorder)
+    data <- order_data(data, unlist(position)[1], unlist(color)[1])
   
   opts <- list(
     type = type,

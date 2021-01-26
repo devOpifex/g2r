@@ -12,6 +12,13 @@
 #' @param elementId Valid CSS id attribute.
 #' @param digits Maximum number of digits after the comma to show
 #' on the chart.
+#' @param reorder Whether to internally reorder the data, namely
+#' the `x` and `color`. The `x` axis must be reordered in a descending
+#' order for most data type since G2.js plots data as-is. Moreover,
+#' `color` order of all data.frames passed either to this function or
+#' subsequent `fig_*` layers must be identical or the colors will
+#' might match the legends on the plot. However, one may sometimes
+#' not want the data to be reordered.
 #'
 #' @examples 
 #' g2(cars) %>% 
@@ -26,7 +33,8 @@ g2 <- function(
   width = NULL, 
   height = NULL, 
   elementId = NULL,
-  digits = NULL
+  digits = NULL,
+  reorder = TRUE
 ) {
   UseMethod("g2")
 }
@@ -38,7 +46,8 @@ g2.default <- function(
   width = NULL, 
   height = NULL, 
   elementId = NULL,
-  digits = NULL
+  digits = NULL,
+  reorder = TRUE
 ) {
 
   asp <- get_asp(...)
@@ -49,6 +58,7 @@ g2.default <- function(
   }
 
   x = list(
+    reorder = reorder,
     data = to_g2r(data), # dataset
     main_asp = asp, # main aspects
     views = list(), # views | figures
@@ -67,12 +77,14 @@ g2.data.frame <- function(
   width = NULL, 
   height = NULL, 
   elementId = NULL,
-  digits = NULL
+  digits = NULL,
+  reorder = TRUE
 ) {
 
   asp <- get_asp(...)
 
   x = list(
+    reorder = reorder,
     data = to_g2r(data), # dataset
     main_asp = asp, # main aspects
     views = list(), # views | figures
@@ -91,12 +103,14 @@ g2.igraph <- function(
   width = NULL, 
   height = NULL, 
   elementId = NULL,
-  digits = NULL
+  digits = NULL,
+  reorder = TRUE
 ) {
 
   asp <- get_asp(...)
 
   x = list(
+    reorder = reorder,
     graph = data,
     data = to_g2r(data), # dataset
     main_asp = asp, # main aspects
@@ -116,7 +130,8 @@ g2.SharedData <- function(
   width = NULL, 
   height = NULL, 
   elementId = NULL,
-  digits = NULL
+  digits = NULL,
+  reorder = TRUE
 ) {
 
   asp <- get_asp(...)
@@ -127,6 +142,7 @@ g2.SharedData <- function(
   dataset[[key_col]] <- data$key()
 
   x = list(
+    reorder = reorder,
     crosstalk_group = data$groupName(),
     data = dataset, # dataset
     main_asp = asp, # main aspects

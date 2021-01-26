@@ -15,8 +15,9 @@ pre_render <- function(g){
   })
 
   x <- select_asp_labels(g$x$main_asp, "x")
-  if(!any(types %in% NO_REORDER_TYPES))
-    g$x$data <- order_data(g$x$data, x)
+  color <- select_asp_labels(g$x$main_asp, "color")
+  if(!any(types %in% NO_REORDER_TYPES) && g$x$reorder)
+    g$x$data <- order_data(g$x$data, unlist(x), unlist(color))
   
   # remove unneeded
   g$x$cols <- NULL

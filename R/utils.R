@@ -153,7 +153,7 @@ rehsape_data <- function(data){
 }
 
 # Figure types that SHOULD NOT be reordered
-NO_REORDER_TYPES <- c("path", "polygon", "edge", "point", "heatmap")
+NO_REORDER_TYPES <- c("path", "polygon", "edge", "heatmap")
 
 #' Order Data
 #' 
@@ -165,28 +165,50 @@ NO_REORDER_TYPES <- c("path", "polygon", "edge", "point", "heatmap")
 #' figures types that are excluded from reordering.
 #' 
 #' @param data Data to reorder.
-#' @param cols Columns, only uses the first which is assumes
-#' is the `x` axis.
+#' @param x Column on x axis.
+#' @param color Color variable name.
 #' 
 #' @keywords internal
-order_data <- function(data, cols){
+order_data <- function(
+  data = NULL, 
+  x = NULL, 
+  color = NULL
+){
 
   if(is.null(data))
     return()
 
-  if(!length(cols))
-    return(data)
-
-  cols <- unlist(cols)
-
   if(!inherits(data, "data.frame"))
     return(data)
-  
-  valid_classes <- c("numeric", "factor", "POSIXt", "Date")
-  if(!inherits(data[[cols[1]]], valid_classes))
+
+  if(!length(x) && !length(color))
     return(data)
   
-  data[order(data[[cols[1]]]),]
+  # only reorder these
+  valid_types <- c("numeric", "factor", "POSIXt", "Date")
+
+  if(length(x) && !length(color)){
+
+    if(inherits(data[[x]], valid_types)){
+      return(data[order(data[[x]]),])
+    } else {
+      return(data)
+    }
+
+  } else if(!length(x) && length(color)){
+
+    return(data[order(data[[color]]),])
+
+  } else if(length(x) && length(color)){
+
+    if(inherits(data[[x]], valid_types)){
+      return(data[order(data[[color]], data[[x]]),])
+    } else {
+      return(data[order(data[[color]]),])
+    }
+    
+  }
+
 }
 
 #' Get Data
