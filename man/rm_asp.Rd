@@ -16,8 +16,8 @@ to make it to the serie.
 }
 \examples{
 \dontrun{
-foo <- function(...){
- rm_asp(...)
+foo <- function(...) {
+  rm_asp(...)
 }
 
 foo(asp(speed), x = 1)

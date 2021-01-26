@@ -19,9 +19,9 @@ the figure as set by \code{\link[=config]{config()}} (see examples).}
 Remove a figure from the plot.
 }
 \examples{
-g <- g2(mtcars, asp(qsec, wt)) \%>\% 
- fig_point(config(id = "myPoints")) \%>\% 
- fig_point(asp(y = drat)) 
+g <- g2(mtcars, asp(qsec, wt)) \%>\%
+  fig_point(config(id = "myPoints")) \%>\%
+  fig_point(asp(y = drat))
 
 # all figures
 g
@@ -32,32 +32,30 @@ remove_figure(g, "myPoints")
 library(shiny)
 
 df <- data.frame(
- x = 1:100,
- y = runif(100),
- z = runif(100)
+  x = 1:100,
+  y = runif(100),
+  z = runif(100)
 )
 
 ui <- fluidPage(
- g2Output("plot"),
- actionButton("rm", "Randomly remove a figure")
+  g2Output("plot"),
+  actionButton("rm", "Randomly remove a figure")
 )
 
-server <- function(input, output){
+server <- function(input, output) {
+  output$plot <- renderG2({
+    g2(df, asp(x, y)) \%>\%
+      fig_point() \%>\%
+      fig_line(asp(y = z))
+  })
 
- output$plot <- renderG2({
-   g2(df, asp(x, y)) \%>\% 
-     fig_point() \%>\% 
-     fig_line(asp(y = z))
- })
-
- observeEvent(input$rm, {
-   g2_proxy("plot") \%>\% 
-     remove_figure(sample(1:2, 1))
- })
-
+  observeEvent(input$rm, {
+    g2_proxy("plot") \%>\%
+      remove_figure(sample(1:2, 1))
+  })
 }
 
-if(interactive())
- shinyApp(ui, server)
-
+if (interactive()) {
+  shinyApp(ui, server)
+}
 }

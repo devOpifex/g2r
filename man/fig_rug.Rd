@@ -44,9 +44,8 @@ Add a rug figure to the chart.
 Requires the \code{x} and \code{y} aspects.
 }
 \examples{
-g2(mtcars, asp(wt, mpg)) \%>\% 
- fig_point() \%>\% 
- fig_rug() \%>\% 
- fig_rug(asp(size = 10), axis = "y")
-
+g2(mtcars, asp(wt, mpg)) \%>\%
+  fig_point() \%>\%
+  fig_rug() \%>\%
+  fig_rug(asp(size = 10), axis = "y")
 }

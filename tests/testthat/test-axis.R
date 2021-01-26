@@ -1,5 +1,5 @@
 test_that("Axis", {
-  g <- g2(cars, asp(speed, dist)) %>% 
+  g <- g2(cars, asp(speed, dist)) %>%
     fig_point()
 
   hidden <- axis_hide(g)
@@ -18,8 +18,8 @@ test_that("Axis", {
   expect_length(opt$x$axis, 1)
   expect_null(opt$x$axis$opts$title)
 
-  titles <- g %>% 
-    axis_title_x("Hello") %>% 
+  titles <- g %>%
+    axis_title_x("Hello") %>%
     axis_title_y("World")
 
   expect_length(titles$x$axis, 2)

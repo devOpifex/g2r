@@ -30,8 +30,7 @@ with others used elsewhere, similar to that of \code{\link[=fig_point]{fig_point
 Split the chart into planes according to variables.
 }
 \examples{
-g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) \%>\% 
- fig_point() \%>\% 
- planes(~Species, type = "tree")
-
+g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) \%>\%
+  fig_point() \%>\%
+  planes(~Species, type = "tree")
 }

@@ -15,8 +15,8 @@ Get config from three dot construct
 }
 \examples{
 \dontrun{
-foo <- function(...){
- get_conf(...)
+foo <- function(...) {
+  get_conf(...)
 }
 
 foo(conf("hello"))

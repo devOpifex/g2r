@@ -34,8 +34,7 @@ of the class\code{sf} as obtained from reading shapefiles.}
 Add a map figure.
 }
 \examples{
-g2() \%>\% 
- fig_map(stroke = "#fff", fill = "gray") \%>\% 
- axis_hide()
-
+g2() \%>\%
+  fig_map(stroke = "#fff", fill = "gray") \%>\%
+  axis_hide()
 }

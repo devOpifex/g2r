@@ -27,19 +27,18 @@ weights of source and target in the edges data.frame.}
 Layout as arc using the alter package.
 }
 \examples{
-ig <- igraph::erdos.renyi.game(100, 1/100)
+ig <- igraph::erdos.renyi.game(100, 1 / 100)
 
-g2(ig, asp(x, y)) \%>\% 
- layout_arc() \%>\% 
- fig_edge(asp(color = source, shape = "arc"), opacity = .3) \%>\% 
- fig_point(asp(color = id, shape = "circle", size = value)) \%>\% 
- coord_type("polar") \%>\% 
- coord_reflect("y") \%>\% 
- axis_hide()
+g2(ig, asp(x, y)) \%>\%
+  layout_arc() \%>\%
+  fig_edge(asp(color = source, shape = "arc"), opacity = .3) \%>\%
+  fig_point(asp(color = id, shape = "circle", size = value)) \%>\%
+  coord_type("polar") \%>\%
+  coord_reflect("y") \%>\%
+  axis_hide()
 
-g2(ig, asp(x, y)) \%>\% 
- layout_arc() \%>\% 
- fig_edge(asp(color = source, shape = "arc"), opacity = .3) \%>\% 
- fig_point(asp(color = id, shape = "circle", size = value))
-
+g2(ig, asp(x, y)) \%>\%
+  layout_arc() \%>\%
+  fig_edge(asp(color = source, shape = "arc"), opacity = .3) \%>\%
+  fig_point(asp(color = id, shape = "circle", size = value))
 }

@@ -1,56 +1,55 @@
 #' Point
-#' 
+#'
 #' Add a point figure.
-#' 
-#' @param g An object of class `g2r` or `g2Proxy` as returned by [g2()] or 
+#'
+#' @param g An object of class `g2r` or `g2Proxy` as returned by [g2()] or
 #' [g2_proxy()].
 #' @param ... Options to pass to the figure, including [asp()],
-#' and [adjust()], [active()], [selected()], and [config()], 
-#' other key value pairs of are passed to 
+#' and [adjust()], [active()], [selected()], and [config()],
+#' other key value pairs of are passed to
 #' [style](https://g2.antv.vision/en/docs/api/general/style).
 #' @param sync Whether to sync the axis data (align) with that
 #' used in other figures, set to `FALSE` to not sync or set to
 #' a character string to use as name of sync group.
-#' @param data A dataset (`data.frame` or `tibble`) to use to 
+#' @param data A dataset (`data.frame` or `tibble`) to use to
 #' draw the figure.
 #' @param inherit_asp Whether to inherit the aspects paseed to
 #' [g2()] initialisation function.
-#' 
-#' @examples 
-#' g2(cars) %>% 
-#'  fig_point(asp(speed, dist))
-#' 
-#' g2(mtcars, asp(mpg, disp, size = qsec)) %>% 
-#'  fig_point(asp(color = "red", shape = "square"))
-#' 
-#' @export 
+#'
+#' @examples
+#' g2(cars) %>%
+#'   fig_point(asp(speed, dist))
+#'
+#' g2(mtcars, asp(mpg, disp, size = qsec)) %>%
+#'   fig_point(asp(color = "red", shape = "square"))
+#' @export
 fig_point <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   UseMethod("fig_point")
 }
 
 #' @method fig_point g2r
-#' @export 
+#' @export
 fig_point.g2r <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
-
-  if(is.null(data) && !is.null(g$x$graph))
+) {
+  if (is.null(data) && !is.null(g$x$graph)) {
     data <- g$x$data$nodes
-  
+  }
+
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "point"
@@ -58,18 +57,18 @@ fig_point.g2r <- function(
 }
 
 #' @method fig_point g2Proxy
-#' @export 
+#' @export
 fig_point.g2Proxy <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "point"
@@ -77,39 +76,38 @@ fig_point.g2Proxy <- function(
 }
 
 #' Line
-#' 
+#'
 #' Add a line figure.
-#' 
+#'
 #' @inheritParams fig_point
-#' 
-#' @examples 
-#' g2(CO2, asp(conc, uptake, color = Plant)) %>% 
-#'  fig_line()
-#' 
-#' @export 
+#'
+#' @examples
+#' g2(CO2, asp(conc, uptake, color = Plant)) %>%
+#'   fig_line()
+#' @export
 fig_line <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   UseMethod("fig_line")
 }
 
 #' @method fig_line g2r
-#' @export 
+#' @export
 fig_line.g2r <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "line"
@@ -117,18 +115,18 @@ fig_line.g2r <- function(
 }
 
 #' @method fig_line g2Proxy
-#' @export 
+#' @export
 fig_line.g2Proxy <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "line"
@@ -136,39 +134,38 @@ fig_line.g2Proxy <- function(
 }
 
 #' Area
-#' 
+#'
 #' Add an area figure.
-#' 
+#'
 #' @inheritParams fig_point
-#' 
-#' @examples 
-#' g2(Orange, asp(age, circumference, color = Tree)) %>% 
-#'  fig_area(adjust("stack"))
-#' 
-#' @export 
+#'
+#' @examples
+#' g2(Orange, asp(age, circumference, color = Tree)) %>%
+#'   fig_area(adjust("stack"))
+#' @export
 fig_area <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   UseMethod("fig_area")
 }
 
 #' @method fig_area g2r
 #' @export
 fig_area.g2r <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "area"
@@ -178,16 +175,16 @@ fig_area.g2r <- function(
 #' @method fig_area g2Proxy
 #' @export
 fig_area.g2Proxy <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "area"
@@ -195,53 +192,52 @@ fig_area.g2Proxy <- function(
 }
 
 #' Interval
-#' 
+#'
 #' Add an interval figure.
-#' 
+#'
 #' @inheritParams fig_point
-#' 
+#'
 #' @examples
-#' g2(sleep, asp(ID, extra, color = group)) %>% 
-#'  fig_interval()
-#' 
+#' g2(sleep, asp(ID, extra, color = group)) %>%
+#'   fig_interval()
+#'
 #' df <- data.frame(
-#'  cat = letters[1:5],
-#'  value = c(0.15, .3, .65, .75, .9)
+#'   cat = letters[1:5],
+#'   value = c(0.15, .3, .65, .75, .9)
 #' )
-#' 
-#' g2(df, asp(cat, value, color = cat, shape = "funnel")) %>% 
-#'  fig_interval(adjust("symmetric")) %>% 
-#'  coord_type("rect") %>% 
-#'  coord_transpose() %>% 
-#'  coord_scale(-1, 1) %>% 
-#'  axis_hide()
-#' 
+#'
+#' g2(df, asp(cat, value, color = cat, shape = "funnel")) %>%
+#'   fig_interval(adjust("symmetric")) %>%
+#'   coord_type("rect") %>%
+#'   coord_transpose() %>%
+#'   coord_scale(-1, 1) %>%
+#'   axis_hide()
 #' @name figures
-#' 
-#' @export 
+#'
+#' @export
 fig_interval <- function(
-  g, 
+  g,
   ...,
-  sync = TRUE, 
-  data = NULL, 
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   UseMethod("fig_interval")
 }
 
 #' @method fig_interval g2r
-#' @export 
+#' @export
 fig_interval.g2r <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "interval"
@@ -249,18 +245,18 @@ fig_interval.g2r <- function(
 }
 
 #' @method fig_interval g2Proxy
-#' @export 
+#' @export
 fig_interval.g2Proxy <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "interval"
@@ -268,35 +264,35 @@ fig_interval.g2Proxy <- function(
 }
 
 #' Polygon
-#' 
+#'
 #' Add a polygon figure.
-#' 
+#'
 #' @inheritParams fig_point
-#' 
-#' @export 
+#'
+#' @export
 fig_polygon <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   UseMethod("fig_polygon")
 }
 
 #' @method fig_polygon g2r
-#' @export 
+#' @export
 fig_polygon.g2r <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "polygon"
@@ -304,18 +300,18 @@ fig_polygon.g2r <- function(
 }
 
 #' @method fig_polygon g2Proxy
-#' @export 
+#' @export
 fig_polygon.g2Proxy <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "polygon"
@@ -323,39 +319,39 @@ fig_polygon.g2Proxy <- function(
 }
 
 #' Edge
-#' 
+#'
 #' Add an edge figure.
-#' 
+#'
 #' @inheritParams fig_point
-#' 
-#' @export 
+#'
+#' @export
 fig_edge <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   UseMethod("fig_edge")
 }
 
 #' @method fig_edge g2r
-#' @export 
+#' @export
 fig_edge.g2r <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
-
-  if(is.null(data) && !is.null(g$x$graph))
+) {
+  if (is.null(data) && !is.null(g$x$graph)) {
     data <- g$x$data$edges
+  }
 
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "edge"
@@ -363,18 +359,18 @@ fig_edge.g2r <- function(
 }
 
 #' @method fig_edge g2Proxy
-#' @export 
+#' @export
 fig_edge.g2Proxy <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "edge"
@@ -382,35 +378,35 @@ fig_edge.g2Proxy <- function(
 }
 
 #' Schema
-#' 
+#'
 #' Add a schema figure.
-#' 
+#'
 #' @inheritParams fig_point
-#' 
-#' @export 
+#'
+#' @export
 fig_schema <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   UseMethod("fig_schema")
 }
 
 #' @method fig_schema g2r
-#' @export 
+#' @export
 fig_schema.g2r <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "schema"
@@ -418,18 +414,18 @@ fig_schema.g2r <- function(
 }
 
 #' @method fig_schema g2Proxy
-#' @export 
+#' @export
 fig_schema.g2Proxy <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "schema"
@@ -437,44 +433,43 @@ fig_schema.g2Proxy <- function(
 }
 
 #' Path
-#' 
+#'
 #' Add a path figure.
-#' 
+#'
 #' @inheritParams fig_point
 #'
-#' @examples 
+#' @examples
 #' df <- data.frame(
-#'  x = runif(100),
-#'  y = runif(100) 
+#'   x = runif(100),
+#'   y = runif(100)
 #' )
-#' 
-#' g2(df, asp(x, y)) %>% 
-#'  fig_path()
-#'  
-#' @export 
+#'
+#' g2(df, asp(x, y)) %>%
+#'   fig_path()
+#' @export
 fig_path <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   UseMethod("fig_path")
 }
 
 #' @method fig_path g2r
-#' @export 
+#' @export
 fig_path.g2r <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "path"
@@ -482,18 +477,18 @@ fig_path.g2r <- function(
 }
 
 #' @method fig_path g2Proxy
-#' @export 
+#' @export
 fig_path.g2Proxy <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "path"
@@ -501,35 +496,35 @@ fig_path.g2Proxy <- function(
 }
 
 #' Heatmap
-#' 
+#'
 #' Add a path figure.
-#' 
+#'
 #' @inheritParams fig_point
-#' 
-#' @export 
+#'
+#' @export
 fig_heatmap <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   UseMethod("fig_heatmap")
 }
 
 #' @method fig_heatmap g2r
-#' @export 
+#' @export
 fig_heatmap.g2r <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "heatmap"
@@ -537,18 +532,18 @@ fig_heatmap.g2r <- function(
 }
 
 #' @method fig_heatmap g2Proxy
-#' @export 
+#' @export
 fig_heatmap.g2Proxy <- function(
-  g, 
-  ..., 
-  sync = TRUE, 
-  data = NULL, 
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
   inherit_asp = TRUE
-){
+) {
   fig_primitive(
-    g, 
-    ..., 
-    data = data, 
+    g,
+    ...,
+    data = data,
     inherit_asp = inherit_asp,
     sync = sync,
     type = "heatmap"
@@ -556,32 +551,32 @@ fig_heatmap.g2Proxy <- function(
 }
 
 #' Primitive
-#' 
+#'
 #' Add a path figure.
-#' 
+#'
 #' @inheritParams fig_point
 #' @param asp Aspects to override those passed to `...`.
-#' 
+#'
 #' @keywords internal
 fig_primitive <- function(
-  g, 
-  ..., 
-  data = NULL, 
+  g,
+  ...,
+  data = NULL,
   inherit_asp = TRUE,
   sync = TRUE,
   type = c(
-    "point", 
-    "interval", 
-    "line", 
-    "schema", 
-    "edge", 
-    "area", 
+    "point",
+    "interval",
+    "line",
+    "schema",
+    "edge",
+    "area",
     "polygon",
     "heatmap",
     "path"
   ),
   asp = NULL
-){
+) {
   type <- match.arg(type)
 
   # adjust
@@ -597,8 +592,9 @@ fig_primitive <- function(
   conf <- get_config(...)
 
   # chart aspects
-  if(is.null(asp))
+  if (is.null(asp)) {
     asp <- get_combined_asp(g, ..., inherit_asp = inherit_asp)
+  }
 
   position <- select_asp_labels(asp, "x", "y")
   size <- select_asp_labels(asp, "size")
@@ -611,13 +607,13 @@ fig_primitive <- function(
 
   style <- rm_asp(...)
 
-  if(length(style_asp) && length(style)){
+  if (length(style_asp) && length(style)) {
     style_asp <- collapse_asp(style_asp)
     style <- list(style_asp, style)
-  } else if (length(style_asp) && !length(style)){
+  } else if (length(style_asp) && !length(style)) {
     style <- style_asp
   }
-  
+
   # store columns
   cols <- c(position, color, shape, size, tooltip, label)
   g$x$cols <- append(g$x$cols, cols)
@@ -631,9 +627,10 @@ fig_primitive <- function(
 
   # don't reorder those figures
   # either breaks it or there is no point
-  if(!type %in% NO_REORDER_TYPES && g$x$reorder)
+  if (!type %in% NO_REORDER_TYPES && g$x$reorder) {
     data <- order_data(data, unlist(position)[1], unlist(color)[1])
-  
+  }
+
   opts <- list(
     type = type,
     conf = conf,
@@ -649,7 +646,7 @@ fig_primitive <- function(
     style = style,
     animation = animation,
     states = states
-  ) %>% 
+  ) %>%
     drop_nulls()
 
   g$x$views <- append(g$x$views, list(opts))

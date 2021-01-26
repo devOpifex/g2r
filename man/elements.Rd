@@ -91,18 +91,17 @@ functions may be more convienient to use.
 }
 
 \examples{
-g2(iris, asp(Sepal.Width, Sepal.Length)) \%>\% 
- fig_point(
-   asp(color = Species, shape = "circle")
- ) \%>\% 
- motif(
-   brandColor = "orange",
-   backgroundColor = "black",
-   elementPoint(
-     shape = "circle",
-     stroke = "white",
-     fillOpacity = .7
-   )
- )
-
+g2(iris, asp(Sepal.Width, Sepal.Length)) \%>\%
+  fig_point(
+    asp(color = Species, shape = "circle")
+  ) \%>\%
+  motif(
+    brandColor = "orange",
+    backgroundColor = "black",
+    elementPoint(
+      shape = "circle",
+      stroke = "white",
+      fillOpacity = .7
+    )
+  )
 }

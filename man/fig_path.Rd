@@ -30,11 +30,10 @@ Add a path figure.
 }
 \examples{
 df <- data.frame(
- x = runif(100),
- y = runif(100) 
+  x = runif(100),
+  y = runif(100)
 )
 
-g2(df, asp(x, y)) \%>\% 
- fig_path()
- 
+g2(df, asp(x, y)) \%>\%
+  fig_path()
 }

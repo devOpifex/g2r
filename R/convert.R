@@ -1,31 +1,33 @@
 #' Convert to Tibble
-#' 
-#' Converts objects to objects g2r can work with, 
+#'
+#' Converts objects to objects g2r can work with,
 #' generally a `tibble::tibble`.
-#' 
+#'
 #' @param data An object to convert.
-#' 
+#'
 #' @details This is exposed so the user can understand
 #' what happens under the hood and which variables/columns
 #' can subsequently be used in figures with [asp()].
-#' 
+#'
 #' These methods are used in the [g2()] function to preprocess
 #' `data` objects.
-#' 
-#' @examples 
-#' \dontrun{to_g2r(AirPassengers)}
-#' 
+#'
+#' @examples
+#' \dontrun{
+#' to_g2r(AirPassengers)
+#' }
+#'
 #' @export
 to_g2r <- function(data = NULL) UseMethod("to_g2r")
 
 #' @export
-to_g2r.default <- function(data = NULL){
+to_g2r.default <- function(data = NULL) {
   as_tib(data)
 }
 
 #' @export
 #' @method to_g2r survfit
-to_g2r.survfit <- function(data = NULL){
+to_g2r.survfit <- function(data = NULL) {
   check_package("broom")
   tidied <- broom::tidy(data)
   tidied$n.censor.y <- ifelse(tidied$n.censor == 1, tidied$estimate, NA)
@@ -48,7 +50,7 @@ to_g2r.ts <- function(data = NULL) {
 #' @method to_g2r mts
 to_g2r.mts <- function(data = NULL) {
   check_package("zoo")
-  
+
   base <- tibble(
     x = time(data) %>% zoo::as.Date()
   )
@@ -56,20 +58,19 @@ to_g2r.mts <- function(data = NULL) {
   df <- as_tib(data)
 
   cbind.data.frame(base, df)
-
 }
 
 #' @export
 #' @method to_g2r sf
 to_g2r.sf <- function(data = NULL) {
   check_package("sf")
-  coords <- data %>% 
-    sf::st_coordinates() %>% 
-    as.data.frame() %>% 
+  coords <- data %>%
+    sf::st_coordinates() %>%
+    as.data.frame() %>%
     as_tib()
-  
+
   # treat other columns as character for color
-  coords[,!names(coords) %in% c("X", "Y")] <- apply(coords[,!names(coords) %in% c("X", "Y")], 2, as.character)
+  coords[, !names(coords) %in% c("X", "Y")] <- apply(coords[, !names(coords) %in% c("X", "Y")], 2, as.character)
   coords
 }
 
@@ -81,7 +82,7 @@ to_g2r.data.frame <- function(data = NULL) {
 
 #' @export
 #' @method to_g2r igraph
-to_g2r.igraph <- function(data = NULL){
+to_g2r.igraph <- function(data = NULL) {
   check_package("igraph")
 
   # nodes and edges as data frame
@@ -91,8 +92,9 @@ to_g2r.igraph <- function(data = NULL){
   # rename for alter transform default
   names(edges)[1:2] <- c("source", "target")
 
-  if(ncol(nodes) == 0)
+  if (ncol(nodes) == 0) {
     nodes <- data.frame(id = as.vector(igraph::V(data)))
+  }
 
   names(nodes)[1] <- "id"
 
@@ -101,7 +103,7 @@ to_g2r.igraph <- function(data = NULL){
 
 #' @export
 #' @method to_g2r matrix
-to_g2r.matrix <- function(data = NULL){
+to_g2r.matrix <- function(data = NULL) {
   as_tib(as.table(data))
 }
 
@@ -109,10 +111,10 @@ to_g2r.matrix <- function(data = NULL){
 #' @method to_g2r xts
 #' @importFrom tibble tibble
 #' @importFrom stats time
-to_g2r.xts <- function(data = NULL){
+to_g2r.xts <- function(data = NULL) {
   x <- tibble(x = time(data))
   values <- as.data.frame(data)
-  cbind.data.frame(x, values) %>% 
+  cbind.data.frame(x, values) %>%
     as_tib()
 }
 
@@ -124,7 +126,7 @@ to_g2r.forecast <- function(data = NULL) {
   lower <- to_g2r(data$lower)
   upper <- to_g2r(data$upper)
   fitted <- to_g2r(data$fitted)
-  
+
   names(mean)[2] <- "mean"
   names(fitted)[2] <- "fitted"
   lower <- clean_forecast_names(lower, "lower_")
@@ -136,10 +138,10 @@ to_g2r.forecast <- function(data = NULL) {
   merge(all, fitted, by = "x", all = TRUE)
 }
 
-clean_forecast_names <- function(mts, prefix = ""){
+clean_forecast_names <- function(mts, prefix = "") {
   nms <- names(mts)
-  
-  cleaned <- gsub("\\%", "", nms[2:length(nms)]) 
+
+  cleaned <- gsub("\\%", "", nms[2:length(nms)])
   cleaned <- paste0(prefix, cleaned)
 
   names(mts)[2:length(nms)] <- cleaned
@@ -147,48 +149,48 @@ clean_forecast_names <- function(mts, prefix = ""){
   mts
 }
 
-#' @export 
+#' @export
 #' @method to_g2r acf
-to_g2r.acf <- function(data = NULL){
+to_g2r.acf <- function(data = NULL) {
   check_package("broom")
   broom::tidy(data)
 }
 
-#' @export 
+#' @export
 #' @method to_g2r loess
 #' @importFrom stats predict
-to_g2r.loess <- function(data = NULL){
+to_g2r.loess <- function(data = NULL) {
   check_package("broom")
   augmented <- broom::augment(data)
   se <- unlist(predict(data, se = TRUE)[["se.fit"]])
   augmented[[".se"]] <- se
   augmented[[".lower"]] <- augmented[[".fitted"]] - augmented[[".se"]]
   augmented[[".upper"]] <- augmented[[".fitted"]] + augmented[[".se"]]
-  augmented[order(unname(unlist(data$x[, 1]))),]
+  augmented[order(unname(unlist(data$x[, 1]))), ]
 }
 
-#' @export 
+#' @export
 #' @method to_g2r lm
 #' @importFrom stats predict
-to_g2r.lm <- function(data = NULL){
+to_g2r.lm <- function(data = NULL) {
   check_package("broom")
   augmented <- broom::augment(data)
   se <- unlist(predict(data, se = TRUE)[["se.fit"]])
   augmented[[".se"]] <- se
   augmented[[".lower"]] <- augmented[[".fitted"]] - augmented[[".se"]]
   augmented[[".upper"]] <- augmented[[".fitted"]] + augmented[[".se"]]
-  augmented[order(augmented[[names(data$model[2])]]),]
+  augmented[order(augmented[[names(data$model[2])]]), ]
 }
 
-#' @export 
+#' @export
 #' @method to_g2r stl
 #' @importFrom stats time
 #' @importFrom tibble tibble
-to_g2r.stl <- function(data = NULL){
+to_g2r.stl <- function(data = NULL) {
   check_package("broom")
 
   ts <- data[["time.series"]]
-  original <- ts %*% c(1,1,1)
+  original <- ts %*% c(1, 1, 1)
 
   df <- to_g2r(ts)
 
@@ -207,15 +209,15 @@ to_g2r.stl <- function(data = NULL){
   )
 }
 
-#' @export 
+#' @export
 #' @method to_g2r prcomp
-to_g2r.prcomp <- function(data, ...){
-  eig <- data$sdev ^ 2 
+to_g2r.prcomp <- function(data, ...) {
+  eig <- data$sdev^2
   tibble(dim = factor(1:length(eig)), eig = eig)
 }
 
-#' @export 
+#' @export
 #' @method to_g2r conf_mat
-to_g2r.conf_mat <- function(data, ...){
+to_g2r.conf_mat <- function(data, ...) {
   as.data.frame(data[["table"]])
 }

@@ -22,11 +22,10 @@ Add a slider to an R markdown document.
 }
 \examples{
 input_slider(
- "mySlider",
- "The label",
- value = 5,
- min = 0,
- max = 10
+  "mySlider",
+  "The label",
+  value = 5,
+  min = 0,
+  max = 10
 )
-
 }

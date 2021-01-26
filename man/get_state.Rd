@@ -15,8 +15,8 @@ Get states from three dot construct
 }
 \examples{
 \dontrun{
-foo <- function(...){
- get_state(...)
+foo <- function(...) {
+  get_state(...)
 }
 
 foo(active(stroke = "red"))

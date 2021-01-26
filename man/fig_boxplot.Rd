@@ -32,23 +32,22 @@ Add a boxplot figure to the chart.
 # wide to long
 # tidyr::pivot_longer(iris, -Species)
 df <- reshape(
- iris, 
- varying = names(iris)[1:4], 
- direction = "long", 
- v.names = "value", 
- idvar = "Species", 
- new.row.names = 1:600,
- timevar = "var", 
- times = names(iris)[1:4]
+  iris,
+  varying = names(iris)[1:4],
+  direction = "long",
+  v.names = "value",
+  idvar = "Species",
+  new.row.names = 1:600,
+  timevar = "var",
+  times = names(iris)[1:4]
 )
 
-g2(df, asp(var, value, color = Species)) \%>\% 
- fig_boxplot(adjust("dodge"))
+g2(df, asp(var, value, color = Species)) \%>\%
+  fig_boxplot(adjust("dodge"))
 
-g2(iris, asp(y = Sepal.Length, color = Species)) \%>\% 
- fig_boxplot(adjust("dodge"))
+g2(iris, asp(y = Sepal.Length, color = Species)) \%>\%
+  fig_boxplot(adjust("dodge"))
 
-g2(iris, asp(x = Species, y = Sepal.Length, color = Species)) \%>\% 
- fig_boxplot(adjust("dodge"))
-
+g2(iris, asp(x = Species, y = Sepal.Length, color = Species)) \%>\%
+  fig_boxplot(adjust("dodge"))
 }

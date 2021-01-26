@@ -78,17 +78,16 @@ data(volcano)
 
 x <- 1:nrow(volcano)
 y <- 1:ncol(volcano)
-df <- expand.grid(x = x,y = y)
-df$z = apply(df, 1, function(x){ 
- volcano[x[1],x[2]]
+df <- expand.grid(x = x, y = y)
+df$z <- apply(df, 1, function(x) {
+  volcano[x[1], x[2]]
 })
 
-g <- g2(df, asp(x, y, z = z)) 
+g <- g2(df, asp(x, y, z = z))
 
 fig_contour(g)
 
 fig_contour(g, colors = c("red", "blue"))
 
 fig_contour(g, type = "filled", colors = c("darkblue", "white"))
-
 }

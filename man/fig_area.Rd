@@ -29,7 +29,6 @@ draw the figure.}
 Add an area figure.
 }
 \examples{
-g2(Orange, asp(age, circumference, color = Tree)) \%>\% 
- fig_area(adjust("stack"))
-
+g2(Orange, asp(age, circumference, color = Tree)) \%>\%
+  fig_area(adjust("stack"))
 }

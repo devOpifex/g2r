@@ -131,10 +131,9 @@ and grid of the plot.
 
 \examples{
 g <- g2(cars, asp(speed, dist)) \%>\%
- fig_point()
+  fig_point()
 
 g \%>\% gauge(speed, min = 0)
 g \%>\% gauge_y_log(title = "Log")
 g \%>\% gauge(dist, tickCount = 10)
-
 }

@@ -51,10 +51,9 @@ Add a bin figure to the chart.
 Requires the \code{x} and \code{y} aspects.
 }
 \examples{
-g2(cars, asp(speed, dist)) \%>\% 
- fig_bin(size_count = FALSE)
+g2(cars, asp(speed, dist)) \%>\%
+  fig_bin(size_count = FALSE)
 
-g2(cars, asp(speed, dist)) \%>\% 
- fig_bin(type = "hexagon")
-
+g2(cars, asp(speed, dist)) \%>\%
+  fig_bin(type = "hexagon")
 }

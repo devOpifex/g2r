@@ -51,16 +51,38 @@ If no \code{color} argument is passed the candles are colored
 according to their trend (open > close = "up").
 }
 \examples{
-stock <- structure(list(date = structure(c(18626, 18627, 18631, 18632), class = "Date"), 
- open = c(39.52, 39.330002, 40.169998, 41.5), high = c(39.73, 
- 40, 41.560001, 42.040001), low = c(39.200001, 39.029999, 
- 39.939999, 40.77), close = c(39.34, 39.880001, 41.400002, 
- 41.16)), row.names = c(NA, -4L), class = c("tbl_df", "tbl", 
- "data.frame")
+stock <- structure(
+  list(
+    date = structure(c(18626, 18627, 18631, 18632), class = "Date"),
+    open = c(39.52, 39.330002, 40.169998, 41.5),
+    high = c(
+      39.73,
+      40,
+      41.560001,
+      42.040001
+    ),
+    low = c(
+      39.200001,
+      39.029999,
+      39.939999,
+      40.77
+    ),
+    close = c(
+      39.34,
+      39.880001,
+      41.400002,
+      41.16
+    )
+  ),
+  row.names = c(NA, -4L),
+  class = c(
+    "tbl_df",
+    "tbl",
+    "data.frame"
+  )
 )
 
-g2(stock, asp(date, open = open, close = close, high = high, low = low)) \%>\% 
- fig_candle() \%>\% 
- gauge_x_time_cat()
-
+g2(stock, asp(date, open = open, close = close, high = high, low = low)) \%>\%
+  fig_candle() \%>\%
+  gauge_x_time_cat()
 }

@@ -20,8 +20,8 @@ aspects.
 \examples{
 \dontrun{
 combine_asp(
- asp(dist),
- asp(y = speed)
+  asp(dist),
+  asp(y = speed)
 )
 }
 

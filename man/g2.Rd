@@ -42,7 +42,6 @@ not want the data to be reordered.}
 Initialise a chart.
 }
 \examples{
-g2(cars) \%>\% 
- fig_point(asp(speed, dist))
-
+g2(cars) \%>\%
+  fig_point(asp(speed, dist))
 }

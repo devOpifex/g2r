@@ -19,9 +19,8 @@ Customise the styles of figures given states
 }
 \examples{
 g2(iris, asp(Sepal.Width, Sepal.Length)) \%>\%
- fig_point(
-   selected(fill = "red")
- ) \%>\% 
- interplay("element", "selected")
-
+  fig_point(
+    selected(fill = "red")
+  ) \%>\%
+  interplay("element", "selected")
 }

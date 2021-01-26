@@ -33,24 +33,23 @@ Configure a figure.
 }
 \examples{
 mtcars \%>\%
- g2(asp(qsec)) \%>\% 
-   fig_point(
-     asp(y = mpg),
-     config(
-       region = list(
-         start = list(x = 0, y = 0),
-         end = list( x = 0.5, y = 1 )
-       )
-     )
-   ) \%>\% 
-   fig_point(
-     asp(y = wt),
-     config(
-       region = list(
-         start = list(x = 0.5, y = 0),
-         end = list( x = 1, y = 1 )
-     )
-   )
- ) 
-
+  g2(asp(qsec)) \%>\%
+  fig_point(
+    asp(y = mpg),
+    config(
+      region = list(
+        start = list(x = 0, y = 0),
+        end = list(x = 0.5, y = 1)
+      )
+    )
+  ) \%>\%
+  fig_point(
+    asp(y = wt),
+    config(
+      region = list(
+        start = list(x = 0.5, y = 0),
+        end = list(x = 1, y = 1)
+      )
+    )
+  )
 }

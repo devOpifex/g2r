@@ -1,62 +1,60 @@
 #' Tooltip
-#' 
+#'
 #' Configure the tooltip applied to the entire chart.
 #' See [gauge_tooltip()] to customise a specific tooltip
 #' (the tooltip of a specific figure).
-#' 
+#'
 #' @inheritParams fig_point
 #' @param ... Options to pass to the axis, pass `FALSE`
-#' to hide the axis. Visit the 
+#' to hide the axis. Visit the
 #' [official documentation](https://g2.antv.vision/en/docs/api/general/tooltip)
 #' for the full list of options.
-#' 
-#' @examples 
-#' g2(mtcars, asp(drat, qsec, color = hp)) %>% 
-#'  fig_point() %>% 
-#'  tooltip(
-#'    showCrosshairs = TRUE,
-#'    crosshairs = list(type = "xy")
-#' )
-#' 
+#'
+#' @examples
+#' g2(mtcars, asp(drat, qsec, color = hp)) %>%
+#'   fig_point() %>%
+#'   tooltip(
+#'     showCrosshairs = TRUE,
+#'     crosshairs = list(type = "xy")
+#'   )
 #' @name tooltip
-#' @export 
+#' @export
 tooltip <- function(g, ...) UseMethod("tooltip")
 
 #' @method tooltip g2r
-#' @export 
-tooltip.g2r <- function(g, ...){
+#' @export
+tooltip.g2r <- function(g, ...) {
   g$x$tooltip <- list(...)
   g
 }
 
 #' Tooltip Template
-#'  
+#'
 #' Convenience function to create tooltip templates
 #' (`itemTp` argument in [tooltip()] function).
-#' 
+#'
 #' @param ... One or more [tpl_item()].
 #' @param name,value Name and value of the tooltip item.
 #' @param marker Whether to include the color marker (dot)
 #' in the tooltip.
-#' 
+#'
 #' @details The arguments `title`, `name`, and `value` accept
-#' either a bare column name from the data to use as 
-#' `{mustache}`/`{handlebar}` in the template. If a string is 
+#' either a bare column name from the data to use as
+#' `{mustache}`/`{handlebar}` in the template. If a string is
 #' passed then it is treated as constant.
-#' 
-#' @examples 
+#'
+#' @examples
 #' template <- tpl(
-#'  tpl_item(
-#'    island,
-#'    bill_depth_mm
-#'  )
+#'   tpl_item(
+#'     island,
+#'     bill_depth_mm
+#'   )
 #' )
-#' 
 #' @importFrom rlang enquo quo_is_symbolic as_label
-#' 
+#'
 #' @name template
 #' @export
-tpl <- function(...){
+tpl <- function(...) {
   check_package("htmltools")
 
   ul <- htmltools::tags$ul(
@@ -65,38 +63,39 @@ tpl <- function(...){
   )
 
   as.character(ul)
-  
 }
 
 #' @rdname template
-#' @export 
-tpl_item <- function(name, value, marker = TRUE){
+#' @export
+tpl_item <- function(name, value, marker = TRUE) {
   check_package("htmltools")
 
-  if(missing(name))
+  if (missing(name)) {
     stop("Missing `name`", call. = FALSE)
+  }
 
-  if(missing(value))
+  if (missing(value)) {
     stop("Missing `value`", call. = FALSE)
+  }
 
   name_enquo <- enquo(name)
-  if(quo_is_symbolic(name_enquo)){
+  if (quo_is_symbolic(name_enquo)) {
     name <- as_label(name_enquo)
     name <- sprintf("{%s}", name)
   }
 
   value_enquo <- enquo(value)
-  if(quo_is_symbolic(value_enquo)){
+  if (quo_is_symbolic(value_enquo)) {
     value <- as_label(value_enquo)
     value <- sprintf("{%s}", value)
   }
 
-  li <- htmltools::tags$li(class="g2-tooltip-list-item")
+  li <- htmltools::tags$li(class = "g2-tooltip-list-item")
 
-  if(marker){
+  if (marker) {
     marker <- htmltools::span(
-      style = 'background-color:{color};',
-      class = 'g2-tooltip-marker'
+      style = "background-color:{color};",
+      class = "g2-tooltip-marker"
     )
     li <- htmltools::tagAppendChild(li, marker)
   }
@@ -120,5 +119,4 @@ tpl_item <- function(name, value, marker = TRUE){
   )
 
   li
-
 }

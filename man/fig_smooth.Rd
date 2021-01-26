@@ -50,12 +50,11 @@ the online documentation to see how to use your own model
 for more control.
 }
 \examples{
-g2(cars, asp(speed, dist)) \%>\% 
- fig_point() \%>\% 
- fig_smooth(method = "gaussian")
+g2(cars, asp(speed, dist)) \%>\%
+  fig_point() \%>\%
+  fig_smooth(method = "gaussian")
 
-g2(iris, asp(Sepal.Width, Sepal.Length, color = Species)) \%>\% 
- fig_point() \%>\% 
- fig_smooth()
-
+g2(iris, asp(Sepal.Width, Sepal.Length, color = Species)) \%>\%
+  fig_point() \%>\%
+  fig_smooth()
 }

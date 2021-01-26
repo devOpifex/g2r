@@ -38,8 +38,8 @@ Customise aspects of the chart.
 }
 \examples{
 # base plot
-g <- g2(cars, asp(speed, dist)) \%>\% 
- fig_point(asp(color = speed)) 
+g <- g2(cars, asp(speed, dist)) \%>\%
+  fig_point(asp(color = speed))
 
 # color with vector
 g \%>\% gauge_color(c("red", "white", "blue"))
@@ -53,7 +53,6 @@ cb <- "function(speed){
 }"
 
 g \%>\% gauge_color(htmlwidgets::JS(cb))
-
 }
 \seealso{
 \link{gauge} to gauge aspects of the grid and axis.

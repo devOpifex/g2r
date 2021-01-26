@@ -1,9 +1,9 @@
 test_that("Coordinates", {
-  g <- g2(cars, asp(dist, speed)) %>% 
-    fig_point() %>% 
-    coord_type("polar") %>% 
-    coord_rotate() %>% 
-    coord_reflect() %>% 
+  g <- g2(cars, asp(dist, speed)) %>%
+    fig_point() %>%
+    coord_type("polar") %>%
+    coord_rotate() %>%
+    coord_reflect() %>%
     coord_transpose()
 
   expect_equal(g$x$coord$type, "polar")

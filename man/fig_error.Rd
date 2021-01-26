@@ -45,20 +45,19 @@ aspect.
 }
 \examples{
 df <- data.frame(
- x = as.factor(c(1:10, 1:10)),
- y = runif(20, 10, 15),
- grp = rep(c("A", "B"), each = 2)
+  x = as.factor(c(1:10, 1:10)),
+  y = runif(20, 10, 15),
+  grp = rep(c("A", "B"), each = 2)
 )
 
 df$ymin <- df$y - runif(20, 1, 2)
 df$ymax <- df$y + runif(20, 1, 2)
 
-g2(df, asp(x = x, color = grp)) \%>\% 
- fig_error(asp(ymin = ymin, ymax = ymax), adjust("dodge")) \%>\% 
- fig_interval(
-   asp(y = y), 
-   adjust("dodge"),
-   fillOpacity = .4
- )
-
+g2(df, asp(x = x, color = grp)) \%>\%
+  fig_error(asp(ymin = ymin, ymax = ymax), adjust("dodge")) \%>\%
+  fig_interval(
+    asp(y = y),
+    adjust("dodge"),
+    fillOpacity = .4
+  )
 }

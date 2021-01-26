@@ -33,12 +33,11 @@ Requires the \code{x}, \code{y}, and \code{color} arguments.
 }
 \examples{
 df <- data.frame(
- x = runif(25, 1, 500),
- y = runif(25, 1, 500),
- value = runif(25, 1, 500)
+  x = runif(25, 1, 500),
+  y = runif(25, 1, 500),
+  value = runif(25, 1, 500)
 )
 
-g2(df, asp(x, y, color = value)) \%>\% 
- fig_voronoi()
-
+g2(df, asp(x, y, color = value)) \%>\%
+  fig_voronoi()
 }

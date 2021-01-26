@@ -43,12 +43,11 @@ Requires the \code{ymin} and \code{ymax} aspects.
 }
 \examples{
 df <- data.frame(
- x = 1:100,
- ymin = runif(100, 1, 5),
- ymax = runif(100, 6, 13)
+  x = 1:100,
+  ymin = runif(100, 1, 5),
+  ymax = runif(100, 6, 13)
 )
 
-g2(df, asp(x, ymin = ymin, ymax = ymax)) \%>\% 
- fig_ribbon()
-
+g2(df, asp(x, ymin = ymin, ymax = ymax)) \%>\%
+  fig_ribbon()
 }

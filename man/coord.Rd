@@ -50,8 +50,7 @@ axes.
 }
 
 \examples{
-g2(cars, asp(speed, dist, color = dist)) \%>\% 
-  fig_point() \%>\% 
-  coord_type("helix") 
-
+g2(cars, asp(speed, dist, color = dist)) \%>\%
+  fig_point() \%>\%
+  coord_type("helix")
 }

@@ -21,11 +21,10 @@ See \code{\link[=gauge_tooltip]{gauge_tooltip()}} to customise a specific toolti
 (the tooltip of a specific figure).
 }
 \examples{
-g2(mtcars, asp(drat, qsec, color = hp)) \%>\% 
- fig_point() \%>\% 
- tooltip(
-   showCrosshairs = TRUE,
-   crosshairs = list(type = "xy")
-)
-
+g2(mtcars, asp(drat, qsec, color = hp)) \%>\%
+  fig_point() \%>\%
+  tooltip(
+    showCrosshairs = TRUE,
+    crosshairs = list(type = "xy")
+  )
 }

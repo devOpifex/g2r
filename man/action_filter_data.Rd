@@ -26,23 +26,22 @@ will create the following filter statement: \code{speed > inputValue}}
 Filter data.
 }
 \examples{
-# works in Rmarkdown 
+# works in Rmarkdown
 input_slider(
- "yFilter", 
- "Filter Y >", 
- value = 50, 
- min = 40, 
- max = 70, 
- step = 5
+  "yFilter",
+  "Filter Y >",
+  value = 50,
+  min = 40,
+  max = 70,
+  step = 5
 )
 
-g2(cars, asp(speed, dist)) \%>\% 
- fig_point() \%>\% 
- fig_smooth() \%>\% 
- action_filter_data(
-   "yFilter",
-   dist,
-   operator = ">"
- )
-
+g2(cars, asp(speed, dist)) \%>\%
+  fig_point() \%>\%
+  fig_smooth() \%>\%
+  action_filter_data(
+    "yFilter",
+    dist,
+    operator = ">"
+  )
 }

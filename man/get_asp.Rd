@@ -14,8 +14,8 @@ Get aspects from three dot construct
 }
 \examples{
 \dontrun{
-foo <- function(...){
- get_asp(...)
+foo <- function(...) {
+  get_asp(...)
 }
 
 foo(asp(speed))

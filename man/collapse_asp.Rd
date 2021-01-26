@@ -17,7 +17,7 @@ of \code{x*y} everywhere.
 \examples{
 \dontrun{
 collapse_asp(c("x", "y"))
-} 
+}
 
 }
 \keyword{internal}

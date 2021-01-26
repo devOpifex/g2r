@@ -4,10 +4,7 @@
 \alias{template}
 \alias{tpl}
 \alias{tpl_item}
-\title{Tooltip Template
-
-Convenience function to create tooltip templates
-(\code{itemTp} argument in \code{\link[=tooltip]{tooltip()}} function).}
+\title{Tooltip Template}
 \usage{
 tpl(...)
 
@@ -22,8 +19,6 @@ tpl_item(name, value, marker = TRUE)
 in the tooltip.}
 }
 \description{
-Tooltip Template
-
 Convenience function to create tooltip templates
 (\code{itemTp} argument in \code{\link[=tooltip]{tooltip()}} function).
 }
@@ -35,10 +30,9 @@ passed then it is treated as constant.
 }
 \examples{
 template <- tpl(
- tpl_item(
-   island,
-   bill_depth_mm
- )
+  tpl_item(
+    island,
+    bill_depth_mm
+  )
 )
-
 }

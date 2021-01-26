@@ -30,12 +30,11 @@ Valid values for the \code{type} argument.
 
 \examples{
 df <- data.frame(
- x = c(letters, letters),
- y = runif(52),
- grp = rep(c("A", "Z"), each = 2)
+  x = c(letters, letters),
+  y = runif(52),
+  grp = rep(c("A", "Z"), each = 2)
 )
 
-g2(df, asp(x, y, color = grp)) \%>\% 
- fig_interval(adjust("stack"))
-
+g2(df, asp(x, y, color = grp)) \%>\%
+  fig_interval(adjust("stack"))
 }

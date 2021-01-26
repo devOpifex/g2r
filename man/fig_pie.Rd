@@ -30,11 +30,10 @@ Add a pie figure to the chart.
 }
 \examples{
 df <- data.frame(
- label = letters[1:5],
- value = runif(5)
+  label = letters[1:5],
+  value = runif(5)
 )
 
-g2(df, asp(y = value, color = label)) \%>\% 
- fig_pie()
-
+g2(df, asp(y = value, color = label)) \%>\%
+  fig_pie()
 }

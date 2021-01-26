@@ -1,12 +1,12 @@
 test_that("Gauge error", {
-  g <- g2(cars, asp(speed, dist)) %>% 
+  g <- g2(cars, asp(speed, dist)) %>%
     fig_point(asp(color = dist))
 
   expect_error(gauge_interplay(g))
 })
 
 test_that("Gauge color", {
-  g <- g2(cars, asp(speed, dist)) %>% 
+  g <- g2(cars, asp(speed, dist)) %>%
     fig_point(asp(color = dist))
 
   # size not defined, nothing happens
@@ -19,7 +19,7 @@ test_that("Gauge color", {
 })
 
 test_that("Gauge size", {
-  g <- g2(cars, asp(speed, dist)) %>% 
+  g <- g2(cars, asp(speed, dist)) %>%
     fig_point(asp(size = dist))
 
   cb <- "function(val){
@@ -34,7 +34,7 @@ test_that("Gauge size", {
 })
 
 test_that("Gauge shape", {
-  g <- g2(cars, asp(speed, dist)) %>% 
+  g <- g2(cars, asp(speed, dist)) %>%
     fig_point(asp(shape = dist))
 
   expect_length(g$x$views[[1]]$shape, 1)
@@ -51,7 +51,7 @@ test_that("Gauge shape", {
 })
 
 test_that("Gauge label", {
-  g <- g2(cars, asp(speed, dist)) %>% 
+  g <- g2(cars, asp(speed, dist)) %>%
     fig_point(asp(label = dist))
 
   expect_length(g$x$views[[1]]$label, 1)
@@ -61,7 +61,7 @@ test_that("Gauge label", {
 })
 
 test_that("Gauge style", {
-  g <- g2(cars, asp(speed, dist)) %>% 
+  g <- g2(cars, asp(speed, dist)) %>%
     fig_point(asp(style = dist))
 
   expect_length(g$x$views[[1]]$style, 1)
@@ -78,7 +78,7 @@ test_that("Gauge style", {
 })
 
 test_that("Gauge interplay", {
-  g <- g2(cars, asp(speed, dist)) %>% 
+  g <- g2(cars, asp(speed, dist)) %>%
     fig_point(asp(style = dist, interplay = "brush"))
 
   inter <- gauge_interplay(g, FALSE)

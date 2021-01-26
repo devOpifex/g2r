@@ -14,8 +14,8 @@ Get any \code{\link[=adjust]{adjust()}} from the three dot construct.
 }
 \examples{
 \dontrun{
-foo <- function(...){
- get_adjust(...)
+foo <- function(...) {
+  get_adjust(...)
 }
 
 foo(1)

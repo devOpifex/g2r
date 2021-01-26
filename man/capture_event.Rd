@@ -29,7 +29,6 @@ sets a shiny input \verb{<chartId>_<eventName>} with the event data.
 }
 \examples{
 g2(iris, asp(Sepal.Width, Sepal.Length)) \%>\%
- fig_point() \%>\% 
- capture_event("point:click")
-
+  fig_point() \%>\%
+  capture_event("point:click")
 }

@@ -22,6 +22,8 @@ These methods are used in the \code{\link[=g2]{g2()}} function to preprocess
 \code{data} objects.
 }
 \examples{
-\dontrun{to_g2r(AirPassengers)}
+\dontrun{
+to_g2r(AirPassengers)
+}
 
 }

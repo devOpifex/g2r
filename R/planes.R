@@ -1,7 +1,7 @@
 #' Planes
-#' 
+#'
 #' Split the chart into planes according to variables.
-#' 
+#'
 #' @inheritParams fig_point
 #' @param asp Aspects that define split, these must be defined
 #' as a formula, e.g.: ~x+y.
@@ -9,17 +9,16 @@
 #' @param type Type of planes to use.
 #' @param sync Whether to sync the aspects used for the planes
 #' with others used elsewhere, similar to that of [fig_point()].
-#' 
-#' @examples 
-#' g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>% 
-#'  fig_point() %>% 
-#'  planes(~Species, type = "tree")
-#' 
+#'
+#' @examples
+#' g2(iris, asp(Sepal.Length, Sepal.Width, color = Species)) %>%
+#'   fig_point() %>%
+#'   planes(~Species, type = "tree")
 #' @importFrom rlang enquos as_label
 #' @importFrom purrr map
 #' @importFrom stats terms
-#' 
-#' @export 
+#'
+#' @export
 planes <- function(
   g,
   asp,
@@ -33,12 +32,12 @@ planes <- function(
     "mirror"
   ),
   sync = TRUE
-){
+) {
   UseMethod("planes")
 }
 
 #' @method planes g2r
-#' @export 
+#' @export
 planes.g2r <- function(
   g,
   asp,
@@ -52,27 +51,30 @@ planes.g2r <- function(
     "mirror"
   ),
   sync = TRUE
-){
-  if(missing(asp))
+) {
+  if (missing(asp)) {
     stop("Missing `asp`", call. = FALSE)
+  }
 
-  if(!inherits(asp, "formula"))
+  if (!inherits(asp, "formula")) {
     stop("Must pass `asp` as formula, e.g.: ~x+y")
-  
-  if(is.null(g$x$data))
+  }
+
+  if (is.null(g$x$data)) {
     stop("Planes requires data to be passed to `g2`", call. = FALSE)
+  }
 
   type <- match.arg(type)
   asp <- parse_form(asp)
-  
-  for(i in 1:length(asp)){
+
+  for (i in 1:length(asp)) {
     g <- sync(g, asp[i], sync, if_true = "mainGroupPlanes")
   }
 
   g$x$cols <- c(g$x$cols, asp)
 
   g$x$facet <- list(
-    type = type, 
+    type = type,
     opts = list(
       fields = as.list(asp),
       ...
@@ -83,16 +85,16 @@ planes.g2r <- function(
 }
 
 #' Parse Planes Formula
-#' 
+#'
 #' @param frm Formula to parse.
-#' 
+#'
 #' @return A vector of variables used in the formula.
-#' 
+#'
 #' @keywords internal
 parse_form <- function(frm) {
   vars <- as.list(attr(terms(frm), "variables"))[-1]
 
-  vars %>% 
-    map(as_label) %>% 
+  vars %>%
+    map(as_label) %>%
     unlist()
 }

@@ -23,22 +23,21 @@ Select a dataset with an \code{\link[=input_select]{input_select()}}.
 \examples{
 # works in Rmarkdown
 input_select(
- "selector",
- "Select a dataset",
- c("Cars", "More Cars")
+  "selector",
+  "Select a dataset",
+  c("Cars", "More Cars")
 )
 
 cars1 <- cars
 cars2 <- cars + c(1, -4)
 
-g2(cars, asp(dist, speed)) \%>\% 
- fig_point() \%>\% 
- action_select_data(
-   "selector",
-   datasets = list(
-     "Cars" = cars1,
-     "More Cars" = cars2
-   )
- )
-
+g2(cars, asp(dist, speed)) \%>\%
+  fig_point() \%>\%
+  action_select_data(
+    "selector",
+    datasets = list(
+      "Cars" = cars1,
+      "More Cars" = cars2
+    )
+  )
 }

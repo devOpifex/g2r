@@ -24,27 +24,25 @@ library(shiny)
 dataset <- data.frame(x = 1:100, y = runif(100, 1, 100))
 
 ui <- fluidPage(
- g2Output("plot"),
- actionButton("add", "Add figure")
+  g2Output("plot"),
+  actionButton("add", "Add figure")
 )
 
-server <- function(input, output, session){
+server <- function(input, output, session) {
+  output$plot <- renderG2({
+    g2(dataset, asp(x, y)) \%>\%
+      fig_point()
+  })
 
- output$plot <- renderG2({
-   g2(dataset, asp(x, y)) \%>\% 
-     fig_point()
- })
-
- observeEvent(input$add, {
-   df <- data.frame(x = 1:100, y = runif(100, 1, 100))
-   g2_proxy("plot", data = df) \%>\% 
-     fig_point(asp(x, y)) \%>\% 
-     render()
-   })
-
+  observeEvent(input$add, {
+    df <- data.frame(x = 1:100, y = runif(100, 1, 100))
+    g2_proxy("plot", data = df) \%>\%
+      fig_point(asp(x, y)) \%>\%
+      render()
+  })
 }
 
-if(interactive())
- shinyApp(ui, server)
-
+if (interactive()) {
+  shinyApp(ui, server)
+}
 }

@@ -65,21 +65,21 @@ Add a point figure.
 df <- head(cars, 5)
 
 g2(cars, asp(speed, dist)) \%>\%
- fig_point() \%>\% 
- info_text(
-   position = c(20, 35), content = "Look here!"
- ) \%>\% 
- info_text(
-   asp(speed, dist),
-   content = "Using aspects",
-   data = df
- )
+  fig_point() \%>\%
+  info_text(
+    position = c(20, 35),
+    content = "Look here!"
+  ) \%>\%
+  info_text(
+    asp(speed, dist),
+    content = "Using aspects",
+    data = df
+  )
 
 g2(cars, asp(speed, dist)) \%>\%
- fig_point() \%>\% 
- info_vline(asp(x = 20)) \%>\% 
- info_hline(asp(y = 20))
-
+  fig_point() \%>\%
+  info_vline(asp(x = 20)) \%>\%
+  info_hline(asp(y = 20))
 }
 \seealso{
 \href{https://antv-g2.gitee.io/en/docs/api/general/annotation}{Official annotation documentation}

@@ -20,8 +20,7 @@ Toggle the visibily of a chart.
 # works in Rmarkdown
 input_button("toggle", "Show/hide chart")
 
-g2(mtcars, asp(qsec, mpg)) \%>\% 
- fig_point() \%>\% 
- action_toggle_visibility("toggle")
-
+g2(mtcars, asp(qsec, mpg)) \%>\%
+  fig_point() \%>\%
+  action_toggle_visibility("toggle")
 }

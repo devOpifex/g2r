@@ -11,12 +11,14 @@ Helper function to build animations.
 # create animation
 anim <- Animation$
   new()$
-  appear(duration = 2000, delay = 500)
+  appear(
+  duration = 2000,
+  delay = 500
+)
 
-iris \%>\% 
-  g2(asp(Sepal.Length, Sepal.Width, color = Species)) \%>\% 
+iris \%>\%
+  g2(asp(Sepal.Length, Sepal.Width, color = Species)) \%>\%
   fig_point(anim)
-
 }
 \section{Methods}{
 \subsection{Public methods}{

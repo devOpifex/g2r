@@ -29,10 +29,9 @@ draw the figure.}
 Add a point figure.
 }
 \examples{
-g2(cars) \%>\% 
- fig_point(asp(speed, dist))
+g2(cars) \%>\%
+  fig_point(asp(speed, dist))
 
-g2(mtcars, asp(mpg, disp, size = qsec)) \%>\% 
- fig_point(asp(color = "red", shape = "square"))
-
+g2(mtcars, asp(mpg, disp, size = qsec)) \%>\%
+  fig_point(asp(color = "red", shape = "square"))
 }

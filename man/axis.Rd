@@ -59,8 +59,8 @@ Customise the legend.
 }
 
 \examples{
-g <- g2(cars, asp(speed, dist)) \%>\% 
- fig_point()
+g <- g2(cars, asp(speed, dist)) \%>\%
+  fig_point()
 
 # hide axis
 g \%>\% axis_x(FALSE)
@@ -70,11 +70,9 @@ g \%>\% axis_asps("speed", FALSE)
 
 # change position
 g \%>\% axis_x(position = "top")
-
-g <- g2(mtcars, asp(mpg, qsec, color = gear)) \%>\% 
- fig_point()
+g <- g2(mtcars, asp(mpg, qsec, color = gear)) \%>\%
+  fig_point()
 
 g \%>\% legend_color(position = "top")
 g \%>\% legend_color(FALSE)
-
 }

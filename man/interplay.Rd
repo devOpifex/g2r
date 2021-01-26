@@ -27,46 +27,45 @@ See \code{\link[=gauge_interplay]{gauge_interplay()}} to customise figure-level 
 \examples{
 # global interaction on chart
 df <- data.frame(
- x = letters,
- y = runif(26)
+  x = letters,
+  y = runif(26)
 )
 
 g2(df, asp(x, y)) \%>\%
- fig_interval(
-   selected(fill = "orange")
- ) \%>\% 
- interplay("element", "selected")
+  fig_interval(
+    selected(fill = "orange")
+  ) \%>\%
+  interplay("element", "selected")
 
 # brush
-g2(cars, asp(speed, dist)) \%>\% 
- fig_point(asp(interplay = "brush"))
+g2(cars, asp(speed, dist)) \%>\%
+  fig_point(asp(interplay = "brush"))
 
 # register
 df <- data.frame(
- x = c(letters, letters),
- y = runif(52),
- grp = c(rep("a", 26), rep("b", 26))
+  x = c(letters, letters),
+  y = runif(52),
+  grp = c(rep("a", 26), rep("b", 26))
 )
 
-g2(df, asp(x, y, color = grp)) \%>\% 
- fig_interval(
-   asp(interplay = "element-highlight-by-color"),
-   adjust("dodge")
- ) \%>\%  
- register_interplay(
-   "element-highlight-by-color",
-     start = list(
-       list(
-         trigger = 'element:mouseenter', 
-         action = 'element-highlight-by-color:highlight'
-       )
-     ),
-     end = list(
-       list(
-         trigger = 'element:mouseleave', 
-         action = 'element-highlight-by-color:reset'
-       )
-     )
-   )
-
+g2(df, asp(x, y, color = grp)) \%>\%
+  fig_interval(
+    asp(interplay = "element-highlight-by-color"),
+    adjust("dodge")
+  ) \%>\%
+  register_interplay(
+    "element-highlight-by-color",
+    start = list(
+      list(
+        trigger = "element:mouseenter",
+        action = "element-highlight-by-color:highlight"
+      )
+    ),
+    end = list(
+      list(
+        trigger = "element:mouseleave",
+        action = "element-highlight-by-color:reset"
+      )
+    )
+  )
 }

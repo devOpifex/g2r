@@ -29,7 +29,6 @@ draw the figure.}
 Add a line figure.
 }
 \examples{
-g2(CO2, asp(conc, uptake, color = Plant)) \%>\% 
- fig_line()
-
+g2(CO2, asp(conc, uptake, color = Plant)) \%>\%
+  fig_line()
 }

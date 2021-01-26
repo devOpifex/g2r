@@ -43,14 +43,13 @@ Add a histogram figure to the chart.
 }
 \examples{
 df <- data.frame(
- grp = rep(c("A", "B"), each = 200),
-   val = c(
-     rnorm(200, mean = 57, sd = 5), 
-     rnorm(200, mean = 53, sd = 5)
-   )
+  grp = rep(c("A", "B"), each = 200),
+  val = c(
+    rnorm(200, mean = 57, sd = 5),
+    rnorm(200, mean = 53, sd = 5)
+  )
 )
 
-g2(df, asp(val, color = grp)) \%>\% 
- fig_histogram(adjust("stack"), bin_width = 1)
-
+g2(df, asp(val, color = grp)) \%>\%
+  fig_histogram(adjust("stack"), bin_width = 1)
 }

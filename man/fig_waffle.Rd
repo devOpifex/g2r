@@ -54,13 +54,12 @@ Requires the \code{x} and \code{color} aspects.
 }
 \examples{
 fruits <- data.frame(
- fruit = c("Apples", "Bananas", "Pears", "Oranges"),
- value = c(.45, .15, .35, .05) * 100
+  fruit = c("Apples", "Bananas", "Pears", "Oranges"),
+  value = c(.45, .15, .35, .05) * 100
 )
 
-g2(fruits, asp(value, color = fruit)) \%>\% 
- fig_waffle() \%>\% 
- motif(padding = 50) \%>\% 
- axis_hide()
-
+g2(fruits, asp(value, color = fruit)) \%>\%
+  fig_waffle() \%>\%
+  motif(padding = 50) \%>\%
+  axis_hide()
 }

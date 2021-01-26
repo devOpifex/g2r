@@ -1,6 +1,6 @@
 test_that("Event", {
-  g <- g2(cars, asp(dist, speed)) %>% 
-    fig_point() %>% 
+  g <- g2(cars, asp(dist, speed)) %>%
+    fig_point() %>%
     capture_event("point:click")
 
   expect_equal(g$x$events[[1]]$event, "point:click")
@@ -8,8 +8,8 @@ test_that("Event", {
 
   cb <- htmlwidgets::JS("() => { console.log('hello') }")
 
-  g <- g2(cars, asp(dist, speed)) %>% 
-    fig_point() %>% 
+  g <- g2(cars, asp(dist, speed)) %>%
+    fig_point() %>%
     capture_event("element:click", cb)
 
   expect_equal(g$x$events[[1]]$event, "element:click")

@@ -33,9 +33,8 @@ ig <- igraph::make_ring(100)
 
 # use x and y for positioning
 g2(ig, asp(x, y)) \%>\%
- layout_igraph() \%>\% 
- fig_edge() \%>\% 
- fig_point(asp(shape = "circle")) \%>\% 
- axis_hide()
-
+  layout_igraph() \%>\%
+  fig_edge() \%>\%
+  fig_point(asp(shape = "circle")) \%>\%
+  axis_hide()
 }

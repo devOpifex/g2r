@@ -21,8 +21,7 @@ tooltips, labels, and other places.
 }
 \examples{
 # see tooltip
-g2(cars, asp(speed, dist)) \%>\% 
- fig_point() \%>\% 
- aka(dist, "SO FAR")
-
+g2(cars, asp(speed, dist)) \%>\%
+  fig_point() \%>\%
+  aka(dist, "SO FAR")
 }
