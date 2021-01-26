@@ -63,7 +63,7 @@ g2() %>%
 There is a convenience function to retrieve [GADM](https://gadm.org/) data but will work with the `raster::getData` function as well.
 
 ```{r}
-belgium <- get_gadm_data("BEL", level = 3)
+belgium <- get_gadm_data("BEL", level = 3, keep = 0.2)
 
 g2() %>% 
   fig_map(
