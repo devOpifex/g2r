@@ -1,3 +1,4 @@
+const  PrettierPlugin = require('prettier-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
 
@@ -22,6 +23,7 @@ loaders.forEach((loader) => {
 
 // placeholder for plugins
 var plugins = [
+  new PrettierPlugin(),
 ];
 
 // define options
