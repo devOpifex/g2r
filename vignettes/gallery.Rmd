@@ -500,7 +500,7 @@ fruits <- data.frame(
   y = rev(c(1, 3, 4, 6, 9, 10, 12, 13, 14, 16))
 )
 
-rad <- g2(fruits, asp(x, y, color = y), height = h) %>% 
+rad <- g2(fruits, asp(x, y, color = y), height = h, reorder = FALSE) %>% 
   fig_interval(
     asp(label = y),
     lineWidth = 1,
@@ -547,7 +547,7 @@ traffic <- data.frame(
   users = c(1, .7, .5, .3, .1)
 )
 
-fun <- g2(traffic, asp(label, users, color = label), height = h) %>% 
+fun <- g2(traffic, asp(label, users, color = label), height = h, reorder = FALSE) %>% 
   fig_interval(
     asp(shape = "funnel"), 
     adjust("symmetric")

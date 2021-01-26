@@ -48,7 +48,7 @@ bscols(
   widgets, 
   plot_ly(tx, x = ~date, y = ~median, showlegend = FALSE) %>% 
     add_lines(color = ~city, colors = "black"),
-  g2(tx, asp(date, median, color = city)) %>% 
+  g2(tx, asp(date, median, color = city), digits = 16) %>% 
     fig_line() %>% 
     legend_color(FALSE)
 )
