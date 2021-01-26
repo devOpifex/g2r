@@ -4,13 +4,14 @@
 \alias{order_data}
 \title{Order Data}
 \usage{
-order_data(data, cols)
+order_data(data = NULL, x = NULL, color = NULL)
 }
 \arguments{
 \item{data}{Data to reorder.}
 
-\item{cols}{Columns, only uses the first which is assumes
-is the \code{x} axis.}
+\item{x}{Column on x axis.}
+
+\item{color}{Color variable name.}
 }
 \description{
 Fortunately or unfortunately G2.js does not reorder
