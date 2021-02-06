@@ -302,12 +302,14 @@ or <code>fadeIn</code>.</p></dd>
     <pre class="examples"><span class='co'># create animation</span>
 <span class='va'>anim</span> <span class='op'>&lt;-</span> <span class='va'>Animation</span><span class='op'>$</span>
   <span class='fu'>new</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span>
-  <span class='fu'>appear</span><span class='op'>(</span>duration <span class='op'>=</span> <span class='fl'>2000</span>, delay <span class='op'>=</span> <span class='fl'>500</span><span class='op'>)</span>
+  <span class='fu'>appear</span><span class='op'>(</span>
+  duration <span class='op'>=</span> <span class='fl'>2000</span>,
+  delay <span class='op'>=</span> <span class='fl'>500</span>
+<span class='op'>)</span>
 
-<span class='va'>iris</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='g2.html'>g2</a></span><span class='op'>(</span><span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Sepal.Width</span>, color <span class='op'>=</span> <span class='va'>Species</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+<span class='va'>iris</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='g2.html'>g2</a></span><span class='op'>(</span><span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>Sepal.Length</span>, <span class='va'>Sepal.Width</span>, color <span class='op'>=</span> <span class='va'>Species</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='fig_point.html'>fig_point</a></span><span class='op'>(</span><span class='va'>anim</span><span class='op'>)</span>
-
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

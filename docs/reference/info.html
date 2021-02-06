@@ -229,21 +229,21 @@ for defails pon what to pass to <code>...</code>, and <code><a href='asp.html'>a
     <pre class="examples"><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>cars</span>, <span class='fl'>5</span><span class='op'>)</span>
 
 <span class='fu'><a href='g2.html'>g2</a></span><span class='op'>(</span><span class='va'>cars</span>, <span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>speed</span>, <span class='va'>dist</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
- <span class='fu'><a href='fig_point.html'>fig_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
- <span class='fu'>info_text</span><span class='op'>(</span>
-   position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>20</span>, <span class='fl'>35</span><span class='op'>)</span>, content <span class='op'>=</span> <span class='st'>"Look here!"</span>
- <span class='op'>)</span> <span class='op'>%&gt;%</span> 
- <span class='fu'>info_text</span><span class='op'>(</span>
-   <span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>speed</span>, <span class='va'>dist</span><span class='op'>)</span>,
-   content <span class='op'>=</span> <span class='st'>"Using aspects"</span>,
-   data <span class='op'>=</span> <span class='va'>df</span>
- <span class='op'>)</span>
+  <span class='fu'><a href='fig_point.html'>fig_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>info_text</span><span class='op'>(</span>
+    position <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>20</span>, <span class='fl'>35</span><span class='op'>)</span>,
+    content <span class='op'>=</span> <span class='st'>"Look here!"</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>info_text</span><span class='op'>(</span>
+    <span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>speed</span>, <span class='va'>dist</span><span class='op'>)</span>,
+    content <span class='op'>=</span> <span class='st'>"Using aspects"</span>,
+    data <span class='op'>=</span> <span class='va'>df</span>
+  <span class='op'>)</span>
 
 <span class='fu'><a href='g2.html'>g2</a></span><span class='op'>(</span><span class='va'>cars</span>, <span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>speed</span>, <span class='va'>dist</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
- <span class='fu'><a href='fig_point.html'>fig_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
- <span class='fu'>info_vline</span><span class='op'>(</span><span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
- <span class='fu'>info_hline</span><span class='op'>(</span><span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span><span class='op'>)</span>
-
+  <span class='fu'><a href='fig_point.html'>fig_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>info_vline</span><span class='op'>(</span><span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>info_hline</span><span class='op'>(</span><span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span><span class='op'>)</span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

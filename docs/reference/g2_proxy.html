@@ -195,29 +195,27 @@
 <span class='va'>dataset</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span>, y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>1</span>, <span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
- <span class='fu'><a href='g2r-shiny.html'>g2Output</a></span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span>,
- <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span><span class='op'>(</span><span class='st'>"add"</span>, <span class='st'>"Add figure"</span><span class='op'>)</span>
+  <span class='fu'><a href='g2r-shiny.html'>g2Output</a></span><span class='op'>(</span><span class='st'>"plot"</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/actionButton.html'>actionButton</a></span><span class='op'>(</span><span class='st'>"add"</span>, <span class='st'>"Add figure"</span><span class='op'>)</span>
 <span class='op'>)</span>
 
-<span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span><span class='op'>{</span>
+<span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>plot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='g2r-shiny.html'>renderG2</a></span><span class='op'>(</span><span class='op'>{</span>
+    <span class='fu'><a href='g2.html'>g2</a></span><span class='op'>(</span><span class='va'>dataset</span>, <span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='fig_point.html'>fig_point</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
 
- <span class='va'>output</span><span class='op'>$</span><span class='va'>plot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='g2r-shiny.html'>renderG2</a></span><span class='op'>(</span><span class='op'>{</span>
-   <span class='fu'><a href='g2.html'>g2</a></span><span class='op'>(</span><span class='va'>dataset</span>, <span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-     <span class='fu'><a href='fig_point.html'>fig_point</a></span><span class='op'>(</span><span class='op'>)</span>
- <span class='op'>}</span><span class='op'>)</span>
-
- <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>add</span>, <span class='op'>{</span>
-   <span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span>, y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>1</span>, <span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span>
-   <span class='fu'>g2_proxy</span><span class='op'>(</span><span class='st'>"plot"</span>, data <span class='op'>=</span> <span class='va'>df</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-     <span class='fu'><a href='fig_point.html'>fig_point</a></span><span class='op'>(</span><span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-     <span class='fu'><a href='render.html'>render</a></span><span class='op'>(</span><span class='op'>)</span>
-   <span class='op'>}</span><span class='op'>)</span>
-
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/observeEvent.html'>observeEvent</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>add</span>, <span class='op'>{</span>
+    <span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span>, y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fl'>1</span>, <span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='fu'>g2_proxy</span><span class='op'>(</span><span class='st'>"plot"</span>, data <span class='op'>=</span> <span class='va'>df</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='fig_point.html'>fig_point</a></span><span class='op'>(</span><span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+      <span class='fu'><a href='render.html'>render</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
 <span class='op'>}</span>
 
-<span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
- <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span><span class='va'>ui</span>, <span class='va'>server</span><span class='op'>)</span>
-
+<span class='kw'>if</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span><span class='va'>ui</span>, <span class='va'>server</span><span class='op'>)</span>
+<span class='op'>}</span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

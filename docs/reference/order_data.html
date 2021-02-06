@@ -167,7 +167,7 @@ the data and uses it as-is." />
 the data and uses it as-is.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>order_data</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>cols</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>order_data</span><span class='op'>(</span>data <span class='op'>=</span> <span class='cn'>NULL</span>, x <span class='op'>=</span> <span class='cn'>NULL</span>, color <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,9 +177,12 @@ the data and uses it as-is.</p>
       <td><p>Data to reorder.</p></td>
     </tr>
     <tr>
-      <th>cols</th>
-      <td><p>Columns, only uses the first which is assumes
-is the <code>x</code> axis.</p></td>
+      <th>x</th>
+      <td><p>Column on x axis.</p></td>
+    </tr>
+    <tr>
+      <th>color</th>
+      <td><p>Color variable name.</p></td>
     </tr>
     </table>
 

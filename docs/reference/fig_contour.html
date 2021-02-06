@@ -263,19 +263,18 @@ aspect.</p>
 
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>volcano</span><span class='op'>)</span>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>volcano</span><span class='op'>)</span>
-<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>,y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span>
-<span class='va'>df</span><span class='op'>$</span><span class='va'>z</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fl'>1</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span> 
- <span class='va'>volcano</span><span class='op'>[</span><span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>,<span class='va'>x</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>
+<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/expand.grid.html'>expand.grid</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>y</span><span class='op'>)</span>
+<span class='va'>df</span><span class='op'>$</span><span class='va'>z</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fl'>1</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>volcano</span><span class='op'>[</span><span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, <span class='va'>x</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>
 <span class='op'>}</span><span class='op'>)</span>
 
-<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'><a href='g2.html'>g2</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span>, z <span class='op'>=</span> <span class='va'>z</span><span class='op'>)</span><span class='op'>)</span> 
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'><a href='g2.html'>g2</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span>, z <span class='op'>=</span> <span class='va'>z</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'>fig_contour</span><span class='op'>(</span><span class='va'>g</span><span class='op'>)</span>
 
 <span class='fu'>fig_contour</span><span class='op'>(</span><span class='va'>g</span>, colors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"red"</span>, <span class='st'>"blue"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'>fig_contour</span><span class='op'>(</span><span class='va'>g</span>, type <span class='op'>=</span> <span class='st'>"filled"</span>, colors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"darkblue"</span>, <span class='st'>"white"</span><span class='op'>)</span><span class='op'>)</span>
-
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

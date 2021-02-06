@@ -1032,6 +1032,27 @@ fig_pie.g2r <- function(
     gauge_x_linear(nice = FALSE)
 }
 
+#' @method fig_pie g2Proxy
+#' @export
+fig_pie.g2Proxy <- function(
+  g,
+  ...,
+  sync = TRUE,
+  data = NULL,
+  inherit_asp = TRUE
+) {
+  g %>%
+    fig_interval(
+      ...,
+      adjust("stack"),
+      sync = sync,
+      data = data,
+      inherit_asp = inherit_asp
+    ) %>%
+    coord_type("theta") %>%
+    gauge_x_linear(nice = FALSE)
+}
+
 #' Voronoi
 #'
 #' Add a voronoi figure to the chart.
@@ -1251,6 +1272,10 @@ fig_waffle.g2r <- function(
     legend_asps("_hStep", FALSE)
 }
 
+#' @method fig_waffle g2Proxy
+#' @export
+fig_waffle.g2Proxy <- fig_waffle.g2r
+
 #' Rug
 #'
 #' Add a rug figure to the chart.
@@ -1326,6 +1351,10 @@ fig_rug.g2r <- function(
     asp = asp
   )
 }
+
+#' @method fig_rug g2Proxy
+#' @export
+fig_rug.g2Proxy <- fig_rug.g2r
 
 #' Candle
 #'
@@ -1458,6 +1487,10 @@ fig_candle.g2r <- function(
   )
 }
 
+#' @method fig_candle g2Proxy
+#' @export
+fig_candle.g2Proxy <- fig_candle.g2r 
+
 #' Error
 #'
 #' Add an error bar figure to the chart.
@@ -1536,6 +1569,10 @@ fig_error.g2r <- function(
     asp = asp
   )
 }
+
+#' @method fig_error g2Proxy
+#' @export
+fig_error.g2Proxy <- fig_error.g2r
 
 #' Contour
 #'
@@ -1690,6 +1727,10 @@ fig_contour.g2r <- function(
   g
 }
 
+#' @method fig_contour g2Proxy
+#' @export
+fig_contour.g2Proxy <- fig_contour.g2r
+
 #' Segment
 #'
 #' Add a segments figure to the chart.
@@ -1750,6 +1791,10 @@ fig_segment.g2r <- function(
     asp = asp
   )
 }
+
+#' @method fig_segment g2Proxy
+#' @export
+fig_segment.g2Proxy <- fig_segment.g2r
 
 # #' Outliers
 # #' @export

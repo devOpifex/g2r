@@ -171,7 +171,8 @@
   width <span class='op'>=</span> <span class='cn'>NULL</span>,
   height <span class='op'>=</span> <span class='cn'>NULL</span>,
   elementId <span class='op'>=</span> <span class='cn'>NULL</span>,
-  digits <span class='op'>=</span> <span class='cn'>NULL</span>
+  digits <span class='op'>=</span> <span class='cn'>NULL</span>,
+  reorder <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -202,13 +203,22 @@ as pixels, e.g.: <code>400</code> = <code>400px</code>.</p></td>
       <td><p>Maximum number of digits after the comma to show
 on the chart.</p></td>
     </tr>
+    <tr>
+      <th>reorder</th>
+      <td><p>Whether to internally reorder the data, namely
+the <code>x</code> and <code>color</code>. The <code>x</code> axis must be reordered in a descending
+order for most data type since G2.js plots data as-is. Moreover,
+<code>color</code> order of all data.frames passed either to this function or
+subsequent <code>fig_*</code> layers must be identical or the colors will
+might match the legends on the plot. However, one may sometimes
+not want the data to be reordered.</p></td>
+    </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='fu'>g2</span><span class='op'>(</span><span class='va'>cars</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
- <span class='fu'><a href='fig_point.html'>fig_point</a></span><span class='op'>(</span><span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>speed</span>, <span class='va'>dist</span><span class='op'>)</span><span class='op'>)</span>
-
+    <pre class="examples"><span class='fu'>g2</span><span class='op'>(</span><span class='va'>cars</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='fig_point.html'>fig_point</a></span><span class='op'>(</span><span class='fu'><a href='asp.html'>asp</a></span><span class='op'>(</span><span class='va'>speed</span>, <span class='va'>dist</span><span class='op'>)</span><span class='op'>)</span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
