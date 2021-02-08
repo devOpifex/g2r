@@ -104,6 +104,12 @@ if (HTMLWidgets.shinyMode) {
 
     c.removeView(v);
   });
+
+  // Change Data
+  Shiny.addCustomMessageHandler("change-data", (msg) => {
+    let c = getChart(msg.id);
+    c.changeData(msg.data);
+  });
 }
 
 // observe actions

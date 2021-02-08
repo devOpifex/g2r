@@ -154,3 +154,62 @@ serialise_df <- function(data = NULL) {
 
   pmap(data, list)
 }
+
+#' Change the data
+#'
+#' Dynamically change the data of a shiny plot.
+#' 
+#' @inheritParams fig_point
+#' @param data New dataset to replaced the one used 
+#' to currently plot the data.
+#' 
+#' @examples 
+#' library(shiny)
+#' 
+#' makeData <- function(){
+#'  data.frame(
+#'    x = runif(100),
+#'    y = runif(100),
+#'    size = runif(100)
+#'  )
+#' }
+#' 
+#' ui <- fluidPage(
+#'  g2Output("plot"),
+#'  actionButton("change", "Change data")
+#' )
+#' 
+#' server <- function(input, output){
+#' 
+#'  output$plot <- renderG2({
+#'    g2(makeData(), asp(x, y, size = size)) %>% 
+#'      fig_point()
+#'  })
+#' 
+#'  observeEvent(input$change, {
+#'    g2_proxy("plot") %>% 
+#'      change_data(makeData())
+#'  })
+#' }
+#' 
+#' if(interactive()){
+#'  shinyApp(ui, server)
+#' }
+#' 
+#' @export  
+change_data <- function(g, data) UseMethod("")
+
+#' @export
+#' @method change_data g2Proxy
+change_data <- function(g, data){
+  if(missing(data))
+    stop("Missing `data`", call. = FALSE)
+
+  g$session$sendCustomMessage(
+    "change-data",
+    list(
+      id = g$x$id,
+      data = serialise_df(data)
+    )
+  )
+}
