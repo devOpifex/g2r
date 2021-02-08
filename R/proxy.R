@@ -197,11 +197,11 @@ serialise_df <- function(data = NULL) {
 #' }
 #' 
 #' @export  
-change_data <- function(g, data) UseMethod("")
+change_data <- function(g, data) UseMethod("change_data")
 
 #' @export
 #' @method change_data g2Proxy
-change_data <- function(g, data){
+change_data.g2Proxy <- function(g, data){
   if(missing(data))
     stop("Missing `data`", call. = FALSE)
 
