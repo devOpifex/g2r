@@ -1,6 +1,7 @@
 const  PrettierPlugin = require('prettier-webpack-plugin');
 const path = require('path');
 const fs = require('fs');
+const { ESBuildPlugin, ESBuildMinifyPlugin } = require('esbuild-loader')
 
 // Read config files
 var outputPath = fs.readFileSync('./srcjs/config/output_path.json');
@@ -24,6 +25,7 @@ loaders.forEach((loader) => {
 // placeholder for plugins
 var plugins = [
   new PrettierPlugin(),
+  new ESBuildPlugin(),
 ];
 
 // define options
@@ -37,7 +39,13 @@ var options = {
   module: {
     rules: loaders
   },
-  plugins: plugins
+  plugins: plugins,
+  optimization: {
+    minimize: true,
+    minimizer: [ new ESBuildMinifyPlugin({
+      target: 'es2015'
+    }) ]
+  }
 };
 
 // add misc
