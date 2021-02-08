@@ -20,9 +20,6 @@ crosstalk_select.g2r <- function(g, attribute, on, off = NULL) {
     stop("Missing `on` argument", call. = FALSE)
   }
 
-  if (is.null(on)) {
-    on <- "none"
-  }
   if (is.null(off)) {
     off <- "none"
   }

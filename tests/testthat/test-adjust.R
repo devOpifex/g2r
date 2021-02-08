@@ -1,5 +1,6 @@
 test_that("Adjust", {
   expect_error(adjust())
+  expect_error(adjust("error"))
 
   g <- g2(cars, asp(dist, speed)) %>%
     fig_interval(adjust("stack"))

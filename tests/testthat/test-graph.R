@@ -1,4 +1,5 @@
 test_that("Graph", {
+  expect_error(g2() %>% layout_graph())
   ig <- igraph::make_ring(20)
 
   g <- g2(ig, asp(x, y)) %>%

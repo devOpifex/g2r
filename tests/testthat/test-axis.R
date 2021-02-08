@@ -18,10 +18,17 @@ test_that("Axis", {
   expect_length(opt$x$axis, 1)
   expect_null(opt$x$axis$opts$title)
 
+  expect_error(axis_title_x(g))
+
   titles <- g %>%
     axis_title_x("Hello") %>%
     axis_title_y("World")
 
   expect_length(titles$x$axis, 2)
   expect_equal(titles$x$scale$speed$alias, "Hello")
+})
+
+test_that("Subject", {
+  g <- g2(cars) %>% 
+    subject("Hello world")
 })

@@ -4,4 +4,8 @@ test_that("Planes", {
     planes(~Species, type = "tree")
 
   expect_length(g$x$facet, 2)
+
+  expect_error(g2(cars) %>% planes())
+  expect_error(g2(cars) %>% planes("err"))
+  expect_error(g2() %>% planes(~x))
 })

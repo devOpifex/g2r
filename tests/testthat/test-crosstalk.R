@@ -1,4 +1,7 @@
 test_that("Crosstalk", {
+  expect_error(g2() %>% crosstalk_select())
+  expect_error(g2() %>% crosstalk_select("fill"))
+
   sd <- crosstalk::SharedData$new(cars)
 
   g <- g2(sd, asp(speed, dist)) %>%
