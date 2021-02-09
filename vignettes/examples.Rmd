@@ -26,7 +26,7 @@ df <- data.frame(
 )
 
 g2(df, asp(x, ymin = ymin, ymax = ymax)) %>% 
- fig_range(type = "area") %>% 
+ fig_range(type = "area", fill = "grey") %>% 
  fig_line(asp(y = ymin, color = "#ffa6a6")) %>% 
  fig_line(asp(y = ymax, color = "#8adb9a"))
 ```
