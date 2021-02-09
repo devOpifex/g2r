@@ -13,8 +13,6 @@ test_that("Convert", {
   obj <- cbind(ldeaths, fdeaths, mdeaths)
   obj_df <- to_g2r(obj)
   expect_s3_class(obj_df, "data.frame")
-  
-  expect_s3_class(obj, "data.frame")
 
   obj <- acf(lh, plot = FALSE)
   expect_s3_class(to_g2r(obj), "data.frame")
