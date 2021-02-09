@@ -13,19 +13,7 @@ test_that("Convert", {
   obj <- cbind(ldeaths, fdeaths, mdeaths)
   obj_df <- to_g2r(obj)
   expect_s3_class(obj_df, "data.frame")
-
-  obj <- USAccDeaths %>%
-    stl(s.window='periodic') %>%
-    forecast::forecast() %>% 
-    to_g2r()
-
-  expect_s3_class(obj, "data.frame")
-
-  data(veteran, package = "survival")
-
-  obj <- survival::survfit(survival::Surv(time, status) ~ trt, data = veteran) %>% 
-    to_g2r()
-
+  
   expect_s3_class(obj, "data.frame")
 
   obj <- acf(lh, plot = FALSE)
@@ -34,12 +22,7 @@ test_that("Convert", {
   obj <- cor(mtcars)
   expect_s3_class(to_g2r(obj), "data.frame")
 
-  data(hpc_cv, package = "yardstick")
+  obj <- stl(mdeaths, "per")
+  expect_s3_class(to_g2r(obj), "data.frame")
 
-  hpc_cv %>%
-    yardstick::roc_curve(obs, VF:L) %>% 
-    to_g2r() %>% 
-    expect_s3_class("data.frame")
-
-  
 })
