@@ -31,4 +31,6 @@ test_that("Axis", {
 test_that("Subject", {
   g <- g2(cars) %>% 
     subject("Hello world")
+
+  expect_length(g$prepend, 1)
 })
