@@ -117,12 +117,15 @@ motif_from_json.g2r <- function(g, path) {
 #' @rdname motif
 #' @export
 motif_from_list <- function(g, motif) {
-  UseMethod("motif_from_json")
+  UseMethod("motif_from_list")
 }
 
 #' @export
 #' @method motif_from_list g2r
 motif_from_list.g2r <- function(g, motif) {
+  if (missing(motif))
+    stop("Missing `motif`", call. = FALSE)
+
   g$x$motif <- motif
   g
 }
