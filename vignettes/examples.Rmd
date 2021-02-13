@@ -291,7 +291,7 @@ cb <- htmlwidgets::JS(
   }"
 )
 
-g2(traffic, asp(label, users, color = label)) %>% 
+g2(traffic, asp(label, users, color = label), reorder = FALSE) %>% 
   fig_interval(
     asp(shape = "funnel", label = label, label = users), 
     adjust("symmetric")

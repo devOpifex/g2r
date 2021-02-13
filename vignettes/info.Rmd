@@ -133,3 +133,19 @@ g2(cars, asp(speed, dist)) %>%
     )
   )
 ```
+
+# Data Region
+
+```{r}
+data("economics", package = "ggplot2")
+
+g2(economics, asp(date, unemploy)) %>% 
+  fig_line() %>% 
+  info_data_region(
+    asp(
+      x = "1989-03-01", y = 6205,
+      xend = "1992-06-01", yend = 10040,
+      content = "Data Region"
+    )
+  )
+```
