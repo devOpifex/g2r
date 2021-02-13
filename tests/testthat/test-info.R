@@ -181,3 +181,17 @@ test_that("Info shape", {
   expect_length(g$x$annotations, 1)
   expect_equal(g$x$annotations[[1]]$type, "shape")
 })
+
+test_that("Info html", {
+  g <- g2(cars, asp(speed, dist)) %>% 
+    fig_line() %>% 
+    info_html(
+      asp(
+        x = 10, y = 18,
+        content = "<strong>Hello</strong>"
+      )
+    )
+  
+  expect_length(g$x$annotations, 1)
+  expect_equal(g$x$annotations[[1]]$type, "html")
+})
