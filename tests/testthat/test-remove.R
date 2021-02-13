@@ -4,6 +4,7 @@ test_that("Remove", {
     fig_line(config("LINE"))
 
   expect_length(g$x$views, 2)
+  expect_error(remove_figure(g))
 
   g <- remove_figure(g, 1)
 
