@@ -17,7 +17,7 @@
 
 <div class="panel panel-danger">
 <div class="panel-body">
-<strong>This package is not open-source, perhaps one day it will be.</strong>
+<strong>This package is not open-source (perhaps one day it will be) contact me if you are interested <code>john@opifex.org</code>.</strong>
 </div>
 </div>
 
