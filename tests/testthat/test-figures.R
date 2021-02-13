@@ -107,3 +107,16 @@ test_that("Figures - Heatmap", {
 
   expect_equal(g$x$views[[1]]$type, "heatmap")
 })
+
+test_that("Figures - style", {
+  g <- g2(cars, asp(dist, speed)) %>%
+    fig_point(fillOpacity = .4)
+
+  expect_equal(g$x$views[[1]]$style, list(fillOpacity = .4))
+
+  g <- g2(cars, asp(dist, speed, style = speed)) %>%
+    fig_point(fillOpacity = .4)
+
+  expect_equal(g$x$views[[1]]$style[[1]], "speed")
+  expect_equal(g$x$views[[1]]$style[[2]], list(fillOpacity = .4))
+})
