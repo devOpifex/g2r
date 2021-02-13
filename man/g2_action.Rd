@@ -4,7 +4,7 @@
 \alias{g2_action}
 \title{Plot Action}
 \usage{
-g2_action(plot_id, btn_id, ..., data = NULL)
+g2_action(plot_id, btn_id, ..., data = NULL, reorder = TRUE)
 }
 \arguments{
 \item{plot_id}{Id of chart to interact with.}
@@ -14,6 +14,14 @@ g2_action(plot_id, btn_id, ..., data = NULL)
 \item{...}{Aspects, see \code{\link[=asp]{asp()}}.}
 
 \item{data}{Data.frame containing data to plot.}
+
+\item{reorder}{Whether to internally reorder the data, namely
+the \code{x} and \code{color}. The \code{x} axis must be reordered in a descending
+order for most data type since G2.js plots data as-is. Moreover,
+\code{color} order of all data.frames passed either to this function or
+subsequent \verb{fig_*} layers must be identical or the colors will
+might match the legends on the plot. However, one may sometimes
+not want the data to be reordered.}
 }
 \description{
 Include dynamic elements in Rmarkdown.

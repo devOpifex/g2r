@@ -6,13 +6,21 @@
 #' @param btn_id Id of the [input_button()] that triggers the action.
 #' @param ... Aspects, see [asp()].
 #' @param data Data.frame containing data to plot.
+#' @param reorder Whether to internally reorder the data, namely
+#' the `x` and `color`. The `x` axis must be reordered in a descending
+#' order for most data type since G2.js plots data as-is. Moreover,
+#' `color` order of all data.frames passed either to this function or
+#' subsequent `fig_*` layers must be identical or the colors will
+#' might match the legends on the plot. However, one may sometimes
+#' not want the data to be reordered.
 #'
 #' @export
 g2_action <- function(
   plot_id,
   btn_id,
   ...,
-  data = NULL
+  data = NULL,
+  reorder = TRUE
 ) {
   if (missing(plot_id)) {
     stop("Missing `plot_id`", call. = FALSE)
@@ -24,6 +32,7 @@ g2_action <- function(
 
   action <- list(
     x = list(
+      reorder = reorder,
       is_action = TRUE,
       id = plot_id,
       # id of chart
