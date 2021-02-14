@@ -156,7 +156,8 @@ qg2.xts <- function(object, ...) {
     names(tidied)[1:5] <- c("x", "open", "high", "low", "close")
 
     g2(tidied, asp("x", open = "open", close = "close")) %>%
-      fig_candle(asp(high = "high", low = "low"))
+      fig_candle(asp(high = "high", low = "low")) %>% 
+      slider(start = 0, end = 1)
   }
 }
 
