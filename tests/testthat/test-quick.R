@@ -40,3 +40,55 @@ test_that("Quick - xts", {
 
   expect_length(g$x$views, 1)
 })
+
+test_that("Quick - stl", {
+  s <- stl(nottem, "per")
+
+  g <- qg2(s)
+
+  expect_length(g$x$views, 1)
+})
+
+test_that("Quick - roc", {
+  data(two_class_example, package = "yardstick")
+
+  roc <- yardstick::roc_curve(two_class_example, truth, Class1)
+
+  g <- qg2(roc)
+
+  expect_length(g$x$views, 1)
+
+})
+
+test_that("Quick - forecast", {
+  fc <- forecast::forecast(forecast::ets(USAccDeaths))
+
+  g <- qg2(fc)
+
+  expect_length(g$x$views, 4)
+
+})
+
+test_that("Quick - matrix", {
+  correl_mat <- cor(mtcars)
+
+  g <- qg2(correl_mat)
+
+  expect_length(g$x$views, 1)
+})
+
+test_that("Quick - graph", {
+  g <- igraph::erdos.renyi.game(500, 2/500)
+
+  g <- qg2(g)
+
+  expect_length(g$x$views, 2)
+})
+
+test_that("Quick - graph", {
+  pca <- prcomp(mtcars[,c(1:7,10,11)], center = TRUE,scale. = TRUE)
+
+  g <- qg2(pca)
+
+  expect_length(g$x$views, 3)
+})
