@@ -37,6 +37,8 @@ Suggests:
   packer,
   igraph,
   pkgdown,
+  survival,
+  quantmod,
   contoureR,
   geojsonio,
   rmapshaper,
