@@ -248,10 +248,11 @@ test_that("Figures - pie", {
 test_that("Figures - voronoi", {
   expect_error(g2(cars, asp(speed, dist)) %>% fig_voronoi())
 
-  df <- dplyr::tibble(
+  df <- data.frame(
     x = runif(50, 1, 500),
     y = runif(50, 1, 500),
-    value = runif(50, 1, 500)
+    value = runif(50, 1, 500),
+    stringsAsFactors = FALSE
   )
 
   g <- g2(df, asp(x, y, color = value)) %>% 
@@ -263,9 +264,10 @@ test_that("Figures - voronoi", {
 test_that("Figures - waffle", {
   expect_error(g2(cars) %>% fig_waffle())
   
-  fruits <- dplyr::tibble(
+  fruits <- data.frame(
     fruit = c("Apples", "Bananas", "Pears", "Oranges"),
-    value = c(.45, .15, .35, .05) * 100
+    value = c(.45, .15, .35, .05) * 100,
+    stringsAsFactors = FALSE
   )
 
   g <- g2(fruits, asp(value, color = fruit)) %>% 
