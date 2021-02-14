@@ -39,8 +39,10 @@ Suggests:
   pkgdown,
   survival,
   quantmod,
+  forecast,
   contoureR,
   geojsonio,
+  yardstick,
   rmapshaper,
   testthat (>= 3.0.0)
 Remotes:
