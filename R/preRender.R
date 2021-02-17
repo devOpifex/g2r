@@ -26,8 +26,8 @@ pre_render <- function(g) {
   g$x$graph <- NULL
 
   # globals
-  if (is.null(g$x$theme)) {
-    g$x$theme <- get_global_theme()
+  if (is.null(g$x$motif)) {
+    g$x$motif <- get_global_motif()
   }
 
   if (is.null(g$x$chartOpts)) {

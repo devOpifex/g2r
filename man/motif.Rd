@@ -2,6 +2,7 @@
 % Please edit documentation in R/motif.R
 \name{motif}
 \alias{motif}
+\alias{global_motif}
 \alias{motif_from_json}
 \alias{motif_from_list}
 \alias{motif_as_list}
@@ -9,6 +10,15 @@
 \usage{
 motif(
   g,
+  ...,
+  brandColor = NULL,
+  backgroundColor = "transparent",
+  renderer = c("canvas", "svg"),
+  padding = "auto",
+  visible = TRUE
+)
+
+global_motif(
   ...,
   brandColor = NULL,
   backgroundColor = "transparent",
@@ -64,6 +74,8 @@ file of theme, see the theme file.
 derived from the JSON file.
 \item \code{motif_as_list}: Returns a motif as a \code{list} to use
 with \code{\link[=motif_from_list]{motif_from_list()}}.
+\item \code{global_motif}: Define a global motif that will be used by
+all subsequent charts.
 }
 }
 

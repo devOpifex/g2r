@@ -28,6 +28,8 @@
 #' derived from the JSON file.
 #' - `motif_as_list`: Returns a motif as a `list` to use
 #' with [motif_from_list()].
+#' - `global_motif`: Define a global motif that will be used by
+#' all subsequent charts.
 #'
 #' @examples
 #' g2(iris, asp(Sepal.Width, Sepal.Length)) %>%
@@ -95,6 +97,47 @@ motif.g2r <- function(
   g$x$chartOpts$autoFit <- TRUE
 
   g
+}
+
+#' @rdname motif
+#' @export
+global_motif <- function(
+  ...,
+  brandColor = NULL,
+  backgroundColor = "transparent",
+  renderer = c("canvas", "svg"),
+  padding = "auto",
+  visible = TRUE
+) {
+  renderer <- match.arg(renderer)
+
+  misc <- rm_elements(...)
+  geoms <- get_elements(...)
+
+  # theme options
+  theme <- list(
+    styleSheet = drop_nulls(
+      list(
+        brandColor = brandColor,
+        backgroundColor = backgroundColor
+      )
+    )
+  ) %>%
+    append(misc)
+
+  theme <- make_geoms(theme, geoms)
+
+  opts <- list(
+    renderer = renderer,
+    padding = padding,
+    visible = visible,
+    autoFit = TRUE
+  )
+
+  options(G2_MOTIF = theme)
+  options(G2_CHART_OPTS = opts)
+
+  invisible()
 }
 
 #' @rdname motif
@@ -514,6 +557,6 @@ get_global_chart_opts <- function() {
 }
 
 #' @keywords internal
-get_global_theme <- function() {
-  getOption("G2_THEME", NULL)
+get_global_motif <- function() {
+  getOption("G2_MOTIF", NULL)
 }

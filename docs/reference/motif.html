@@ -175,6 +175,15 @@
   visible <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span>
 
+<span class='fu'>global_motif</span><span class='op'>(</span>
+  <span class='va'>...</span>,
+  brandColor <span class='op'>=</span> <span class='cn'>NULL</span>,
+  backgroundColor <span class='op'>=</span> <span class='st'>"transparent"</span>,
+  renderer <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"canvas"</span>, <span class='st'>"svg"</span><span class='op'>)</span>,
+  padding <span class='op'>=</span> <span class='st'>"auto"</span>,
+  visible <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span>
+
 <span class='fu'>motif_from_json</span><span class='op'>(</span><span class='va'>g</span>, <span class='va'>path</span><span class='op'>)</span>
 
 <span class='fu'>motif_from_list</span><span class='op'>(</span><span class='va'>g</span>, <span class='va'>motif</span><span class='op'>)</span>
@@ -243,6 +252,8 @@ file of theme, see the theme file.
 derived from the JSON file.</p></li>
 <li><p><code>motif_as_list</code>: Returns a motif as a <code>list</code> to use
 with <code>motif_from_list()</code>.</p></li>
+<li><p><code>global_motif</code>: Define a global motif that will be used by
+all subsequent charts.</p></li>
 </ul>
 
 

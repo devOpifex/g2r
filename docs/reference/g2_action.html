@@ -165,7 +165,7 @@
     <p>Include dynamic elements in Rmarkdown.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>g2_action</span><span class='op'>(</span><span class='va'>plot_id</span>, <span class='va'>btn_id</span>, <span class='va'>...</span>, data <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>g2_action</span><span class='op'>(</span><span class='va'>plot_id</span>, <span class='va'>btn_id</span>, <span class='va'>...</span>, data <span class='op'>=</span> <span class='cn'>NULL</span>, reorder <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -185,6 +185,16 @@
     <tr>
       <th>data</th>
       <td><p>Data.frame containing data to plot.</p></td>
+    </tr>
+    <tr>
+      <th>reorder</th>
+      <td><p>Whether to internally reorder the data, namely
+the <code>x</code> and <code>color</code>. The <code>x</code> axis must be reordered in a descending
+order for most data type since G2.js plots data as-is. Moreover,
+<code>color</code> order of all data.frames passed either to this function or
+subsequent <code>fig_*</code> layers must be identical or the colors will
+might match the legends on the plot. However, one may sometimes
+not want the data to be reordered.</p></td>
     </tr>
     </table>
 
