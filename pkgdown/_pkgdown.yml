@@ -2,7 +2,7 @@ template:
   opengraph:
     image:
       src: man/figures/g2r_social.png
-      alt: "A grammar of graphics for interactive visualisations"
+      alt: "A grammar of graphics for interactive visualisations using g2.js"
     twitter:
       creator: "@jdatap"
       site: "@devOpifex"

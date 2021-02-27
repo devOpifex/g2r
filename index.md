@@ -1,3 +1,6 @@
+[![R-CMD-check](https://github.com/devOpifex/g2r/workflows/R-CMD-check/badge.svg)](https://github.com/devOpifex/g2r/actions)
+[![Coveralls test coverage](https://coveralls.io/repos/github/devOpifex/g2r/badge.svg)](https://coveralls.io/r/devOpifex/g2r?branch=master)
+
 <br/>
 
 <div class="row">

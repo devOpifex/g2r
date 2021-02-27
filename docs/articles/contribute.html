@@ -21,7 +21,7 @@
 <script src="../extra.js"></script><meta property="og:title" content="Contribute">
 <meta property="og:description" content="g2r">
 <meta property="og:image" content="/reference/figures/g2r_social.png">
-<meta property="og:image:alt" content="A grammar of graphics for interactive visualisations">
+<meta property="og:image:alt" content="A grammar of graphics for interactive visualisations using g2.js">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@jdatap">
 <meta name="twitter:site" content="@devOpifex">
@@ -106,7 +106,7 @@
 
       
 
-      </header><script src="contribute_files/header-attrs-2.6/header-attrs.js"></script><script src="contribute_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Contribute</h1>
@@ -139,17 +139,17 @@
 <h3 class="hasAnchor">
 <a href="#make" class="anchor"></a>Make</h3>
 <p>Using <code>make</code> is probably the easiest way.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">git</span> clone https://github.com/devOpifex/g2r.git</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="bu">cd</span> g2r</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">make</span> init</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">git</span> clone https://github.com/devOpifex/g2r.git</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="bu">cd</span> g2r</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="fu">make</span> init</a></code></pre></div>
 </div>
 <div id="manual" class="section level3">
 <h3 class="hasAnchor">
 <a href="#manual" class="anchor"></a>Manual</h3>
 <p>First, make sure you have packer installed: <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages("packer")</a></code>.</p>
 <p>Then, clone the project.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">git</span> clone https://github.com/devOpifex/g2r.git</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="bu">cd</span> g2r</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="fu">git</span> clone https://github.com/devOpifex/g2r.git</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="bu">cd</span> g2r</a></code></pre></div>
 <p>As mentioned, <a href="https://packer.john-coene.com/">packer</a> is used to manage webpack and NPM with R: run the function below install the dependencies.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">packer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/packer/man/npm_install.html">npm_install</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -167,7 +167,7 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">packer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/packer/man/bundle.html">bundle_prod</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>It is advised to make use of the <code>makefile</code> to ensure one does not miss any of the required steps.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">make</span> build</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" title="1"><span class="fu">make</span> build</a></code></pre></div>
 </div>
 <div id="figures-alter" class="section level2">
 <h2 class="hasAnchor">
@@ -185,7 +185,7 @@
 <h2 class="hasAnchor">
 <a href="#man-docs" class="anchor"></a>Man &amp; Docs</h2>
 <p>Make sure document your functions with roxygen2 with examples, etc. Optionally, add something to the pkgdown site.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">make</span> site</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" title="1"><span class="fu">make</span> site</a></code></pre></div>
 </div>
 <div id="dependencies" class="section level2">
 <h2 class="hasAnchor">

@@ -21,7 +21,7 @@
 <script src="../extra.js"></script><meta property="og:title" content="Installation">
 <meta property="og:description" content="g2r">
 <meta property="og:image" content="/reference/figures/g2r_social.png">
-<meta property="og:image:alt" content="A grammar of graphics for interactive visualisations">
+<meta property="og:image:alt" content="A grammar of graphics for interactive visualisations using g2.js">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@jdatap">
 <meta name="twitter:site" content="@devOpifex">
@@ -106,7 +106,7 @@
 
       
 
-      </header><script src="installation_files/header-attrs-2.6/header-attrs.js"></script><script src="installation_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Installation</h1>
@@ -147,9 +147,9 @@
 <div id="source" class="section level3">
 <h3 class="hasAnchor">
 <a href="#source" class="anchor"></a>Source</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">git</span> clone https://github.com/devOpifex/g2r.git</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">cd</span> ./g2r</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">make</span> init</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1"><span class="fu">git</span> clone https://github.com/devOpifex/g2r.git</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="bu">cd</span> ./g2r</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="fu">make</span> init</a></code></pre></div>
 </div>
 <div id="full-installation" class="section level2">
 <h2 class="hasAnchor">
@@ -183,12 +183,12 @@
 <p>Numerous figures internally depend on other packages, namely the <a href="https://github.com/devOpifex/alter">alter package</a>, you will be prompted to install it if is not found on your machine.</p>
 <p>Alter requires the V8 engine and corresponding <a href="https://github.com/jeroen/V8/">V8</a> package.</p>
 <p><strong>V8</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Debian and Ubuntu</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">sudo</span> apt-get install -y libv8-dev</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Mac</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="ex">brew</span> install v8</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Fedora (with EPEL release)</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">sudo</span> yum install v8-devel</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># Debian and Ubuntu</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="fu">sudo</span> apt-get install -y libv8-dev</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># Mac</span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="ex">brew</span> install v8</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Fedora (with EPEL release)</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="fu">sudo</span> yum install v8-devel</a></code></pre></div>
 <div id="remotes-2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#remotes-2" class="anchor"></a>Remotes</h3>
