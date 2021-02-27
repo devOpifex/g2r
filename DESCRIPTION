@@ -12,7 +12,7 @@ Authors@R:
            email = "john@opifex.org")
   )
 Description: Interactive grammar of graphics.
-License: LGPL (>= 3)
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
