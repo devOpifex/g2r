@@ -77,3 +77,10 @@ g2(penguins, asp(flipper_length_mm, body_mass_g, color = species)) %>%
 ```
 
 <iframe class="g2r" src="embed.html" onload="this.width='100%';this.height='505px'" style="border:none;height:505px;" />
+
+<div class="panel panel-info">
+<div class="panel-heading">Note</div>
+<div class="panel-body">
+g2r currently does not work well with <b>large datasets</b> (performance drop), and some features are still under development, namely <b>rmarkdown actions</b>, <b>shiny proxies</b>, and <b>maps</b>. 
+</div>
+</div>
