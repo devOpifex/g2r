@@ -4,7 +4,7 @@ language: R
 cache: packages
 
 before_install:
-  - apt-get -y install ibudunits2-dev
+  - apt-get -y install libudunits2-dev
 
 after_success:
   - Rscript -e 'covr::coveralls()'
