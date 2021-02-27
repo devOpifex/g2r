@@ -192,24 +192,30 @@ order_data <- function(
     return(data)
   }
 
+  # are they columns
+  x_is_col <- x %in% names(data)
+  color_is_col <- color %in% names(data)
+
   # only reorder these
   valid_types <- c("numeric", "factor", "POSIXt", "Date")
 
   if (length(x) && !length(color)) {
-    if (inherits(data[[x]], valid_types)) {
+    if (inherits(data[[x]], valid_types) && x_is_col) {
       return(data[order(data[[x]]), ])
     } else {
       return(data)
     }
-  } else if (!length(x) && length(color)) {
+  } else if (!length(x) && length(color) && color_is_col) {
     return(data[order(data[[color]]), ])
   } else if (length(x) && length(color)) {
-    if (inherits(data[[x]], valid_types)) {
+    if (inherits(data[[x]], valid_types) && x_is_col) {
       return(data[order(data[[color]], data[[x]]), ])
-    } else {
+    } else if (color_is_col) {
       return(data[order(data[[color]]), ])
     }
   }
+
+  return(data)
 }
 
 #' Get Data
