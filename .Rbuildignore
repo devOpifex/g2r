@@ -16,3 +16,4 @@
 ^makefile$
 ^\.github$
 theme.json
+^\.travis\.yml$
