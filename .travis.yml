@@ -4,7 +4,7 @@ language: R
 cache: packages
 
 before_install:
-  - sudo apt-get -y install libudunits2-dev libprotobuf-dev protobuf-compiler libjq-dev libgdal-dev
+  - sudo apt-get -y install libudunits2-dev libprotobuf-dev protobuf-compiler libjq-dev libgdal-dev libharfbuzz-dev libfribidi-dev
 
 after_success:
   - Rscript -e 'covr::coveralls()'
