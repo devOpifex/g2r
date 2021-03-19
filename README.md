@@ -16,7 +16,7 @@
 [G2.js](https://g2.antv.vision/) for R.
 
 [Website](https://g2r.opifex.org) | [Docs](https://g2r.opifex.org/articles/docs.html) | [Get
-Started](https://g2r.dev/articles/get_started.html)
+Started](https://g2r.opifex.org/articles/get-started.html)
 
 </div>
 
