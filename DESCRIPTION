@@ -1,6 +1,6 @@
 Package: g2r
 Title: Interactive Grammar of Graphics
-Version: 1.0.0.9000
+Version: 1.0.1.9000
 Authors@R: 
   c(
     person(given = "John",

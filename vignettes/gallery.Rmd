@@ -343,9 +343,7 @@ err <- df1 %>%
 
 library(survival)
 
-data(veteran)
-
-fit <- survfit(Surv(time, status) ~ trt, data = veteran)
+fit <- survfit(Surv(time, status) ~ trt, data = survival::veteran)
 q <- qg2(fit) %>% 
   tooltip(showCrosshairs = TRUE)
 q$height <- h

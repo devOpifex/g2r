@@ -14,9 +14,8 @@ test_that("Quick - lm", {
 })
 
 test_that("Quick - survival", {
-  data(veteran, package = "survival")
 
-  fit <- survival::survfit(survival::Surv(time, status) ~ trt, data = veteran)
+  fit <- survival::survfit(survival::Surv(time, status) ~ trt, data = survival::veteran)
 
   g <- qg2(fit)
   expect_length(g$x$views, 3)

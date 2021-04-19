@@ -137,9 +137,7 @@ g2(ts, asp(x)) %>%
 ```{r}
 library(survival)
 
-data(veteran)
-
-km_fit <- survfit(Surv(time, status) ~ trt, data = veteran)
+km_fit <- survfit(Surv(time, status) ~ trt, data = survival::veteran)
 
 g2(km_fit, asp(time, color = strata, shape = "vh")) %>% 
   fig_line(asp(y = estimate)) %>% 
