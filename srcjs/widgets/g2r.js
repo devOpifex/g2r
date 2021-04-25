@@ -71,7 +71,7 @@ HTMLWidgets.widget({
 
         // Sometimes the viz is badly drawn until resize
         // this forces resize by 1px on the height
-        // c.changeSize(width, height - 1);
+        c.changeSize(width, height - 1);
       },
 
       resize: function (width, height) {
