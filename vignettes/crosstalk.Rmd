@@ -35,8 +35,7 @@ library(crosstalk)
 tx <- highlight_key(txhousing)
 
 # filter widgets
-widgets <- bscols(
-  widths = c(12, 12, 12),
+widgets <- htmltools::div(
   filter_select("city", "Cities", tx, ~city),
   filter_slider("sales", "Sales", tx, ~sales),
   filter_checkbox("year", "Years", tx, ~year, inline = TRUE)
