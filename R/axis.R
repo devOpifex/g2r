@@ -144,7 +144,7 @@ axis_title_ <- function(g, title, ..., fontSize = 10, offset = 30, axis = c("x",
     )
 }
 
-font <- '"-apple-system", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji'
+font <- '"-apple-system", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
 
 #' Subject
 #' 

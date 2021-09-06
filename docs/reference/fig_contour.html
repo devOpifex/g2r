@@ -217,19 +217,19 @@ of each path.</p></td>
     </tr>
     <tr>
       <th>nlevels</th>
-      <td><p>Passed to <code><a href='https://rdrr.io/pkg/contoureR/man/getContourLines.html'>contoureR::getContourLines</a></code>.
+      <td><p>Passed to <code>contoureR::getContourLines</code>.
 An integer number of bins to split the data into <em>iff</em>
 ‘levels’ or ‘binwidth’ have not been specified.</p></td>
     </tr>
     <tr>
       <th>binwidth</th>
-      <td><p>Passed to <code><a href='https://rdrr.io/pkg/contoureR/man/getContourLines.html'>contoureR::getContourLines</a></code>.
+      <td><p>Passed to <code>contoureR::getContourLines</code>.
 The desired width of the bins, if specified, will override
 ‘nlevels’.</p></td>
     </tr>
     <tr>
       <th>levels</th>
-      <td><p>Passed to <code><a href='https://rdrr.io/pkg/contoureR/man/getContourLines.html'>contoureR::getContourLines</a></code>.
+      <td><p>Passed to <code>contoureR::getContourLines</code>.
 A numeric vector of the explicitly specified levels (zvalues)
 to contour, by specifying this argument, it will override
 ‘nlevels’ and/or ‘binwidth’. If this argument is provided,
@@ -238,7 +238,7 @@ order of first occurence within the supplied vector.</p></td>
     </tr>
     <tr>
       <th>criticalRatio</th>
-      <td><p>Passed to <code><a href='https://rdrr.io/pkg/contoureR/man/getContourLines.html'>contoureR::getContourLines</a></code>.
+      <td><p>Passed to <code>contoureR::getContourLines</code>.
 When producing the Delaunay Mesh, the quality of the mesh can
 be poor in the proximity to the convex hull, Del's that have
 an aspect ratio greater than this value are not considered when
@@ -259,7 +259,7 @@ width of the error bars can be changed with the <code>size</code>
 aspect.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>volcano</span><span class='op'>)</span>
+    <pre class="examples"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>volcano</span><span class='op'>)</span>
 
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>volcano</span><span class='op'>)</span>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>volcano</span><span class='op'>)</span>
@@ -275,7 +275,7 @@ aspect.</p>
 <span class='fu'>fig_contour</span><span class='op'>(</span><span class='va'>g</span>, colors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"red"</span>, <span class='st'>"blue"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'>fig_contour</span><span class='op'>(</span><span class='va'>g</span>, type <span class='op'>=</span> <span class='st'>"filled"</span>, colors <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"darkblue"</span>, <span class='st'>"white"</span><span class='op'>)</span><span class='op'>)</span>
-</div></pre>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
