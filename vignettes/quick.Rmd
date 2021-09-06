@@ -147,4 +147,4 @@ pca <- prcomp(mtcars[,c(1:7,10,11)], center = TRUE,scale. = TRUE)
 qg2(pca)
 ```
 
-<a class="btn btn-default" href="recipe.html">Explore recipe</a>
+<a class="btn btn-default" href="recipes.html">Explore recipes</a>
