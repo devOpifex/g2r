@@ -21,7 +21,7 @@ info_primitive(
 \item{...}{Options to pass to the figure, including \code{\link[=asp]{asp()}},
 and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, \code{\link[=selected]{selected()}}, and \code{\link[=config]{config()}},
 other key value pairs of are passed to
-\href{https://g2.antv.vision/en/docs/api/general/style}{style}.}
+\href{https://g2.antv.vision/en/docs/api/general/style/}{style}.}
 
 \item{type}{Type of annotation.}
 

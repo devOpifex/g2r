@@ -9,7 +9,7 @@
 #' @param padding Padding around the figure.
 #' @param theme Theme of the figure.
 #' @param ... Any other options from the
-#' [official documentation](https://g2.antv.vision/en/docs/api/general/chart#viewcfg).
+#' [official documentation](https://g2.antv.vision/en/docs/api/general/chart/).
 #'
 #' @examples
 #' mtcars %>%

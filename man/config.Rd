@@ -26,7 +26,7 @@ on the canvas.}
 \item{theme}{Theme of the figure.}
 
 \item{...}{Any other options from the
-\href{https://g2.antv.vision/en/docs/api/general/chart#viewcfg}{official documentation}.}
+\href{https://g2.antv.vision/en/docs/api/general/chart/}{official documentation}.}
 }
 \description{
 Configure a figure.

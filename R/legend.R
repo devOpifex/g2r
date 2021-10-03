@@ -5,7 +5,7 @@
 #' @inheritParams fig_point
 #' @param ... Options to pass to the legend, pass `FALSE`
 #' to hide the axis. Visit the
-#' [official documentation](https://g2.antv.vision/en/docs/api/general/legend)
+#' [official documentation](https://g2.antv.vision/en/docs/api/general/legend/)
 #' for the full list of options.
 #' @param asps Aspect (column names) to change the legend.
 #'

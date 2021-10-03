@@ -13,7 +13,7 @@ fig_map(g, ..., inherit_asp = TRUE, sync = TRUE, map = get_world_map())
 \item{...}{Options to pass to the figure, including \code{\link[=asp]{asp()}},
 and \code{\link[=adjust]{adjust()}}, \code{\link[=active]{active()}}, \code{\link[=selected]{selected()}}, and \code{\link[=config]{config()}},
 other key value pairs of are passed to
-\href{https://g2.antv.vision/en/docs/api/general/style}{style}.}
+\href{https://g2.antv.vision/en/docs/api/general/style/}{style}.}
 
 \item{inherit_asp}{Whether to inherit the aspects paseed to
 \code{\link[=g2]{g2()}} initialisation function.}

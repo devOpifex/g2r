@@ -16,6 +16,6 @@ slider(g, ...)
 Add a slider to the chart.
 }
 \seealso{
-The \href{https://g2.antv.vision/en/docs/api/general/slider}{official documentation}
+The \href{https://g2.antv.vision/en/docs/api/general/slider/}{official documentation}
 for the list options to pass to \code{...}.
 }

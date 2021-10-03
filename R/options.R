@@ -5,7 +5,7 @@
 #' @inheritParams fig_point
 #' @param ... Options to pass to the slider.
 #'
-#' @seealso The [official documentation](https://g2.antv.vision/en/docs/api/general/slider)
+#' @seealso The [official documentation](https://g2.antv.vision/en/docs/api/general/slider/)
 #' for the list options to pass to `...`.
 #'
 #' @export
@@ -35,7 +35,7 @@ slider.g2r <- function(g, ...) {
 #' @inheritParams fig_point
 #' @param ... Options to pass to the slider.
 #'
-#' @seealso The [official documentation](https://g2.antv.vision/en/docs/api/general/scrollbar)
+#' @seealso The [official documentation](https://g2.antv.vision/en/docs/api/general/scrollbar/)
 #' for the list options to pass to `...`.
 #'
 #' @export

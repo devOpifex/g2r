@@ -16,6 +16,6 @@ scrollbar(g, ...)
 Add a scrollbar to the chart.
 }
 \seealso{
-The \href{https://g2.antv.vision/en/docs/api/general/scrollbar}{official documentation}
+The \href{https://g2.antv.vision/en/docs/api/general/scrollbar/}{official documentation}
 for the list options to pass to \code{...}.
 }

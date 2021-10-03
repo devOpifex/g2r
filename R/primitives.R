@@ -7,7 +7,7 @@
 #' @param ... Options to pass to the figure, including [asp()],
 #' and [adjust()], [active()], [selected()], and [config()],
 #' other key value pairs of are passed to
-#' [style](https://g2.antv.vision/en/docs/api/general/style).
+#' [style](https://g2.antv.vision/en/docs/api/general/style/).
 #' @param sync Whether to sync the axis data (align) with that
 #' used in other figures, set to `FALSE` to not sync or set to
 #' a character string to use as name of sync group.

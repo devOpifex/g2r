@@ -82,6 +82,6 @@ g2(cars, asp(speed, dist)) \%>\%
   info_hline(asp(y = 20))
 }
 \seealso{
-\href{https://antv-g2.gitee.io/en/docs/api/general/annotation}{Official annotation documentation}
+\href{https://antv-g2.gitee.io/en/docs/api/general/annotation/}{Official annotation documentation}
 for defails pon what to pass to \code{...}, and \code{\link[=asp]{asp()}}.
 }

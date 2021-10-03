@@ -31,7 +31,7 @@ legend_asps(g, asps, ...)
 
 \item{...}{Options to pass to the legend, pass \code{FALSE}
 to hide the axis. Visit the
-\href{https://g2.antv.vision/en/docs/api/general/legend}{official documentation}
+\href{https://g2.antv.vision/en/docs/api/general/legend/}{official documentation}
 for the full list of options.}
 
 \item{asps}{Aspect (column names) to change the legend.}

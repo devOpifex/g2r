@@ -9,7 +9,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/devOpifex/g2r/workflows/R-CMD-check/badge.svg)](https://github.com/devOpifex/g2r/actions)
-[![Coveralls test coverage](https://coveralls.io/repos/github/devOpifex/g2r/badge.svg)](https://coveralls.io/r/devOpifex/g2r?branch=master)
+[![Coveralls test coverage](https://coveralls.io/repos/github/devOpifex/g2r/badge.svg)](https://coveralls.io/github/devOpifex/g2r)
 <!-- badges: end -->
 
 [G2.js](https://g2.antv.vision/) for R.

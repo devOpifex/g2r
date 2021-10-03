@@ -30,7 +30,7 @@
 #'   fig_point() %>%
 #'   info_vline(asp(x = 20)) %>%
 #'   info_hline(asp(y = 20))
-#' @seealso [Official annotation documentation](https://antv-g2.gitee.io/en/docs/api/general/annotation)
+#' @seealso [Official annotation documentation](https://antv-g2.gitee.io/en/docs/api/general/annotation/)
 #' for defails pon what to pass to `...`, and [asp()].
 #'
 #' @name info
