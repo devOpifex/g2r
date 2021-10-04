@@ -36,6 +36,7 @@ input_slider(
   step = 5
 )
 
+\dontrun{
 g2(cars, asp(speed, dist)) \%>\%
   fig_point() \%>\%
   fig_smooth() \%>\%
@@ -44,4 +45,5 @@ g2(cars, asp(speed, dist)) \%>\%
     dist,
     operator = ">"
   )
+}
 }

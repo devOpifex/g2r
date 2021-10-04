@@ -169,6 +169,7 @@ action_select_data.g2r <- function(g, input, datasets) {
 #'   step = 5
 #' )
 #'
+#' \dontrun{
 #' g2(cars, asp(speed, dist)) %>%
 #'   fig_point() %>%
 #'   fig_smooth() %>%
@@ -177,6 +178,7 @@ action_select_data.g2r <- function(g, input, datasets) {
 #'     dist,
 #'     operator = ">"
 #'   )
+#' }
 #' @importFrom rlang as_label enquo
 #'
 #' @export
