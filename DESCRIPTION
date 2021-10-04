@@ -1,6 +1,6 @@
 Package: g2r
 Title: Interactive Grammar of Graphics
-Version: 1.0.1
+Version: 1.0.1.9000
 Authors@R: 
   c(
     person(given = "John",
@@ -16,7 +16,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.1.1
 Imports: 
   R6,
   purrr,
@@ -33,6 +33,7 @@ Suggests:
     covr,
     maps,
     Rtsne,
+    alter,
     broom,
     shiny,
     packer,
@@ -47,6 +48,8 @@ Suggests:
     tidyquant,
     rmapshaper,
     testthat (>= 3.0.0)
+Remotes:
+  devOpifex/alter
 Config/testthat/edition: 3
 URL: https://g2r.opifex.org/, https://github.com/devOpifex/g2r/
 BugReports: https://github.com/devOpifex/g2r/issues/
