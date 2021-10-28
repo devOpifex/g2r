@@ -44,6 +44,7 @@ get_gadm_data <- function(iso3c, level = c(0, 1, 2, 3, 4), keep = 0.05) {
   on.exit({
     unlink(temp)
   })
+
   dl <- tryCatch(
     download.file(url, temp, quiet = TRUE),
     error = function(e) e
