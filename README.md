@@ -42,4 +42,4 @@ g2(cars, asp(speed, dist, color = dist)) %>%
 
 ## Limitations
 
-g2r currently does not work well with _large datasets_ (performance drop), and some features are still under development, namely _rmarkdown actions_, _shiny proxies_, and _maps_. _Theming_ is not currently rather unwieldy.
+g2r currently does not work well with _large datasets_ (performance drop), and some features are still under development, namely _rmarkdown actions_, _shiny proxies_, and _maps_. _Theming_ is currently rather unwieldy.
