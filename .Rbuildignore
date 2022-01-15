@@ -17,3 +17,4 @@
 ^\.github$
 theme.json
 ^\.travis\.yml$
+^\.gitattributes$
